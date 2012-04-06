@@ -16,8 +16,14 @@ function SlideDeck() {
  * @const
  * @private
  */
-SlideDeck.prototype.SLIDE_CLASSES_ = ['far-past', 'past', 'current', 'next',
-    'far-next'];
+SlideDeck.prototype.SLIDE_CLASSES_ = [
+  'far-past', 'past', 'current', 'next', 'far-next'];
+
+/**
+ * @const
+ * @private
+ */
+SlideDeck.prototype.CSS_DIR_ = 'theme/css/';
 
 /**
  * @private
@@ -26,7 +32,9 @@ SlideDeck.prototype.getCurrentSlideFromHash_ = function() {
   var slideNo = parseInt(document.location.hash.substr(1));
 
   if (slideNo) {
-    this.curSlide_ = slideNo;
+    this.curSlide_ = slideNo - 1;
+  } else {
+    this.curSlide_ = 0;
   }
 };
 
@@ -35,6 +43,11 @@ SlideDeck.prototype.getCurrentSlideFromHash_ = function() {
  */
 SlideDeck.prototype.handleDomLoaded_ = function() {
   this.slides_ = document.querySelectorAll('slide:not(.hidden)');
+
+  for (var i = 0, slide; slide = this.slides_[i]; ++i) {
+    slide.dataset.slideNum = i + 1;
+    slide.dataset.totalSlides = this.slides_.length;
+  }
 
   // Load config
   this.loadConfig_();
@@ -150,8 +163,9 @@ SlideDeck.prototype.loadConfig_ = function() {
     document.title = settings.title;
   }
 
-  if (settings.usePrettify || true) {
+  if (!!!('usePrettify' in settings) || settings.usePrettify) {
     console.log('Use prettify');
+    //TODO
   }
 
   if (settings.analyticsId) {
@@ -216,7 +230,7 @@ SlideDeck.prototype.buildNextItem_ = function() {
  * @param {boolean=} opt_dontPush
  */
 SlideDeck.prototype.prevSlide = function(opt_dontPush) {
-  if (this.curSlide_ > 1) {
+  if (this.curSlide_ > 0) {
     this.curSlide_--;
 
     this.updateSlides_(opt_dontPush);
@@ -339,10 +353,22 @@ SlideDeck.prototype.disableFrame_ = function(frame) {
 /**
  * @private
  * @param {number} slideNo
+ */
+SlideDeck.prototype.getSlideEl_ = function(no) {
+  if ((no < 0) || (no >= this.slides_.length)) {
+    return null;
+  } else {
+    return this.slides_[no];
+  }
+};
+
+/**
+ * @private
+ * @param {number} slideNo
  * @param {string} className
  */
 SlideDeck.prototype.updateSlideClass_ = function(slideNo, className) {
-  var el = this.slides_[slideNo - 1];
+  var el = this.getSlideEl_(slideNo);
 
   if (!el) {
     return;
@@ -382,9 +408,10 @@ SlideDeck.prototype.makeBuildLists_ = function () {
  */
 SlideDeck.prototype.updateHash_ = function(dontPush) {
   if (!dontPush) {
-    var hash = '#' + this.curSlide_;
+    var slideNo = this.curSlide_ + 1;
+    var hash = '#' + slideNo;
     if (window.history.pushState) {
-      window.history.pushState(this.curSlide_, 'Slide ' + this.curSlide_, hash);
+      window.history.pushState(this.curSlide_, 'Slide ' + slideNo, hash);
     } else {
       window.location.replace(hash);
     }
@@ -411,13 +438,13 @@ SlideDeck.prototype.addFavIcon_ = function(favIcon) {
  * @param {string} theme
  */
 SlideDeck.prototype.loadTheme_ = function(theme) {
-  var styles = ['base', theme];
+  var styles = [theme];
   for (var i = 0, style; themeUrl = styles[i]; i++) {
     var style = document.createElement('link');
     style.rel = 'stylesheet';
     style.type = 'text/css';
     if (themeUrl.indexOf('http') == -1) {
-      style.href = 'theme/' + themeUrl + '.css';
+      style.href = this.CSS_DIR_ + themeUrl + '.css';
     } else {
       style.href = themeUrl;
     }

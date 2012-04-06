@@ -1,3 +1,21 @@
+//@import "compass/reset";
+@import "compass/css3/border-radius";
+//@import "compass/css3/box";
+@import "compass/css3/box-shadow";
+@import "compass/css3/box-sizing";
+@import "compass/css3/images";
+@import "compass/css3/text-shadow";
+@import "compass/css3/background-size";
+@import "compass/css3/transform";
+@import "compass/css3/transition";
+
+@mixin font-smoothing($val: antialiased) {
+  -webkit-font-smoothing: $val;
+  -moz-font-smoothing: $val;
+  -ms-font-smoothing: $val;
+  -o-font-smoothing: $val;
+}
+
 /**
  * Base SlideDeck Styles
  */
@@ -19,7 +37,7 @@ body {
   overflow-y: auto;
 
   color: #fff;
-  -webkit-font-smoothing: antialiased;
+  @include font-smoothing(antialiased);
 }
 
 slides {
@@ -28,12 +46,9 @@ slides {
   position: absolute;
   left: 0;
   top: 0;
-  -webkit-transform: translate3d(0, 0, 0);
-  -webkit-perspective: 1000;
-  -webkit-transform-style: preserve-3d;
-  -moz-transform: translate(0);
-  -moz-perspective: 1000;
-  -moz-transform-style: preserve-3d;
+  @include transform(translate3d(0, 0, 0));
+  @include perspective(1000);
+  @include transform-style(preserve-3d);
 }
 
 slides > slide {
@@ -42,10 +57,7 @@ slides > slide {
   overflow: hidden;
   left: 50%;
   top: 50%;
-  -o-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+  @include box-sizing(border-box);
 }
 
 
@@ -99,17 +111,14 @@ article.fill iframe {
   border: 0;
   margin: 0;
 
-  border-radius: 10px;
-  -o-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
+  @include border-radius(10px);
 
   z-index: -1;
 }
 
 slide.fill {
   background-repeat: no-repeat;
-  background-size: cover;
+  @include background-size(cover);
 }
 
 slide.fill img {
