@@ -5,65 +5,88 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
 </head>
-<body style="display: none">
-  <slides>
-    <slide>
-      A Slide
-    </slide>
+<body style="opacity: 0;">
 
-    <slide>
-      A Slide
-    </slide>
+<slides>
+  <slide class="logoslide">
+    <section class="flexcenter">
+      <img src="images/google_developers_logo.png">
+    </section>
+  </slide>
 
-    <slide>
-      A Slide
-    </slide>
+  <slide id="title-slide">
+    <!-- <aside class="bar"></aside> -->
+    <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
+    <hgroup>
+      <h1>Title Goes Here</h1>
+      <h2>Subtitle Goes Here</h2>
+      <p>
+        Speaker Name<br>
+        Title
+      </p>
+    </hgroup>
+  </slide>
 
-    <slide>
-      A Slide
-    </slide>
-  </slides>
+  <slide>
+    <h2>Presentation Bullet Slide Layout</h2>
+    <ul class="build">
+      <li>Bullet1</li>
+      <li>Bullet2</li>
+    </ul>
+  </slide>
 
-  <script type="text/slide-config">
-    var slideConfig = {
-      // Slide settings
-      settings: {
-        title: 'A Fancy Slide Deck',
-        theme: 'default',
-        hashtag: '#html5', //TODO
-        useBuilds: true,
-        usePrettify: true,
-        enableSideAreas: true, //TODO
-        analytics: 'UA-25678279-1',
-        favIcon:
-            'http://tokyo.bleedinghtml5.appspot.com/images/chrome-logo-tiny2.png',
-        onLoad: null, // TODO. function to call onload
-        fonts: [
-          'Open Sans:regular,semibold,italic,italicsemibold',
-          'Droid Sans Mono'
-        ]
-      },
+  <slide>
+    <hgroup>
+      <h2>Presentation Bullet Slide Layout</h2>
+      <h3>Subtitle Placeholder</h3>
+    </hgroup>
+  </slide>
 
-      // Author information
-      author: [{
-        name: 'Luke Mahe',
-        gplus: 'http://www.google.com'
-      }, {
-        name: 'Marcin Wichary',
-        gplus: 'http://www.google.com'
-      }, {
-        name: 'Eric Bidelman',
-        gplus: 'http://plus.ericbidelman.com'
-      }]
-    };
-  </script>
+  <slide hidden>
+    A hidden slide
+  </slide>
 
-  <script src="js/slides.js"></script>
+  <slide>
+    A Slide2
+  </slide>
+</slides>
 
-  <!-- Add to slides.js -->
-  <!--[if IE]>
-    <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
-    <script>CFInstall.check({mode: 'overlay'});</script>
-  <![endif]-->
+<script type="text/slide-config">
+  var slideConfig = {
+    // Slide settings
+    settings: {
+      title: 'A Fancy Slide Deck - Google IO 2012',
+      theme: 'default',
+      hashtag: '#html5', //TODO
+      useBuilds: true,
+      usePrettify: true, //TODO
+      enableSideAreas: true, //TODO
+      analytics: 'UA-25678279-1',
+      favIcon: 'http://bleedinghtml5.appspot.com/images/chrome-logo-tiny2.png',
+      onLoad: null, // TODO. function to call onload
+      fonts: [
+        'Open Sans:regular,semibold,italic,italicsemibold',
+        'Inconsolata'
+      ]
+    },
+
+    // Author information
+    author: [{
+      name: 'Luke Mahe',
+      gplus: 'http://www.google.com'
+    }, {
+      name: 'Eric Bidelman',
+      gplus: 'http://plus.ericbidelman.com'
+    }]
+  };
+</script>
+
+<script src="js/slides.js"></script>
+
+<!-- TODO: Add to slides.js -->
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
 </body>
 </html>

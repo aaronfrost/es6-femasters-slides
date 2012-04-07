@@ -42,14 +42,14 @@ SlideDeck.prototype.getCurrentSlideFromHash_ = function() {
  * @private
  */
 SlideDeck.prototype.handleDomLoaded_ = function() {
-  this.slides_ = document.querySelectorAll('slide:not(.hidden)');
+  this.slides_ = document.querySelectorAll('slide:not([hidden])');
 
   for (var i = 0, slide; slide = this.slides_[i]; ++i) {
     slide.dataset.slideNum = i + 1;
     slide.dataset.totalSlides = this.slides_.length;
   }
 
-  // Load config
+  // Load config.
   this.loadConfig_();
   this.addEventListeners_();
   this.updateSlides_();
@@ -61,8 +61,13 @@ SlideDeck.prototype.handleDomLoaded_ = function() {
 SlideDeck.prototype.addEventListeners_ = function() {
   document.addEventListener('keydown', this.handleBodyKeyDown_.bind(this),
                             false);
-  window.addEventListener('popstate', this.handlePopState_.bind(this),
-                          false);
+  window.addEventListener('popstate', this.handlePopState_.bind(this), false);
+
+  var self = this;
+  var titleSlide = document.querySelector('#title-slide');
+  titleSlide.addEventListener('slideenter', function(e) {
+    self.buildNextItem_();
+  }, false);
 };
 
 /**
@@ -253,6 +258,36 @@ SlideDeck.prototype.nextSlide = function(opt_dontPush) {
   }
 };
 
+/* Slide events */
+
+/**
+ * Triggered when a slide enter/leave event should be dispatched.
+ *
+ * @param {string} type The type of event to trigger
+ *     (e.g. 'onslideenter', 'onslideleave').
+ * @param {number} slideNo The index of the slide that is being left.
+ */
+SlideDeck.prototype.triggerSlideEvent = function(type, slideNo) {
+  var el = this.getSlideEl_(slideNo);
+  if (!el) {
+    return;
+  }
+
+  // Call onslideenter/onslideleave if the attribute is defined on this slide.
+  var func = el.getAttribute(type);
+  if (func) {
+    new Function(func).call(el); // TODO: Don't use new Function() :(
+  }
+
+  // Dispatch event to listeners setup using addEventListener.
+  var evt = document.createEvent('Event');
+  evt.initEvent(type.substring(2), true, true);
+  evt.slideNumber = slideNo + 1; // Make it readable
+  evt.slide = el;
+
+  el.dispatchEvent(evt);
+};
+
 /**
  * @private
  */
@@ -283,8 +318,8 @@ SlideDeck.prototype.updateSlides_ = function(opt_dontPush) {
     }
   };
 
-  /*this.triggerLeaveEvent(curSlide - 1);
-  triggerEnterEvent(curSlide);*/
+  this.triggerSlideEvent('onslideleave', curSlide - 1);
+  this.triggerSlideEvent('onslideenter', curSlide);
 
   window.setTimeout(this.disableSlideFrames_.bind(this, curSlide - 2), 301);
 
@@ -389,14 +424,21 @@ SlideDeck.prototype.updateSlideClass_ = function(slideNo, className) {
  * @private
  */
 SlideDeck.prototype.makeBuildLists_ = function () {
-  for (var i = this.curSlide_, slide; slide = this.slides_[i]; i++) {
+  for (var i = this.curSlide_, slide; slide = this.slides_[i]; ++i) {
     var items = slide.querySelectorAll('.build > *');
-    for (var j = 0, item; item = items[j]; j++) {
+    for (var j = 0, item; item = items[j]; ++j) {
       if (item.classList) {
         item.classList.add('to-build');
         if (item.parentNode.classList.contains('fade')) {
           item.classList.add('fade');
         }
+      }
+    }
+    // Setup Google Developer icon slide out bars.
+    var bars = slide.querySelectorAll('.gdbar');
+    for (var j = 0, bar; bar = bars[j]; ++j) {
+      if (bar.classList) {
+        bar.classList.add('to-build');
       }
     }
   }

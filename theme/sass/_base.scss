@@ -1,6 +1,6 @@
-//@import "compass/reset";
+@import "compass/reset";
 @import "compass/css3/border-radius";
-//@import "compass/css3/box";
+@import "compass/css3/box";
 @import "compass/css3/box-shadow";
 @import "compass/css3/box-sizing";
 @import "compass/css3/images";
@@ -16,6 +16,18 @@
   -o-font-smoothing: $val;
 }
 
+@mixin flexcenter {
+  display: -webkit-box !important;
+  display: -moz-box !important;
+  display: -ms-box !important;
+  display: -o-box !important;
+  display: box !important;
+  @include box-orient(vertical);
+  @include box-align(center);
+  @include box-pack(center);
+}
+
+
 /**
  * Base SlideDeck Styles
  */
@@ -28,7 +40,8 @@ body {
   margin: 0;
   padding: 0;
 
-  display: block !important;
+  //display: block !important;
+  opacity: 1 !important;
 
   height: 100%;
   min-height: 740px;
@@ -38,6 +51,11 @@ body {
 
   color: #fff;
   @include font-smoothing(antialiased);
+  @include transition(opacity 600ms ease-in);
+}
+
+slides > slide[hidden] {
+  display: none !important;
 }
 
 slides {
