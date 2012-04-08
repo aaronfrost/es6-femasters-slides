@@ -3,6 +3,7 @@
  */
 function SlideDeck() {
   this.curSlide_ = 0;
+  this.prevSlide_ = 0;
   this.slides = [];
   this.config_ = null;
 
@@ -63,10 +64,15 @@ SlideDeck.prototype.addEventListeners_ = function() {
                             false);
   window.addEventListener('popstate', this.handlePopState_.bind(this), false);
 
-  var self = this;
+  // Google Developer icon gray bar should reanimate on every slide enter.
   var titleSlide = document.querySelector('#title-slide');
   titleSlide.addEventListener('slideenter', function(e) {
-    self.buildNextItem_();
+    this.buildNextItem_();
+  }.bind(this), false);
+  titleSlide.addEventListener('slideleave', function(e) {
+    var bar = e.target.querySelector('.gdbar');
+    bar.classList.remove('build-current');
+    bar.classList.add('to-build');
   }, false);
 };
 
@@ -236,6 +242,7 @@ SlideDeck.prototype.buildNextItem_ = function() {
  */
 SlideDeck.prototype.prevSlide = function(opt_dontPush) {
   if (this.curSlide_ > 0) {
+    this.prevSlide_ = this.curSlide_;
     this.curSlide_--;
 
     this.updateSlides_(opt_dontPush);
@@ -252,6 +259,7 @@ SlideDeck.prototype.nextSlide = function(opt_dontPush) {
   }
 
   if (this.curSlide_ < this.slides_.length - 1) {
+    this.prevSlide_ = this.curSlide_;
     this.curSlide_++;
 
     this.updateSlides_(opt_dontPush);
@@ -264,7 +272,7 @@ SlideDeck.prototype.nextSlide = function(opt_dontPush) {
  * Triggered when a slide enter/leave event should be dispatched.
  *
  * @param {string} type The type of event to trigger
- *     (e.g. 'onslideenter', 'onslideleave').
+ *     (e.g. 'slideenter', 'slideleave').
  * @param {number} slideNo The index of the slide that is being left.
  */
 SlideDeck.prototype.triggerSlideEvent = function(type, slideNo) {
@@ -281,7 +289,7 @@ SlideDeck.prototype.triggerSlideEvent = function(type, slideNo) {
 
   // Dispatch event to listeners setup using addEventListener.
   var evt = document.createEvent('Event');
-  evt.initEvent(type.substring(2), true, true);
+  evt.initEvent(type, true, true);
   evt.slideNumber = slideNo + 1; // Make it readable
   evt.slide = el;
 
@@ -295,7 +303,7 @@ SlideDeck.prototype.updateSlides_ = function(opt_dontPush) {
   var dontPush = opt_dontPush || false;
 
   var curSlide = this.curSlide_;
-  for (var i = 0; i < this.slides_.length; i++) {
+  for (var i = 0; i < this.slides_.length; ++i) {
     switch (i) {
       case curSlide - 2:
         this.updateSlideClass_(i, 'far-past');
@@ -318,8 +326,9 @@ SlideDeck.prototype.updateSlides_ = function(opt_dontPush) {
     }
   };
 
-  this.triggerSlideEvent('onslideleave', curSlide - 1);
-  this.triggerSlideEvent('onslideenter', curSlide);
+  //this.triggerSlideEvent('slideleave', curSlide - 1);
+  this.triggerSlideEvent('slideleave', this.prevSlide_);
+  this.triggerSlideEvent('slideenter', curSlide);
 
   window.setTimeout(this.disableSlideFrames_.bind(this, curSlide - 2), 301);
 
@@ -413,7 +422,7 @@ SlideDeck.prototype.updateSlideClass_ = function(slideNo, className) {
     el.classList.add(className);
   }
 
-  for (var i = 0, slideClass; slideClass = this.SLIDE_CLASSES_[i]; i++) {
+  for (var i = 0, slideClass; slideClass = this.SLIDE_CLASSES_[i]; ++i) {
     if (className != slideClass) {
       el.classList.remove(slideClass);
     }

@@ -86,10 +86,10 @@ body {
   -moz-font-smoothing: antialiased;
   -ms-font-smoothing: antialiased;
   -o-font-smoothing: antialiased;
-  -moz-transition: opacity 600ms ease-in;
-  -webkit-transition: opacity 600ms ease-in;
-  -o-transition: opacity 600ms ease-in;
-  transition: opacity 600ms ease-in;
+  -moz-transition: opacity 800ms ease-in;
+  -webkit-transition: opacity 800ms ease-in;
+  -o-transition: opacity 800ms ease-in;
+  transition: opacity 800ms ease-in;
 }
 
 /* line 57, ../sass/_base.scss */
@@ -214,12 +214,12 @@ slide.fill img {
 
 /* line 44, ../sass/default.scss */
 body {
-  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 600, color-stop(0%, #4387fd), color-stop(100%, #2a7cdf));
-  background-image: -webkit-radial-gradient(50% 50%, #4387fd 0%, #2a7cdf 600px);
-  background-image: -moz-radial-gradient(50% 50%, #4387fd 0%, #2a7cdf 600px);
-  background-image: -o-radial-gradient(50% 50%, #4387fd 0%, #2a7cdf 600px);
-  background-image: -ms-radial-gradient(50% 50%, #4387fd 0%, #2a7cdf 600px);
-  background-image: radial-gradient(50% 50%, #4387fd 0%, #2a7cdf 600px);
+  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 600, color-stop(0%, #b1dfff), color-stop(100%, #2a7cdf));
+  background-image: -webkit-radial-gradient(50% 50%, #b1dfff 0%, #2a7cdf 600px);
+  background-image: -moz-radial-gradient(50% 50%, #b1dfff 0%, #2a7cdf 600px);
+  background-image: -o-radial-gradient(50% 50%, #b1dfff 0%, #2a7cdf 600px);
+  background-image: -ms-radial-gradient(50% 50%, #b1dfff 0%, #2a7cdf 600px);
+  background-image: radial-gradient(50% 50%, #b1dfff 0%, #2a7cdf 600px);
   background-attachment: fixed;
 }
 
@@ -231,29 +231,30 @@ slides > slide {
   margin-top: -350px;
   padding: 40px 60px;
   background-color: white;
+  font-size: 26px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   -o-border-radius: 5px;
   -ms-border-radius: 5px;
   -khtml-border-radius: 5px;
   border-radius: 5px;
-  -moz-box-shadow: 3px 3px 20px #515151;
-  -webkit-box-shadow: 3px 3px 20px #515151;
-  -o-box-shadow: 3px 3px 20px #515151;
-  box-shadow: 3px 3px 20px #515151;
+  -moz-box-shadow: 5px 5px 20px #515151;
+  -webkit-box-shadow: 5px 5px 20px #515151;
+  -o-box-shadow: 5px 5px 20px #515151;
+  box-shadow: 5px 5px 20px #515151;
   -moz-transition: all 0.3s ease-out;
   -webkit-transition: all 0.3s ease-out;
   -o-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out;
 }
 
-/* line 66, ../sass/default.scss */
+/* line 67, ../sass/default.scss */
 slides.layout-widescreen > slide {
   margin-left: -550px;
   width: 1100px;
 }
 
-/* line 71, ../sass/default.scss */
+/* line 72, ../sass/default.scss */
 slides.layout-faux-widescreen > slide {
   margin-left: -550px;
   width: 1100px;
@@ -272,13 +273,14 @@ slides.nobackground slide:not(.fill)::before {
   color: inherit !important;
 }
 */
-/* line 97, ../sass/default.scss */
+/* line 98, ../sass/default.scss */
 slides > slide:not(:first-of-type):not(.fill):not(.nobackground):before {
+  font-size: 12pt;
   content: "#io2012 @yourtwitter";
   position: absolute;
   bottom: 20px;
   left: 60px;
-  background: url(/images/google_developers_icon_128.png) no-repeat 0 50%;
+  background: url(../../images/google_developers_icon_128.png) no-repeat 0 50%;
   -moz-background-size: 30px 30px;
   -webkit-background-size: 30px 30px;
   -o-background-size: 30px 30px;
@@ -287,12 +289,14 @@ slides > slide:not(:first-of-type):not(.fill):not(.nobackground):before {
   height: 30px;
   line-height: 1.9;
 }
-/* line 108, ../sass/default.scss */
+/* line 110, ../sass/default.scss */
 slides > slide:not(:first-of-type):not(.fill):not(.nobackground):after {
+  font-size: 12pt;
   content: attr(data-slide-num) "/" attr(data-total-slides);
   position: absolute;
   bottom: 20px;
   right: 60px;
+  line-height: 1.9;
 }
 
 /*slides.layout-widescreen > slide:not(.nobackground),
@@ -300,13 +304,19 @@ slides.layout-faux-widescreen > slide:not(.nobackground) {
   background-position-x: 0, 840px;
 }*/
 /* Slides */
-/* line 123, ../sass/default.scss */
+/* line 127, ../sass/default.scss */
 slides > slide {
   display: none;
   font-family: 'Open Sans', Arial, sans-serif;
   color: #797979;
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(85%, #ffffff), color-stop(100%, #e6e6e6));
+  background: -webkit-linear-gradient(#ffffff, #ffffff 85%, #e6e6e6);
+  background: -moz-linear-gradient(#ffffff, #ffffff 85%, #e6e6e6);
+  background: -o-linear-gradient(#ffffff, #ffffff 85%, #e6e6e6);
+  background: -ms-linear-gradient(#ffffff, #ffffff 85%, #e6e6e6);
+  background: linear-gradient(#ffffff, #ffffff 85%, #e6e6e6);
 }
-/* line 132, ../sass/default.scss */
+/* line 138, ../sass/default.scss */
 slides > slide.far-past {
   display: block;
   -moz-transform: translate(-2040px);
@@ -320,7 +330,7 @@ slides > slide.far-past {
   -ms-transform: translate3d(-2040px, 0, 0);
   transform: translate3d(-2040px, 0, 0);
 }
-/* line 138, ../sass/default.scss */
+/* line 144, ../sass/default.scss */
 slides > slide.past {
   display: block;
   -moz-transform: translate(-1020px) rotateY(30deg) rotateX(45deg);
@@ -334,7 +344,7 @@ slides > slide.past {
   -ms-transform: translate3d(-1020px, 0, 0) rotateY(30deg) rotateX(45deg);
   transform: translate3d(-1020px, 0, 0) rotateY(30deg) rotateX(45deg);
 }
-/* line 144, ../sass/default.scss */
+/* line 150, ../sass/default.scss */
 slides > slide.current {
   display: block;
   -moz-transform: translate(0);
@@ -348,7 +358,7 @@ slides > slide.current {
   -ms-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
-/* line 150, ../sass/default.scss */
+/* line 156, ../sass/default.scss */
 slides > slide.next {
   display: block;
   -moz-transform: translate(1020px) rotateY(-30deg) rotateX(45deg);
@@ -362,7 +372,7 @@ slides > slide.next {
   -ms-transform: translate3d(1020px, 0, 0) rotateY(-30deg) rotateX(45deg);
   transform: translate3d(1020px, 0, 0) rotateY(-30deg) rotateX(45deg);
 }
-/* line 156, ../sass/default.scss */
+/* line 162, ../sass/default.scss */
 slides > slide.far-next {
   display: block;
   -moz-transform: translate(2040px);
@@ -376,8 +386,12 @@ slides > slide.far-next {
   -ms-transform: translate3d(2040px, 0, 0);
   transform: translate3d(2040px, 0, 0);
 }
-
 /* line 168, ../sass/default.scss */
+slides > slide > article {
+  margin-top: 2em;
+}
+
+/* line 178, ../sass/default.scss */
 slides.layout-widescreen > slide.far-past,
 slides.layout-faux-widescreen > slide.far-past {
   display: block;
@@ -392,7 +406,7 @@ slides.layout-faux-widescreen > slide.far-past {
   -ms-transform: translate3d(-2260px, 0, 0);
   transform: translate3d(-2260px, 0, 0);
 }
-/* line 174, ../sass/default.scss */
+/* line 184, ../sass/default.scss */
 slides.layout-widescreen > slide.past,
 slides.layout-faux-widescreen > slide.past {
   display: block;
@@ -407,7 +421,7 @@ slides.layout-faux-widescreen > slide.past {
   -ms-transform: translate3d(-1130px, 0, 0);
   transform: translate3d(-1130px, 0, 0);
 }
-/* line 180, ../sass/default.scss */
+/* line 190, ../sass/default.scss */
 slides.layout-widescreen > slide.current,
 slides.layout-faux-widescreen > slide.current {
   display: block;
@@ -422,7 +436,7 @@ slides.layout-faux-widescreen > slide.current {
   -ms-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
-/* line 186, ../sass/default.scss */
+/* line 196, ../sass/default.scss */
 slides.layout-widescreen > slide.next,
 slides.layout-faux-widescreen > slide.next {
   display: block;
@@ -437,7 +451,7 @@ slides.layout-faux-widescreen > slide.next {
   -ms-transform: translate3d(1130px, 0, 0);
   transform: translate3d(1130px, 0, 0);
 }
-/* line 192, ../sass/default.scss */
+/* line 202, ../sass/default.scss */
 slides.layout-widescreen > slide.far-next,
 slides.layout-faux-widescreen > slide.far-next {
   display: block;
@@ -453,30 +467,30 @@ slides.layout-faux-widescreen > slide.far-next {
   transform: translate3d(2260px, 0, 0);
 }
 
-/* line 199, ../sass/default.scss */
+/* line 209, ../sass/default.scss */
 b {
   font-weight: 600;
 }
 
-/* line 203, ../sass/default.scss */
+/* line 213, ../sass/default.scss */
 a {
   color: #0066cc;
 }
-/* line 206, ../sass/default.scss */
+/* line 216, ../sass/default.scss */
 a:visited {
   color: rgba(0, 102, 204, 0.75);
 }
-/* line 210, ../sass/default.scss */
+/* line 220, ../sass/default.scss */
 a:hover {
   color: black;
 }
 
-/* line 215, ../sass/default.scss */
+/* line 225, ../sass/default.scss */
 h1, h2, h3 {
   font-weight: 600;
 }
 
-/* line 219, ../sass/default.scss */
+/* line 229, ../sass/default.scss */
 h2 {
   font-size: 45px;
   line-height: 45px;
@@ -484,7 +498,7 @@ h2 {
   color: #515151;
 }
 
-/* line 233, ../sass/default.scss */
+/* line 243, ../sass/default.scss */
 h3 {
   font-size: 30px;
   margin: 0 0 1em 0;
@@ -494,41 +508,31 @@ h3 {
   color: #797979;
 }
 
-/* line 242, ../sass/default.scss */
+/* line 252, ../sass/default.scss */
 ul {
-  margin-left: .75em;
+  margin-left: 1.5em;
 }
-/* line 245, ../sass/default.scss */
-ul ul {
-  margin-top: .5em;
-}
-
-/* line 250, ../sass/default.scss */
-li {
+/* line 255, ../sass/default.scss */
+ul li {
   margin-bottom: 0.5em;
 }
-/* line 253, ../sass/default.scss */
-li:before {
-  content: '·';
-  width: .75em;
-  margin-left: -0.75em;
-  position: absolute;
+/* line 258, ../sass/default.scss */
+ul li ul li:before {
+  content: '-';
 }
-
-/* line 260, ../sass/default.scss */
-ul > li::before {
+/* line 263, ../sass/default.scss */
+ul > li:before {
   content: '·';
   width: 0.5em;
   margin-left: -1.3em;
   position: absolute;
 }
-
-/* line 266, ../sass/default.scss */
-ul li ul li::before {
-  content: '';
+/* line 270, ../sass/default.scss */
+ul ul {
+  margin-top: .5em;
 }
 
-/* line 270, ../sass/default.scss */
+/* line 275, ../sass/default.scss */
 pre {
   font-family: 'Inconsolata', 'Courier New', monospace;
   font-size: 20px;
@@ -540,14 +544,14 @@ pre {
   /*overflow: hidden;*/
 }
 
-/* line 281, ../sass/default.scss */
+/* line 286, ../sass/default.scss */
 code {
   font-size: 95%;
   font-family: 'Inconsolata', 'Courier New', monospace;
   color: black;
 }
 
-/* line 287, ../sass/default.scss */
+/* line 292, ../sass/default.scss */
 iframe {
   width: 100%;
   height: 620px;
@@ -556,24 +560,24 @@ iframe {
   margin: -1px;
 }
 
-/* line 295, ../sass/default.scss */
+/* line 300, ../sass/default.scss */
 dt {
   font-weight: bold;
 }
 
-/* line 299, ../sass/default.scss */
+/* line 304, ../sass/default.scss */
 h3 + iframe {
   height: 540px;
 }
 
-/* line 303, ../sass/default.scss */
+/* line 308, ../sass/default.scss */
 button {
   display: inline-block;
-  background: -webkit-gradient(linear, 0% 40%, 0% 70%, from(#f9f9f9), to(#e3e3e3));
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(40%, #f9f9f9), color-stop(70%, #e3e3e3));
   background: -webkit-linear-gradient(#f9f9f9 40%, #e3e3e3 70%);
   background: -moz-linear-gradient(#f9f9f9 40%, #e3e3e3 70%);
-  background: -ms-linear-gradient(#f9f9f9 40%, #e3e3e3 70%);
   background: -o-linear-gradient(#f9f9f9 40%, #e3e3e3 70%);
+  background: -ms-linear-gradient(#f9f9f9 40%, #e3e3e3 70%);
   background: linear-gradient(#f9f9f9 40%, #e3e3e3 70%);
   border: 1px solid #999;
   -moz-border-radius: 3px;
@@ -602,70 +606,70 @@ button:hover {
 
 /* line 327, ../sass/default.scss */
 button:active {
-  background: -webkit-gradient(linear, 0% 40%, 0% 70%, from(#e3e3e3), to(#f9f9f9));
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(40%, #e3e3e3), color-stop(70%, #f9f9f9));
   background: -webkit-linear-gradient(#e3e3e3 40%, #f9f9f9 70%);
   background: -moz-linear-gradient(#e3e3e3 40%, #f9f9f9 70%);
-  background: -ms-linear-gradient(#e3e3e3 40%, #f9f9f9 70%);
   background: -o-linear-gradient(#e3e3e3 40%, #f9f9f9 70%);
+  background: -ms-linear-gradient(#e3e3e3 40%, #f9f9f9 70%);
   background: linear-gradient(#e3e3e3 40%, #f9f9f9 70%);
 }
 
-/* line 336, ../sass/default.scss */
+/* line 331, ../sass/default.scss */
 .blue {
   color: #0066cc;
 }
 
-/* line 339, ../sass/default.scss */
+/* line 334, ../sass/default.scss */
 .yellow {
   color: #ffd319;
 }
 
-/* line 342, ../sass/default.scss */
+/* line 337, ../sass/default.scss */
 .green {
   color: #008a35;
 }
 
-/* line 345, ../sass/default.scss */
+/* line 340, ../sass/default.scss */
 .red {
   color: red;
 }
 
-/* line 348, ../sass/default.scss */
+/* line 343, ../sass/default.scss */
 .black {
   color: black;
 }
 
-/* line 351, ../sass/default.scss */
+/* line 346, ../sass/default.scss */
 .white {
   color: white;
 }
 
-/* line 354, ../sass/default.scss */
+/* line 349, ../sass/default.scss */
 .dark {
   background-color: rgba(0, 0, 0, 0.2);
   color: white;
 }
 
-/* line 359, ../sass/default.scss */
+/* line 354, ../sass/default.scss */
 img.centered {
   margin: 0 auto;
   display: block;
 }
 
-/* line 364, ../sass/default.scss */
+/* line 359, ../sass/default.scss */
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 40px;
 }
 
-/* line 370, ../sass/default.scss */
+/* line 365, ../sass/default.scss */
 th {
   font-weight: 600;
   text-align: left;
 }
 
-/* line 376, ../sass/default.scss */
+/* line 371, ../sass/default.scss */
 td,
 th {
   border: 1px solid #e0e0e0;
@@ -673,7 +677,7 @@ th {
   vertical-align: top;
 }
 
-/* line 382, ../sass/default.scss */
+/* line 377, ../sass/default.scss */
 q {
   display: block;
   font-size: 60px;
@@ -681,7 +685,7 @@ q {
   margin-left: 20px;
   margin-top: 100px;
 }
-/* line 389, ../sass/default.scss */
+/* line 384, ../sass/default.scss */
 q:before {
   content: 'â€œ';
   position: absolute;
@@ -692,7 +696,7 @@ q:before {
   font-size: 90px;
   color: silver;
 }
-/* line 399, ../sass/default.scss */
+/* line 394, ../sass/default.scss */
 q:after {
   content: 'â€';
   position: absolute;
@@ -701,28 +705,28 @@ q:after {
   color: silver;
 }
 
-/* line 408, ../sass/default.scss */
+/* line 403, ../sass/default.scss */
 div.author {
   text-align: right;
   font-size: 40px;
   margin-top: 20px;
   margin-right: 150px;
 }
-/* line 415, ../sass/default.scss */
+/* line 410, ../sass/default.scss */
 div.author:before {
   content: 'â€”';
 }
 
-/* line 420, ../sass/default.scss */
+/* line 415, ../sass/default.scss */
 slide.fill {
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -o-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -khtml-border-radius: 10px;
-  border-radius: 10px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
 }
-/* line 423, ../sass/default.scss */
+/* line 418, ../sass/default.scss */
 slide.fill h3 {
   background: rgba(255, 255, 255, 0.75);
   padding-top: .2em;
@@ -733,7 +737,7 @@ slide.fill h3 {
   margin-right: -60px;
   padding-right: 60px;
 }
-/* line 434, ../sass/default.scss */
+/* line 429, ../sass/default.scss */
 slide.fill h4 {
   display: inline;
   position: absolute;
@@ -742,91 +746,91 @@ slide.fill h4 {
 }
 
 /* Size variants */
-/* line 445, ../sass/default.scss */
+/* line 440, ../sass/default.scss */
 article.smaller p, article.smaller ul {
   font-size: 20px;
   line-height: 24px;
   letter-spacing: 0;
 }
-/* line 450, ../sass/default.scss */
+/* line 445, ../sass/default.scss */
 article.smaller table {
   font-size: 20px;
   line-height: 24px;
   letter-spacing: 0;
 }
-/* line 455, ../sass/default.scss */
+/* line 450, ../sass/default.scss */
 article.smaller pre {
   font-size: 15px;
   line-height: 20px;
   letter-spacing: 0;
 }
-/* line 460, ../sass/default.scss */
+/* line 455, ../sass/default.scss */
 article.smaller q {
   font-size: 40px;
   line-height: 48px;
 }
-/* line 464, ../sass/default.scss */
+/* line 459, ../sass/default.scss */
 article.smaller q:before, article.smaller q:after {
   font-size: 60px;
 }
 
 /* Builds */
-/* line 473, ../sass/default.scss */
+/* line 468, ../sass/default.scss */
 .build > * {
   -moz-transition: opacity 0.5s ease-in-out 0.2s;
   -webkit-transition: opacity 0.5s ease-in-out 0.2s;
   -o-transition: opacity 0.5s ease-in-out 0.2s;
   transition: opacity 0.5s ease-in-out 0.2s;
 }
-/* line 477, ../sass/default.scss */
+/* line 472, ../sass/default.scss */
 .build .to-build {
   opacity: 0;
 }
-/* line 481, ../sass/default.scss */
+/* line 476, ../sass/default.scss */
 .build .build-fade {
   opacity: 0.5;
 }
-/* line 484, ../sass/default.scss */
+/* line 479, ../sass/default.scss */
 .build .build-fade:hover {
   opacity: 1.0;
 }
 
 /* Pretty print */
-/* line 493, ../sass/default.scss */
+/* line 488, ../sass/default.scss */
 .prettyprint .str,
 .prettyprint .atv {
   /* a markup attribute value */
   color: #008a35;
 }
 
-/* line 497, ../sass/default.scss */
+/* line 492, ../sass/default.scss */
 .prettyprint .kwd,
 .prettyprint .tag {
   /* a markup tag name */
   color: #0066cc;
 }
 
-/* line 500, ../sass/default.scss */
+/* line 495, ../sass/default.scss */
 .prettyprint .com {
   /* a comment */
   color: #7f7f7f;
   font-style: italic;
 }
 
-/* line 504, ../sass/default.scss */
+/* line 499, ../sass/default.scss */
 .prettyprint .lit {
   /* a literal value */
   color: #7f0000;
 }
 
-/* line 509, ../sass/default.scss */
+/* line 504, ../sass/default.scss */
 .prettyprint .pun,
 .prettyprint .opn,
 .prettyprint .clo {
   color: #7f7f7f;
 }
 
-/* line 515, ../sass/default.scss */
+/* line 510, ../sass/default.scss */
 .prettyprint .typ,
 .prettyprint .atn,
 .prettyprint .dec,
@@ -835,22 +839,21 @@ article.smaller q:before, article.smaller q:after {
   color: #7f007f;
 }
 
-/* line 519, ../sass/default.scss */
+/* line 514, ../sass/default.scss */
 .with-notes .note {
   opacity: 1;
   pointer-events: auto;
 }
 
-/* line 524, ../sass/default.scss */
+/* line 519, ../sass/default.scss */
 .note {
-  font-size: 20px;
   position: absolute;
   z-index: 100;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.3);
   display: -webkit-box !important;
   display: -moz-box !important;
   display: -ms-box !important;
@@ -869,41 +872,46 @@ article.smaller q:before, article.smaller q:after {
   -ms-box-pack: center;
   box-pack: center;
   pointer-events: none;
-  -moz-transition: opacity 0.2s ease-in-out;
-  -webkit-transition: opacity 0.2s ease-in-out;
-  -o-transition: opacity 0.2s ease-in-out;
-  transition: opacity 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   opacity: 0;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -o-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -khtml-border-radius: 10px;
-  border-radius: 10px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
 }
-/* line 541, ../sass/default.scss */
+/* line 535, ../sass/default.scss */
 .note > section {
   background: #fff;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
   border-radius: 5px;
-  -moz-box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.4);
-  -webkit-box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.4);
-  -o-box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.4);
-  box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0 0 10px #797979;
+  -webkit-box-shadow: 0 0 10px #797979;
+  -o-box-shadow: 0 0 10px #797979;
+  box-shadow: 0 0 10px #797979;
   width: 60%;
   padding: 2em;
 }
 
-/* line 550, ../sass/default.scss */
+/* line 544, ../sass/default.scss */
 input, button {
   vertical-align: middle;
 }
 
-/* line 554, ../sass/default.scss */
+/* line 548, ../sass/default.scss */
 .centered {
   text-align: center;
 }
 
-/* line 558, ../sass/default.scss */
+/* line 552, ../sass/default.scss */
 .reflect {
   -webkit-box-reflect: below 3px -webkit-linear-gradient(rgba(255, 255, 255, 0) 85%, white 150%);
   -moz-box-reflect: below 3px -moz-linear-gradient(rgba(255, 255, 255, 0) 85%, white 150%);
@@ -912,7 +920,7 @@ input, button {
   box-reflect: below 3px linear-gradient(rgba(255, 255, 255, 0) 85%, #ffffff 150%);
 }
 
-/* line 566, ../sass/default.scss */
+/* line 560, ../sass/default.scss */
 .flexcenter {
   display: -webkit-box !important;
   display: -moz-box !important;
@@ -935,13 +943,13 @@ input, button {
 }
 
 /* ===== SLIDE CONTENT ===== */
-/* line 575, ../sass/default.scss */
+/* line 569, ../sass/default.scss */
 .logoslide img {
   width: 383px;
   height: 92px;
 }
 
-/* line 581, ../sass/default.scss */
+/* line 575, ../sass/default.scss */
 aside.gdbar {
   height: 97px;
   width: 155px;
@@ -969,12 +977,13 @@ aside.gdbar {
   -webkit-transition: all 0.5s ease-out 0.6s;
   -o-transition: all 0.5s ease-out 0.6s;
   transition: all 0.5s ease-out 0.6s;
+  /* Better to transition only on background-size, but not sure how to do that with the mixin. */
 }
-/* line 594, ../sass/default.scss */
+/* line 587, ../sass/default.scss */
 aside.gdbar.to-build {
   background-size: 0 100%;
 }
-/* line 598, ../sass/default.scss */
+/* line 591, ../sass/default.scss */
 aside.gdbar img {
   width: 85px;
   height: 85px;
@@ -983,25 +992,25 @@ aside.gdbar img {
   margin: 8px 12px;
 }
 
-/* line 608, ../sass/default.scss */
+/* line 601, ../sass/default.scss */
 #title-slide hgroup {
   position: absolute;
   bottom: 150px;
 }
-/* line 613, ../sass/default.scss */
+/* line 605, ../sass/default.scss */
 #title-slide hgroup h1 {
   font-size: 65px;
   line-height: 1.4;
   letter-spacing: -3px;
   color: #515151;
 }
-/* line 620, ../sass/default.scss */
+/* line 612, ../sass/default.scss */
 #title-slide hgroup h2 {
   font-size: 34px;
   color: #a9a9a9;
   font-weight: inherit;
 }
-/* line 626, ../sass/default.scss */
+/* line 618, ../sass/default.scss */
 #title-slide hgroup p {
   font-size: 20px;
   color: #797979;

@@ -25,12 +25,12 @@ $brand-green: rgb(13, 168, 97);
 $brand-green-secondary: #00a86d;
 $brand-green-secondary2: #009f5d;
 
-
 $slide-width: 900px;
 $slide-height: 700px;
 $slide-width-widescreen: 1100px;
 $slide-top-bottom-padding: 40px;
 $slide-left-right-padding: 60px;
+$slide-border-radius: 5px;
 
 /**
  * Theme Styles
@@ -42,7 +42,7 @@ $slide-left-right-padding: 60px;
 }
 
 body {
-  @include background-image(radial-gradient(50% 50%, $brand-blue 0%,
+  @include background-image(radial-gradient(50% 50%, #b1dfff 0%,
                                             $brand-blue-secondary2 600px));
   //@include background-image(linear-gradient(top, $brand-blue 60%, $brand-blue-secondary2));
   background-attachment: fixed;
@@ -57,9 +57,10 @@ slides > slide {
   padding: $slide-top-bottom-padding $slide-left-right-padding;
 
   background-color: white;
+  font-size: 26px;
 
-  @include border-radius(5px);
-  @include box-shadow(3px 3px 20px $gray-4);
+  @include border-radius($slide-border-radius);
+  @include box-shadow(5px 5px 20px $gray-4);
   @include transition(all 0.3s ease-out);
 }
 
@@ -75,7 +76,7 @@ slides.layout-faux-widescreen > slide {
 }
 
 slides > slide:not(.nobackground):not(.logoslide):not(.fill) {
-  //background: white url(/images/google_developers_icon_128.png) ($brand-small-icon-size * 2) 98% no-repeat;
+  //background: white url(../../images/google_developers_icon_128.png) ($brand-small-icon-size * 2) 98% no-repeat;
   //@include background-size($brand-small-icon-size $brand-small-icon-size);
 }
 
@@ -95,21 +96,24 @@ slides.nobackground slide:not(.fill)::before {
 slides > slide:not(:first-of-type):not(.fill):not(.nobackground) {
 
   &:before {
+    font-size: 12pt;
     content: $social-tags;
     position: absolute;
     bottom: $slide-top-bottom-padding / 2;
     left: $slide-left-right-padding;
-    background: url(/images/google_developers_icon_128.png) no-repeat 0 50%;
+    background: url(../../images/google_developers_icon_128.png) no-repeat 0 50%;
     @include background-size($brand-small-icon-size $brand-small-icon-size);
     padding-left: $brand-small-icon-size + 10;
     height: $brand-small-icon-size;
     line-height: 1.9;
   }
   &:after {
+    font-size: 12pt;
     content: attr(data-slide-num) '/' attr(data-total-slides);
     position: absolute;
     bottom: $slide-top-bottom-padding / 2;
     right: $slide-left-right-padding;
+    line-height: 1.9;
   }
 }
 
@@ -124,6 +128,8 @@ slides > slide {
   display: none;
   font-family: 'Open Sans', Arial, sans-serif;
   color: $gray-3;
+
+  @include background(linear-gradient(white, white 85%, $gray-1));
 
   $translateX: 1020px;
   $rotateY: 30deg;
@@ -157,6 +163,10 @@ slides > slide {
     display: block;
     @include transform(translate($translateX * 2));
     @include transform(translate3d($translateX * 2, 0, 0));
+  }
+
+  > article {
+    margin-top: 2em;
   }
 }
 
@@ -240,31 +250,26 @@ h3 {
 }
 
 ul {
-  margin-left: .75em;
+  margin-left: 1.5em;
+
+  li {
+    margin-bottom: 0.5em;
+
+    ul li:before {
+      content: '-';
+    }
+  }
+
+  > li:before {
+    content: '·';
+    width: 0.5em;
+    margin-left: -1.3em;
+    position: absolute;
+  }
 
   ul {
     margin-top: .5em;
   }
-}
-
-li {
-  margin-bottom: 0.5em;
-
-  &:before {
-    content: '·';
-    width: .75em;
-    margin-left: -.75em;
-    position: absolute;
-  }
-}
-ul > li::before {
-  content: '·';
-  width: 0.5em;
-  margin-left: -1.3em;
-  position: absolute;
-}
-ul li ul li::before {
-  content: '';
 }
 
 pre {
@@ -302,12 +307,7 @@ h3 + iframe {
 
 button {
   display: inline-block;
-  background: -webkit-gradient(linear, 0% 40%, 0% 70%, from(#F9F9F9), to(#E3E3E3));
-  background: -webkit-linear-gradient(#F9F9F9 40%, #E3E3E3 70%);
-  background: -moz-linear-gradient(#F9F9F9 40%, #E3E3E3 70%);
-  background: -ms-linear-gradient(#F9F9F9 40%, #E3E3E3 70%);
-  background: -o-linear-gradient(#F9F9F9 40%, #E3E3E3 70%);
-  background: linear-gradient(#F9F9F9 40%, #E3E3E3 70%);
+  @include background(linear-gradient(#F9F9F9 40%, #E3E3E3 70%));
   border: 1px solid #999;
   @include border-radius(3px);
   padding: 5px 8px;
@@ -325,12 +325,7 @@ button:hover {
 }
 
 button:active {
-  background: -webkit-gradient(linear, 0% 40%, 0% 70%, from(#E3E3E3), to(#F9F9F9));
-  background: -webkit-linear-gradient(#E3E3E3 40%, #F9F9F9 70%);
-  background: -moz-linear-gradient(#E3E3E3 40%, #F9F9F9 70%);
-  background: -ms-linear-gradient(#E3E3E3 40%, #F9F9F9 70%);
-  background: -o-linear-gradient(#E3E3E3 40%, #F9F9F9 70%);
-  background: linear-gradient(#E3E3E3 40%, #F9F9F9 70%);
+  @include background(linear-gradient(#E3E3E3 40%, #F9F9F9 70%));
 }
 
 .blue {
@@ -418,7 +413,7 @@ div.author {
 }
 
 slide.fill {
-  @include border-radius(10px);
+  @include border-radius($slide-border-radius);
 
   h3 {
     background: rgba(255, 255, 255, .75);
@@ -522,26 +517,25 @@ article.smaller {
 }
 
 .note {
-  font-size: 20px;
   position: absolute;
   z-index: 100;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.3);
   @include flexcenter;
 
   pointer-events: none;
-  @include transition(opacity 0.2s ease-in-out);
+  @include transition(all 0.2s ease-in-out);
   opacity: 0;
 
-  @include border-radius(10px);
+  @include border-radius($slide-border-radius);
 
   > section {
     background: #fff;
-    border-radius: 5px;
-    @include box-shadow(0 0 20px 5px rgba(0, 0, 0, 0.4));
+    @include border-radius($slide-border-radius);
+    @include box-shadow(0 0 10px $gray-3);
     width: 60%;
     padding: 2em;
   }
@@ -585,11 +579,10 @@ aside.gdbar {
   left: 0;
   top: 125px;
   @include border-radius(0 10px 10px 0);
-  //background: -webkit-linear-gradient(left, $gray-1, $gray-1) no-repeat;
   @include background(linear-gradient(left, $gray-1, $gray-1) no-repeat);
   @include background-size(100% 100%);
   background-size: 100% 100%;
-  @include transition(all 0.5s ease-out 0.6s);
+  @include transition(all 0.5s ease-out 0.6s); /* Better to transition only on background-size, but not sure how to do that with the mixin. */
 
   &.to-build {
     background-size: 0 100%;
@@ -607,7 +600,6 @@ aside.gdbar {
 #title-slide {
   hgroup {
     position: absolute;
-    //bottom: $slide-height / 2 - (140 / 2);
     bottom: 150px;
 
     h1 {

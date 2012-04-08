@@ -51,7 +51,7 @@ body {
 
   color: #fff;
   @include font-smoothing(antialiased);
-  @include transition(opacity 600ms ease-in);
+  @include transition(opacity 800ms ease-in);
 }
 
 slides > slide[hidden] {
