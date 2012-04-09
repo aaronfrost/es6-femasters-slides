@@ -151,6 +151,14 @@ slides > slide {
     display: block;
     @include transform(translate(0));
     @include transform(translate3d(0, 0, 0));
+
+    .auto-fadein {
+      opacity: 1;
+    }
+
+    .gdbar {
+      background-size: 100% 100%;
+    }
   }
 
   &.next {
@@ -502,7 +510,7 @@ article.smaller {
   }
 
   .build-fade {
-    opacity: 0.5;
+    opacity: 0.3;
 
     &:hover {
       opacity: 1.0;
@@ -605,6 +613,11 @@ input, button {
   width: 100%;
 }
 
+.auto-fadein {
+  @include transition(opacity 0.6s ease-in 1s);
+  opacity: 0;
+}
+
 /* ===== SLIDE CONTENT ===== */
 .logoslide {
   img {
@@ -621,14 +634,6 @@ input, button {
   h3 {
     color: $gray-1;
     line-height: 2.8;
-  }
-  hgroup {
-    opacity: 0;
-    @include transition(opacity 0.6s ease-in 1s);
-
-    &.on {
-      opacity: 1;
-    }
   }
 }
 
@@ -663,12 +668,8 @@ aside.gdbar {
   @include border-radius(0 10px 10px 0);
   @include background(linear-gradient(left, $gray-1, $gray-1) no-repeat);
   @include background-size(100% 100%);
-  background-size: 100% 100%;
+  background-size: 0 100%;
   @include transition(all 0.5s ease-out 0.5s); /* Better to transition only on background-size, but not sure how to do that with the mixin. */
-
-  &.to-build {
-    background-size: 0 100%;
-  }
 
   &.right {
     right: 0;
@@ -691,7 +692,7 @@ aside.gdbar {
   }
 }
 
-#title-slide {
+.title-slide {
 
   hgroup {
     position: absolute;
@@ -719,7 +720,7 @@ aside.gdbar {
   }
 }
 
-#title-slide, .thank-you-slide, .segue {
+.thank-you-slide, .segue {
   padding: $slide-left-right-padding $slide-left-right-padding * 2;
 
   aside {

@@ -10,7 +10,7 @@ function SlideDeck() {
   this.getCurrentSlideFromHash_();
 
   document.addEventListener('DOMContentLoaded',
-      this.handleDomLoaded_.bind(this), false);
+                            this.onDomLoaded_.bind(this), false);
 }
 
 /**
@@ -42,7 +42,7 @@ SlideDeck.prototype.getCurrentSlideFromHash_ = function() {
 /**
  * @private
  */
-SlideDeck.prototype.handleDomLoaded_ = function() {
+SlideDeck.prototype.onDomLoaded_ = function() {
   this.slides_ = document.querySelectorAll('slide:not([hidden])');
 
   for (var i = 0, slide; slide = this.slides_[i]; ++i) {
@@ -60,48 +60,15 @@ SlideDeck.prototype.handleDomLoaded_ = function() {
  * @private
  */
 SlideDeck.prototype.addEventListeners_ = function() {
-  document.addEventListener('keydown', this.handleBodyKeyDown_.bind(this),
-                            false);
-  window.addEventListener('popstate', this.handlePopState_.bind(this), false);
-
-  // Google Developer icon gray bar and segue slide titles should reanimate on
-  // every slide enter.
-  var gbars = document.querySelectorAll('slide > .gdbar');
-  for (var i = 0, gbar; gbar = gbars[i]; ++i) {
-    var slide = gbar.parentElement;
-
-    slide.addEventListener('slideenter', function(e) {
-      this.buildNextItem_();
-      if (e.target.classList.contains('segue')) {
-        e.target.querySelector('hgroup').classList.add('on');
-      }
-    }.bind(this), false);
-
-    slide.addEventListener('slideleave', function(e) {
-      var bar = e.target.querySelector('.gdbar');
-      bar.classList.remove('build-current');
-      bar.classList.add('to-build');
-      if (e.target.classList.contains('segue')) {
-        e.target.querySelector('hgroup').classList.remove('on');
-      }
-    }, false);
-  }
-
-  // document.addEventListener('webkitTransitionEnd', function(e) {
-  //   var el = e.target;
-  //   var property = e.propertyName;
-  //   if (el.classList.contains('gdbar') && property == 'background-size') {
-  //     console.log('done');
-  //     el.parentElement.parentElement.querySelector('article hgroup').classList.add('on');
-  //   }
-  // }, false);
+  document.addEventListener('keydown', this.onBodyKeyDown_.bind(this), false);
+  window.addEventListener('popstate', this.onPopState_.bind(this), false);
 };
 
 /**
  * @private
  * @param {Event} e The pop event.
  */
-SlideDeck.prototype.handlePopState_ = function(e) {
+SlideDeck.prototype.onPopState_ = function(e) {
   if (e.state != null) {
     this.curSlide_ = e.state;
     this.updateSlides_(true);
@@ -111,7 +78,7 @@ SlideDeck.prototype.handlePopState_ = function(e) {
 /**
  * @param {Event} e
  */
-SlideDeck.prototype.handleBodyKeyDown_ = function(e) {
+SlideDeck.prototype.onBodyKeyDown_ = function(e) {
   if (/^(input|textarea)$/i.test(e.target.nodeName) ||
       e.target.isContentEditable) {
     return;
@@ -463,13 +430,13 @@ SlideDeck.prototype.makeBuildLists_ = function () {
         }
       }
     }
-    // Setup Google Developer icon slide out bars.
-    var bars = slide.querySelectorAll('.gdbar');
-    for (var j = 0, bar; bar = bars[j]; ++j) {
-      if (bar.classList) {
-        bar.classList.add('to-build');
-      }
-    }
+    // // Setup Google Developer icon slide out bars.
+    // var bars = slide.querySelectorAll('.gdbar');
+    // for (var j = 0, bar; bar = bars[j]; ++j) {
+    //   if (bar.classList) {
+    //     bar.classList.add('to-build');
+    //   }
+    // }
   }
 };
 
