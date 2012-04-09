@@ -64,24 +64,42 @@ SlideDeck.prototype.addEventListeners_ = function() {
                             false);
   window.addEventListener('popstate', this.handlePopState_.bind(this), false);
 
-  // Google Developer icon gray bar should reanimate on every slide enter.
+  // Google Developer icon gray bar and segue slide titles should reanimate on
+  // every slide enter.
   var gbars = document.querySelectorAll('slide > .gdbar');
   for (var i = 0, gbar; gbar = gbars[i]; ++i) {
     var slide = gbar.parentElement;
+
     slide.addEventListener('slideenter', function(e) {
       this.buildNextItem_();
+      if (e.target.classList.contains('segue')) {
+        e.target.querySelector('hgroup').classList.add('on');
+      }
     }.bind(this), false);
+
     slide.addEventListener('slideleave', function(e) {
       var bar = e.target.querySelector('.gdbar');
       bar.classList.remove('build-current');
       bar.classList.add('to-build');
+      if (e.target.classList.contains('segue')) {
+        e.target.querySelector('hgroup').classList.remove('on');
+      }
     }, false);
   }
+
+  // document.addEventListener('webkitTransitionEnd', function(e) {
+  //   var el = e.target;
+  //   var property = e.propertyName;
+  //   if (el.classList.contains('gdbar') && property == 'background-size') {
+  //     console.log('done');
+  //     el.parentElement.parentElement.querySelector('article hgroup').classList.add('on');
+  //   }
+  // }, false);
 };
 
 /**
  * @private
- * @param {Event} e
+ * @param {Event} e The pop event.
  */
 SlideDeck.prototype.handlePopState_ = function(e) {
   if (e.state != null) {

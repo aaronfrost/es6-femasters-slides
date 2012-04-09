@@ -165,6 +165,10 @@ slides > slide {
     @include transform(translate3d($translateX * 2, 0, 0));
   }
 
+  &.dark {
+    background: $gray-4;
+  }
+
   hgroup + article {
     margin-top: 1.5em;
   }
@@ -603,13 +607,28 @@ input, button {
 
 /* ===== SLIDE CONTENT ===== */
 .logoslide {
-  &.dark {
-    background: $gray-4;
-  }
-
   img {
     width: 383px;
     height: 92px;
+  }
+}
+
+.segue {
+  h2 {
+    color: $gray-1;
+    font-size: 60px;
+  }
+  h3 {
+    color: $gray-1;
+    line-height: 2.8;
+  }
+  hgroup {
+    opacity: 0;
+    @include transition(opacity 0.6s ease-in 1s);
+
+    &.on {
+      opacity: 1;
+    }
   }
 }
 
@@ -617,8 +636,9 @@ input, button {
   background: $brand-blue;
   color: white;
 
-  h1 {
+  h2 {
     font-size: 60px;
+    color: inherit;
   }
 
   section > p {
@@ -644,7 +664,7 @@ aside.gdbar {
   @include background(linear-gradient(left, $gray-1, $gray-1) no-repeat);
   @include background-size(100% 100%);
   background-size: 100% 100%;
-  @include transition(all 0.5s ease-out 0.6s); /* Better to transition only on background-size, but not sure how to do that with the mixin. */
+  @include transition(all 0.5s ease-out 0.5s); /* Better to transition only on background-size, but not sure how to do that with the mixin. */
 
   &.to-build {
     background-size: 0 100%;
@@ -654,7 +674,7 @@ aside.gdbar {
     right: 0;
     left: -moz-initial;
     left: initial;
-    top: ($slide-height / 2) - 96; /* 96 is height of gray icon bar */
+    top: ($slide-height / 2) - 96 + 10; /* 96 is height of gray icon bar */
     @include transform(rotateZ(180deg));
 
     img {
@@ -672,6 +692,7 @@ aside.gdbar {
 }
 
 #title-slide {
+
   hgroup {
     position: absolute;
     bottom: 150px;
@@ -695,5 +716,13 @@ aside.gdbar {
       line-height: 1.3;
       margin-top: 2em;
     }
+  }
+}
+
+#title-slide, .thank-you-slide, .segue {
+  padding: $slide-left-right-padding $slide-left-right-padding * 2;
+
+  aside {
+    width: 215px;
   }
 }
