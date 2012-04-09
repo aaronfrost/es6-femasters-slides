@@ -399,19 +399,15 @@ slides > slide.dark {
   background: #515151;
 }
 /* line 180, ../sass/default.scss */
-slides > slide hgroup + article {
+slides > slide > hgroup + article {
   margin-top: 1.5em;
 }
-/* line 184, ../sass/default.scss */
-slides > slide > article {
-  margin-top: 2em;
-}
-/* line 187, ../sass/default.scss */
-slides > slide > article p {
+/* line 183, ../sass/default.scss */
+slides > slide > hgroup + article p {
   margin-bottom: 1em;
 }
 
-/* line 198, ../sass/default.scss */
+/* line 194, ../sass/default.scss */
 slides.layout-widescreen > slide.far-past,
 slides.layout-faux-widescreen > slide.far-past {
   display: block;
@@ -426,7 +422,7 @@ slides.layout-faux-widescreen > slide.far-past {
   -ms-transform: translate3d(-2260px, 0, 0);
   transform: translate3d(-2260px, 0, 0);
 }
-/* line 204, ../sass/default.scss */
+/* line 200, ../sass/default.scss */
 slides.layout-widescreen > slide.past,
 slides.layout-faux-widescreen > slide.past {
   display: block;
@@ -441,7 +437,7 @@ slides.layout-faux-widescreen > slide.past {
   -ms-transform: translate3d(-1130px, 0, 0);
   transform: translate3d(-1130px, 0, 0);
 }
-/* line 210, ../sass/default.scss */
+/* line 206, ../sass/default.scss */
 slides.layout-widescreen > slide.current,
 slides.layout-faux-widescreen > slide.current {
   display: block;
@@ -456,7 +452,7 @@ slides.layout-faux-widescreen > slide.current {
   -ms-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
-/* line 216, ../sass/default.scss */
+/* line 212, ../sass/default.scss */
 slides.layout-widescreen > slide.next,
 slides.layout-faux-widescreen > slide.next {
   display: block;
@@ -471,7 +467,7 @@ slides.layout-faux-widescreen > slide.next {
   -ms-transform: translate3d(1130px, 0, 0);
   transform: translate3d(1130px, 0, 0);
 }
-/* line 222, ../sass/default.scss */
+/* line 218, ../sass/default.scss */
 slides.layout-widescreen > slide.far-next,
 slides.layout-faux-widescreen > slide.far-next {
   display: block;
@@ -487,30 +483,30 @@ slides.layout-faux-widescreen > slide.far-next {
   transform: translate3d(2260px, 0, 0);
 }
 
-/* line 229, ../sass/default.scss */
+/* line 225, ../sass/default.scss */
 b {
   font-weight: 600;
 }
 
-/* line 233, ../sass/default.scss */
+/* line 229, ../sass/default.scss */
 a {
   color: #0066cc;
 }
-/* line 236, ../sass/default.scss */
+/* line 232, ../sass/default.scss */
 a:visited {
   color: rgba(0, 102, 204, 0.75);
 }
-/* line 240, ../sass/default.scss */
+/* line 236, ../sass/default.scss */
 a:hover {
   color: black;
 }
 
-/* line 245, ../sass/default.scss */
+/* line 241, ../sass/default.scss */
 h1, h2, h3 {
   font-weight: 600;
 }
 
-/* line 249, ../sass/default.scss */
+/* line 245, ../sass/default.scss */
 h2 {
   font-size: 45px;
   line-height: 45px;
@@ -518,7 +514,7 @@ h2 {
   color: #515151;
 }
 
-/* line 256, ../sass/default.scss */
+/* line 252, ../sass/default.scss */
 h3 {
   font-size: 30px;
   letter-spacing: -1px;
@@ -527,38 +523,38 @@ h3 {
   color: #797979;
 }
 
-/* line 264, ../sass/default.scss */
+/* line 260, ../sass/default.scss */
 ul {
   margin-left: 1.2em;
   margin-bottom: 1em;
 }
-/* line 268, ../sass/default.scss */
+/* line 264, ../sass/default.scss */
 ul li {
   margin-bottom: 0.5em;
 }
-/* line 271, ../sass/default.scss */
+/* line 267, ../sass/default.scss */
 ul li ul {
   margin-left: 2em;
   margin-bottom: 0;
 }
-/* line 275, ../sass/default.scss */
+/* line 271, ../sass/default.scss */
 ul li ul li:before {
   content: '-';
   font-weight: 600;
 }
-/* line 282, ../sass/default.scss */
+/* line 278, ../sass/default.scss */
 ul > li:before {
   content: '·';
   margin-left: -1em;
   position: absolute;
   font-weight: 600;
 }
-/* line 290, ../sass/default.scss */
+/* line 286, ../sass/default.scss */
 ul ul {
   margin-top: .5em;
 }
 
-/* line 295, ../sass/default.scss */
+/* line 291, ../sass/default.scss */
 pre {
   font-family: 'Inconsolata', 'Courier New', monospace;
   font-size: 20px;
@@ -576,7 +572,7 @@ pre {
   box-sizing: border-box;
   /*overflow: hidden;*/
 }
-/* line 309, ../sass/default.scss */
+/* line 305, ../sass/default.scss */
 pre:after {
   content: attr(data-lang);
   background-color: #a9a9a9;
@@ -589,14 +585,14 @@ pre:after {
   text-transform: uppercase;
 }
 
-/* line 322, ../sass/default.scss */
+/* line 318, ../sass/default.scss */
 code {
   font-size: 95%;
   font-family: 'Inconsolata', 'Courier New', monospace;
   color: black;
 }
 
-/* line 328, ../sass/default.scss */
+/* line 324, ../sass/default.scss */
 iframe {
   width: 100%;
   height: 620px;
@@ -605,17 +601,17 @@ iframe {
   margin: -1px;
 }
 
-/* line 336, ../sass/default.scss */
+/* line 332, ../sass/default.scss */
 dt {
   font-weight: bold;
 }
 
-/* line 340, ../sass/default.scss */
+/* line 336, ../sass/default.scss */
 h3 + iframe {
   height: 540px;
 }
 
-/* line 344, ../sass/default.scss */
+/* line 340, ../sass/default.scss */
 button {
   display: inline-block;
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(40%, #f9f9f9), color-stop(70%, #e3e3e3));
@@ -644,12 +640,12 @@ button {
   font-size: 10pt;
 }
 
-/* line 359, ../sass/default.scss */
+/* line 355, ../sass/default.scss */
 button:hover {
   border-color: black;
 }
 
-/* line 363, ../sass/default.scss */
+/* line 359, ../sass/default.scss */
 button:active {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(40%, #e3e3e3), color-stop(70%, #f9f9f9));
   background: -webkit-linear-gradient(#e3e3e3 40%, #f9f9f9 70%);
@@ -659,62 +655,62 @@ button:active {
   background: linear-gradient(#e3e3e3 40%, #f9f9f9 70%);
 }
 
-/* line 367, ../sass/default.scss */
+/* line 363, ../sass/default.scss */
 .blue {
   color: #0066cc;
 }
 
-/* line 370, ../sass/default.scss */
+/* line 366, ../sass/default.scss */
 .yellow {
   color: #ffd319;
 }
 
-/* line 373, ../sass/default.scss */
+/* line 369, ../sass/default.scss */
 .green {
   color: #008a35;
 }
 
-/* line 376, ../sass/default.scss */
+/* line 372, ../sass/default.scss */
 .red {
   color: red;
 }
 
-/* line 379, ../sass/default.scss */
+/* line 375, ../sass/default.scss */
 .black {
   color: black;
 }
 
-/* line 382, ../sass/default.scss */
+/* line 378, ../sass/default.scss */
 .white {
   color: white;
 }
 
-/* line 385, ../sass/default.scss */
+/* line 381, ../sass/default.scss */
 .dark {
   background-color: rgba(0, 0, 0, 0.2);
   color: white;
 }
 
-/* line 390, ../sass/default.scss */
+/* line 386, ../sass/default.scss */
 img.centered {
   margin: 0 auto;
   display: block;
 }
 
-/* line 395, ../sass/default.scss */
+/* line 391, ../sass/default.scss */
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 40px;
 }
 
-/* line 401, ../sass/default.scss */
+/* line 397, ../sass/default.scss */
 th {
   font-weight: 600;
   text-align: left;
 }
 
-/* line 407, ../sass/default.scss */
+/* line 403, ../sass/default.scss */
 td,
 th {
   border: 1px solid #e0e0e0;
@@ -722,47 +718,25 @@ th {
   vertical-align: top;
 }
 
-/* line 413, ../sass/default.scss */
+/* line 409, ../sass/default.scss */
 q {
-  display: block;
-  font-size: 60px;
+  font-size: 45px;
   line-height: 72px;
-  margin-left: 20px;
-  margin-top: 100px;
 }
-/* line 420, ../sass/default.scss */
+/* line 413, ../sass/default.scss */
 q:before {
-  content: 'â€œ';
+  content: '“';
   position: absolute;
-  display: inline-block;
-  margin-left: -2.1em;
-  width: 2em;
-  text-align: right;
-  font-size: 90px;
-  color: silver;
+  margin-left: -0.5em;
 }
-/* line 430, ../sass/default.scss */
+/* line 418, ../sass/default.scss */
 q:after {
-  content: 'â€';
+  content: '”';
   position: absolute;
-  margin-left: .1em;
-  font-size: 90px;
-  color: silver;
+  margin-left: 0.1em;
 }
 
-/* line 439, ../sass/default.scss */
-div.author {
-  text-align: right;
-  font-size: 40px;
-  margin-top: 20px;
-  margin-right: 150px;
-}
-/* line 446, ../sass/default.scss */
-div.author:before {
-  content: 'â€”';
-}
-
-/* line 451, ../sass/default.scss */
+/* line 425, ../sass/default.scss */
 slide.fill {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -771,7 +745,7 @@ slide.fill {
   -khtml-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 454, ../sass/default.scss */
+/* line 428, ../sass/default.scss */
 slide.fill h3 {
   background: rgba(255, 255, 255, 0.75);
   padding-top: .2em;
@@ -782,7 +756,7 @@ slide.fill h3 {
   margin-right: -60px;
   padding-right: 60px;
 }
-/* line 465, ../sass/default.scss */
+/* line 439, ../sass/default.scss */
 slide.fill h4 {
   display: inline;
   position: absolute;
@@ -791,91 +765,91 @@ slide.fill h4 {
 }
 
 /* Size variants */
-/* line 476, ../sass/default.scss */
+/* line 450, ../sass/default.scss */
 article.smaller p, article.smaller ul {
   font-size: 20px;
   line-height: 24px;
   letter-spacing: 0;
 }
-/* line 481, ../sass/default.scss */
+/* line 455, ../sass/default.scss */
 article.smaller table {
   font-size: 20px;
   line-height: 24px;
   letter-spacing: 0;
 }
-/* line 486, ../sass/default.scss */
+/* line 460, ../sass/default.scss */
 article.smaller pre {
   font-size: 15px;
   line-height: 20px;
   letter-spacing: 0;
 }
-/* line 491, ../sass/default.scss */
+/* line 465, ../sass/default.scss */
 article.smaller q {
   font-size: 40px;
   line-height: 48px;
 }
-/* line 495, ../sass/default.scss */
+/* line 469, ../sass/default.scss */
 article.smaller q:before, article.smaller q:after {
   font-size: 60px;
 }
 
 /* Builds */
-/* line 504, ../sass/default.scss */
+/* line 478, ../sass/default.scss */
 .build > * {
   -moz-transition: opacity 0.5s ease-in-out 0.2s;
   -webkit-transition: opacity 0.5s ease-in-out 0.2s;
   -o-transition: opacity 0.5s ease-in-out 0.2s;
   transition: opacity 0.5s ease-in-out 0.2s;
 }
-/* line 508, ../sass/default.scss */
+/* line 482, ../sass/default.scss */
 .build .to-build {
   opacity: 0;
 }
-/* line 512, ../sass/default.scss */
+/* line 486, ../sass/default.scss */
 .build .build-fade {
   opacity: 0.3;
 }
-/* line 515, ../sass/default.scss */
+/* line 489, ../sass/default.scss */
 .build .build-fade:hover {
   opacity: 1.0;
 }
 
 /* Pretty print */
-/* line 524, ../sass/default.scss */
+/* line 498, ../sass/default.scss */
 .prettyprint .str,
 .prettyprint .atv {
   /* a markup attribute value */
   color: #009f5d;
 }
 
-/* line 528, ../sass/default.scss */
+/* line 502, ../sass/default.scss */
 .prettyprint .kwd,
 .prettyprint .tag {
   /* a markup tag name */
   color: #0066cc;
 }
 
-/* line 531, ../sass/default.scss */
+/* line 505, ../sass/default.scss */
 .prettyprint .com {
   /* a comment */
   color: #797979;
   font-style: italic;
 }
 
-/* line 535, ../sass/default.scss */
+/* line 509, ../sass/default.scss */
 .prettyprint .lit {
   /* a literal value */
   color: #f6c000;
 }
 
-/* line 540, ../sass/default.scss */
+/* line 514, ../sass/default.scss */
 .prettyprint .pun,
 .prettyprint .opn,
 .prettyprint .clo {
   color: #515151;
 }
 
-/* line 546, ../sass/default.scss */
+/* line 520, ../sass/default.scss */
 .prettyprint .typ,
 .prettyprint .atn,
 .prettyprint .dec,
@@ -884,18 +858,18 @@ article.smaller q:before, article.smaller q:after {
   color: #d94d3a;
 }
 
-/* line 549, ../sass/default.scss */
+/* line 523, ../sass/default.scss */
 .prettyprint .pln {
   color: #515151;
 }
 
-/* line 553, ../sass/default.scss */
+/* line 527, ../sass/default.scss */
 .with-notes .note {
   opacity: 1;
   pointer-events: auto;
 }
 
-/* line 558, ../sass/default.scss */
+/* line 532, ../sass/default.scss */
 .note {
   position: absolute;
   z-index: 100;
@@ -934,7 +908,7 @@ article.smaller q:before, article.smaller q:after {
   -khtml-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 575, ../sass/default.scss */
+/* line 549, ../sass/default.scss */
 .note > section {
   background: #fff;
   -moz-border-radius: 5px;
@@ -951,17 +925,17 @@ article.smaller q:before, article.smaller q:after {
   padding: 2em;
 }
 
-/* line 584, ../sass/default.scss */
+/* line 558, ../sass/default.scss */
 input, button {
   vertical-align: middle;
 }
 
-/* line 588, ../sass/default.scss */
+/* line 562, ../sass/default.scss */
 .centered {
   text-align: center;
 }
 
-/* line 592, ../sass/default.scss */
+/* line 566, ../sass/default.scss */
 .reflect {
   -webkit-box-reflect: below 3px -webkit-linear-gradient(rgba(255, 255, 255, 0) 85%, white 150%);
   -moz-box-reflect: below 3px -moz-linear-gradient(rgba(255, 255, 255, 0) 85%, white 150%);
@@ -970,7 +944,7 @@ input, button {
   box-reflect: below 3px linear-gradient(rgba(255, 255, 255, 0) 85%, #ffffff 150%);
 }
 
-/* line 600, ../sass/default.scss */
+/* line 574, ../sass/default.scss */
 .flexbox {
   display: -webkit-box !important;
   display: -moz-box !important;
@@ -979,7 +953,7 @@ input, button {
   display: box !important;
 }
 
-/* line 604, ../sass/default.scss */
+/* line 578, ../sass/default.scss */
 .flexbox.vcenter {
   -moz-box-orient: vertical;
   -webkit-box-orient: vertical;
@@ -997,7 +971,7 @@ input, button {
   width: 100%;
 }
 
-/* line 610, ../sass/default.scss */
+/* line 584, ../sass/default.scss */
 .flexbox.vleft {
   -moz-box-orient: vertical;
   -webkit-box-orient: vertical;
@@ -1015,7 +989,7 @@ input, button {
   width: 100%;
 }
 
-/* line 616, ../sass/default.scss */
+/* line 590, ../sass/default.scss */
 .auto-fadein {
   -moz-transition: opacity 0.6s ease-in 1s;
   -webkit-transition: opacity 0.6s ease-in 1s;
@@ -1025,39 +999,52 @@ input, button {
 }
 
 /* ===== SLIDE CONTENT ===== */
-/* line 623, ../sass/default.scss */
+/* line 597, ../sass/default.scss */
 .logoslide img {
   width: 383px;
   height: 92px;
 }
 
-/* line 630, ../sass/default.scss */
+/* line 603, ../sass/default.scss */
+.segue {
+  padding: 60px 120px;
+}
+/* line 606, ../sass/default.scss */
 .segue h2 {
   color: #e6e6e6;
   font-size: 60px;
 }
-/* line 634, ../sass/default.scss */
+/* line 610, ../sass/default.scss */
 .segue h3 {
   color: #e6e6e6;
   line-height: 2.8;
 }
+/* line 614, ../sass/default.scss */
+.segue aside {
+  width: 215px !important;
+}
+/* line 617, ../sass/default.scss */
+.segue hgroup {
+  position: absolute;
+  bottom: 150px;
+}
 
-/* line 640, ../sass/default.scss */
+/* line 623, ../sass/default.scss */
 .thank-you-slide {
   background: #4387fd;
   color: white;
 }
-/* line 644, ../sass/default.scss */
+/* line 627, ../sass/default.scss */
 .thank-you-slide h2 {
   font-size: 60px;
   color: inherit;
 }
-/* line 649, ../sass/default.scss */
-.thank-you-slide section > p {
+/* line 632, ../sass/default.scss */
+.thank-you-slide article > p {
   margin-top: 2em;
   font-size: 20pt;
 }
-/* line 654, ../sass/default.scss */
+/* line 637, ../sass/default.scss */
 .thank-you-slide > p {
   position: absolute;
   bottom: 80px;
@@ -1065,7 +1052,7 @@ input, button {
   line-height: 1.3;
 }
 
-/* line 662, ../sass/default.scss */
+/* line 645, ../sass/default.scss */
 aside.gdbar {
   height: 97px;
   width: 155px;
@@ -1095,12 +1082,12 @@ aside.gdbar {
   transition: all 0.5s ease-out 0.5s;
   /* Better to transition only on background-size, but not sure how to do that with the mixin. */
 }
-/* line 674, ../sass/default.scss */
+/* line 657, ../sass/default.scss */
 aside.gdbar.right {
   right: 0;
   left: -moz-initial;
   left: initial;
-  top: 264px;
+  top: 254px;
   /* 96 is height of gray icon bar */
   -moz-transform: rotateZ(180deg);
   -webkit-transform: rotateZ(180deg);
@@ -1108,7 +1095,7 @@ aside.gdbar.right {
   -ms-transform: rotateZ(180deg);
   transform: rotateZ(180deg);
 }
-/* line 681, ../sass/default.scss */
+/* line 664, ../sass/default.scss */
 aside.gdbar.right img {
   -moz-transform: rotateZ(180deg);
   -webkit-transform: rotateZ(180deg);
@@ -1116,34 +1103,35 @@ aside.gdbar.right img {
   -ms-transform: rotateZ(180deg);
   transform: rotateZ(180deg);
 }
-/* line 686, ../sass/default.scss */
+/* line 669, ../sass/default.scss */
+aside.gdbar.bottom {
+  left: -moz-initial;
+  top: initial;
+  bottom: 60px;
+}
+/* line 675, ../sass/default.scss */
 aside.gdbar img {
   width: 85px;
   height: 85px;
   position: absolute;
   right: 0;
-  margin: 8px 12px;
+  margin: 8px 15px;
 }
 
-/* line 697, ../sass/default.scss */
-.title-slide hgroup {
-  position: absolute;
-  bottom: 150px;
-}
-/* line 701, ../sass/default.scss */
+/* line 687, ../sass/default.scss */
 .title-slide hgroup h1 {
   font-size: 65px;
   line-height: 1.4;
   letter-spacing: -3px;
   color: #515151;
 }
-/* line 708, ../sass/default.scss */
+/* line 694, ../sass/default.scss */
 .title-slide hgroup h2 {
   font-size: 34px;
   color: #a9a9a9;
   font-weight: inherit;
 }
-/* line 714, ../sass/default.scss */
+/* line 700, ../sass/default.scss */
 .title-slide hgroup p {
   font-size: 20px;
   color: #797979;
@@ -1151,11 +1139,14 @@ aside.gdbar img {
   margin-top: 2em;
 }
 
-/* line 723, ../sass/default.scss */
-.thank-you-slide, .segue {
-  padding: 60px 120px;
+/* line 709, ../sass/default.scss */
+.quote {
+  color: #e6e6e6;
 }
-/* line 726, ../sass/default.scss */
-.thank-you-slide aside, .segue aside {
-  width: 215px;
+/* line 712, ../sass/default.scss */
+.quote .author {
+  font-size: 24px;
+  position: absolute;
+  bottom: 80px;
+  line-height: 1.4;
 }

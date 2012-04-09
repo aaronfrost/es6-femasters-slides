@@ -28,7 +28,9 @@
   </slide>
 
   <slide>
-    <h2>Slide with Bullets</h2>
+    <hgroup>
+      <h2>Slide with Bullets</h2>
+    </hgroup>
     <article>
       <ul>
         <li>Titles are formatted as Open Sans with bold applied and font size is set at 45</li>
@@ -65,7 +67,9 @@
   </slide>
 
   <slide>
-    <h2>Slide with Smaller Font</h2>
+    <hgroup>
+      <h2>Slide with Smaller Font</h2>
+    </hgroup>
     <article class="smaller">
       <ul>
         <li>Titles are formatted as Open Sans with bold applied and font size is set at 45</li>
@@ -142,7 +146,9 @@ function helloWorld(world) {
     <aside class="note">
       <section>Speaker notes can go here!</section>
     </aside>
-    <h2>Slide with Speaker Notes</h2>
+    <hgroup>
+      <h2>Slide with Speaker Notes</h2>
+    </hgroup>
     <article>
       Press 'n'
     </article>
@@ -150,20 +156,31 @@ function helloWorld(world) {
 
   <slide class="segue dark nobackground">
     <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
-    <article class="flexbox vleft">
-      <hgroup class="auto-fadein">
-        <h2>Segue Slide</h2>
-        <h3>Subtitle Placeholder</h3>
-      </hgroup>
+    <hgroup class="auto-fadein">
+      <h2>Segue Slide</h2>
+      <h3>Subtitle Placeholder</h3>
+    </hgroup>
+  </slide>
+
+  <slide class="segue dark quote nobackground">
+    <aside class="gdbar right bottom"><img src="images/google_developers_icon_128.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <q>
+        This is an example of quote text.
+      </q>
+      <div class="author">
+        Name<br>
+        Company
+      </div>
     </article>
   </slide>
 
   <slide class="thank-you-slide segue nobackground">
     <aside class="gdbar right"><img src="images/google_developers_icon_128.png"></aside>
-    <section class="flexbox vleft auto-fadein">
+    <article class="flexbox vleft auto-fadein">
       <h2>&lt;Thanks You!&gt;</h2>
       <p>Important contact information goes here.</p>
-    </section>
+    </article>
     <p class="auto-fadein">
       Insert contact info<br>
       Insert contact info<br>
@@ -172,9 +189,9 @@ function helloWorld(world) {
   </slide>
 
   <slide class="logoslide dark nobackground">
-    <section class="flexbox vcenter">
+    <article class="flexbox vcenter">
       <span><img src="images/google_developers_logo_white.png"></span>
-    </section>
+    </article>
   </slide>
 
 </slides>

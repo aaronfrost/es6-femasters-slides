@@ -177,12 +177,8 @@ slides > slide {
     background: $gray-4;
   }
 
-  hgroup + article {
+  > hgroup + article {
     margin-top: 1.5em;
-  }
-
-  > article {
-    margin-top: 2em;
 
     p {
       margin-bottom: 1em;
@@ -411,40 +407,18 @@ th {
 }
 
 q {
-  display: block;
-  font-size: 60px;
+  font-size: 45px;
   line-height: 72px;
-  margin-left: 20px;
-  margin-top: 100px;
 
   &:before {
-    content: 'â€œ';
+    content: '“';
     position: absolute;
-    display: inline-block;
-    margin-left: -2.1em;
-    width: 2em;
-    text-align: right;
-    font-size: 90px;
-    color: rgb(192, 192, 192);
+    margin-left: -0.5em;
   }
   &:after {
-    content: 'â€';
+    content: '”';
     position: absolute;
-    margin-left: .1em;
-    font-size: 90px;
-    color: rgb(192, 192, 192);
-  }
-}
-
-div.author {
-  text-align: right;
-  font-size: 40px;
-
-  margin-top: 20px;
-  margin-right: 150px;
-
-  &:before {
-    content: 'â€”';
+    margin-left: 0.1em;
   }
 }
 
@@ -627,6 +601,8 @@ input, button {
 }
 
 .segue {
+  padding: $slide-left-right-padding $slide-left-right-padding * 2;
+
   h2 {
     color: $gray-1;
     font-size: 60px;
@@ -634,6 +610,13 @@ input, button {
   h3 {
     color: $gray-1;
     line-height: 2.8;
+  }
+  aside {
+    width: 215px !important;
+  }
+  hgroup {
+    position: absolute;
+    bottom: 150px;
   }
 }
 
@@ -646,7 +629,7 @@ input, button {
     color: inherit;
   }
 
-  section > p {
+  article > p {
     margin-top: 2em;
     font-size: 20pt;
   }
@@ -675,7 +658,7 @@ aside.gdbar {
     right: 0;
     left: -moz-initial;
     left: initial;
-    top: ($slide-height / 2) - 96 + 10; /* 96 is height of gray icon bar */
+    top: ($slide-height / 2) - 96; /* 96 is height of gray icon bar */
     @include transform(rotateZ(180deg));
 
     img {
@@ -683,21 +666,24 @@ aside.gdbar {
     }
   }
 
+  &.bottom {
+    left: -moz-initial;
+    top: initial;
+    bottom: $slide-left-right-padding;
+  }
+
   img {
     width: 85px;
     height: 85px;
     position: absolute;
     right: 0;
-    margin: 8px 12px;
+    margin: 8px 15px;
   }
 }
 
 .title-slide {
 
   hgroup {
-    position: absolute;
-    bottom: 150px;
-
     h1 {
       font-size: 65px;
       line-height: 1.4;
@@ -720,10 +706,13 @@ aside.gdbar {
   }
 }
 
-.thank-you-slide, .segue {
-  padding: $slide-left-right-padding $slide-left-right-padding * 2;
+.quote {
+  color: $gray-1;
 
-  aside {
-    width: 215px;
+  .author {
+    font-size: 24px;
+    position: absolute;
+    bottom: 80px;
+    line-height: 1.4;
   }
 }
