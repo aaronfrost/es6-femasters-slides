@@ -1105,7 +1105,7 @@ aside.gdbar.right img {
 }
 /* line 669, ../sass/default.scss */
 aside.gdbar.bottom {
-  left: -moz-initial;
+  top: -moz-initial;
   top: initial;
   bottom: 60px;
 }
