@@ -7,14 +7,15 @@
 </head>
 <body style="opacity: 0;">
 
-<slides>
-  <slide class="logoslide">
-    <section class="flexcenter">
-      <img src="images/google_developers_logo.png">
+<slides class="layout-widescreen">
+
+  <slide class="logoslide nobackground">
+    <section class="flexbox vcenter">
+      <span><img src="images/google_developers_logo.png"></span>
     </section>
   </slide>
 
-  <slide id="title-slide">
+  <slide id="title-slide" class="nobackground">
     <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
     <hgroup>
       <h1>Title Goes Here</h1>
@@ -27,44 +28,145 @@
   </slide>
 
   <slide>
-    <h2>Presentation Bullet Slide Layout</h2>
+    <h2>Slide with Bullets</h2>
     <article>
       <ul>
-        <li>Bullet 1</li>
-        <li>Bullet 2
+        <li>Titles are formatted as Open Sans with bold applied and font size is set at 45</li>
+        <li>Title capitalization is title case
           <ul>
-            <li>Bullet 3</li>
+            <li>Subtitle capitalization is title case</li>
           </ul>
         </li>
-        <li>Bullet 4</li>
+        <li>Subtitle capitalization is title case</li>
+        <li>Titles and subtitles should never have a period at the end</li>
       </ul>
     </article>
   </slide>
 
   <slide>
     <hgroup>
-      <h2>Presentation Bullet Slide Layout</h2>
+      <h2>Slide with Bullets that Build</h2>
       <h3>Subtitle Placeholder</h3>
     </hgroup>
     <article>
-      A Slide2
+      <p>A list where items build:</p>
+      <ul class="build">
+        <li>Blah</li>
+        <li>Blah</li>
+        <li>Blah</li>
+      </ul>
+      <p>Another list, but items fade as they build:</p>
+      <ul class="build fade">
+        <li>Hover over me!</li>
+        <li>Hover over me!</li>
+        <li>Hover over me!</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <h2>Slide with Smaller Font</h2>
+    <article class="smaller">
+      <ul>
+        <li>Titles are formatted as Open Sans with bold applied and font size is set at 45</li>
+        <li>Title capitalization is title case
+          <ul>
+            <li>Subtitle capitalization is title case</li>
+          </ul>
+        </li>
+        <li>Subtitle capitalization is title case</li>
+        <li>Titles and subtitles should never have a period at the end</li>
+      </ul>
     </article>
   </slide>
 
   <slide hidden>
-    A hidden slide
+    Hidden slides are left out of the presentation.
   </slide>
 
-  <!-- Slide with speaker notes. Press 'n' to display.-->
+  <slide>
+    <hgroup>
+      <h2>Code Slide (with Subtitle Placeholder)</h2>
+      <h3>Subtitle Placeholder</h3>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="javascript">
+&lt;script type='text/javascript'&gt;
+  // Say hello world until the user starts questioning
+  // the meaningfulness of their existence.
+  function helloWorld(world) {
+    for (var i = 42; --i &gt;= 0;) {
+      alert('Hello ' + String(world));
+    }
+  }
+&lt;/script&gt;
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Code Slide (Smaller Font)</h2>
+    </hgroup>
+    <article class="smaller">
+      <pre class="prettyprint" data-lang="javascript">
+// Say hello world until the user starts questioning
+// the meaningfulness of their existence.
+function helloWorld(world) {
+  for (var i = 42; --i &gt;= 0;) {
+    alert('Hello ' + String(world));
+  }
+}
+</pre>
+<pre class="prettyprint" data-lang="css">
+&lt;style&gt;
+  p { color: pink }
+  b { color: blue }
+&lt;/style&gt;
+</pre>
+<pre class="prettyprint" data-lang="html">
+&lt;!DOCTYPE html>
+&lt;html>
+&lt;head>
+  &lt;title>My Awesome Page&lt;/title>
+&lt;/head>
+&lt;body>
+  &lt;p&gt;Hello world&lt;/p&gt;
+&lt;body>
+&lt;/html>
+</pre>
+    </article>
+  </slide>
+
   <slide>
     <aside class="note">
       <section>Speaker notes can go here!</section>
     </aside>
-    <h2>Presentation Bullet Slide Layout</h2>
+    <h2>Slide with Speaker Notes</h2>
     <article>
-      A Slide2
+      Press 'n'
     </article>
   </slide>
+
+  <slide class="thank-you-slide nobackground">
+    <aside class="gdbar right"><img src="images/google_developers_icon_128.png"></aside>
+    <section class="flexbox vleft">
+      <h1>&lt;Thanks You!&gt;</h1>
+      <p>Important contact information goes here.</p>
+    </section>
+    <p>
+      Insert contact info<br>
+      Insert contact info<br>
+      Insert contact info
+    </p>
+  </slide>
+
+  <slide class="logoslide dark nobackground">
+    <section class="flexbox vcenter">
+      <span><img src="images/google_developers_logo_white.png"></span>
+    </section>
+  </slide>
+
 </slides>
 
 <script type="text/slide-config">
@@ -75,7 +177,7 @@
       theme: 'default',
       hashtag: '#html5', //TODO
       useBuilds: true,
-      usePrettify: true, //TODO
+      usePrettify: true,
       enableSideAreas: true, //TODO
       analytics: 'UA-25678279-1',
       favIcon: 'http://bleedinghtml5.appspot.com/images/chrome-logo-tiny2.png',
@@ -97,6 +199,7 @@
   };
 </script>
 
+<script src="js/prettify/prettify.js"></script>
 <script src="js/slides.js"></script>
 
 <!-- TODO: Add to slides.js -->

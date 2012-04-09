@@ -16,17 +16,25 @@
   -o-font-smoothing: $val;
 }
 
-@mixin flexcenter {
+@mixin flexbox {
   display: -webkit-box !important;
   display: -moz-box !important;
   display: -ms-box !important;
   display: -o-box !important;
   display: box !important;
+}
+
+@mixin flex-center-center {
   @include box-orient(vertical);
   @include box-align(center);
   @include box-pack(center);
 }
 
+@mixin flex-left-center {
+  @include box-orient(vertical);
+  @include box-align(left);
+  @include box-pack(center);
+}
 
 /**
  * Base SlideDeck Styles

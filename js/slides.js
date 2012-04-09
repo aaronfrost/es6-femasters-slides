@@ -65,15 +65,18 @@ SlideDeck.prototype.addEventListeners_ = function() {
   window.addEventListener('popstate', this.handlePopState_.bind(this), false);
 
   // Google Developer icon gray bar should reanimate on every slide enter.
-  var titleSlide = document.querySelector('#title-slide');
-  titleSlide.addEventListener('slideenter', function(e) {
-    this.buildNextItem_();
-  }.bind(this), false);
-  titleSlide.addEventListener('slideleave', function(e) {
-    var bar = e.target.querySelector('.gdbar');
-    bar.classList.remove('build-current');
-    bar.classList.add('to-build');
-  }, false);
+  var gbars = document.querySelectorAll('slide > .gdbar');
+  for (var i = 0, gbar; gbar = gbars[i]; ++i) {
+    var slide = gbar.parentElement;
+    slide.addEventListener('slideenter', function(e) {
+      this.buildNextItem_();
+    }.bind(this), false);
+    slide.addEventListener('slideleave', function(e) {
+      var bar = e.target.querySelector('.gdbar');
+      bar.classList.remove('build-current');
+      bar.classList.add('to-build');
+    }, false);
+  }
 };
 
 /**
@@ -175,8 +178,7 @@ SlideDeck.prototype.loadConfig_ = function() {
   }
 
   if (!!!('usePrettify' in settings) || settings.usePrettify) {
-    console.log('Use prettify');
-    //TODO
+    prettyPrint();
   }
 
   if (settings.analyticsId) {
@@ -489,7 +491,7 @@ SlideDeck.prototype.addFavIcon_ = function(favIcon) {
  * @param {string} theme
  */
 SlideDeck.prototype.loadTheme_ = function(theme) {
-  var styles = [theme];
+  var styles = [/*'../../js/prettify/prettify',*/ theme];
   for (var i = 0, style; themeUrl = styles[i]; i++) {
     var style = document.createElement('link');
     style.rel = 'stylesheet';

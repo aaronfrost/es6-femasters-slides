@@ -75,7 +75,7 @@ slides.layout-faux-widescreen > slide {
   padding: $slide-top-bottom-padding 160px;
 }
 
-slides > slide:not(.nobackground):not(.logoslide):not(.fill) {
+slides > slide:not(.nobackground):not(.fill) {
   //background: white url(../../images/google_developers_icon_128.png) ($brand-small-icon-size * 2) 98% no-repeat;
   //@include background-size($brand-small-icon-size $brand-small-icon-size);
 }
@@ -93,7 +93,7 @@ slides.nobackground slide:not(.fill)::before {
 }
 */
 
-slides > slide:not(:first-of-type):not(.fill):not(.nobackground) {
+slides > slide:not(.fill):not(.nobackground) {
 
   &:before {
     font-size: 12pt;
@@ -165,8 +165,16 @@ slides > slide {
     @include transform(translate3d($translateX * 2, 0, 0));
   }
 
+  hgroup + article {
+    margin-top: 1.5em;
+  }
+
   > article {
     margin-top: 2em;
+
+    p {
+      margin-bottom: 1em;
+    }
   }
 }
 
@@ -231,18 +239,10 @@ h2 {
   line-height: 45px;
   letter-spacing: -2px;
   color: $gray-4;
-
-  //padding: 30px 60px;
-
-  //width: 100%;
-  //background: rgba(255, 255, 255, 0.3);
-  //@include box-shadow(0 1px 5px #333);
-  //@include box-sizing(border-box);
 }
 
 h3 {
   font-size: 30px;
-  margin: 0 0 1em 0;
   letter-spacing: -1px;
   line-height: 2;
   font-weight: inherit;
@@ -250,21 +250,29 @@ h3 {
 }
 
 ul {
-  margin-left: 1.5em;
+  margin-left: 1.2em;
+  margin-bottom: 1em;
 
   li {
     margin-bottom: 0.5em;
 
-    ul li:before {
-      content: '-';
+    ul {
+      margin-left: 2em;
+      margin-bottom: 0;
+
+      li:before {
+        content: '-';
+        font-weight: 600;
+      }
     }
   }
 
   > li:before {
     content: '·';
-    width: 0.5em;
-    margin-left: -1.3em;
+    //width: 0.5em;
+    margin-left: -1em;
     position: absolute;
+    font-weight: 600;
   }
 
   ul {
@@ -276,11 +284,27 @@ pre {
   font-family: 'Inconsolata', 'Courier New', monospace;
   font-size: 20px;
   line-height: 28px;
-  padding: 10px 20px;
+  padding: 10px 0 10px $slide-left-right-padding;
   letter-spacing: -1px;
   margin-bottom: 20px;
-  @include text-shadow(none);
+  width: 106%;
+  background-color: $gray-1;
+  left: -$slide-left-right-padding;
+  position: relative;
+  @include box-sizing(border-box);
   /*overflow: hidden;*/
+
+  &:after {
+    content: attr(data-lang);
+    background-color: $gray-2;
+    right: 0;
+    top: 0;
+    position: absolute;
+    font-size: 16pt;
+    color: white;
+    padding: 2px 25px;
+    text-transform: uppercase;
+  }
 }
 
 code {
@@ -486,29 +510,32 @@ article.smaller {
 
 .prettyprint .str, /* string content */
 .prettyprint .atv { /* a markup attribute value */
-  color: rgb(0, 138, 53);
+  color: $brand-green-secondary2; //rgb(0, 138, 53);
 }
 .prettyprint .kwd, /* a keyword */
 .prettyprint .tag { /* a markup tag name */
   color: rgb(0, 102, 204);
 }
 .prettyprint .com { /* a comment */
-  color: rgb(127, 127, 127);
+  color: $gray-3; //rgb(127, 127, 127);
   font-style: italic;
 }
 .prettyprint .lit { /* a literal value */
-  color: rgb(127, 0, 0);
+  color: $brand-yellow-secondary2; //rgb(127, 0, 0);
 }
 .prettyprint .pun, /* punctuation, lisp open bracket, lisp close bracket */
 .prettyprint .opn,
 .prettyprint .clo {
-  color: rgb(127, 127, 127);
+  color: $gray-4; //rgb(127, 127, 127);
 }
 .prettyprint .typ, /* a type name */
 .prettyprint .atn, /* a markup attribute name */
 .prettyprint .dec,
 .prettyprint .var { /* a declaration; a variable name */
-  color: rgb(127, 0, 127);
+  color: $brand-red-secondary2; //rgb(127, 0, 127);
+}
+.prettyprint .pln {
+  color: $gray-4;
 }
 
 .with-notes .note {
@@ -524,7 +551,8 @@ article.smaller {
   top: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.3);
-  @include flexcenter;
+  @include flexbox;
+  @include flex-center-center;
 
   pointer-events: none;
   @include transition(all 0.2s ease-in-out);
@@ -557,18 +585,52 @@ input, button {
   box-reflect: below 3px linear-gradient(rgba(255,255,255,0) 85%, white 150%);
 }
 
-.flexcenter {
-  @include flexcenter;
+.flexbox {
+  @include flexbox;
+}
+
+.flexbox.vcenter {
+  @include flex-center-center;
   height: 100%;
+  width: 100%;
+}
+
+.flexbox.vleft {
+  @include flex-left-center;
+  height: 100%;
+  width: 100%;
 }
 
 /* ===== SLIDE CONTENT ===== */
 .logoslide {
-  //@include flexcenter;
+  &.dark {
+    background: $gray-4;
+  }
 
   img {
     width: 383px;
     height: 92px;
+  }
+}
+
+.thank-you-slide {
+  background: $brand-blue;
+  color: white;
+
+  h1 {
+    font-size: 60px;
+  }
+
+  section > p {
+    margin-top: 2em;
+    font-size: 20pt;
+  }
+
+  > p {
+    position: absolute;
+    bottom: $slide-top-bottom-padding * 2;
+    font-size: 24pt;
+    line-height: 1.3;
   }
 }
 
@@ -586,6 +648,18 @@ aside.gdbar {
 
   &.to-build {
     background-size: 0 100%;
+  }
+
+  &.right {
+    right: 0;
+    left: -moz-initial;
+    left: initial;
+    top: ($slide-height / 2) - 96; /* 96 is height of gray icon bar */
+    @include transform(rotateZ(180deg));
+
+    img {
+      @include transform(rotateZ(180deg));
+    }
   }
 
   img {
