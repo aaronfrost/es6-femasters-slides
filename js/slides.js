@@ -174,7 +174,7 @@ SlideDeck.prototype.loadConfig_ = function() {
     this.addFonts_(settings.fonts);
   }
 
-  if (settings.useBuilds || true) {
+  if (!!!('useBuilds' in settings) || settings.useBuilds) {
     this.makeBuildLists_();
   }
 };
