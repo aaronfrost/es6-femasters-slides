@@ -45,15 +45,21 @@ SlideDeck.prototype.getCurrentSlideFromHash_ = function() {
 SlideDeck.prototype.onDomLoaded_ = function() {
   this.slides_ = document.querySelectorAll('slide:not([hidden])');
 
+  // Load config.
+  this.loadConfig_();
+  this.addEventListeners_();
+  this.updateSlides_();
+
+  // Add slide numbers and total slide count metadata to each slide.
   for (var i = 0, slide; slide = this.slides_[i]; ++i) {
     slide.dataset.slideNum = i + 1;
     slide.dataset.totalSlides = this.slides_.length;
   }
 
-  // Load config.
-  this.loadConfig_();
-  this.addEventListeners_();
-  this.updateSlides_();
+  // This is an app! Make all links open in a new tab.
+  [].forEach.call(document.querySelectorAll('a'), function(a) {
+    a.target = '_blank';
+  });
 };
 
 /**
@@ -175,7 +181,7 @@ SlideDeck.prototype.loadConfig_ = function() {
   }
 
   if (settings.title) {
-    document.title = settings.title + ' - Google IO 2012';
+    document.title = settings.title.replace(/<br\/?>/, ' ') + ' - Google IO 2012';
     document.querySelector('[data-config-title]').innerHTML = settings.title;
   }
 
@@ -193,14 +199,14 @@ SlideDeck.prototype.loadConfig_ = function() {
       html = [p.name, p.company].join('<br>');
 
       var gplus = p.gplus ? '<span>g+</span><a href="' + p.gplus +
-                            '" target="_blank">' + p.gplus + '</a>' : '';
+                            '">' + p.gplus + '</a>' : '';
 
       var twitter = p.twitter ? '<span>twitter</span>' +
-          '<a href="http://twitter.com/' + p.twitter + '" target="_blank">' +
+          '<a href="http://twitter.com/' + p.twitter + '">' +
           p.twitter + '</a>' : '';
 
      var www = p.www ? '<span>www</span><a href="' + p.www +
-                       '" target="_blank">' + p.www + '</a>' : '';
+                       '">' + p.www + '</a>' : '';
 
       var html2 = [gplus, twitter, www].join('<br>');
 
@@ -350,7 +356,6 @@ SlideDeck.prototype.updateSlides_ = function(opt_dontPush) {
     }
   };
 
-  //this.triggerSlideEvent('slideleave', curSlide - 1);
   this.triggerSlideEvent('slideleave', this.prevSlide_);
   this.triggerSlideEvent('slideenter', curSlide);
 
@@ -377,7 +382,7 @@ SlideDeck.prototype.enableSlideFrames_ = function(slideNo) {
     return;
   }
 
-  var frames = el.getElementsByTagName('iframe');
+  var frames = el.querySelectorAll('iframe');
   for (var i = 0, frame; frame = frames[i]; i++) {
     this.enableFrame_(frame);
   }
@@ -388,7 +393,7 @@ SlideDeck.prototype.enableSlideFrames_ = function(slideNo) {
  * @param {number} slideNo
  */
 SlideDeck.prototype.enableFrame_ = function(frame) {
-  var src = frame._src;
+  var src = frame.dataset.src;
   if (src && frame.src != src) {
     frame.src = src;
   }
@@ -404,7 +409,7 @@ SlideDeck.prototype.disableSlideFrames_ = function(slideNo) {
     return;
   }
 
-  var frames = el.getElementsByTagName('iframe');
+  var frames = el.querySelectorAll('iframe');
   for (var i = 0, frame; frame = frames[i]; i++) {
     this.disableFrame_(frame);
   }
