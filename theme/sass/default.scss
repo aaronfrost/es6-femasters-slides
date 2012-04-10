@@ -1,7 +1,7 @@
 @import "base";
 @import "compass/css3/user-interface";
 
-$social-tags: '#io2012 @yourtwitter';
+$social-tags: '#io2012';
 $brand-small-icon-size: 30px;
 
 $gray-1: #e6e6e6;
@@ -44,7 +44,6 @@ $slide-border-radius: 5px;
 body {
   @include background-image(radial-gradient(50% 50%, #b1dfff 0%,
                                             $brand-blue-secondary2 600px));
-  //@include background-image(linear-gradient(top, $brand-blue 60%, $brand-blue-secondary2));
   background-attachment: fixed;
 }
 
@@ -117,6 +116,19 @@ slides > slide:not(.fill):not(.nobackground) {
   }
 }
 
+slides > slide.title-slide {
+  &:after {
+    content: '';
+    background: url(../../images/io2012_logo.png) no-repeat 100% 50%;
+    @include background-size(contain);
+    position: absolute;
+    bottom: $slide-top-bottom-padding;
+    right: $slide-top-bottom-padding;
+    width: 100%;
+    height: 60px;
+  }
+}
+
 /*slides.layout-widescreen > slide:not(.nobackground),
 slides.layout-faux-widescreen > slide:not(.nobackground) {
   background-position-x: 0, 840px;
@@ -157,7 +169,7 @@ slides > slide {
     }
 
     .gdbar {
-      background-size: 100% 100%;
+      @include background-size(100% 100%);
     }
   }
 
@@ -619,7 +631,7 @@ input, button {
   }
   hgroup {
     position: absolute;
-    bottom: 150px;
+    bottom: 225px;
   }
 }
 
@@ -653,8 +665,7 @@ aside.gdbar {
   top: 125px;
   @include border-radius(0 10px 10px 0);
   @include background(linear-gradient(left, $gray-1, $gray-1) no-repeat);
-  @include background-size(100% 100%);
-  background-size: 0 100%;
+  @include background-size(0% 100%);
   @include transition(all 0.5s ease-out 0.5s); /* Better to transition only on background-size, but not sure how to do that with the mixin. */
 
   &.right {
@@ -687,6 +698,8 @@ aside.gdbar {
 .title-slide {
 
   hgroup {
+    bottom: 100px;
+
     h1 {
       font-size: 65px;
       line-height: 1.4;

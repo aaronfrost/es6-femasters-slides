@@ -160,6 +160,24 @@ function helloWorld(world) {
     </article>
   </slide>
 
+  <slide>
+    <hgroup>
+      <h2>Slide with Image</h2>
+    </hgroup>
+    <article>
+      <img src="images/chart.png" alt="Description" title="Description">
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Slide with Image (centered horz/vert)</h2>
+    </hgroup>
+    <article class="flexbox vcenter" style="height: 80%;">
+      <img src="images/barchart.png" alt="Description" title="Description">
+    </article>
+  </slide>
+
   <slide class="segue dark nobackground">
     <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
     <hgroup class="auto-fadein">
@@ -206,7 +224,7 @@ function helloWorld(world) {
   var slideConfig = {
     // Slide settings
     settings: {
-      title: 'Title Goes Here',
+      title: 'Title Goes Here<br>Up To Two Lines',
       subtitle: 'Subtitle Goes Here',
       theme: 'default',
       hashtag: '#html5', //TODO
