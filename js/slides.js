@@ -158,14 +158,6 @@ SlideDeck.prototype.loadConfig_ = function() {
     this.addFavIcon_(settings.favIcon);
   }
 
-  if (settings.title) {
-    document.title = settings.title;
-  }
-  
-  if (settings.title) {
-    document.title = settings.title;
-  }
-
   if (!!!('usePrettify' in settings) || settings.usePrettify) {
     prettyPrint();
   }
@@ -180,6 +172,47 @@ SlideDeck.prototype.loadConfig_ = function() {
 
   if (!!!('useBuilds' in settings) || settings.useBuilds) {
     this.makeBuildLists_();
+  }
+
+  if (settings.title) {
+    document.title = settings.title + ' - Google IO 2012';
+    document.querySelector('[data-config-title]').textContent = settings.title;
+  }
+
+  if (settings.subtitle) {
+    document.querySelector('[data-config-subtitle]').textContent = settings.subtitle;
+  }
+
+  if (this.config_.presenters) {
+    var presenters = this.config_.presenters;
+
+    var html = [];
+    if (presenters.length == 1) {
+      var p = presenters[0]
+
+      html = [p.name, p.company].join('<br>');
+
+      var gplus = p.gplus ? '<span>g+</span><a href="' + p.gplus +
+                            '" target="_blank">' + p.gplus + '</a>' : '';
+
+      var twitter = p.twitter ? '<span>twitter</span>' +
+          '<a href="http://twitter.com/' + p.twitter + '" target="_blank">' +
+          p.twitter + '</a>' : '';
+
+     var www = p.www ? '<span>www</span><a href="' + p.www +
+                       '" target="_blank">' + p.www + '</a>' : '';
+
+      var html2 = [gplus, twitter, www].join('<br>');
+
+      document.querySelector('[data-config-contact]').innerHTML = html2;
+    } else {
+      for (var i = 0, p; p = presenters[i]; ++i) {
+        html.push(p.name + ' - ' + p.company);
+      }
+      html = html.join('<br>');
+    }
+
+    document.querySelector('[data-config-presenter]').innerHTML = html;
   }
 };
 

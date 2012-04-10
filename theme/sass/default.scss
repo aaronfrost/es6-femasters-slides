@@ -227,14 +227,17 @@ b {
 }
 
 a {
-  color: rgb(0, 102, 204);
+  color: $brand-blue-secondary2;
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 1px solid rgba(42, 124, 223, 0.5);
 
-  &:visited {
-    color: rgba(0, 102, 204, .75);
-  }
+/*  &:visited {
+    color: rgba(0, 102, 204, 0.75);
+  }*/
 
   &:hover {
-    color: black;
+    color: black !important;
   }
 }
 
@@ -714,5 +717,16 @@ aside.gdbar {
     position: absolute;
     bottom: 80px;
     line-height: 1.4;
+  }
+}
+
+[data-config-contact] {
+  a {
+    color: rgb(255, 255, 255);
+    border-bottom: none;
+  }
+  span {
+    width: 115px;
+    display: inline-block;
   }
 }

@@ -25,13 +25,11 @@ URL: https://code.google.com/p/io-2012-slides
 
   <slide class="title-slide segue nobackground">
     <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
+    <!-- The content of this hgroup is replaced programmatically through the config. -->
     <hgroup class="auto-fadein">
-      <h1>Title Goes Here</h1>
-      <h2>Subtitle Goes Here</h2>
-      <p>
-        Speaker Name<br>
-        Title
-      </p>
+      <h1 data-config-title><!-- populated from config --></h1>
+      <h2 data-config-subtitle><!-- populated from config --></h2>
+      <p data-config-presenter><!-- populated from config --></p>
     </hgroup>
   </slide>
 
@@ -87,7 +85,7 @@ URL: https://code.google.com/p/io-2012-slides
           </ul>
         </li>
         <li>Subtitle capitalization is title case</li>
-        <li>Titles and subtitles should never have a period at the end</li>
+        <li>Titles and <a href="http://google.com">subtitles</a> should never have a period at the end</li>
       </ul>
     </article>
   </slide>
@@ -189,10 +187,10 @@ function helloWorld(world) {
       <h2>&lt;Thank You!&gt;</h2>
       <p>Important contact information goes here.</p>
     </article>
-    <p class="auto-fadein">
+    <p class="auto-fadein" data-config-contact>
+      <!--Insert contact info<br>
       Insert contact info<br>
-      Insert contact info<br>
-      Insert contact info
+      Insert contact info-->
     </p>
   </slide>
 
@@ -208,7 +206,8 @@ function helloWorld(world) {
   var slideConfig = {
     // Slide settings
     settings: {
-      title: 'A Fancy Slide Deck - Google IO 2012',
+      title: 'Title Goes Here',
+      subtitle: 'Subtitle Goes Here',
       theme: 'default',
       hashtag: '#html5', //TODO
       useBuilds: true,
@@ -224,13 +223,19 @@ function helloWorld(world) {
     },
 
     // Author information
-    author: [{
-      name: 'Luke Mahe',
-      gplus: 'http://www.google.com'
-    }, {
+    presenters: [{
+      name: 'Firstname Lastname',
+      company: 'Job Title, Google',
+      gplus: 'http://plus.google.com/1234567890',
+      twitter: '@yourhandle',
+      www: 'http://www.you.com'
+    }/*, {
       name: 'Eric Bidelman',
-      gplus: 'http://plus.ericbidelman.com'
-    }]
+      gplus: 'http://plus.ericbidelman.com',
+      company: 'Senior Developer Programs Engineer, Google Chrome',
+      twitter: '@ebidel',
+      www: 'http://www.ericbidelman.com'
+    }*/]
   };
 </script>
 
