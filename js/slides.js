@@ -161,12 +161,16 @@ SlideDeck.prototype.loadConfig_ = function() {
   if (settings.title) {
     document.title = settings.title;
   }
+  
+  if (settings.title) {
+    document.title = settings.title;
+  }
 
   if (!!!('usePrettify' in settings) || settings.usePrettify) {
     prettyPrint();
   }
 
-  if (settings.analyticsId) {
+  if (settings.analytics) {
     this.loadAnalytics_();
   }
 
@@ -505,7 +509,7 @@ SlideDeck.prototype.loadTheme_ = function(theme) {
  */
 SlideDeck.prototype.loadAnalytics_ = function() {
   var _gaq = window['_gaq'] || [];
-  _gaq.push(['_setAccount', this.config_.settings.analyticsId]);
+  _gaq.push(['_setAccount', this.config_.settings.analytics]);
   //_gaq.push(['_setDomainName', '.bleedinghtml5.appspot.com']);
   _gaq.push(['_trackPageview']);
 
