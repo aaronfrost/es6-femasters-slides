@@ -81,99 +81,21 @@ body {
 }
 
 slides > slide {
+  display: none;
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: 26px;
+  color: $gray-3;
+  @include background(linear-gradient(white, white 85%, $gray-1));
+  background-color: white;
   width: $slide-width;
   height: $slide-height;
   margin-left: -$slide-width / 2;
   margin-top: -$slide-height / 2;
-
   padding: $slide-top-bottom-padding $slide-left-right-padding;
-
-  background-color: white;
-  font-size: 26px;
 
   @include border-radius($slide-border-radius);
   @include box-shadow(5px 5px 20px $gray-4);
   @include transition(all 0.3s ease-out);
-}
-
-slides.layout-widescreen > slide {
-  margin-left: -$slide-width-widescreen / 2;
-  width: $slide-width-widescreen;
-}
-
-slides.layout-faux-widescreen > slide {
-  margin-left: -$slide-width-widescreen / 2;
-  width: $slide-width-widescreen;
-  padding: $slide-top-bottom-padding 160px;
-}
-
-slides > slide:not(.nobackground):not(.fill) {
-  //background: white url(../../images/google_developers_icon_128.png) ($brand-small-icon-size * 2) 98% no-repeat;
-  //@include background-size($brand-small-icon-size $brand-small-icon-size);
-}
-
-/*slides.nobackground slide:not(.fill) {
-  background: url(/images/devfest_logo_small.png) 98% 99% no-repeat,
-              url(/images/bubbles.png) 5% -125px no-repeat,
-              url(/images/colorbar.png) 0 91% repeat-x,
-              white !important;
-}
-
-slides.nobackground slide:not(.fill)::after,
-slides.nobackground slide:not(.fill)::before {
-  color: inherit !important;
-}
-*/
-
-slides > slide:not(.fill):not(.nobackground) {
-
-  &:before {
-    font-size: 12pt;
-    content: $social-tags;
-    position: absolute;
-    bottom: $slide-top-bottom-padding / 2;
-    left: $slide-left-right-padding;
-    background: url(../../images/google_developers_icon_128.png) no-repeat 0 50%;
-    @include background-size($brand-small-icon-size $brand-small-icon-size);
-    padding-left: $brand-small-icon-size + 10;
-    height: $brand-small-icon-size;
-    line-height: 1.9;
-  }
-  &:after {
-    font-size: 12pt;
-    content: attr(data-slide-num) '/' attr(data-total-slides);
-    position: absolute;
-    bottom: $slide-top-bottom-padding / 2;
-    right: $slide-left-right-padding;
-    line-height: 1.9;
-  }
-}
-
-slides > slide.title-slide {
-  &:after {
-    content: '';
-    background: url(../../images/io2012_logo.png) no-repeat 100% 50%;
-    @include background-size(contain);
-    position: absolute;
-    bottom: $slide-top-bottom-padding;
-    right: $slide-top-bottom-padding;
-    width: 100%;
-    height: 60px;
-  }
-}
-
-/*slides.layout-widescreen > slide:not(.nobackground),
-slides.layout-faux-widescreen > slide:not(.nobackground) {
-  background-position-x: 0, 840px;
-}*/
-
-/* Slides */
-
-slides > slide {
-  display: none;
-  font-family: 'Open Sans', Arial, sans-serif;
-  color: $gray-3;
-  @include background(linear-gradient(white, white 85%, $gray-1));
 
   $translateX: 1020px;
   $rotateY: 30deg;
@@ -221,6 +143,45 @@ slides > slide {
     background: $gray-4;
   }
 
+  &:not(.fill):not(.nobackground) {
+    //background: white url(../../images/google_developers_icon_128.png) ($brand-small-icon-size * 2) 98% no-repeat;
+    //@include background-size($brand-small-icon-size $brand-small-icon-size);
+
+    &:before {
+      font-size: 12pt;
+      content: $social-tags;
+      position: absolute;
+      bottom: $slide-top-bottom-padding / 2;
+      left: $slide-left-right-padding;
+      background: url(../../images/google_developers_icon_128.png) no-repeat 0 50%;
+      @include background-size($brand-small-icon-size $brand-small-icon-size);
+      padding-left: $brand-small-icon-size + 10;
+      height: $brand-small-icon-size;
+      line-height: 1.9;
+    }
+    &:after {
+      font-size: 12pt;
+      content: attr(data-slide-num) '/' attr(data-total-slides);
+      position: absolute;
+      bottom: $slide-top-bottom-padding / 2;
+      right: $slide-left-right-padding;
+      line-height: 1.9;
+    }
+  }
+
+  &.title-slide {
+    &:after {
+      content: '';
+      background: url(../../images/io2012_logo.png) no-repeat 100% 50%;
+      @include background-size(contain);
+      position: absolute;
+      bottom: $slide-top-bottom-padding;
+      right: $slide-top-bottom-padding;
+      width: 100%;
+      height: 60px;
+    }
+  }
+
   > hgroup + article {
     margin-top: $article-cotent-top-padding;
 
@@ -232,6 +193,17 @@ slides > slide {
   > article:only-child > iframe {
     height: 100%;
   }
+}
+
+slides.layout-widescreen > slide {
+  margin-left: -$slide-width-widescreen / 2;
+  width: $slide-width-widescreen;
+}
+
+slides.layout-faux-widescreen > slide {
+  margin-left: -$slide-width-widescreen / 2;
+  width: $slide-width-widescreen;
+  padding: $slide-top-bottom-padding 160px;
 }
 
 slides.layout-widescreen,
@@ -325,7 +297,6 @@ ul {
 
   > li:before {
     content: '·';
-    //width: 0.5em;
     margin-left: -1em;
     position: absolute;
     font-weight: 600;
@@ -336,7 +307,8 @@ ul {
   }
 }
 
-.highlight-code {
+// Code highlighting only effects the current slide.
+.highlight-code slide.current {
   pre > * {
     opacity: 0.25;
     @include transition(opacity 0.5s ease-in);
@@ -627,9 +599,16 @@ article.smaller {
   color: $gray-4;
 }
 
-.with-notes .note {
-  opacity: 1;
-  pointer-events: auto;
+// Speaker notes only show the current slide.
+.with-notes {
+  slide.current {
+    @include transform(rotateY(180deg) !important);
+  }
+  .note {
+    opacity: 1;
+    @include transform(rotateY(180deg));
+    pointer-events: auto;
+  }
 }
 
 .note {
@@ -640,13 +619,12 @@ article.smaller {
   top: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  pointer-events: none;
   @include flexbox;
   @include flex-center-center;
-
-  pointer-events: none;
-  @include transition(all 0.2s ease-in-out);
-  opacity: 0;
-
+  @include transition(transform 0.2s cubic-bezier(.10, .10, .25, .90),
+                      opacity 0.4s ease-in-out 0.4s);
   @include border-radius($slide-border-radius);
 
   > section {

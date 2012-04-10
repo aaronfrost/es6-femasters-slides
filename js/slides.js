@@ -128,7 +128,10 @@ SlideDeck.prototype.onBodyKeyDown_ = function(e) {
       break;
 
     case 78: // N
-      document.body.classList.toggle('with-notes');
+      // If this slide contains notes, toggle them.
+      if (this.slides_[this.curSlide_].querySelector('.note')) {
+        document.body.classList.toggle('with-notes');
+      }
       break;
 
     case 27: // ESC
@@ -276,6 +279,11 @@ SlideDeck.prototype.buildNextItem_ = function() {
  */
 SlideDeck.prototype.prevSlide = function(opt_dontPush) {
   if (this.curSlide_ > 0) {
+    // Toggle off speaker notes and/or highlighted code if they're showing.
+    var bodyClassList = document.body.classList;
+    bodyClassList.remove('with-notes');
+    bodyClassList.remove('highlight-code');
+
     this.prevSlide_ = this.curSlide_;
     this.curSlide_--;
 
@@ -293,6 +301,11 @@ SlideDeck.prototype.nextSlide = function(opt_dontPush) {
   }
 
   if (this.curSlide_ < this.slides_.length - 1) {
+    // Toggle off speaker notes and/or highlighted code if they're showing.
+    var bodyClassList = document.body.classList;
+    bodyClassList.remove('with-notes');
+    bodyClassList.remove('highlight-code');
+
     this.prevSlide_ = this.curSlide_;
     this.curSlide_++;
 
