@@ -441,20 +441,40 @@ img.centered {
 
 table {
   width: 100%;
-  border-collapse: collapse;
-  margin-top: 40px;
-}
+  border-collapse: -moz-initial;
+  border-collapse: initial;
+  border-spacing: 2px;
+  border-bottom: 1px solid $gray-3;
 
-th {
-  font-weight: 600;
-  text-align: left;
-}
+  tr > td:first-child, th {
+    font-weight: 600;
+    color: $gray-4;
+  }
 
-td,
-th {
-  border: 1px solid rgb(224, 224, 224);
-  padding: 5px 10px;
-  vertical-align: top;
+  tr:nth-child(odd) {
+    background-color: $gray-1;
+  }
+
+  th {
+    color: white;
+    font-size: 18px;
+    @include background(linear-gradient(top, $brand-blue 40%, $brand-blue-secondary2 80%) no-repeat);
+  }
+
+  td, th {
+    font-size: 18px;
+    padding: 1em 0.5em;
+  }
+
+  td.highlight {
+    color: $gray-4;
+    @include background(linear-gradient(top, $brand-yellow 40%, $brand-yellow-secondary2 80%) no-repeat);
+  }
+
+  &.rows {
+    border-bottom: none;
+    border-right: 1px solid $gray-3;
+  }
 }
 
 q {
@@ -504,9 +524,9 @@ article.smaller {
     letter-spacing: 0;
   }
   table {
-    font-size: 20px;
-    line-height: 24px;
-    letter-spacing: 0;
+    td, th {
+      font-size: 14px;
+    }
   }
   pre {
     font-size: 15px;
