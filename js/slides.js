@@ -123,6 +123,10 @@ SlideDeck.prototype.onBodyKeyDown_ = function(e) {
       e.preventDefault();
       break;
 
+    case 72: // H
+      document.body.classList.toggle('highlight-code');
+      break;
+
     case 78: // N
       document.body.classList.toggle('with-notes');
       break;

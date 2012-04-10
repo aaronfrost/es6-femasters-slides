@@ -1,4 +1,5 @@
 @import "base";
+@import "compass/css3/columns";
 @import "compass/css3/user-interface";
 
 $social-tags: '#io2012';
@@ -172,7 +173,6 @@ slides > slide {
   display: none;
   font-family: 'Open Sans', Arial, sans-serif;
   color: $gray-3;
-
   @include background(linear-gradient(white, white 85%, $gray-1));
 
   $translateX: 1020px;
@@ -280,10 +280,6 @@ a {
   padding-bottom: 2px;
   border-bottom: 1px solid rgba(42, 124, 223, 0.5);
 
-/*  &:visited {
-    color: rgba(0, 102, 204, 0.75);
-  }*/
-
   &:hover {
     color: black !important;
   }
@@ -311,6 +307,7 @@ h3 {
 ul {
   margin-left: 1.2em;
   margin-bottom: 1em;
+  position: relative;
 
   li {
     margin-bottom: 0.5em;
@@ -336,6 +333,16 @@ ul {
 
   ul {
     margin-top: .5em;
+  }
+}
+
+.highlight-code {
+  pre > * {
+    opacity: 0.25;
+    @include transition(opacity 0.5s ease-in);
+  }
+  b {
+    opacity: 1;
   }
 }
 
@@ -412,31 +419,56 @@ button:active {
 }
 
 .blue {
-  color: rgb(0, 102, 204);
+  color: $brand-blue;
+}
+.blue2 {
+  color: $brand-blue-secondary;
+}
+.blue3 {
+  color: $brand-blue-secondary2;
 }
 .yellow {
-  color: rgb(255, 211, 25);
+  color: $brand-yellow;
+}
+.yellow2 {
+  color: $brand-yellow-secondary;
+}
+.yellow3 {
+  color: $brand-yellow-secondary2;
 }
 .green {
-  color: rgb(0, 138, 53);
+  color: $brand-green;
+}
+.green2 {
+  color: $brand-green-secondary;
+}
+.green3 {
+  color: $brand-green-secondary2;
 }
 .red {
-  color: rgb(255, 0, 0);
+  color: $brand-red;
 }
-.black {
-  color: black;
+.red2 {
+  color: $brand-red-secondary;
 }
-.white {
-  color: white;
+.red3 {
+  color: $brand-red-secondary2;
 }
-.dark {
-  background-color: rgba(0, 0, 0, 0.2);
-  color: white;
+.gray {
+  color: $gray-1;
+}
+.gray2 {
+  color: $gray-2;
+}
+.gray3 {
+  color: $gray-3;
+}
+.gray4 {
+  color: $gray-4;
 }
 
-img.centered {
-  margin: 0 auto;
-  display: block;
+.columns-2 {
+  @include column-count(2);
 }
 
 table {
@@ -578,7 +610,7 @@ article.smaller {
   font-style: italic;
 }
 .prettyprint .lit { /* a literal value */
-  color: $brand-yellow-secondary2; //rgb(127, 0, 0);
+  color: rgb(127, 0, 0);
 }
 .prettyprint .pun, /* punctuation, lisp open bracket, lisp close bracket */
 .prettyprint .opn,

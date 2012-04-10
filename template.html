@@ -100,14 +100,15 @@ URL: https://code.google.com/p/io-2012-slides
       <h3>Subtitle Placeholder</h3>
     </hgroup>
     <article>
+      <p>Press 'h' to highlight important sections of code (wrapped in <code>&lt;b&gt;</code>).</p>
       <pre class="prettyprint" data-lang="javascript">
 &lt;script type='text/javascript'&gt;
   // Say hello world until the user starts questioning
   // the meaningfulness of their existence.
   function helloWorld(world) {
-    for (var i = 42; --i &gt;= 0;) {
+    <b>for (var i = 42; --i &gt;= 0;) {
       alert('Hello ' + String(world));
-    }
+    }</b>
   }
 &lt;/script&gt;
 </pre>
@@ -156,7 +157,7 @@ function helloWorld(world) {
       <h2>Slide with Speaker Notes</h2>
     </hgroup>
     <article>
-      Press 'n'
+      Press 'n' to show speaker notes on a slide.
     </article>
   </slide>
 
@@ -262,7 +263,33 @@ function helloWorld(world) {
     </article>
   </slide>
 
-
+  <slide>
+    <hgroup>
+      <h2>Slide styles</h2>
+    </hgroup>
+    <article class="smaller columns-2">
+      <ul>
+        <li class="red">class="red"</li>
+        <li class="red2">class="red2"</li>
+        <li class="red3">class="red3"</li>
+        <li class="blue">class="blue"</li>
+        <li class="blue2">class="blue2"</li>
+        <li class="blue3">class="blue3"</li>
+        <li class="green">class="green"</li>
+        <li class="green2">class="green2"</li>
+      </ul>
+      <ul>
+        <li class="green3">class="green3"</li>
+        <li class="yellow">class="yellow"</li>
+        <li class="yellow2">class="yellow2"</li>
+        <li class="yellow3">class="yellow3"</li>
+        <li class="gray">class="gray"</li>
+        <li class="gray2">class="gray2"</li>
+        <li class="gray3">class="gray3"</li>
+        <li class="gray4">class="gray4"</li>
+      </ul>
+    </article>
+  </slide>
   <slide class="segue dark nobackground">
     <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
     <hgroup class="auto-fadein">
