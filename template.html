@@ -355,7 +355,8 @@ function helloWorld(world) {
       hashtag: '#html5', //TODO
       useBuilds: true,
       usePrettify: true,
-      enableSideAreas: true, //TODO
+      //enableSideAreas: true, //TODO
+      enableTouch: true, // TODO: base this on media query instead.
       analytics: 'UA-XXXXXXXX-1',
       favIcon: 'http://bleedinghtml5.appspot.com/images/chrome-logo-tiny2.png',
       onLoad: null, // TODO. function to call onload
@@ -382,8 +383,10 @@ function helloWorld(world) {
   };
 </script>
 
-<script src="js/prettify/prettify.js"></script>
-<script src="js/slides.js"></script>
+<script src="js/prettify/prettify.js" defer></script>
+<script src="js/yepnope.1.5.3-min.js" defer></script>
+<script src="js/touch.js" defer></script>
+<script src="js/slides.js" defer></script>
 
 <!-- TODO: Add to slides.js -->
 <!--[if IE]>

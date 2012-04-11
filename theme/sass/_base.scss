@@ -86,48 +86,10 @@ slides > slide {
   @include box-sizing(border-box);
 }
 
-
-/* Clickable/tappable areas */
-/*
-.slide-area {
-  z-index: 1000;
-
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 150px;
-  height: 700px;  
-
-  left: 50%;
-  top: 50%;
-
-  cursor: pointer;  
-  margin-top: -350px;  
-  
-  tap-highlight-color: transparent;
-  -o-tap-highlight-color: transparent;
-  -moz-tap-highlight-color: transparent;
-  -webkit-tap-highlight-color: transparent;
-}
-#prev-slide-area {
-  margin-left: -550px;
-}
-#next-slide-area {
-  margin-left: 400px;
-}
-.slides.layout-widescreen #prev-slide-area,
-.slides.layout-faux-widescreen #prev-slide-area {
-  margin-left: -650px;
-}
-.slides.layout-widescreen #next-slide-area,
-.slides.layout-faux-widescreen #next-slide-area {
-  margin-left: 500px;
-}*/
-
 /* Slide styles */
 
 
-article.fill iframe {
+/*article.fill iframe {
   position: absolute;
   left: 0;
   top: 0;
@@ -156,3 +118,4 @@ slide.fill img {
 
   z-index: -1;
 }
+*/

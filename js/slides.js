@@ -1,3 +1,8 @@
+// Function.bind polyfill for Safari < 5.1.4 and iOS.
+// From https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function/bind
+Function.prototype.bind||(Function.prototype.bind=function(c){if("function"!==typeof this)throw new TypeError("Function.prototype.bind - binding an object that is not callable");var d=Array.prototype.slice.call(arguments,1),e=this,a=function(){},b=function(){return e.apply(this instanceof a?this:c||window,d.concat(Array.prototype.slice.call(arguments)))};a.prototype=this.prototype;b.prototype=new a;return b});
+
+
 /**
  * @constructor
  */
@@ -9,8 +14,10 @@ function SlideDeck() {
 
   this.getCurrentSlideFromHash_();
 
-  document.addEventListener('DOMContentLoaded',
-                            this.onDomLoaded_.bind(this), false);
+  /*document.addEventListener('DOMContentLoaded',
+                              this.onDomLoaded_.bind(this), false);*/
+  // Introducing yepnopejs causes DOMContentLoaded before the deck is setup.
+  this.onDomLoaded_.bind(this)();
 }
 
 /**
@@ -42,7 +49,7 @@ SlideDeck.prototype.getCurrentSlideFromHash_ = function() {
 /**
  * @private
  */
-SlideDeck.prototype.onDomLoaded_ = function() {
+SlideDeck.prototype.onDomLoaded_ = function(e) {
   this.slides_ = document.querySelectorAll('slide:not([hidden])');
 
   // Load config.
@@ -226,6 +233,23 @@ SlideDeck.prototype.loadConfig_ = function() {
     }
 
     document.querySelector('[data-config-presenter]').innerHTML = html;
+  }
+
+  /* Clicking and tapping */
+  var el = document.createElement('div');
+  el.classList.add('slide-area');
+  el.id = 'prev-slide-area';
+  el.addEventListener('click', this.prevSlide.bind(this), false);
+  document.querySelector('slides').appendChild(el);
+
+  var el = document.createElement('div');
+  el.classList.add('slide-area');
+  el.id = 'next-slide-area';
+  el.addEventListener('click', this.nextSlide.bind(this), false);
+  document.querySelector('slides').appendChild(el);
+
+  if (!!!('enableTouch' in settings) || settings.enableTouch) {
+    var toucher = new TouchManager(this);
   }
 };
 
@@ -489,13 +513,6 @@ SlideDeck.prototype.makeBuildLists_ = function () {
         }
       }
     }
-    // // Setup Google Developer icon slide out bars.
-    // var bars = slide.querySelectorAll('.gdbar');
-    // for (var j = 0, bar; bar = bars[j]; ++j) {
-    //   if (bar.classList) {
-    //     bar.classList.add('to-build');
-    //   }
-    // }
   }
 };
 
@@ -513,7 +530,8 @@ SlideDeck.prototype.updateHash_ = function(dontPush) {
       window.location.replace(hash);
     }
 
-    window['_gaq'] && window['_gaq'].push(['_trackPageview', document.location.href]);
+    window['_gaq'] && window['_gaq'].push(['_trackPageview',
+                                          document.location.href]);
   }
 };
 
@@ -575,5 +593,18 @@ SlideDeck.prototype.loadAnalytics_ = function() {
   })();
 };
 
-// Create the slidedeck
-var slidedeck = new SlideDeck();
+
+// Polyfill missing APIs (if we need to), then create the slide deck.
+// iOS < 5 needs all of these! #dislike
+(function() {
+  var body = document.body;
+
+  yepnope({
+    test: !!body.classList && !!body.dataset,
+    nope: ['js/polyfills/classList.min.js', 'js/polyfills/dataset.min.js'],
+    complete: function() {
+      window.slidedeck = new SlideDeck();
+    }
+  });
+
+})();
