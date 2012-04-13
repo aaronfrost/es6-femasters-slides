@@ -1140,31 +1140,27 @@ input, button {
   line-height: 2.8;
 }
 /* line 736, ../sass/default.scss */
-.segue aside {
-  width: 215px !important;
-}
-/* line 739, ../sass/default.scss */
 .segue hgroup {
   position: absolute;
   bottom: 225px;
 }
 
-/* line 745, ../sass/default.scss */
+/* line 742, ../sass/default.scss */
 .thank-you-slide {
   background: #4387fd;
   color: white;
 }
-/* line 749, ../sass/default.scss */
+/* line 746, ../sass/default.scss */
 .thank-you-slide h2 {
   font-size: 60px;
   color: inherit;
 }
-/* line 754, ../sass/default.scss */
+/* line 751, ../sass/default.scss */
 .thank-you-slide article > p {
   margin-top: 2em;
   font-size: 20pt;
 }
-/* line 759, ../sass/default.scss */
+/* line 756, ../sass/default.scss */
 .thank-you-slide > p {
   position: absolute;
   bottom: 80px;
@@ -1172,10 +1168,10 @@ input, button {
   line-height: 1.3;
 }
 
-/* line 767, ../sass/default.scss */
+/* line 764, ../sass/default.scss */
 aside.gdbar {
   height: 97px;
-  width: 155px;
+  width: 215px;
   position: absolute;
   left: 0;
   top: 125px;
@@ -1201,7 +1197,7 @@ aside.gdbar {
   transition: all 0.5s ease-out 0.5s;
   /* Better to transition only on background-size, but not sure how to do that with the mixin. */
 }
-/* line 778, ../sass/default.scss */
+/* line 775, ../sass/default.scss */
 aside.gdbar.right {
   right: 0;
   left: -moz-initial;
@@ -1214,7 +1210,7 @@ aside.gdbar.right {
   -o-transform: rotateZ(180deg);
   transform: rotateZ(180deg);
 }
-/* line 785, ../sass/default.scss */
+/* line 782, ../sass/default.scss */
 aside.gdbar.right img {
   -webkit-transform: rotateZ(180deg);
   -moz-transform: rotateZ(180deg);
@@ -1222,13 +1218,13 @@ aside.gdbar.right img {
   -o-transform: rotateZ(180deg);
   transform: rotateZ(180deg);
 }
-/* line 790, ../sass/default.scss */
+/* line 787, ../sass/default.scss */
 aside.gdbar.bottom {
   top: -moz-initial;
   top: initial;
   bottom: 60px;
 }
-/* line 796, ../sass/default.scss */
+/* line 793, ../sass/default.scss */
 aside.gdbar img {
   width: 85px;
   height: 85px;
@@ -1237,24 +1233,24 @@ aside.gdbar img {
   margin: 8px 15px;
 }
 
-/* line 807, ../sass/default.scss */
+/* line 804, ../sass/default.scss */
 .title-slide hgroup {
   bottom: 100px;
 }
-/* line 810, ../sass/default.scss */
+/* line 807, ../sass/default.scss */
 .title-slide hgroup h1 {
   font-size: 65px;
   line-height: 1.4;
   letter-spacing: -3px;
   color: #515151;
 }
-/* line 817, ../sass/default.scss */
+/* line 814, ../sass/default.scss */
 .title-slide hgroup h2 {
   font-size: 34px;
   color: #a9a9a9;
   font-weight: inherit;
 }
-/* line 823, ../sass/default.scss */
+/* line 820, ../sass/default.scss */
 .title-slide hgroup p {
   font-size: 20px;
   color: #797979;
@@ -1262,11 +1258,11 @@ aside.gdbar img {
   margin-top: 2em;
 }
 
-/* line 832, ../sass/default.scss */
+/* line 829, ../sass/default.scss */
 .quote {
   color: #e6e6e6;
 }
-/* line 835, ../sass/default.scss */
+/* line 832, ../sass/default.scss */
 .quote .author {
   font-size: 24px;
   position: absolute;
@@ -1274,12 +1270,12 @@ aside.gdbar img {
   line-height: 1.4;
 }
 
-/* line 844, ../sass/default.scss */
+/* line 841, ../sass/default.scss */
 [data-config-contact] a {
   color: white;
   border-bottom: none;
 }
-/* line 848, ../sass/default.scss */
+/* line 845, ../sass/default.scss */
 [data-config-contact] span {
   width: 115px;
   display: inline-block;
