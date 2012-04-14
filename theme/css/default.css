@@ -79,8 +79,8 @@ body {
   opacity: 1 !important;
   height: 100%;
   min-height: 740px;
-  overflow-x: hidden;
-  overflow-y: auto;
+  width: 100%;
+  overflow: hidden;
   color: #fff;
   -webkit-font-smoothing: antialiased;
   -moz-font-smoothing: antialiased;
