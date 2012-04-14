@@ -213,14 +213,14 @@ SlideDeck.prototype.loadConfig_ = function() {
       html = [p.name, p.company].join('<br>');
 
       var gplus = p.gplus ? '<span>g+</span><a href="' + p.gplus +
-                            '">' + p.gplus + '</a>' : '';
+                            '">' + p.gplus.replace('http://', '') + '</a>' : '';
 
       var twitter = p.twitter ? '<span>twitter</span>' +
           '<a href="http://twitter.com/' + p.twitter + '">' +
           p.twitter + '</a>' : '';
 
      var www = p.www ? '<span>www</span><a href="' + p.www +
-                       '">' + p.www + '</a>' : '';
+                       '">' + p.www.replace('http://', '') + '</a>' : '';
 
       var html2 = [gplus, twitter, www].join('<br>');
 
