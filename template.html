@@ -167,6 +167,7 @@ function helloWorld(world) {
     </hgroup>
     <article>
       <img src="images/chart.png" alt="Description" title="Description">
+      <footer class="source">source: place source info here</footer>
     </article>
   </slide>
 
@@ -176,6 +177,7 @@ function helloWorld(world) {
     </hgroup>
     <article class="flexbox vcenter" style="height: 80%;">
       <img src="images/barchart.png" alt="Description" title="Description">
+      <footer class="source">source: place source info here</footer>
     </article>
   </slide>
 
@@ -267,35 +269,48 @@ function helloWorld(world) {
     <hgroup>
       <h2>Slide Styles</h2>
     </hgroup>
-    <article class="smaller columns-2">
-      <ul>
-        <li class="red">class="red"</li>
-        <li class="red2">class="red2"</li>
-        <li class="red3">class="red3"</li>
-        <li class="blue">class="blue"</li>
-        <li class="blue2">class="blue2"</li>
-        <li class="blue3">class="blue3"</li>
-        <li class="green">class="green"</li>
-        <li class="green2">class="green2"</li>
-      </ul>
-      <ul>
-        <li class="green3">class="green3"</li>
-        <li class="yellow">class="yellow"</li>
-        <li class="yellow2">class="yellow2"</li>
-        <li class="yellow3">class="yellow3"</li>
-        <li class="gray">class="gray"</li>
-        <li class="gray2">class="gray2"</li>
-        <li class="gray3">class="gray3"</li>
-        <li class="gray4">class="gray4"</li>
-      </ul>
+    <article class="smaller">
+      <div class="columns-2">
+        <ul>
+          <li class="red">class="red"</li>
+          <li class="red2">class="red2"</li>
+          <li class="red3">class="red3"</li>
+          <li class="blue">class="blue"</li>
+          <li class="blue2">class="blue2"</li>
+          <li class="blue3">class="blue3"</li>
+          <li class="green">class="green"</li>
+          <li class="green2">class="green2"</li>
+        </ul>
+        <ul>
+          <li class="green3">class="green3"</li>
+          <li class="yellow">class="yellow"</li>
+          <li class="yellow2">class="yellow2"</li>
+          <li class="yellow3">class="yellow3"</li>
+          <li class="gray">class="gray"</li>
+          <li class="gray2">class="gray2"</li>
+          <li class="gray3">class="gray3"</li>
+          <li class="gray4">class="gray4"</li>
+        </ul>
+      </div>
+      <div>
+        <button>Button</button> <button disabled>Disabled</button>
+      </div>
     </article>
   </slide>
+
   <slide class="segue dark nobackground">
     <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
     <hgroup class="auto-fadein">
       <h2>Segue Slide</h2>
       <h3>Subtitle Placeholder</h3>
     </hgroup>
+  </slide>
+
+  <slide class="fill nobackground" style="background-image: url(images/sky.jpg)">
+    <hgroup>
+      <h2 class="white">Full Image (with Optional Header)</h2>
+    </hgroup>
+    <footer class="source white">www.flickr.com/photos/25797459@N06/5438799763/</footer>
   </slide>
 
   <slide class="segue dark quote nobackground">

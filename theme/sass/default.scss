@@ -107,7 +107,7 @@ slides > slide {
 
   @include border-radius($slide-border-radius);
   //@include box-shadow(5px 5px 20px $gray-4);
-  @include transition(all 0.6s ease-out);
+  @include transition(all 0.6s ease-in-out);
 
   //$translateX: 1020px;
   //$rotateY: 30deg;
@@ -161,7 +161,7 @@ slides > slide {
     background: $gray-4;
   }
 
-  &:not(.fill):not(.nobackground) {
+  &:not(.nobackground) {
     //background: white url(../../images/google_developers_icon_128.png) ($brand-small-icon-size * 2) 98% no-repeat;
     //@include background-size($brand-small-icon-size $brand-small-icon-size);
 
@@ -201,7 +201,7 @@ slides > slide {
   }
 
   &.backdrop {
-    z-index: -1;
+    z-index: -10;
     display: block !important;
     @include background(linear-gradient(white, white 85%, $gray-1));
     background-color: white;
@@ -407,7 +407,7 @@ dt {
 button {
   display: inline-block;
   @include background(linear-gradient(#F9F9F9 40%, #E3E3E3 70%));
-  border: 1px solid #999;
+  border: 1px solid $gray-2;
   @include border-radius(3px);
   padding: 5px 8px;
   outline: none;
@@ -415,16 +415,19 @@ button {
   @include user-select(none);
   cursor: pointer;
   @include text-shadow(1px 1px #fff);
-  font-weight: 700;
   font-size: 10pt;
 }
 
-button:hover {
-  border-color: black;
+button:not(:disabled):hover {
+  border-color: $gray-4;
 }
 
-button:active {
+button:not(:disabled):active {
   @include background(linear-gradient(#E3E3E3 40%, #F9F9F9 70%));
+}
+
+:disabled {
+  color: $gray-2;
 }
 
 .blue {
@@ -474,6 +477,13 @@ button:active {
 }
 .gray4 {
   color: $gray-4;
+}
+
+.white {
+  color: white !important;
+}
+.black {
+  color: black !important;
 }
 
 .columns-2 {
@@ -535,25 +545,9 @@ q {
 }
 
 slide.fill {
+  background-repeat: no-repeat;
   @include border-radius($slide-border-radius);
-
-  h3 {
-    background: rgba(255, 255, 255, .75);
-    padding-top: .2em;
-    padding-bottom: .3em;
-    margin-top: -.2em;
-    margin-left: -60px;
-    padding-left: 60px;
-    margin-right: -60px;
-    padding-right: 60px;
-  }
-
-  h4 {
-    display: inline;
-    position: absolute;
-    bottom: 50px;
-    padding: 15px;
-  }
+  @include background-size(cover);
 }
 
 /* Size variants */
@@ -671,6 +665,14 @@ article.smaller {
     width: 60%;
     padding: 2em;
   }
+}
+
+.source {
+  font-size: 14px;
+  color: $gray-2;
+  position: absolute;
+  bottom: $slide-top-bottom-padding + 30px;
+  left: $slide-left-right-padding;
 }
 
 input, button {
