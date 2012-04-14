@@ -50,7 +50,7 @@ SlideDeck.prototype.getCurrentSlideFromHash_ = function() {
  * @private
  */
 SlideDeck.prototype.onDomLoaded_ = function(e) {
-  this.slides_ = document.querySelectorAll('slide:not([hidden])');
+  this.slides_ = document.querySelectorAll('slide:not([hidden]):not(.backdrop)');
 
   // Load config.
   this.loadConfig_();

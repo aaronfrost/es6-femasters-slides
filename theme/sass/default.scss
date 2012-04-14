@@ -85,9 +85,11 @@ $article-content-top-padding: 45px;
 }
 
 body {
-  @include background-image(radial-gradient(50% 50%, #b1dfff 0%,
-                                            $brand-blue-secondary2 600px));
-  background-attachment: fixed;
+  //@include background-image(radial-gradient(50% 50%, #b1dfff 0%,
+  //                                          $brand-blue-secondary2 600px));
+  //background-attachment: fixed;
+  //@include background(linear-gradient(white, white 85%, $gray-1));
+  background: black;
 }
 
 slides > slide {
@@ -95,8 +97,8 @@ slides > slide {
   font-family: 'Open Sans', Arial, sans-serif;
   font-size: 26px;
   color: $gray-3;
-  @include background(linear-gradient(white, white 85%, $gray-1));
-  background-color: white;
+  //@include background(linear-gradient(white, white 85%, $gray-1));
+  //background-color: white;
   width: $slide-width;
   height: $slide-height;
   margin-left: -$slide-width / 2;
@@ -104,29 +106,32 @@ slides > slide {
   padding: $slide-top-bottom-padding $slide-left-right-padding;
 
   @include border-radius($slide-border-radius);
-  @include box-shadow(5px 5px 20px $gray-4);
-  @include transition(all 0.3s ease-out);
+  //@include box-shadow(5px 5px 20px $gray-4);
+  @include transition(all 0.6s ease-out);
 
-  $translateX: 1020px;
-  $rotateY: 30deg;
-  $rotateX: 45deg;
+  //$translateX: 1020px;
+  //$rotateY: 30deg;
+  //$rotateX: 45deg;
 
   &.far-past {
-    display: block;
-    @include transform(translate(-$translateX * 2));
-    @include transform(translate3d(-$translateX * 2, 0, 0));
+    //display: block;
+    display: none;
+    //@include transform(translate(-$translateX * 2));
+    //@include transform(translate3d(-$translateX * 2, 0, 0));
   }
 
   &.past {
     display: block;
-    @include transform(translate(-$translateX) rotateY($rotateY) rotateX($rotateX));
-    @include transform(translate3d(-$translateX, 0, 0) rotateY($rotateY) rotateX($rotateX));
+    //@include transform(translate(-$translateX) rotateY($rotateY) rotateX($rotateX));
+    //@include transform(translate3d(-$translateX, 0, 0) rotateY($rotateY) rotateX($rotateX));
+    opacity: 0;
   }
 
   &.current {
     display: block;
-    @include transform(translate(0));
-    @include transform(translate3d(0, 0, 0));
+    //@include transform(translate(0));
+    //@include transform(translate3d(0, 0, 0));
+    opacity: 1;
 
     .auto-fadein {
       opacity: 1;
@@ -139,14 +144,17 @@ slides > slide {
 
   &.next {
     display: block;
-    @include transform(translate($translateX) rotateY(-$rotateY) rotateX($rotateX));
-    @include transform(translate3d($translateX, 0, 0) rotateY(-$rotateY) rotateX($rotateX));
+    //@include transform(translate($translateX) rotateY(-$rotateY) rotateX($rotateX));
+    //@include transform(translate3d($translateX, 0, 0) rotateY(-$rotateY) rotateX($rotateX));
+    opacity: 0;
+    pointer-events: none;
   }
 
   &.far-next {
-    display: block;
-    @include transform(translate($translateX * 2));
-    @include transform(translate3d($translateX * 2, 0, 0));
+    //display: block;
+    display: none;
+    //@include transform(translate($translateX * 2));
+    //@include transform(translate3d($translateX * 2, 0, 0));
   }
 
   &.dark {
@@ -192,6 +200,17 @@ slides > slide {
     }
   }
 
+  &.backdrop {
+    z-index: -1;
+    display: block !important;
+    @include background(linear-gradient(white, white 85%, $gray-1));
+    background-color: white;
+
+    &:after, &:before {
+      display: none;
+    }
+  }
+
   > hgroup + article {
     margin-top: $article-content-top-padding;
 
@@ -221,30 +240,36 @@ slides.layout-faux-widescreen {
 
   > slide.far-past {
     display: block;
+    display: none;
     @include transform(translate(-$translateX * 2));
     @include transform(translate3d(-$translateX * 2, 0, 0));
   }
 
   > slide.past {
     display: block;
-    @include transform(translate(-$translateX));
-    @include transform(translate3d(-$translateX, 0, 0));
+    //@include transform(translate(-$translateX));
+    //@include transform(translate3d(-$translateX, 0, 0));
+    opacity: 0;
   }
 
   > slide.current {
     display: block;
-    @include transform(translate(0));
-    @include transform(translate3d(0, 0, 0));
+    //@include transform(translate(0));
+    //@include transform(translate3d(0, 0, 0));
+    opacity: 1;
   }
 
   > slide.next {
     display: block;
-    @include transform(translate($translateX));
-    @include transform(translate3d($translateX, 0, 0));
+    //@include transform(translate($translateX));
+    //@include transform(translate3d($translateX, 0, 0));
+    opacity: 0;
+    pointer-events: none;
   }
 
   > slide.far-next {
     display: block;
+    display: none;
     @include transform(translate($translateX * 2));
     @include transform(translate3d($translateX * 2, 0, 0));
   }
