@@ -219,8 +219,12 @@ slides > slide {
     }
   }
 
-  > article:only-child > iframe {
+  > article:only-child {
     height: 100%;
+
+    > iframe {
+      height: 100%;
+    }
   }
 }
 
@@ -290,7 +294,6 @@ b {
 a {
   color: $brand-blue-secondary2;
   text-decoration: none;
-  padding-bottom: 2px;
   border-bottom: 1px solid rgba(42, 124, 223, 0.5);
 
   &:hover {
