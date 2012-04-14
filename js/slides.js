@@ -52,6 +52,18 @@ SlideDeck.prototype.getCurrentSlideFromHash_ = function() {
 SlideDeck.prototype.onDomLoaded_ = function(e) {
   this.slides_ = document.querySelectorAll('slide:not([hidden]):not(.backdrop)');
 
+  // If we're on a smartphone device, load phone.css.
+  if (window.matchMedia('only screen and (max-device-width: 480px)').matches) {
+    // var style = document.createElement('link');
+    // style.rel = 'stylesheet';
+    // style.type = 'text/css';
+    // style.href = this.CSS_DIR_ + 'phone.css';
+    // document.querySelector('head').appendChild(style);
+
+    // Remove widescreen if it's applied.
+    document.querySelector('slides').classList.remove('layout-widescreen');
+  }
+
   // Load config.
   this.loadConfig_();
   this.addEventListeners_();
@@ -172,7 +184,7 @@ SlideDeck.prototype.loadConfig_ = function() {
 
   var settings = this.config_.settings;
 
-  this.loadTheme_(settings.theme || 'default');
+  this.loadTheme_(settings.theme || []);
 
   if (settings.favIcon) {
     this.addFavIcon_(settings.favIcon);
@@ -235,21 +247,32 @@ SlideDeck.prototype.loadConfig_ = function() {
     document.querySelector('[data-config-presenter]').innerHTML = html;
   }
 
+  var slides = document.querySelector('slides');
+
   /* Clicking and tapping */
   var el = document.createElement('div');
   el.classList.add('slide-area');
   el.id = 'prev-slide-area';
   el.addEventListener('click', this.prevSlide.bind(this), false);
-  document.querySelector('slides').appendChild(el);
+  slides.appendChild(el);
 
   var el = document.createElement('div');
   el.classList.add('slide-area');
   el.id = 'next-slide-area';
   el.addEventListener('click', this.nextSlide.bind(this), false);
-  document.querySelector('slides').appendChild(el);
+  slides.appendChild(el);
 
   if (!!!('enableTouch' in settings) || settings.enableTouch) {
-    var toucher = new TouchManager(this);
+    var self = this;
+
+    var hammer = new Hammer(slides);
+    hammer.ondragend = function(e) {
+      if (e.direction == 'right' || e.direction == 'down') {
+        self.prevSlide();
+      } else if (e.direction == 'left' || e.direction == 'up') {
+        self.nextSlide();
+      }
+    };
   }
 };
 
@@ -553,7 +576,13 @@ SlideDeck.prototype.addFavIcon_ = function(favIcon) {
  * @param {string} theme
  */
 SlideDeck.prototype.loadTheme_ = function(theme) {
-  var styles = [/*'../../js/prettify/prettify',*/ theme];
+  var styles = [];
+  if (theme.constructor.name === 'String') {
+    styles.push(theme);
+  } else {
+    styles = theme;
+  }
+
   for (var i = 0, style; themeUrl = styles[i]; i++) {
     var style = document.createElement('link');
     style.rel = 'stylesheet';
@@ -565,11 +594,11 @@ SlideDeck.prototype.loadTheme_ = function(theme) {
     }
     document.querySelector('head').appendChild(style);
   }
-
-  var viewportMeta = document.createElement('meta');
-  viewportMeta.name = 'viewport';
-  viewportMeta.content = 'width=1100,height=750';
-  document.querySelector('head').appendChild(viewportMeta);
+  // TODO(ericbidelman): Removed this.
+  // var viewportMeta = document.createElement('meta');
+  // viewportMeta.name = 'viewport';
+  // viewportMeta.content = 'width=1100,height=750';
+  // document.querySelector('head').appendChild(viewportMeta);
 
   var appleMeta = document.createElement('meta');
   appleMeta.name = 'apple-mobile-web-app-capable';
@@ -601,7 +630,8 @@ SlideDeck.prototype.loadAnalytics_ = function() {
 
   yepnope({
     test: !!body.classList && !!body.dataset,
-    nope: ['js/polyfills/classList.min.js', 'js/polyfills/dataset.min.js'],
+    nope: ['js/polyfills/classList.min.js', 'js/polyfills/dataset.min.js',
+           'js/polyfills/matchMedia.js'],
     complete: function() {
       window.slidedeck = new SlideDeck();
     }
