@@ -65,7 +65,7 @@ SlideDeck.prototype.onDomLoaded_ = function(e) {
   }
 
   // Load config.
-  this.loadConfig_();
+  this.loadConfig_(SLIDE_CONFIG);
   this.addEventListeners_();
   this.updateSlides_();
 
@@ -174,13 +174,12 @@ SlideDeck.prototype.onBodyKeyDown_ = function(e) {
 /**
  * @private
  */
-SlideDeck.prototype.loadConfig_ = function() {
-  var configScripts =
-      document.querySelector('script[type="text/slide-config"]');
-  if (configScripts) {
-    eval(configScripts.innerHTML);
-    this.config_ = slideConfig;
+SlideDeck.prototype.loadConfig_ = function(config) {
+  if (!config) {
+    return;
   }
+
+  this.config_ = config;
 
   var settings = this.config_.settings;
 
@@ -190,6 +189,7 @@ SlideDeck.prototype.loadConfig_ = function() {
     this.addFavIcon_(settings.favIcon);
   }
 
+  // Prettyprint. Default to on.
   if (!!!('usePrettify' in settings) || settings.usePrettify) {
     prettyPrint();
   }
@@ -202,6 +202,7 @@ SlideDeck.prototype.loadConfig_ = function() {
     this.addFonts_(settings.fonts);
   }
 
+  // Builds. Default to on.
   if (!!!('useBuilds' in settings) || settings.useBuilds) {
     this.makeBuildLists_();
   }
@@ -249,18 +250,20 @@ SlideDeck.prototype.loadConfig_ = function() {
 
   var slides = document.querySelector('slides');
 
-  /* Clicking and tapping */
-  var el = document.createElement('div');
-  el.classList.add('slide-area');
-  el.id = 'prev-slide-area';
-  el.addEventListener('click', this.prevSlide.bind(this), false);
-  slides.appendChild(el);
+  /* Left/Right tap areas. Default to including. */
+  if (!!!('enableSideAreas' in settings) || settings.enableSideAreas) {
+    var el = document.createElement('div');
+    el.classList.add('slide-area');
+    el.id = 'prev-slide-area';
+    el.addEventListener('click', this.prevSlide.bind(this), false);
+    slides.appendChild(el);
 
-  var el = document.createElement('div');
-  el.classList.add('slide-area');
-  el.id = 'next-slide-area';
-  el.addEventListener('click', this.nextSlide.bind(this), false);
-  slides.appendChild(el);
+    var el = document.createElement('div');
+    el.classList.add('slide-area');
+    el.id = 'next-slide-area';
+    el.addEventListener('click', this.nextSlide.bind(this), false);
+    slides.appendChild(el);
+  }
 
   if (!!!('enableTouch' in settings) || settings.enableTouch) {
     var self = this;

@@ -29,11 +29,11 @@ URL: https://code.google.com/p/io-2012-slides
 
   <slide class="title-slide segue nobackground">
     <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
-    <!-- The content of this hgroup is replaced programmatically through the config. -->
+    <!-- The content of this hgroup is replaced programmatically through the slide_config.js. -->
     <hgroup class="auto-fadein">
-      <h1 data-config-title><!-- populated from config --></h1>
-      <h2 data-config-subtitle><!-- populated from config --></h2>
-      <p data-config-presenter><!-- populated from config --></p>
+      <h1 data-config-title><!-- populated from slide_config.js --></h1>
+      <h2 data-config-subtitle><!-- populated from slide_config.js --></h2>
+      <p data-config-presenter><!-- populated from slide_config.js --></p>
     </hgroup>
   </slide>
 
@@ -352,7 +352,7 @@ function helloWorld(world) {
       <p>Important contact information goes here.</p>
     </article>
     <p class="auto-fadein" data-config-contact>
-      <!-- populated from config -->
+      <!-- populated from slide_config.js -->
     </p>
   </slide>
 
@@ -366,50 +366,12 @@ function helloWorld(world) {
 
 </slides>
 
-<script type="text/slide-config">
-  var slideConfig = {
-    // Slide settings
-    settings: {
-      title: 'Title Goes Here<br>Up To Two Lines',
-      subtitle: 'Subtitle Goes Here',
-      //theme: ['mytheme'],
-      hashtag: '#html5', //TODO
-      useBuilds: true,
-      usePrettify: true,
-      //enableSideAreas: true, //TODO
-      enableTouch: true, // TODO: base this on media query instead.
-      analytics: 'UA-XXXXXXXX-1',
-      favIcon: 'http://bleedinghtml5.appspot.com/images/chrome-logo-tiny2.png',
-      onLoad: null, // TODO. function to call onload
-      fonts: [
-        'Open Sans:regular,semibold,italic,italicsemibold',
-        'Inconsolata'
-      ]
-    },
-
-    // Author information
-    presenters: [{
-      name: 'Firstname Lastname',
-      company: 'Job Title, Google',
-      gplus: 'http://plus.google.com/1234567890',
-      twitter: '@yourhandle',
-      www: 'http://www.you.com'
-    }/*, {
-      name: 'Eric Bidelman',
-      gplus: 'http://plus.ericbidelman.com',
-      company: 'Senior Developer Programs Engineer, Google Chrome',
-      twitter: '@ebidel',
-      www: 'http://www.ericbidelman.com'
-    }*/]
-  };
-</script>
-
+<script src="slide_config.js" defer></script>
 <script src="js/prettify/prettify.js" defer></script>
 <script src="js/yepnope.1.5.3-min.js" defer></script>
 <script src="js/hammer.js" defer></script>
 <script src="js/slides.js" defer></script>
 
-<!-- TODO: Add to slides.js -->
 <!--[if IE]>
   <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
   <script>CFInstall.check({mode: 'overlay'});</script>
