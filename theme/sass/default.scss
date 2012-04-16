@@ -635,12 +635,9 @@ article.smaller {
 
 // Speaker notes only show the current slide.
 .with-notes {
-  slide.current {
-    @include transform(rotateY(180deg) !important);
-  }
   .note {
     opacity: 1;
-    @include transform(rotateY(180deg));
+    @include transform(translateY(0));
     pointer-events: auto;
   }
 }
@@ -657,9 +654,10 @@ article.smaller {
   pointer-events: none;
   @include flexbox;
   @include flex-center-center;
-  @include transition(transform 0.2s cubic-bezier(.10, .10, .25, .90),
-                      opacity 0.4s ease-in-out 0.4s);
   @include border-radius($slide-border-radius);
+
+  @include transform(translateY($slide-height / 2));
+  @include transition(all 0.4s ease-in-out);
 
   > section {
     background: #fff;

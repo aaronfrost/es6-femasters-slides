@@ -265,7 +265,8 @@ SlideDeck.prototype.loadConfig_ = function(config) {
     slides.appendChild(el);
   }
 
-  if (!!!('enableTouch' in settings) || settings.enableTouch) {
+  if (Modernizr.touch && (!!!('enableTouch' in settings) ||
+      settings.enableTouch)) {
     var self = this;
 
     var hammer = new Hammer(slides);
