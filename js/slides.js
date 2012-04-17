@@ -2,6 +2,8 @@
 // From https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function/bind
 Function.prototype.bind||(Function.prototype.bind=function(c){if("function"!==typeof this)throw new TypeError("Function.prototype.bind - binding an object that is not callable");var d=Array.prototype.slice.call(arguments,1),e=this,a=function(){},b=function(){return e.apply(this instanceof a?this:c||window,d.concat(Array.prototype.slice.call(arguments)))};a.prototype=this.prototype;b.prototype=new a;return b});
 
+document.cancelFullScreen = document.webkitCancelFullScreen ||
+                            document.mozCancelFullScreen;
 
 /**
  * @constructor
@@ -157,14 +159,17 @@ SlideDeck.prototype.onBodyKeyDown_ = function(e) {
       document.body.classList.remove('with-notes');
       break;
 
-    //case 13: // Enter
     case 70: // F
-       // Only respect 'f'/enter on body. Don't want to capture keys from <input>
-      if (e.target == document.body) {
-        if (e.keyCode != 13 && !document.webkitIsFullScreen) {
+       // Only respect 'f' on body. Don't want to capture keys from an <input>.
+       // Also, ignore browser's fullscreen shortcut (cmd+shift+f) so we don't
+       // get trapped in fullscreen!
+      if (e.target == document.body && !(e.shiftKey && e.metaKey)) {
+        if (!!!document.mozFullScreen) {
+          document.body.mozRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+        } else if (!!!document.webkitIsFullScreen) {
           document.body.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
         } else {
-          document.webkitCancelFullScreen();
+          document.cancelFullScreen();
         }
       }
       break;
