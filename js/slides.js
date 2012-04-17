@@ -164,9 +164,9 @@ SlideDeck.prototype.onBodyKeyDown_ = function(e) {
        // Also, ignore browser's fullscreen shortcut (cmd+shift+f) so we don't
        // get trapped in fullscreen!
       if (e.target == document.body && !(e.shiftKey && e.metaKey)) {
-        if (!!!document.mozFullScreen) {
+        if (document.mozFullScreen !== undefined && !document.mozFullScreen) {
           document.body.mozRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
-        } else if (!!!document.webkitIsFullScreen) {
+        } else if (document.webkitIsFullScreen !== undefined && !document.webkitIsFullScreen) {
           document.body.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
         } else {
           document.cancelFullScreen();
