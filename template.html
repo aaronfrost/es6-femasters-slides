@@ -13,11 +13,13 @@ URL: https://code.google.com/p/io-2012-slides
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
   <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
   <!--<meta name="viewport" content="initial-scale=0.4">-->
   <link rel="stylesheet" media="all" href="theme/css/default.css">
   <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
 </head>
-<body style="opacity: 0;">
+<body>
 
 <slides class="layout-widescreen">
 
@@ -64,7 +66,7 @@ URL: https://code.google.com/p/io-2012-slides
       <p>A list where items build:</p>
       <ul class="build">
         <li>Pressing 'h' will highlight code snippets</li>
-        <li>Pressing 'n' will toggle extra notes</li>
+        <li>Pressing 'p' will toggle presenter mode</li>
         <li>Pressing 'f' will toggle fullscreen viewing</li>
       </ul>
       <p>Another list, but items fade as they build:</p>
@@ -155,13 +157,23 @@ function helloWorld(world) {
 
   <slide>
     <aside class="note">
-      <section>Speaker notes go here!</section>
+      <section>
+        <ul>
+          <li>Point I wanted to make #1</li>
+          <li>Point I wanted to make #2</li>
+          <li>Point I wanted to make #3</li>
+          <li>Point I wanted to make #3</li>
+          <li>Point I wanted to make #3</li>
+          <li>Example <a href="#">link</a> in notes.</li>
+        </ul>
+        <p><b>Remember to say this tag line!</b></p>
+      </section>
     </aside>
     <hgroup>
       <h2>Slide with Speaker Notes</h2>
     </hgroup>
     <article>
-      Press 'n' to show speaker notes on slides that define them.
+      Press 'p' to rock presenter mode.
     </article>
   </slide>
 
@@ -366,14 +378,13 @@ function helloWorld(world) {
 
 </slides>
 
-
 <script src="slide_config.js" defer></script>
 <script src="js/modernizr.custom.76029.js" defer></script>
 <script src="js/prettify/prettify.js" defer></script>
 <script src="js/yepnope.1.5.3-min.js" defer></script>
 <script src="js/hammer.js" defer></script>
+<script src="js/slide-controller.js" defer></script>
 <script src="js/slides.js" defer></script>
-
 <!--[if IE]>
   <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
   <script>CFInstall.check({mode: 'overlay'});</script>

@@ -13,6 +13,7 @@ function SlideDeck() {
   this.prevSlide_ = 0;
   this.slides = [];
   this.config_ = null;
+  this.controller_ = null;
 
   this.getCurrentSlideFromHash_();
 
@@ -52,6 +53,9 @@ SlideDeck.prototype.getCurrentSlideFromHash_ = function() {
  * @private
  */
 SlideDeck.prototype.onDomLoaded_ = function(e) {
+  // Fade in deck.
+  document.body.classList.add('loaded');
+
   this.slides_ = document.querySelectorAll('slide:not([hidden]):not(.backdrop)');
 
   // If we're on a smartphone device, load phone.css.
@@ -148,11 +152,11 @@ SlideDeck.prototype.onBodyKeyDown_ = function(e) {
       document.body.classList.toggle('highlight-code');
       break;
 
-    case 78: // N
+    case 80: // P
       // If this slide contains notes, toggle them.
-      if (this.slides_[this.curSlide_].querySelector('.note')) {
+      //if (this.slides_[this.curSlide_].querySelector('.note')) {
         document.body.classList.toggle('with-notes');
-      }
+      //}
       break;
 
     case 27: // ESC
@@ -283,6 +287,10 @@ SlideDeck.prototype.loadConfig_ = function(config) {
       }
     };
   }
+
+  if (!!('enableSpeakerNotes' in settings) && settings.enableSpeakerNotes) {
+    this.controller_ = new SlideController(this);
+  }
 };
 
 /**
@@ -335,10 +343,17 @@ SlideDeck.prototype.buildNextItem_ = function() {
  */
 SlideDeck.prototype.prevSlide = function(opt_dontPush) {
   if (this.curSlide_ > 0) {
-    // Toggle off speaker notes and/or highlighted code if they're showing.
-    var bodyClassList = document.body.classList;
-    bodyClassList.remove('with-notes');
-    bodyClassList.remove('highlight-code');
+    // Toggle off speaker notes and/or highlighted code if they're showing
+    // when we advanced. If we're the speaker notes popup, leave this put.
+    if (this.controller_ && !window.opener) {
+      var bodyClassList = document.body.classList;
+      bodyClassList.remove('with-notes');
+      bodyClassList.remove('highlight-code');
+    }
+
+    if (this.controller_) {
+      this.controller_.sendMsg({slideDirection: SlideController.MOVE_LEFT});
+    }
 
     this.prevSlide_ = this.curSlide_;
     this.curSlide_--;
@@ -352,15 +367,22 @@ SlideDeck.prototype.prevSlide = function(opt_dontPush) {
  */
 SlideDeck.prototype.nextSlide = function(opt_dontPush) {
 
+  if (this.controller_) {
+    this.controller_.sendMsg({slideDirection: SlideController.MOVE_RIGHT});
+  }
+
   if (this.buildNextItem_()) {
     return;
   }
 
   if (this.curSlide_ < this.slides_.length - 1) {
-    // Toggle off speaker notes and/or highlighted code if they're showing.
-    var bodyClassList = document.body.classList;
-    bodyClassList.remove('with-notes');
-    bodyClassList.remove('highlight-code');
+    // Toggle off speaker notes and/or highlighted code if they're showing
+    // when we advanced. If we're the speaker notes popup, leave this put.
+    if (this.controller_ && !window.opener) {
+      var bodyClassList = document.body.classList;
+      bodyClassList.remove('with-notes');
+      bodyClassList.remove('highlight-code');
+    }
 
     this.prevSlide_ = this.curSlide_;
     this.curSlide_++;

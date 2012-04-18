@@ -4,11 +4,12 @@ var SLIDE_CONFIG = {
     title: 'Title Goes Here<br>Up To Two Lines',
     subtitle: 'Subtitle Goes Here',
     //theme: ['mytheme'],
-    hashtag: '#html5', //TODO
-    useBuilds: true,
-    usePrettify: true,
-    enableSideAreas: true,
-    enableTouch: true, // TODO: base this on media query instead.
+    //hashtag: '#html5', //TODO
+    useBuilds: true, // Default: true
+    usePrettify: true, // Default: true
+    enableSideAreas: true, // Default: true
+    enableTouch: true, // Default: true if device supports touch.
+    //enableSpeakerNotes: true, // Default: false
     analytics: 'UA-XXXXXXXX-1',
     favIcon: 'http://bleedinghtml5.appspot.com/images/chrome-logo-tiny2.png',
     onLoad: null, // TODO. function to call onload
