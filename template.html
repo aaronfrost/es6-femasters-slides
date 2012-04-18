@@ -66,7 +66,7 @@ URL: https://code.google.com/p/io-2012-slides
       <p>A list where items build:</p>
       <ul class="build">
         <li>Pressing 'h' will highlight code snippets</li>
-        <li>Pressing 'p' will toggle presenter mode</li>
+        <li>Pressing 'p' will toggle speaker notes on the current slide</li>
         <li>Pressing 'f' will toggle fullscreen viewing</li>
       </ul>
       <p>Another list, but items fade as they build:</p>
@@ -173,7 +173,9 @@ function helloWorld(world) {
       <h2>Slide with Speaker Notes</h2>
     </hgroup>
     <article>
-      Press 'p' to rock presenter mode.
+      Add <code>?presentme=true</code> to the URL to enabled presenter mode.
+      The setting is sticky, so refreshing the slides will persist presenter mode.
+      Use <code>?presentme=false</code> to turn off presenter mode.
     </article>
   </slide>
 

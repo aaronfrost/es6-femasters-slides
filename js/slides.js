@@ -14,6 +14,7 @@ function SlideDeck() {
   this.slides = [];
   this.config_ = null;
   this.controller_ = null;
+  this.IS_POPUP_ = window.opener;
 
   this.getCurrentSlideFromHash_();
 
@@ -49,6 +50,39 @@ SlideDeck.prototype.getCurrentSlideFromHash_ = function() {
   }
 };
 
+SlideDeck.prototype.loadPresenterMode = function() {
+  var params = location.search.substring(1).split('&').map(function(el) {
+    return el.split('=');
+  });
+
+  var presentMe = null;
+  for (var i = 0, param; param = params[i]; ++i) {
+    if (param[0].toLowerCase() == 'presentme') {
+      presentMe = param[1] == 'true';
+      break;
+    }
+  }
+
+  if (presentMe !== null) {
+    localStorage.ENABLE_PRESENTOR_MODE = presentMe;
+    location.href = location.pathname;
+  }
+
+  // Turn on presenter mode?
+  if (localStorage.getItem('ENABLE_PRESENTOR_MODE') &&
+      JSON.parse(localStorage.getItem('ENABLE_PRESENTOR_MODE'))) {
+    this.controller_ = new SlideController(this);
+
+    // Loading in the popup? Trigger the hotkey for turning presenter mode on.
+    if (this.IS_POPUP_) {
+      var evt = document.createEvent('Event');
+      evt.initEvent('keydown', true, true);
+      evt.keyCode = 'P'.charCodeAt(0);
+      document.dispatchEvent(evt);
+    }
+  }
+}
+
 /**
  * @private
  */
@@ -70,7 +104,6 @@ SlideDeck.prototype.onDomLoaded_ = function(e) {
     document.querySelector('slides').classList.remove('layout-widescreen');
   }
 
-  // Load config.
   this.loadConfig_(SLIDE_CONFIG);
   this.addEventListeners_();
   this.updateSlides_();
@@ -85,6 +118,10 @@ SlideDeck.prototype.onDomLoaded_ = function(e) {
   [].forEach.call(document.querySelectorAll('a'), function(a) {
     a.target = '_blank';
   });
+
+  // Note: this needs to come after addEventListeners_(), which adds a
+  // 'keydown' listener that this method relies on.
+  this.loadPresenterMode();
 };
 
 /**
@@ -113,6 +150,11 @@ SlideDeck.prototype.onBodyKeyDown_ = function(e) {
   if (/^(input|textarea)$/i.test(e.target.nodeName) ||
       e.target.isContentEditable) {
     return;
+  }
+
+  // Forward keydown to the main slides if we're the popup.
+  if (this.controller_ && this.IS_POPUP_) {
+    this.controller_.sendMsg({keyCode: e.keyCode});
   }
 
   switch (e.keyCode) {
@@ -153,14 +195,20 @@ SlideDeck.prototype.onBodyKeyDown_ = function(e) {
       break;
 
     case 80: // P
-      // If this slide contains notes, toggle them.
-      //if (this.slides_[this.curSlide_].querySelector('.note')) {
+      if (this.controller_ && this.IS_POPUP_) {
         document.body.classList.toggle('with-notes');
-      //}
+      } else if (!this.controller_) {
+        document.body.classList.toggle('with-notes');
+      }
+      break;
+
+    case 82: // R
+      // TODO: implement refresh on main slides when popup is refreshed.
       break;
 
     case 27: // ESC
       document.body.classList.remove('with-notes');
+      document.body.classList.remove('highlight-code');
       break;
 
     case 70: // F
@@ -287,10 +335,6 @@ SlideDeck.prototype.loadConfig_ = function(config) {
       }
     };
   }
-
-  if (!!('enableSpeakerNotes' in settings) && settings.enableSpeakerNotes) {
-    this.controller_ = new SlideController(this);
-  }
 };
 
 /**
@@ -343,17 +387,20 @@ SlideDeck.prototype.buildNextItem_ = function() {
  */
 SlideDeck.prototype.prevSlide = function(opt_dontPush) {
   if (this.curSlide_ > 0) {
-    // Toggle off speaker notes and/or highlighted code if they're showing
-    // when we advanced. If we're the speaker notes popup, leave this put.
-    if (this.controller_ && !window.opener) {
-      var bodyClassList = document.body.classList;
+    var bodyClassList = document.body.classList;
+    bodyClassList.remove('highlight-code');
+
+    // Toggle off speaker notes if they're showing when we move backwards on the
+    // main slides. If we're the speaker notes popup, leave them up.
+    if (this.controller_ && !this.IS_POPUP_) {
       bodyClassList.remove('with-notes');
-      bodyClassList.remove('highlight-code');
+    } else if (!this.controller_) {
+      bodyClassList.remove('with-notes');
     }
 
-    if (this.controller_) {
-      this.controller_.sendMsg({slideDirection: SlideController.MOVE_LEFT});
-    }
+    // if (this.controller_) {
+    //   this.controller_.sendMsg({slideDirection: SlideController.MOVE_LEFT});
+    // }
 
     this.prevSlide_ = this.curSlide_;
     this.curSlide_--;
@@ -366,22 +413,25 @@ SlideDeck.prototype.prevSlide = function(opt_dontPush) {
  * @param {boolean=} opt_dontPush
  */
 SlideDeck.prototype.nextSlide = function(opt_dontPush) {
-
-  if (this.controller_) {
-    this.controller_.sendMsg({slideDirection: SlideController.MOVE_RIGHT});
-  }
+  // 
+  // if (this.controller_) {
+  //   this.controller_.sendMsg({slideDirection: SlideController.MOVE_RIGHT});
+  // }
 
   if (this.buildNextItem_()) {
     return;
   }
 
   if (this.curSlide_ < this.slides_.length - 1) {
-    // Toggle off speaker notes and/or highlighted code if they're showing
-    // when we advanced. If we're the speaker notes popup, leave this put.
-    if (this.controller_ && !window.opener) {
-      var bodyClassList = document.body.classList;
+    var bodyClassList = document.body.classList;
+    bodyClassList.remove('highlight-code');
+
+    // Toggle off speaker notes if they're showing when we advanced on the main
+    // slides. If we're the speaker notes popup, leave them up.
+    if (this.controller_ && !this.IS_POPUP_) {
       bodyClassList.remove('with-notes');
-      bodyClassList.remove('highlight-code');
+    } else if (!this.controller_) {
+      bodyClassList.remove('with-notes');
     }
 
     this.prevSlide_ = this.curSlide_;

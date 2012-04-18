@@ -1,3 +1,7 @@
+(function(window) {
+
+var ORIGIN = location.protocol + '//' + location.host;
+
 function SlideController(slideDeck) {
   this.deck_ = slideDeck;
   this.win_ = null;
@@ -21,34 +25,41 @@ SlideController.MOVE_RIGHT = 1;
 SlideController.prototype.onMessage_ = function(e) {
   var data = e.data;
 
-  // It would be dope if FF implemented location.origin.
-  if (e.origin != location.protocol + '//' + location.host) {
+  // Restrict messages to being from this origin. Allow local developmet
+  // from file:// though.
+  // TODO: It would be dope if FF implemented location.origin!
+  if (e.origin != ORIGIN && ORIGIN != 'file://') {
     alert('Someone tried to postMessage from an unknown origin');
     return;
   }
 
-  if (e.source.location.hostname != 'localhost') {
-    alert('Someone tried to postMessage from an unknown origin');
-    return;
-  }
+  // if (e.source.location.hostname != 'localhost') {
+  //   alert('Someone tried to postMessage from an unknown origin');
+  //   return;
+  // }
 
-  if ('slideDirection' in data) {
-    if (data.slideDirection == SlideController.MOVE_LEFT) {
-      this.deck_.prevSlide();
-    } else {
-      this.deck_.nextSlide();
-    }
+  if ('keyCode' in data) {
+    var evt = document.createEvent('Event');
+    evt.initEvent('keydown', true, true);
+    evt.keyCode = data.keyCode;
+    document.dispatchEvent(evt);
   }
 };
 
 SlideController.prototype.sendMsg = function(msg) {
   // // Send message to popup window.
   // if (this.win_) {
-  //   this.win_.postMessage(msg, location.protocol + '//' + location.host);
+  //   this.win_.postMessage(msg, ORIGIN);
   // }
+
   // Send message to main window.
   if (window.opener) {
-    // It would be dope if FF implemented location.origin.
-    window.opener.postMessage(msg, location.protocol + '//' + location.host);
+    // TODO: It would be dope if FF implemented location.origin.
+    window.opener.postMessage(msg, '*');
   }
 };
+
+window.SlideController = SlideController;
+
+})(window);
+

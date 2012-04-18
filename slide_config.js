@@ -9,7 +9,6 @@ var SLIDE_CONFIG = {
     usePrettify: true, // Default: true
     enableSideAreas: true, // Default: true
     enableTouch: true, // Default: true if device supports touch.
-    //enableSpeakerNotes: true, // Default: false
     analytics: 'UA-XXXXXXXX-1',
     favIcon: 'http://bleedinghtml5.appspot.com/images/chrome-logo-tiny2.png',
     onLoad: null, // TODO. function to call onload
@@ -34,3 +33,10 @@ var SLIDE_CONFIG = {
     www: 'http://www.ericbidelman.com'
   }*/]
 };
+
+// SPEAKER MODE ----------------------------------------------------------------
+// To turn on the presenter mode (popup), add the presentme=true parameter:
+// http://localhost/io-2012-slides/template.html?presentme=true
+// 
+// To disable presenter mode, set presentme=false:
+// http://localhost/io-2012-slides/template.html?presentme=false
