@@ -1,26 +1,67 @@
 (function(window) {
 
-var ORIGIN = location.protocol + '//' + location.host;
+var ORIGIN_ = location.protocol + '//' + location.host;
 
-function SlideController(slideDeck) {
-  this.deck_ = slideDeck;
-  this.win_ = null;
+function SlideController() {
+  this.popup = null;
+  this.isPopup = window.opener;
 
-  window.addEventListener('message', this.onMessage_.bind(this), false);
+  if (this.setupDone()) {
+    window.addEventListener('message', this.onMessage_.bind(this), false);
 
-  // Close popups if we reload the main window.
-  window.addEventListener('beforeunload', function(e) {
-    this.win_.close()
-  }.bind(this), false);
-
-  // Only open one new popup. The recursion popup opening!
-  if (!window.opener) {
-    this.win_ = window.open(location.href, 'mywindow');
+    // Close popups if we reload the main window.
+    window.addEventListener('beforeunload', function(e) {
+      if (this.popup) {
+        this.popup.close();
+      }
+    }.bind(this), false);
   }
 }
 
-SlideController.MOVE_LEFT = -1;
-SlideController.MOVE_RIGHT = 1;
+SlideController.PRESENTER_MODE_PARAM = 'presentme';
+
+SlideController.prototype.setupDone = function() {
+  var params = location.search.substring(1).split('&').map(function(el) {
+    return el.split('=');
+  });
+
+  var presentMe = null;
+  for (var i = 0, param; param = params[i]; ++i) {
+    if (param[0].toLowerCase() == SlideController.PRESENTER_MODE_PARAM) {
+      presentMe = param[1] == 'true';
+      break;
+    }
+  }
+
+  if (presentMe !== null) {
+    localStorage.ENABLE_PRESENTOR_MODE = presentMe;
+    // TODO: use window.history.pushState to update URL instead of the redirect.
+    if (window.history.replaceState) {
+      window.history.replaceState({}, '', location.pathname);
+    } else {
+      location.replace(location.pathname);
+      return false;
+    }
+  }
+
+  var enablePresenterMode = localStorage.getItem('ENABLE_PRESENTOR_MODE');
+  if (enablePresenterMode && JSON.parse(enablePresenterMode)) {
+    // Only open popup from main deck. Don't want recursive popup opening!
+    if (!this.isPopup) {
+      this.popup = window.open(location.href, 'mywindow');
+
+      // Loading in the popup? Trigger the hotkey for turning presenter mode on.
+      this.popup.addEventListener('load', function(e) {
+        var evt = this.popup.document.createEvent('Event');
+        evt.initEvent('keydown', true, true);
+        evt.keyCode = 'P'.charCodeAt(0);
+        this.popup.document.dispatchEvent(evt);
+      }.bind(this), false);
+    }
+  }
+
+  return true;
+}
 
 SlideController.prototype.onMessage_ = function(e) {
   var data = e.data;
@@ -28,7 +69,7 @@ SlideController.prototype.onMessage_ = function(e) {
   // Restrict messages to being from this origin. Allow local developmet
   // from file:// though.
   // TODO: It would be dope if FF implemented location.origin!
-  if (e.origin != ORIGIN && ORIGIN != 'file://') {
+  if (e.origin != ORIGIN_ && ORIGIN_ != 'file://') {
     alert('Someone tried to postMessage from an unknown origin');
     return;
   }
@@ -48,12 +89,12 @@ SlideController.prototype.onMessage_ = function(e) {
 
 SlideController.prototype.sendMsg = function(msg) {
   // // Send message to popup window.
-  // if (this.win_) {
-  //   this.win_.postMessage(msg, ORIGIN);
+  // if (this.popup) {
+  //   this.popup.postMessage(msg, ORIGIN_);
   // }
 
   // Send message to main window.
-  if (window.opener) {
+  if (this.isPopup) {
     // TODO: It would be dope if FF implemented location.origin.
     window.opener.postMessage(msg, '*');
   }

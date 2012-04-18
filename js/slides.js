@@ -13,8 +13,7 @@ function SlideDeck() {
   this.prevSlide_ = 0;
   this.slides = [];
   this.config_ = null;
-  this.controller_ = null;
-  this.IS_POPUP_ = window.opener;
+  this.controller = null;
 
   this.getCurrentSlideFromHash_();
 
@@ -49,39 +48,6 @@ SlideDeck.prototype.getCurrentSlideFromHash_ = function() {
     this.curSlide_ = 0;
   }
 };
-
-SlideDeck.prototype.loadPresenterMode = function() {
-  var params = location.search.substring(1).split('&').map(function(el) {
-    return el.split('=');
-  });
-
-  var presentMe = null;
-  for (var i = 0, param; param = params[i]; ++i) {
-    if (param[0].toLowerCase() == 'presentme') {
-      presentMe = param[1] == 'true';
-      break;
-    }
-  }
-
-  if (presentMe !== null) {
-    localStorage.ENABLE_PRESENTOR_MODE = presentMe;
-    location.href = location.pathname;
-  }
-
-  // Turn on presenter mode?
-  if (localStorage.getItem('ENABLE_PRESENTOR_MODE') &&
-      JSON.parse(localStorage.getItem('ENABLE_PRESENTOR_MODE'))) {
-    this.controller_ = new SlideController(this);
-
-    // Loading in the popup? Trigger the hotkey for turning presenter mode on.
-    if (this.IS_POPUP_) {
-      var evt = document.createEvent('Event');
-      evt.initEvent('keydown', true, true);
-      evt.keyCode = 'P'.charCodeAt(0);
-      document.dispatchEvent(evt);
-    }
-  }
-}
 
 /**
  * @private
@@ -120,8 +86,11 @@ SlideDeck.prototype.onDomLoaded_ = function(e) {
   });
 
   // Note: this needs to come after addEventListeners_(), which adds a
-  // 'keydown' listener that this method relies on.
-  this.loadPresenterMode();
+  // 'keydown' listener that this controller relies on.
+  // Also, no need to set this up if we're on mobile.
+  if (!Modernizr.touch) {
+    this.controller = new SlideController(this);
+  }
 };
 
 /**
@@ -152,9 +121,9 @@ SlideDeck.prototype.onBodyKeyDown_ = function(e) {
     return;
   }
 
-  // Forward keydown to the main slides if we're the popup.
-  if (this.controller_ && this.IS_POPUP_) {
-    this.controller_.sendMsg({keyCode: e.keyCode});
+  // Forward keydowns to the main slides if we're the popup.
+  if (this.controller && this.controller.isPopup) {
+    this.controller.sendMsg({keyCode: e.keyCode});
   }
 
   switch (e.keyCode) {
@@ -195,9 +164,9 @@ SlideDeck.prototype.onBodyKeyDown_ = function(e) {
       break;
 
     case 80: // P
-      if (this.controller_ && this.IS_POPUP_) {
+      if (this.controller && this.controller.isPopup) {
         document.body.classList.toggle('with-notes');
-      } else if (!this.controller_) {
+      } else if (this.controller && !this.controller.popup) {
         document.body.classList.toggle('with-notes');
       }
       break;
@@ -392,14 +361,14 @@ SlideDeck.prototype.prevSlide = function(opt_dontPush) {
 
     // Toggle off speaker notes if they're showing when we move backwards on the
     // main slides. If we're the speaker notes popup, leave them up.
-    if (this.controller_ && !this.IS_POPUP_) {
+    if (this.controller && !this.controller.isPopup) {
       bodyClassList.remove('with-notes');
-    } else if (!this.controller_) {
+    } else if (!this.controller) {
       bodyClassList.remove('with-notes');
     }
 
-    // if (this.controller_) {
-    //   this.controller_.sendMsg({slideDirection: SlideController.MOVE_LEFT});
+    // if (this.controller) {
+    //   this.controller.sendMsg({slideDirection: SlideController.MOVE_LEFT});
     // }
 
     this.prevSlide_ = this.curSlide_;
@@ -414,8 +383,8 @@ SlideDeck.prototype.prevSlide = function(opt_dontPush) {
  */
 SlideDeck.prototype.nextSlide = function(opt_dontPush) {
   // 
-  // if (this.controller_) {
-  //   this.controller_.sendMsg({slideDirection: SlideController.MOVE_RIGHT});
+  // if (this.controller) {
+  //   this.controller.sendMsg({slideDirection: SlideController.MOVE_RIGHT});
   // }
 
   if (this.buildNextItem_()) {
@@ -428,9 +397,9 @@ SlideDeck.prototype.nextSlide = function(opt_dontPush) {
 
     // Toggle off speaker notes if they're showing when we advanced on the main
     // slides. If we're the speaker notes popup, leave them up.
-    if (this.controller_ && !this.IS_POPUP_) {
+    if (this.controller && !this.controller.isPopup) {
       bodyClassList.remove('with-notes');
-    } else if (!this.controller_) {
+    } else if (!this.controller) {
       bodyClassList.remove('with-notes');
     }
 
