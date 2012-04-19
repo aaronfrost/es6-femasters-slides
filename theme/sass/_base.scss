@@ -65,6 +65,10 @@ body {
   }
 }
 
+input, button {
+  vertical-align: middle;
+}
+
 slides > slide[hidden] {
   display: none !important;
 }

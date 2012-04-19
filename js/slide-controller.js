@@ -56,6 +56,8 @@ SlideController.prototype.setupDone = function() {
         evt.initEvent('keydown', true, true);
         evt.keyCode = 'P'.charCodeAt(0);
         this.popup.document.dispatchEvent(evt);
+        // this.popup.document.body.classList.add('with-notes');
+        // document.body.classList.add('popup');
       }.bind(this), false);
     }
   }

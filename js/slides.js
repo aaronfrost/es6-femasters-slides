@@ -80,16 +80,14 @@ SlideDeck.prototype.onDomLoaded_ = function(e) {
     slide.dataset.totalSlides = this.slides_.length;
   }
 
-  // This is an app! Make all links open in a new tab.
-  [].forEach.call(document.querySelectorAll('a'), function(a) {
-    a.target = '_blank';
-  });
-
   // Note: this needs to come after addEventListeners_(), which adds a
   // 'keydown' listener that this controller relies on.
   // Also, no need to set this up if we're on mobile.
   if (!Modernizr.touch) {
     this.controller = new SlideController(this);
+    if (this.controller.isPopup) {
+      document.body.classList.add('popup');
+    }
   }
 };
 
@@ -603,6 +601,7 @@ SlideDeck.prototype.updateHash_ = function(dontPush) {
       window.location.replace(hash);
     }
 
+    // Record GA hit on this slide.
     window['_gaq'] && window['_gaq'].push(['_trackPageview',
                                           document.location.href]);
   }

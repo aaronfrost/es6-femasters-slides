@@ -629,79 +629,106 @@ article.smaller {
   color: $gray-4;
 }
 
-// Speaker notes only show the current slide.
-.with-notes {
-
-  slides.layout-widescreen,
-  slides.layout-faux-widescreen {
-    slide {
-      &.next {
-        @include transform(translate3d($slide-width-widescreen / 2 + 140, 80px, 0) scale(0.35));
-      }
-      .note {
-        @include transform(translate3d(300px, $slide-height + 100, 0) scale(1.5));
-      }
-    }
-  }
-
-  slide {
-    overflow: visible;
-    background: white;
-    @include transition(none); // No slide transition goodies when in presenter mode.
-    pointer-events: none;
-    @include transform-origin(0, 0); // For speaker note transition.
-
-    &:not(.backdrop) {
-      @include transform(scale(0.6) translate3d(0.5em, 0.5em, 0));
-      @include box-shadow(0 0 10px $gray-3);
-    }
-
-    &.backdrop {
-      //@include background(linear-gradient($gray-1, white 30%, white 60%, $gray-1));
-      @include background-image(radial-gradient(50% 50%, #b1dfff 0%,
-                                                $brand-blue 600px));
-    }
-
-    &.next {
-      @include transform(translate3d($slide-width / 2 + 120, 80px, 0) scale(0.35));
-      opacity: 1 !important;
-
-      .note {
-        display: none; // Prevents seeing notes if we go to previous slide.
-      }
-    }
-  }
-  .note {
-    opacity: 1;
-    pointer-events: auto; // Allow people to do things like open links embedded in the speaker notes.
-  }
-}
-
 .note {
   position: absolute;
   z-index: 100;
-  width: 109%;
-  height: $slide-height / 2 - 90;
+  width: 100%;
+  height: 100%;
   top: 0;
   left: 0;
-  background: $gray-1;
+  padding: 1em;
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 0;
   pointer-events: none;
+  @include flexbox;
+  @include flex-center-center;
   @include border-radius($slide-border-radius);
 
   @include box-sizing(border-box);
-  @include box-shadow(0 0 10px $gray-3);
-
-  @include transform(translate3d(250px, $slide-height + 100, 0) scale(1.5));
-  @include transition(opacity 400ms ease-in-out);
+  @include transform(translateY($slide-height / 2));@include transition(all 0.4s ease-in-out);
 
   > section {
     background: #fff;
     @include border-radius($slide-border-radius);
-    height: 100%;
-    width: 100%;
-    @include box-sizing(border-box);
-    overflow: auto;
-    padding: 1em;
+    @include box-shadow(0 0 10px $gray-3);
+    width: 60%;
+    padding: 2em;
+  }
+}
+
+// Speaker notes only show the current slide.
+.with-notes {
+
+  &.popup {
+
+    slides.layout-widescreen,
+    slides.layout-faux-widescreen {
+      slide {
+        &.next {
+          @include transform(translate3d($slide-width-widescreen / 2 + 140, 80px, 0) scale(0.35));
+        }
+        .note {
+          @include transform(translate3d(300px, $slide-height + 100, 0) scale(1.5));
+        }
+      }
+    }
+
+    slide {
+      overflow: visible;
+      background: white;
+      @include transition(none); // No slide transition goodies when in presenter mode.
+      pointer-events: none;
+      @include transform-origin(0, 0); // For speaker note transition.
+
+      &:not(.backdrop) {
+        @include transform(scale(0.6) translate3d(0.5em, 0.5em, 0));
+        @include box-shadow(0 0 10px $gray-3);
+      }
+
+      &.backdrop {
+        //@include background(linear-gradient($gray-1, white 30%, white 60%, $gray-1));
+        @include background-image(radial-gradient(50% 50%, #b1dfff 0%,
+                                                  $brand-blue 600px));
+      }
+
+      &.next {
+        @include transform(translate3d($slide-width / 2 + 120, 80px, 0) scale(0.35));
+        opacity: 1 !important;
+
+        .note {
+          display: none !important; // Prevents seeing notes if we go to previous slide.
+        }
+      }
+    }
+
+    .note {
+      width: 109%;
+      height: $slide-height / 2 - 90;
+      background: $gray-1;
+      padding: 0;
+
+      @include box-shadow(0 0 10px $gray-3);
+
+      @include transform(translate3d(250px, $slide-height + 100, 0) scale(1.5));
+      @include transition(opacity 400ms ease-in-out);
+
+      > section {
+        background: #fff;
+        @include border-radius($slide-border-radius);
+        height: 100%;
+        width: 100%;
+        @include box-sizing(border-box);
+        @include box-shadow(none);
+        overflow: auto;
+        padding: 1em;
+      }
+    }
+  }
+
+  .note {
+    opacity: 1;
+    @include transform(translateY(0));
+    pointer-events: auto; // Allow people to do things like open links embedded in the speaker notes.
   }
 }
 
@@ -711,10 +738,6 @@ article.smaller {
   position: absolute;
   bottom: $slide-top-bottom-padding + 30px;
   left: $slide-left-right-padding;
-}
-
-input, button {
-  vertical-align: middle;
 }
 
 /*.centered {

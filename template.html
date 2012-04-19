@@ -18,6 +18,7 @@ URL: https://code.google.com/p/io-2012-slides
   <!--<meta name="viewport" content="initial-scale=0.4">-->
   <link rel="stylesheet" media="all" href="theme/css/default.css">
   <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
 </head>
 <body>
 
@@ -91,7 +92,7 @@ URL: https://code.google.com/p/io-2012-slides
           </ul>
         </li>
         <li>Subtitle capitalization is title case</li>
-        <li>Titles and <a href="http://google.com">subtitles</a> should never have a period at the end</li>
+        <li>All <a href="http://google.com">links</a> open in new tabs. To change that add a <code>target="_self"</code>.</li>
       </ul>
     </article>
   </slide>
@@ -162,8 +163,6 @@ function helloWorld(world) {
           <li>Point I wanted to make #1</li>
           <li>Point I wanted to make #2</li>
           <li>Point I wanted to make #3</li>
-          <li>Point I wanted to make #3</li>
-          <li>Point I wanted to make #3</li>
           <li>Example <a href="#">link</a> in notes.</li>
         </ul>
         <p><b>Remember to say this tag line!</b></p>
@@ -173,9 +172,27 @@ function helloWorld(world) {
       <h2>Slide with Speaker Notes</h2>
     </hgroup>
     <article>
-      Add <code>?presentme=true</code> to the URL to enabled presenter mode.
-      The setting is sticky, so refreshing the slides will persist presenter mode.
-      Use <code>?presentme=false</code> to turn off presenter mode.
+      <p>Press 'p' to toggle speaker notes.</p>
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>See this amazing link: <a href="#">link</a>.</li>
+        </ul>
+        <p><b>Remember to say this tag line!</b></p>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>Presenter Mode</h2>
+    </hgroup>
+    <article>
+      <p>Add <code><a href="?presentme=true" target="_self">?presentme=true</a></code> to the URL to enabled presenter mode.
+      This setting is sticky, meaning refreshing the page will persist presenter
+      mode.</p>
+      <p>Hit <code><a href="?presentme=false" target="_self">?presentme=false</a></code> to disable presenter mode.</p>
     </article>
   </slide>
 
