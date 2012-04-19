@@ -154,7 +154,7 @@ slides > slide {
   }
 
   &.dark {
-    background: $gray-4;
+    background: $gray-4 !important;
   }
 
   &:not(.nobackground) {
@@ -828,7 +828,7 @@ article.smaller {
 }
 
 .thank-you-slide {
-  background: $brand-blue;
+  background: $brand-blue !important;
   color: white;
 
   h2 {

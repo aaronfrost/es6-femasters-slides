@@ -285,7 +285,7 @@ slides > slide.far-next {
 }
 /* line 156, ../sass/default.scss */
 slides > slide.dark {
-  background: #515151;
+  background: #515151 !important;
 }
 /* line 164, ../sass/default.scss */
 slides > slide:not(.nobackground):before {
@@ -1201,7 +1201,7 @@ article.smaller q:before, article.smaller q:after {
 
 /* line 830, ../sass/default.scss */
 .thank-you-slide {
-  background: #4387fd;
+  background: #4387fd !important;
   color: white;
 }
 /* line 834, ../sass/default.scss */
