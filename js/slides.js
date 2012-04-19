@@ -14,9 +14,7 @@ function SlideDeck(el) {
 
   this.getCurrentSlideFromHash_();
 
-  /*document.addEventListener('DOMContentLoaded',
-                              this.onDomLoaded_.bind(this), false);*/
-  // Introducing yepnopejs causes DOMContentLoaded before the deck is setup.
+  // Call this explicitly. Modernizr.load won't be done until after DOM load.
   this.onDomLoaded_.bind(this)();
 }
 
@@ -50,12 +48,11 @@ SlideDeck.prototype.getCurrentSlideFromHash_ = function() {
  * @private
  */
 SlideDeck.prototype.onDomLoaded_ = function(e) {
-  // Fade in deck.
-  document.body.classList.add('loaded');
+  document.body.classList.add('loaded'); // Fade in deck.
 
   this.slides = this.container.querySelectorAll('slide:not([hidden]):not(.backdrop)');
 
-  // If we're on a smartphone device, load phone.css.
+  // If we're on a smartphone, apply special sauce.
   if (Modernizr.mq('only screen and (max-device-width: 480px)')) {
     // var style = document.createElement('link');
     // style.rel = 'stylesheet';
@@ -63,7 +60,7 @@ SlideDeck.prototype.onDomLoaded_ = function(e) {
     // style.href = this.CSS_DIR_ + 'phone.css';
     // document.querySelector('head').appendChild(style);
 
-    // Remove widescreen if it's applied.
+    // No need for widescreen layout on a phone.
     this.container.classList.remove('layout-widescreen');
   }
 
@@ -389,10 +386,6 @@ SlideDeck.prototype.prevSlide = function(opt_dontPush) {
       bodyClassList.remove('with-notes');
     }
 
-    // if (this.controller) {
-    //   this.controller.sendMsg({slideDirection: SlideController.MOVE_LEFT});
-    // }
-
     this.prevSlide_ = this.curSlide_;
     this.curSlide_--;
 
@@ -404,11 +397,6 @@ SlideDeck.prototype.prevSlide = function(opt_dontPush) {
  * @param {boolean=} opt_dontPush
  */
 SlideDeck.prototype.nextSlide = function(opt_dontPush) {
-  // 
-  // if (this.controller) {
-  //   this.controller.sendMsg({slideDirection: SlideController.MOVE_RIGHT});
-  // }
-
   if (this.buildNextItem_()) {
     return;
   }
