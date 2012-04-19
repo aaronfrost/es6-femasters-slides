@@ -1,18 +1,15 @@
-// Function.bind polyfill for Safari < 5.1.4 and iOS.
-// From https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function/bind
-Function.prototype.bind||(Function.prototype.bind=function(c){if("function"!==typeof this)throw new TypeError("Function.prototype.bind - binding an object that is not callable");var d=Array.prototype.slice.call(arguments,1),e=this,a=function(){},b=function(){return e.apply(this instanceof a?this:c||window,d.concat(Array.prototype.slice.call(arguments)))};a.prototype=this.prototype;b.prototype=new a;return b});
-
 document.cancelFullScreen = document.webkitCancelFullScreen ||
                             document.mozCancelFullScreen;
 
 /**
  * @constructor
  */
-function SlideDeck() {
+function SlideDeck(el) {
   this.curSlide_ = 0;
   this.prevSlide_ = 0;
-  this.slides = [];
   this.config_ = null;
+  this.container = el || document.querySelector('slides');
+  this.slides = [];
   this.controller = null;
 
   this.getCurrentSlideFromHash_();
@@ -56,10 +53,10 @@ SlideDeck.prototype.onDomLoaded_ = function(e) {
   // Fade in deck.
   document.body.classList.add('loaded');
 
-  this.slides_ = document.querySelectorAll('slide:not([hidden]):not(.backdrop)');
+  this.slides = this.container.querySelectorAll('slide:not([hidden]):not(.backdrop)');
 
   // If we're on a smartphone device, load phone.css.
-  if (window.matchMedia('only screen and (max-device-width: 480px)').matches) {
+  if (Modernizr.mq('only screen and (max-device-width: 480px)')) {
     // var style = document.createElement('link');
     // style.rel = 'stylesheet';
     // style.type = 'text/css';
@@ -67,7 +64,7 @@ SlideDeck.prototype.onDomLoaded_ = function(e) {
     // document.querySelector('head').appendChild(style);
 
     // Remove widescreen if it's applied.
-    document.querySelector('slides').classList.remove('layout-widescreen');
+    this.container.classList.remove('layout-widescreen');
   }
 
   this.loadConfig_(SLIDE_CONFIG);
@@ -75,9 +72,9 @@ SlideDeck.prototype.onDomLoaded_ = function(e) {
   this.updateSlides_();
 
   // Add slide numbers and total slide count metadata to each slide.
-  for (var i = 0, slide; slide = this.slides_[i]; ++i) {
+  for (var i = 0, slide; slide = this.slides[i]; ++i) {
     slide.dataset.slideNum = i + 1;
-    slide.dataset.totalSlides = this.slides_.length;
+    slide.dataset.totalSlides = this.slides.length;
   }
 
   // Note: this needs to come after addEventListeners_(), which adds a
@@ -97,6 +94,35 @@ SlideDeck.prototype.onDomLoaded_ = function(e) {
 SlideDeck.prototype.addEventListeners_ = function() {
   document.addEventListener('keydown', this.onBodyKeyDown_.bind(this), false);
   window.addEventListener('popstate', this.onPopState_.bind(this), false);
+
+  // var transEndEventNames = {
+  //   'WebkitTransition': 'webkitTransitionEnd',
+  //   'MozTransition': 'transitionend',
+  //   'OTransition': 'oTransitionEnd',
+  //   'msTransition': 'MSTransitionEnd',
+  //   'transition': 'transitionend'
+  // };
+  // 
+  // // Find the correct transitionEnd vendor prefix.
+  // window.transEndEventName = transEndEventNames[
+  //     Modernizr.prefixed('transition')];
+  // 
+  // // When slides are done transitioning, kickoff loading iframes.
+  // // Note: we're only looking at a single transition (on the slide). This
+  // // doesn't include autobuilds the slides may have. Also, if the slide
+  // // transitions on multiple properties (e.g. not just 'all'), this doesn't
+  // // handle that case.
+  // this.container.addEventListener(transEndEventName, function(e) {
+  //     this.enableSlideFrames_(this.curSlide_);
+  // }.bind(this), false);
+
+  // document.addEventListener('slideenter', function(e) {
+  //   var slide = e.target;
+  //   window.setTimeout(function() {
+  //     this.enableSlideFrames_(e.slideNumber);
+  //     this.enableSlideFrames_(e.slideNumber + 1);
+  //   }.bind(this), 300);
+  // }.bind(this), false);
 };
 
 /**
@@ -272,28 +298,26 @@ SlideDeck.prototype.loadConfig_ = function(config) {
     document.querySelector('[data-config-presenter]').innerHTML = html;
   }
 
-  var slides = document.querySelector('slides');
-
   /* Left/Right tap areas. Default to including. */
   if (!!!('enableSideAreas' in settings) || settings.enableSideAreas) {
     var el = document.createElement('div');
     el.classList.add('slide-area');
     el.id = 'prev-slide-area';
     el.addEventListener('click', this.prevSlide.bind(this), false);
-    slides.appendChild(el);
+    this.container.appendChild(el);
 
     var el = document.createElement('div');
     el.classList.add('slide-area');
     el.id = 'next-slide-area';
     el.addEventListener('click', this.nextSlide.bind(this), false);
-    slides.appendChild(el);
+    this.container.appendChild(el);
   }
 
   if (Modernizr.touch && (!!!('enableTouch' in settings) ||
       settings.enableTouch)) {
     var self = this;
 
-    var hammer = new Hammer(slides);
+    var hammer = new Hammer(this.container);
     hammer.ondragend = function(e) {
       if (e.direction == 'right' || e.direction == 'down') {
         self.prevSlide();
@@ -320,7 +344,7 @@ SlideDeck.prototype.addFonts_ = function(fonts) {
  * @private
  */
 SlideDeck.prototype.buildNextItem_ = function() {
-  var slide = this.slides_[this.curSlide_];
+  var slide = this.slides[this.curSlide_];
   var toBuild = slide.querySelector('.to-build');
   var built = slide.querySelector('.build-current');
 
@@ -389,7 +413,7 @@ SlideDeck.prototype.nextSlide = function(opt_dontPush) {
     return;
   }
 
-  if (this.curSlide_ < this.slides_.length - 1) {
+  if (this.curSlide_ < this.slides.length - 1) {
     var bodyClassList = document.body.classList;
     bodyClassList.remove('highlight-code');
 
@@ -445,7 +469,7 @@ SlideDeck.prototype.updateSlides_ = function(opt_dontPush) {
   var dontPush = opt_dontPush || false;
 
   var curSlide = this.curSlide_;
-  for (var i = 0; i < this.slides_.length; ++i) {
+  for (var i = 0; i < this.slides.length; ++i) {
     switch (i) {
       case curSlide - 2:
         this.updateSlideClass_(i, 'far-past');
@@ -471,11 +495,18 @@ SlideDeck.prototype.updateSlides_ = function(opt_dontPush) {
   this.triggerSlideEvent('slideleave', this.prevSlide_);
   this.triggerSlideEvent('slideenter', curSlide);
 
-  window.setTimeout(this.disableSlideFrames_.bind(this, curSlide - 2), 301);
+// window.setTimeout(this.disableSlideFrames_.bind(this, curSlide - 2), 301);
+// 
+// this.enableSlideFrames_(curSlide - 1); // Previous slide.
+// this.enableSlideFrames_(curSlide + 1); // Current slide.
+// this.enableSlideFrames_(curSlide + 2); // Next slide.
 
-  this.enableSlideFrames_(curSlide - 1);
-  this.enableSlideFrames_(curSlide + 1);
-  this.enableSlideFrames_(curSlide + 2);
+   // Enable current slide's iframes (needed for page loat at current slide).
+   this.enableSlideFrames_(curSlide + 1);
+
+   // No way to tell when all slide transitions + auto builds are done.
+   // Give ourselves a good buffer to preload the next slide's iframes.
+   window.setTimeout(this.enableSlideFrames_.bind(this, curSlide + 2), 1000);
 
   /*if (isChromeVoxActive()) {
     speakAndSyncToNode(slideEls[curSlide]);
@@ -489,7 +520,7 @@ SlideDeck.prototype.updateSlides_ = function(opt_dontPush) {
  * @param {number} slideNo
  */
 SlideDeck.prototype.enableSlideFrames_ = function(slideNo) {
-  var el = this.slides_[slideNo - 1];
+  var el = this.slides[slideNo - 1];
   if (!el) {
     return;
   }
@@ -516,7 +547,7 @@ SlideDeck.prototype.enableFrame_ = function(frame) {
  * @param {number} slideNo
  */
 SlideDeck.prototype.disableSlideFrames_ = function(slideNo) {
-  var el = this.slides_[slideNo - 1];
+  var el = this.slides[slideNo - 1];
   if (!el) {
     return;
   }
@@ -540,10 +571,10 @@ SlideDeck.prototype.disableFrame_ = function(frame) {
  * @param {number} slideNo
  */
 SlideDeck.prototype.getSlideEl_ = function(no) {
-  if ((no < 0) || (no >= this.slides_.length)) {
+  if ((no < 0) || (no >= this.slides.length)) {
     return null;
   } else {
-    return this.slides_[no];
+    return this.slides[no];
   }
 };
 
@@ -574,7 +605,7 @@ SlideDeck.prototype.updateSlideClass_ = function(slideNo, className) {
  * @private
  */
 SlideDeck.prototype.makeBuildLists_ = function () {
-  for (var i = this.curSlide_, slide; slide = this.slides_[i]; ++i) {
+  for (var i = this.curSlide_, slide; slide = this.slides[i]; ++i) {
     var items = slide.querySelectorAll('.build > *');
     for (var j = 0, item; item = items[j]; ++j) {
       if (item.classList) {
@@ -673,14 +704,12 @@ SlideDeck.prototype.loadAnalytics_ = function() {
 
 
 // Polyfill missing APIs (if we need to), then create the slide deck.
-// iOS < 5 needs all of these! #dislike
+// iOS < 5 needs classList, dataset, and window.matchMedia. Modernizr contains
+// the last one.
 (function() {
-  var body = document.body;
-
-  yepnope({
-    test: !!body.classList && !!body.dataset,
-    nope: ['js/polyfills/classList.min.js', 'js/polyfills/dataset.min.js',
-           'js/polyfills/matchMedia.js'],
+  Modernizr.load({
+    test: !!document.body.classList && !!document.body.dataset,
+    nope: ['js/polyfills/classList.min.js', 'js/polyfills/dataset.min.js'],
     complete: function() {
       window.slidedeck = new SlideDeck();
     }
