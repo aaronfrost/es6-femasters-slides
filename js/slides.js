@@ -314,6 +314,12 @@ SlideDeck.prototype.loadConfig_ = function(config) {
       settings.enableTouch)) {
     var self = this;
 
+    // Note: this prevents mobile zoom in/out but prevents iOS from doing
+    // it's crazy scroll over effect and disaligning the slides.
+    window.addEventListener('touchstart', function(e) {
+      e.preventDefault();
+    }, false);
+
     var hammer = new Hammer(this.container);
     hammer.ondragend = function(e) {
       if (e.direction == 'right' || e.direction == 'down') {
