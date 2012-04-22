@@ -14,16 +14,17 @@ body:before {
   background: url(http://www.html5rocks.com/static/images/identity/HTML5_Badge_128.png) no-repeat 50% 50%;
   background-size: contain;
   z-index: 10;
+  opacity: 0.1;
 }
 h1, h2, h3, h4 {
   font-weight: 600;
 }
 h1 {
   position: fixed;
-  background: -webkit-linear-gradient(top, rgb(238,238,238) 65%, rgba(238,238,238,0));
-  background: -moz-linear-gradient(top, rgb(238,238,238) 65%, rgba(238,238,238,0));
-  background: -ms-linear-gradient(top, rgb(238,238,238) 65%, rgba(238,238,238,0));
-  background: -o-linear-gradient(top, rgb(238,238,238) 65%, rgba(238,238,238,0));
+  background: -webkit-linear-gradient(top, white 65%, rgba(255,255,255,0));
+  background: -moz-linear-gradient(top, white 65%, rgba(255,255,255,0));
+  background: -ms-linear-gradient(top, white 65%, rgba(255,255,255,0));
+  background: -o-linear-gradient(top, white 65%, rgba(255,255,255,0));
   width: 100%;
   height: 80px;
   padding: 10px 10px 10px 1em;
