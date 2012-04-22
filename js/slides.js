@@ -296,7 +296,7 @@ SlideDeck.prototype.loadConfig_ = function(config) {
   }
 
   /* Left/Right tap areas. Default to including. */
-  if (!!!('enableSideAreas' in settings) || settings.enableSideAreas) {
+  if (!!!('enableSlideAreas' in settings) || settings.enableSlideAreas) {
     var el = document.createElement('div');
     el.classList.add('slide-area');
     el.id = 'prev-slide-area';
@@ -668,16 +668,6 @@ SlideDeck.prototype.loadTheme_ = function(theme) {
     }
     document.querySelector('head').appendChild(style);
   }
-  // TODO(ericbidelman): Removed this.
-  // var viewportMeta = document.createElement('meta');
-  // viewportMeta.name = 'viewport';
-  // viewportMeta.content = 'width=1100,height=750';
-  // document.querySelector('head').appendChild(viewportMeta);
-
-  var appleMeta = document.createElement('meta');
-  appleMeta.name = 'apple-mobile-web-app-capable';
-  appleMeta.content = 'yes';
-  document.querySelector('head').appendChild(appleMeta);
 };
 
 /**
@@ -686,7 +676,6 @@ SlideDeck.prototype.loadTheme_ = function(theme) {
 SlideDeck.prototype.loadAnalytics_ = function() {
   var _gaq = window['_gaq'] || [];
   _gaq.push(['_setAccount', this.config_.settings.analytics]);
-  //_gaq.push(['_setDomainName', '.bleedinghtml5.appspot.com']);
   _gaq.push(['_trackPageview']);
 
   (function() {

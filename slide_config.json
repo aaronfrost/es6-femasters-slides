@@ -3,19 +3,17 @@ var SLIDE_CONFIG = {
   settings: {
     title: 'Title Goes Here<br>Up To Two Lines',
     subtitle: 'Subtitle Goes Here',
-    //theme: ['mytheme'],
-    //hashtag: '#html5', //TODO
-    useBuilds: true, // Default: true
+    useBuilds: true, // Default: true. False will turn off slide animation builds.
     usePrettify: true, // Default: true
-    enableSideAreas: true, // Default: true
-    enableTouch: true, // Default: true if device supports touch.
-    analytics: 'UA-XXXXXXXX-1',
+    enableSlideAreas: true, // Default: true. False turns off the click areas on either slide of the slides.
+    enableTouch: true, // Default: true. If touch support should enabled. Note: the device must support touch.
+    //analytics: 'UA-XXXXXXXX-1',
     favIcon: 'http://bleedinghtml5.appspot.com/images/chrome-logo-tiny2.png',
-    onLoad: null, // TODO. function to call onload
     fonts: [
       'Open Sans:regular,semibold,italic,italicsemibold',
       'Inconsolata'
-    ]
+    ],
+    //theme: ['mytheme'], // Add your own custom themes or styles in /theme/css. Leave off the .css extension.
   },
 
   // Author information
