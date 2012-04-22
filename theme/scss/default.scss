@@ -210,6 +210,12 @@ slides > slide {
   > hgroup + article {
     margin-top: $article-content-top-padding;
 
+    &.flexbox {
+      &.vcenter, &.vleft, &.vright {
+        height: 80%;
+      }
+    }
+
     p {
       margin-bottom: 1em;
     }
@@ -740,7 +746,7 @@ article.smaller {
   left: $slide-left-right-padding;
 }
 
-/*.centered {
+.centered {
   text-align: center;
 }
 
@@ -750,7 +756,7 @@ article.smaller {
   -o-box-reflect: below 3px -o-linear-gradient(rgba(255,255,255,0) 85%, white 150%);
   -ms-box-reflect: below 3px -ms-linear-gradient(rgba(255,255,255,0) 85%, white 150%);
   box-reflect: below 3px linear-gradient(rgba(255,255,255,0) 85%, white 150%);
-}*/
+}
 
 .flexbox {
   @include flexbox;
@@ -764,6 +770,12 @@ article.smaller {
 
 .flexbox.vleft {
   @include flex-left-center;
+  height: 100%;
+  width: 100%;
+}
+
+.flexbox.vright {
+  @include flex-right-center;
   height: 100%;
   width: 100%;
 }

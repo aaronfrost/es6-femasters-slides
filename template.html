@@ -26,9 +26,9 @@ URL: https://code.google.com/p/io-2012-slides
 <slides class="layout-widescreen">
 
   <slide class="logoslide nobackground">
-    <section class="flexbox vcenter">
+    <article class="flexbox vcenter">
       <span><img src="images/google_developers_logo.png"></span>
-    </section>
+    </article>
   </slide>
 
   <slide class="title-slide segue nobackground">
@@ -197,7 +197,7 @@ function helloWorld(world) {
       <h2>Slide with Image</h2>
     </hgroup>
     <article>
-      <img src="images/chart.png" alt="Description" title="Description">
+      <img src="images/chart.png" class="reflect" alt="Description" title="Description">
       <footer class="source">source: place source info here</footer>
     </article>
   </slide>
@@ -206,7 +206,7 @@ function helloWorld(world) {
     <hgroup>
       <h2>Slide with Image (Centered horz/vert)</h2>
     </hgroup>
-    <article class="flexbox vcenter" style="height: 80%;">
+    <article class="flexbox vcenter">
       <img src="images/barchart.png" alt="Description" title="Description">
       <footer class="source">source: place source info here</footer>
     </article>
@@ -323,8 +323,8 @@ function helloWorld(world) {
           <li class="gray4">class="gray4"</li>
         </ul>
       </div>
-      <div>
-        <button>Button</button> <button disabled>Disabled</button>
+      <div class="centered" style="margin-top:2em">
+        I am centered text with a <button>Button</button> and <button disabled>Disabled</button> button.
       </div>
     </article>
   </slide>
