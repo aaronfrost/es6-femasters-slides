@@ -6,7 +6,7 @@ and (max-width : 480px) {
 }*/
 /* Smartphones (portrait) ----------- */
 /* Styles */
-/* line 17, ../sass/phone.scss */
+/* line 17, ../scss/phone.scss */
 slides > slide {
   /*  width: $slide-width !important;
     height: $slide-height !important;
