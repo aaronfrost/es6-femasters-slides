@@ -48,7 +48,8 @@ SlideController.prototype.setupDone = function() {
   if (enablePresenterMode && JSON.parse(enablePresenterMode)) {
     // Only open popup from main deck. Don't want recursive popup opening!
     if (!this.isPopup) {
-      this.popup = window.open(location.href, 'mywindow');
+      var opts = 'menubar=no,location=yes,resizable=yes,scrollbars=no,status=no';
+      this.popup = window.open(location.href, 'mywindow', opts);
 
       // Loading in the popup? Trigger the hotkey for turning presenter mode on.
       this.popup.addEventListener('load', function(e) {
