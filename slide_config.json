@@ -32,9 +32,3 @@ var SLIDE_CONFIG = {
   }*/]
 };
 
-// SPEAKER MODE ----------------------------------------------------------------
-// To turn on the presenter mode (popup), add the presentme=true parameter:
-// http://localhost/io-2012-slides/template.html?presentme=true
-// 
-// To disable presenter mode, set presentme=false:
-// http://localhost/io-2012-slides/template.html?presentme=false

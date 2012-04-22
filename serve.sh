@@ -12,4 +12,4 @@ then
   port=8000
 fi
 
-open http://localhost:$port && python -m SimpleHTTPServer $port;
+open http://localhost:$port/template.html && python -m SimpleHTTPServer $port;
