@@ -223,7 +223,7 @@ SlideDeck.prototype.onBodyKeyDown_ = function(e) {
     case 87: // W: Toggle widescreen
       // Only respect 'w' on body. Don't want to capture keys from an <input>.
       if (e.target == document.body && !(e.shiftKey && e.metaKey)) {
-        document.querySelector('slides').classList.toggle('layout-widescreen');
+        this.container.classList.toggle('layout-widescreen');
       }
       break;
   }
