@@ -48,7 +48,7 @@ SlideDeck.prototype.getCurrentSlideFromHash_ = function() {
  * @private
  */
 SlideDeck.prototype.onDomLoaded_ = function(e) {
-  document.body.classList.add('loaded'); // Fade in deck.
+  document.body.classList.add('loaded'); // Add loaded class for templates to use.
 
   this.slides = this.container.querySelectorAll('slide:not([hidden]):not(.backdrop)');
 
@@ -180,7 +180,7 @@ SlideDeck.prototype.onBodyKeyDown_ = function(e) {
       e.preventDefault();
       break;
 
-    case 72: // H
+    case 72: // H: Toggle code highlighting
       document.body.classList.toggle('highlight-code');
       break;
 
@@ -196,12 +196,12 @@ SlideDeck.prototype.onBodyKeyDown_ = function(e) {
       // TODO: implement refresh on main slides when popup is refreshed.
       break;
 
-    case 27: // ESC
+    case 27: // ESC: Hide notes and highlighting
       document.body.classList.remove('with-notes');
       document.body.classList.remove('highlight-code');
       break;
 
-    case 70: // F
+    case 70: // F: Toggle fullscreen
        // Only respect 'f' on body. Don't want to capture keys from an <input>.
        // Also, ignore browser's fullscreen shortcut (cmd+shift+f) so we don't
        // get trapped in fullscreen!
@@ -213,6 +213,13 @@ SlideDeck.prototype.onBodyKeyDown_ = function(e) {
         } else {
           document.cancelFullScreen();
         }
+      }
+      break;
+
+    case 87: // W: Toggle widescreen
+      // Only respect 'w' on body. Don't want to capture keys from an <input>.
+      if (e.target == document.body && !(e.shiftKey && e.metaKey)) {
+        document.querySelector('slides').classList.toggle('layout-widescreen');
       }
       break;
   }
