@@ -1,3 +1,7 @@
+/**
+ * @authors TODO
+ * @fileoverview TODO
+ */
 document.cancelFullScreen = document.webkitCancelFullScreen ||
                             document.mozCancelFullScreen;
 
@@ -347,7 +351,6 @@ SlideDeck.prototype.addFonts_ = function(fonts) {
   el.rel = 'stylesheet';
   el.href = 'http://fonts.googleapis.com/css?family=' + fonts.join('|') + '&v2';
   document.querySelector('head').appendChild(el);
-
 };
 
 /**
@@ -399,8 +402,7 @@ SlideDeck.prototype.prevSlide = function(opt_dontPush) {
       bodyClassList.remove('with-notes');
     }
 
-    this.prevSlide_ = this.curSlide_;
-    this.curSlide_--;
+    this.prevSlide_ = this.curSlide_--;
 
     this.updateSlides_(opt_dontPush);
   }
@@ -426,8 +428,7 @@ SlideDeck.prototype.nextSlide = function(opt_dontPush) {
       bodyClassList.remove('with-notes');
     }
 
-    this.prevSlide_ = this.curSlide_;
-    this.curSlide_++;
+    this.prevSlide_ = this.curSlide_++;
 
     this.updateSlides_(opt_dontPush);
   }
@@ -704,5 +705,4 @@ SlideDeck.prototype.loadAnalytics_ = function() {
       window.slidedeck = new SlideDeck();
     }
   });
-
 })();
