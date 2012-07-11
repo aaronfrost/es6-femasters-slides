@@ -50,15 +50,15 @@ pre {
 
 ## Configuring the slides
 
-Much of the deck is customized by changing the settings in [`slide_config.json`](slide_config.json).
+Much of the deck is customized by changing the settings in [`slide_config.js`](slide_config.js).
 Some of the customizations include the title, Analytics tracking ID, speaker
 information (name, social urls, blog), web fonts to load, themes, and other
 general behavior.
 
-### Customizing the `#io2012` hash
+### Customizing the `#io12` hash
 
-The bottom of the slides include `#io2012` by default. If you'd like to change
-this, please update the variable `$social-tags: '#io2012';` in
+The bottom of the slides include `#io12` by default. If you'd like to change
+this, please update the variable `$social-tags: '#io12';` in
 [`/theme/scss/default.scss`](theme/scss/default.scss).
 
 See the next section on "Editing CSS" before you go editing things.

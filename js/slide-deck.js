@@ -1,5 +1,6 @@
 /**
- * @authors TODO
+ * @authors Luke Mahe
+ * @authors Eric Bidelman
  * @fileoverview TODO
  */
 document.cancelFullScreen = document.webkitCancelFullScreen ||
@@ -49,6 +50,16 @@ SlideDeck.prototype.getCurrentSlideFromHash_ = function() {
 };
 
 /**
+ * @param {number} slideNo
+ */
+SlideDeck.prototype.loadSlide = function(slideNo) {
+  if (slideNo) {
+    this.curSlide_ = slideNo - 1;
+    this.updateSlides_();
+  }
+};
+
+/**
  * @private
  */
 SlideDeck.prototype.onDomLoaded_ = function(e) {
@@ -73,9 +84,20 @@ SlideDeck.prototype.onDomLoaded_ = function(e) {
   this.updateSlides_();
 
   // Add slide numbers and total slide count metadata to each slide.
+  var that = this;
   for (var i = 0, slide; slide = this.slides[i]; ++i) {
     slide.dataset.slideNum = i + 1;
     slide.dataset.totalSlides = this.slides.length;
+
+    slide.addEventListener('click', function(e) {
+      if (document.body.classList.contains('overview')) {
+        that.loadSlide(this.dataset.slideNum);
+        e.preventDefault();
+        window.setTimeout(function() {
+          that.toggleOverview();
+        }, 500);
+      }
+    }, false);
   }
 
   // Note: this needs to come after addEventListeners_(), which adds a
@@ -152,6 +174,12 @@ SlideDeck.prototype.onBodyKeyDown_ = function(e) {
   }
 
   switch (e.keyCode) {
+    case 13: // Enter
+      if (document.body.classList.contains('overview')) {
+        this.toggleOverview();
+      }
+      break;
+
     case 39: // right arrow
     case 32: // space
     case 34: // PgDn
@@ -167,25 +195,21 @@ SlideDeck.prototype.onBodyKeyDown_ = function(e) {
       break;
 
     case 40: // down arrow
-      //if (this.isChromeVoxActive()) {
-      //  speakNextItem();
-      //} else {
-        this.nextSlide();
-      //}
+      this.nextSlide();
       e.preventDefault();
       break;
 
     case 38: // up arrow
-      //if (this.isChromeVoxActive()) {
-      //  speakPrevItem();
-      //} else {
-        this.prevSlide();
-      //}
+      this.prevSlide();
       e.preventDefault();
       break;
 
     case 72: // H: Toggle code highlighting
       document.body.classList.toggle('highlight-code');
+      break;
+
+    case 79: // O: Toggle overview
+      this.toggleOverview();
       break;
 
     case 80: // P
@@ -203,6 +227,10 @@ SlideDeck.prototype.onBodyKeyDown_ = function(e) {
     case 27: // ESC: Hide notes and highlighting
       document.body.classList.remove('with-notes');
       document.body.classList.remove('highlight-code');
+
+      if (document.body.classList.contains('overview')) {
+        this.toggleOverview();
+      }
       break;
 
     case 70: // F: Toggle fullscreen
@@ -227,6 +255,27 @@ SlideDeck.prototype.onBodyKeyDown_ = function(e) {
       }
       break;
   }
+};
+
+/**
+ *
+ */
+SlideDeck.prototype.focusOverview_ = function() {
+  var overview = document.body.classList.contains('overview');
+
+  for (var i = 0, slide; slide = this.slides[i]; i++) {
+    slide.style[Modernizr.prefixed('transform')] = overview ?
+        'translateZ(-2500px) translate(' + (( i - this.curSlide_ ) * 105) +
+                                       '%, 0%)' : '';
+  }
+};
+
+/**
+ */
+SlideDeck.prototype.toggleOverview = function() {
+  document.body.classList.toggle('overview');
+
+  this.focusOverview_();
 };
 
 /**
@@ -276,34 +325,46 @@ SlideDeck.prototype.loadConfig_ = function(config) {
 
   if (this.config_.presenters) {
     var presenters = this.config_.presenters;
+    var dataConfigContact = document.querySelector('[data-config-contact]');
 
     var html = [];
     if (presenters.length == 1) {
-      var p = presenters[0]
+      var p = presenters[0];
 
       html = [p.name, p.company].join('<br>');
 
       var gplus = p.gplus ? '<span>g+</span><a href="' + p.gplus +
-                            '">' + p.gplus.replace('http://', '') + '</a>' : '';
+          '">' + p.gplus.replace(/https?:\/\//, '') + '</a>' : '';
 
       var twitter = p.twitter ? '<span>twitter</span>' +
           '<a href="http://twitter.com/' + p.twitter + '">' +
           p.twitter + '</a>' : '';
 
-     var www = p.www ? '<span>www</span><a href="' + p.www +
-                       '">' + p.www.replace('http://', '') + '</a>' : '';
+      var www = p.www ? '<span>www</span><a href="' + p.www +
+                        '">' + p.www.replace(/https?:\/\//, '') + '</a>' : '';
 
-      var html2 = [gplus, twitter, www].join('<br>');
+      var github = p.github ? '<span>github</span><a href="' + p.github +
+          '">' + p.github.replace(/https?:\/\//, '') + '</a>' : '';
 
-      document.querySelector('[data-config-contact]').innerHTML = html2;
+      var html2 = [gplus, twitter, www, github].join('<br>');
+
+      if (dataConfigContact) {
+        dataConfigContact.innerHTML = html2;
+      }
     } else {
       for (var i = 0, p; p = presenters[i]; ++i) {
         html.push(p.name + ' - ' + p.company);
       }
       html = html.join('<br>');
+      if (dataConfigContact) {
+        dataConfigContact.innerHTML = html;
+      }
     }
 
-    document.querySelector('[data-config-presenter]').innerHTML = html;
+    var dataConfigPresenter = document.querySelector('[data-config-presenter]');
+    if (dataConfigPresenter) {
+      document.querySelector('[data-config-presenter]').innerHTML = html;
+    }
   }
 
   /* Left/Right tap areas. Default to including. */
@@ -349,7 +410,8 @@ SlideDeck.prototype.loadConfig_ = function(config) {
 SlideDeck.prototype.addFonts_ = function(fonts) {
   var el = document.createElement('link');
   el.rel = 'stylesheet';
-  el.href = 'http://fonts.googleapis.com/css?family=' + fonts.join('|') + '&v2';
+  el.href = ('https:' == document.location.protocol ? 'https' : 'http') +
+      '://fonts.googleapis.com/css?family=' + fonts.join('|') + '&v2';
   document.querySelector('head').appendChild(el);
 };
 
@@ -378,10 +440,6 @@ SlideDeck.prototype.buildNextItem_ = function() {
 
   toBuild.classList.remove('to-build');
   toBuild.classList.add('build-current');
-
-  /*if (isChromeVoxActive()) {
-    speakAndSyncToNode(toBuild);
-  }*/
 
   return true;
 };
@@ -412,7 +470,7 @@ SlideDeck.prototype.prevSlide = function(opt_dontPush) {
  * @param {boolean=} opt_dontPush
  */
 SlideDeck.prototype.nextSlide = function(opt_dontPush) {
-  if (this.buildNextItem_()) {
+  if (!document.body.classList.contains('overview') && this.buildNextItem_()) {
     return;
   }
 
@@ -510,11 +568,13 @@ SlideDeck.prototype.updateSlides_ = function(opt_dontPush) {
    // Give ourselves a good buffer to preload the next slide's iframes.
    window.setTimeout(this.enableSlideFrames_.bind(this, curSlide + 2), 1000);
 
-  /*if (isChromeVoxActive()) {
-    speakAndSyncToNode(slideEls[curSlide]);
-  }*/
-
   this.updateHash_(dontPush);
+
+  if (document.body.classList.contains('overview')) {
+    this.focusOverview_();
+    return;
+  }
+
 };
 
 /**

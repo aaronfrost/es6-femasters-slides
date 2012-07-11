@@ -12,4 +12,11 @@ then
   port=8000
 fi
 
-open http://localhost:$port/template.html && python -m SimpleHTTPServer $port;
+if [ $(uname -s) == "Darwin" ]
+then
+  open=open
+else
+  open=xdg-open
+fi
+
+$open http://localhost:$port/template.html && python -m SimpleHTTPServer $port;

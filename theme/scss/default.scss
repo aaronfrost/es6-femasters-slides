@@ -2,7 +2,7 @@
 @import "compass/css3/columns";
 @import "compass/css3/user-interface";
 
-$social-tags: '#io2012';
+$social-tags: '#io12';
 $brand-small-icon-size: 30px;
 
 $gray-1: #e6e6e6;
@@ -44,6 +44,13 @@ $article-content-top-padding: 45px;
   -o-tap-highlight-color: $color;
   tap-highlight-color: $color;
 }
+
+@mixin backdrop {
+  @include background(linear-gradient(white, white 85%, $gray-1));
+  background-color: white;
+}
+
+
 
 /**
  * Theme Styles
@@ -199,11 +206,10 @@ slides > slide {
   &.backdrop {
     z-index: -10;
     display: block !important;
-    @include background(linear-gradient(white, white 85%, $gray-1));
-    background-color: white;
+    @include backdrop;
 
     &:after, &:before {
-      display: none;
+      display: none; // Prevent double set of slide nums and footer icons.
     }
   }
 
@@ -225,7 +231,7 @@ slides > slide {
     height: 100%;
 
     > iframe {
-      height: 100%;
+      height: 98%;
     }
   }
 }
@@ -378,7 +384,7 @@ pre {
   @include box-sizing(border-box);
   /*overflow: hidden;*/
 
-  &:after {
+  &[data-lang]:after {
     content: attr(data-lang);
     background-color: $gray-2;
     right: 0;
@@ -389,6 +395,10 @@ pre {
     padding: 2px 25px;
     text-transform: uppercase;
   }
+}
+
+pre[data-lang="go"] {
+  color: #333;
 }
 
 code {
@@ -600,6 +610,16 @@ article.smaller {
     &:hover {
       opacity: 1.0;
     }
+  }
+}
+
+.popup .next .build {
+  .to-build {
+    opacity: 1;
+  }
+
+  .build-fade {
+    opacity: 1;
   }
 }
 
@@ -865,7 +885,7 @@ aside.gdbar {
   height: 97px;
   width: 215px;
   position: absolute;
-  left: 0;
+  left: -1px;
   top: 125px;
   @include border-radius(0 10px 10px 0);
   @include background(linear-gradient(left, $gray-1, $gray-1) no-repeat);
@@ -945,5 +965,119 @@ aside.gdbar {
   span {
     width: 115px;
     display: inline-block;
+  }
+}
+
+.overview {
+
+  &.popup {
+    .note {
+      display: none !important;
+    }
+  }
+  
+  slides {
+    slide {
+      &.backdrop {
+        display: none !important;
+      }
+
+      display: block;
+      cursor: pointer;
+      opacity: 0.5;
+      pointer-events: auto !important;
+
+      @include backdrop();
+
+      &.far-past,
+      &.past,
+      &.next,
+      &.far-next,
+      &.far-past {
+        opacity: 0.5;
+        display: block;
+      }
+
+      &.current {
+        opacity: 1;
+      }
+    }
+  }
+
+  .slide-area {
+    display: none;
+  }
+}
+
+@media print {
+  slides {
+    slide {
+      display: block !important;
+      position: relative;
+      @include backdrop();
+      @include transform(none !important);
+      width: 100%;
+      height: 100%;
+      page-break-after:always;
+      top: auto !important;
+      left: auto !important;
+      margin-top: 0 !important;
+      margin-left: 0 !important;
+      opacity: 1 !important;
+      color: #555;
+
+      &.far-past,
+      &.past,
+      &.next,
+      &.far-next,
+      &.far-past,
+      &.current {
+        opacity: 1 !important;
+        display: block !important;
+      }
+
+      .build {
+        > * {
+          @include transition(none);
+        }
+
+        .to-build,
+        .build-fade {
+          opacity: 1;
+        }
+      }
+
+      .auto-fadein {
+        opacity: 1 !important;
+      }
+
+      &.backdrop {
+        display: none !important;
+      }
+
+      table.rows {
+        border-right: 0;
+      }
+    }
+
+    slide[hidden] {
+      display: none !important;
+    }
+  }
+
+  .slide-area {
+    display: none;
+  }
+
+  .reflect {
+    -webkit-box-reflect: none;
+    -moz-box-reflect: none;
+    -o-box-reflect: none;
+    -ms-box-reflect: none;
+    box-reflect: none;
+  }
+
+  pre, code {
+    font-family: monospace !important;
   }
 }

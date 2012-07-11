@@ -67,7 +67,7 @@ body {
   @include transition(opacity 800ms ease-in 100ms); // Add small delay to prevent jank.
 
   &.loaded {
-    opacity: 1;
+    opacity: 1 !important;
   }
 }
 
@@ -88,6 +88,7 @@ slides {
   @include transform(translate3d(0, 0, 0));
   @include perspective(1000);
   @include transform-style(preserve-3d);
+  @include transition(opacity 800ms ease-in 100ms); // Add small delay to prevent jank.
 }
 
 slides > slide {
