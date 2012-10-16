@@ -1,11 +1,12 @@
-#!/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin/python
+#!/usr/bin/env python
+
 import codecs
 import re
 import jinja2
 import markdown
 
 def process_slides():
-  with codecs.open('../presentation.html', 'w', encoding='utf8') as outfile:
+  with codecs.open('../../presentation-output.html', 'w', encoding='utf8') as outfile:
     md = codecs.open('slides.md', encoding='utf8').read()
     md_slides = md.split('\n---\n')
     print len(md_slides)
