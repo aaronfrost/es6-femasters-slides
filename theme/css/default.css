@@ -295,7 +295,7 @@ slides > slide.dark {
 /* line 171, ../scss/default.scss */
 slides > slide:not(.nobackground):before {
   font-size: 12pt;
-  content: "#io12";
+  content: "#yourhashtag";
   position: absolute;
   bottom: 20px;
   left: 60px;
@@ -527,7 +527,7 @@ ul ul {
 
 /* line 373, ../scss/default.scss */
 pre {
-  font-family: 'Inconsolata', 'Courier New', monospace;
+  font-family: 'Source Code Pro', 'Courier New', monospace;
   font-size: 20px;
   line-height: 28px;
   padding: 10px 0 10px 60px;
@@ -563,7 +563,7 @@ pre[data-lang="go"] {
 /* line 404, ../scss/default.scss */
 code {
   font-size: 95%;
-  font-family: 'Inconsolata', 'Courier New', monospace;
+  font-family: 'Source Code Pro', 'Courier New', monospace;
   color: black;
 }
 

@@ -2,7 +2,7 @@
 @import "compass/css3/columns";
 @import "compass/css3/user-interface";
 
-$social-tags: '#io12';
+$social-tags: '#yourhashtag';
 $brand-small-icon-size: 30px;
 
 $gray-1: #e6e6e6;
@@ -371,7 +371,7 @@ ul {
 }
 
 pre {
-  font-family: 'Inconsolata', 'Courier New', monospace;
+  font-family: 'Source Code Pro', 'Courier New', monospace;
   font-size: 20px;
   line-height: 28px;
   padding: 10px 0 10px $slide-left-right-padding;
@@ -403,7 +403,7 @@ pre[data-lang="go"] {
 
 code {
   font-size: 95%;
-  font-family: 'Inconsolata', 'Courier New', monospace;
+  font-family: 'Source Code Pro', 'Courier New', monospace;
   color: black;
 }
 

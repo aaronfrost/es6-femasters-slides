@@ -11,7 +11,7 @@ var SLIDE_CONFIG = {
     favIcon: 'images/google_developers_logo_tiny.png',
     fonts: [
       'Open Sans:regular,semibold,italic,italicsemibold',
-      'Inconsolata'
+      'Source Code Pro'
     ],
     //theme: ['mytheme'], // Add your own custom themes or styles in /theme/css. Leave off the .css extension.
   },
