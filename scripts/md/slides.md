@@ -1,4 +1,5 @@
 title: Slide Title
+subtitle: Subtitle
 class: image
 
 ![Mobile vs desktop users](image.png)
@@ -25,7 +26,7 @@ class: nobackground fill
 
 ---
 
-h1: Big Title Slide
+title: Big Title Slide
 class: title-slide
 
 ---
