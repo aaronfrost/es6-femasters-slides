@@ -6,6 +6,12 @@ class: image
 
 ---
 
+title: Segue Slide
+subtitle: Subtitle
+class: segue dark nobackground
+
+---
+
 title: Agenda
 class: big
 

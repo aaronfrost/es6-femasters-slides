@@ -44,13 +44,21 @@ URL: https://code.google.com/p/io-2012-slides
 
 {% for slide in slides %}
 <slide class="{{ slide.class }}">
-  <hgroup>
-    <h2>{{ slide.title }}</h2>
-    <h3>{{ slide.subtitle }}</h3>
-  </hgroup>
-  <article>
-  {{ slide.content }}
-  </article>
+  {% if 'segue' in slide.class %}
+    <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>{{ slide.title }}</h2>
+      <h3>{{ slide.subtitle }}</h3>
+    </hgroup>
+  {% else %}
+    <hgroup>
+      <h2>{{ slide.title }}</h2>
+      <h3>{{ slide.subtitle }}</h3>
+    </hgroup>
+    <article>
+    {{- slide.content -}}
+    </article>
+ {% endif %}
 </slide>
 {% endfor %}
 
