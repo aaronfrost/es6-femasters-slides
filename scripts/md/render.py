@@ -50,7 +50,6 @@ def postprocess_html(html, metadata):
   """Returns processed HTML to fit into the slide template format."""
   if metadata.get('build_lists') and metadata['build_lists'] == 'true':
     html = html.replace('<ul>', '<ul class="build">')
-    print html
   return html
 
 if __name__ == '__main__':
