@@ -3,6 +3,7 @@ var SLIDE_CONFIG = {
   settings: {
     title: 'Title Goes Here<br>Up To Two Lines',
     subtitle: 'Subtitle Goes Here',
+    //eventTitle: 'Google I/O 2013',
     useBuilds: true, // Default: true. False will turn off slide animation builds.
     usePrettify: true, // Default: true
     enableSlideAreas: true, // Default: true. False turns off the click areas on either slide of the slides.
