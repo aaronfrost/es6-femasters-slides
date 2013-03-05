@@ -1,4 +1,5 @@
-/* line 17, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+@charset "UTF-8";
+/* line 17, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -15,50 +16,50 @@ time, mark, audio, video {
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 100%;
   font: inherit;
+  font-size: 100%;
   vertical-align: baseline;
 }
 
-/* line 20, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
-body {
+/* line 22, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html {
   line-height: 1;
 }
 
-/* line 22, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 24, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 24, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 26, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 26, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 28, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 28, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 30, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 101, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 103, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 30, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 32, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 114, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 116, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
   display: block;
 }
@@ -66,13 +67,13 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 /**
  * Base SlideDeck Styles
  */
-/* line 48, ../scss/_base.scss */
+/* line 50, ../scss/_base.scss */
 html {
   height: 100%;
   overflow: hidden;
 }
 
-/* line 53, ../scss/_base.scss */
+/* line 55, ../scss/_base.scss */
 body {
   margin: 0;
   padding: 0;
@@ -86,28 +87,28 @@ body {
   -moz-font-smoothing: antialiased;
   -ms-font-smoothing: antialiased;
   -o-font-smoothing: antialiased;
-  -webkit-transition: opacity 800ms ease-in 100ms;
+  -webkit-transition: opacity 800ms ease-in;
+  -webkit-transition-delay: 100ms;
   -moz-transition: opacity 800ms ease-in 100ms;
-  -ms-transition: opacity 800ms ease-in 100ms;
   -o-transition: opacity 800ms ease-in 100ms;
   transition: opacity 800ms ease-in 100ms;
 }
-/* line 69, ../scss/_base.scss */
+/* line 71, ../scss/_base.scss */
 body.loaded {
   opacity: 1 !important;
 }
 
-/* line 74, ../scss/_base.scss */
+/* line 76, ../scss/_base.scss */
 input, button {
   vertical-align: middle;
 }
 
-/* line 78, ../scss/_base.scss */
+/* line 80, ../scss/_base.scss */
 slides > slide[hidden] {
   display: none !important;
 }
 
-/* line 82, ../scss/_base.scss */
+/* line 84, ../scss/_base.scss */
 slides {
   width: 100%;
   height: 100%;
@@ -120,17 +121,23 @@ slides {
   -o-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
   -webkit-perspective: 1000;
+  -moz-perspective: 1000;
+  -ms-perspective: 1000;
+  -o-perspective: 1000;
   perspective: 1000;
   -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
   transform-style: preserve-3d;
-  -webkit-transition: opacity 800ms ease-in 100ms;
+  -webkit-transition: opacity 800ms ease-in;
+  -webkit-transition-delay: 100ms;
   -moz-transition: opacity 800ms ease-in 100ms;
-  -ms-transition: opacity 800ms ease-in 100ms;
   -o-transition: opacity 800ms ease-in 100ms;
   transition: opacity 800ms ease-in 100ms;
 }
 
-/* line 94, ../scss/_base.scss */
+/* line 96, ../scss/_base.scss */
 slides > slide {
   display: block;
   position: absolute;
@@ -234,7 +241,7 @@ body {
 /* line 98, ../scss/default.scss */
 slides > slide {
   display: none;
-  font-family: 'Open Sans', Arial, sans-serif;
+  font-family: "Open Sans", Arial, sans-serif;
   font-size: 26px;
   color: #797979;
   width: 900px;
@@ -249,7 +256,6 @@ slides > slide {
   border-radius: 5px;
   -webkit-transition: all 0.6s ease-in-out;
   -moz-transition: all 0.6s ease-in-out;
-  -ms-transition: all 0.6s ease-in-out;
   -o-transition: all 0.6s ease-in-out;
   transition: all 0.6s ease-in-out;
 }
@@ -339,7 +345,6 @@ slides > slide.backdrop {
   background: -webkit-linear-gradient(#ffffff, #ffffff 85%, #e6e6e6);
   background: -moz-linear-gradient(#ffffff, #ffffff 85%, #e6e6e6);
   background: -o-linear-gradient(#ffffff, #ffffff 85%, #e6e6e6);
-  background: -ms-linear-gradient(#ffffff, #ffffff 85%, #e6e6e6);
   background: linear-gradient(#ffffff, #ffffff 85%, #e6e6e6);
   background-color: white;
 }
@@ -501,7 +506,7 @@ ul li ul li:before {
 }
 /* line 350, ../scss/default.scss */
 ul > li:before {
-  content: '·';
+  content: '\00B7';
   margin-left: -1em;
   position: absolute;
   font-weight: 600;
@@ -516,7 +521,6 @@ ul ul {
   opacity: 0.25;
   -webkit-transition: opacity 0.5s ease-in;
   -moz-transition: opacity 0.5s ease-in;
-  -ms-transition: opacity 0.5s ease-in;
   -o-transition: opacity 0.5s ease-in;
   transition: opacity 0.5s ease-in;
 }
@@ -527,7 +531,7 @@ ul ul {
 
 /* line 373, ../scss/default.scss */
 pre {
-  font-family: 'Source Code Pro', 'Courier New', monospace;
+  font-family: "Source Code Pro", "Courier New", monospace;
   font-size: 20px;
   line-height: 28px;
   padding: 10px 0 10px 60px;
@@ -545,7 +549,7 @@ pre {
 /* line 387, ../scss/default.scss */
 pre[data-lang]:after {
   content: attr(data-lang);
-  background-color: #a9a9a9;
+  background-color: darkgrey;
   right: 0;
   top: 0;
   position: absolute;
@@ -563,7 +567,7 @@ pre[data-lang="go"] {
 /* line 404, ../scss/default.scss */
 code {
   font-size: 95%;
-  font-family: 'Source Code Pro', 'Courier New', monospace;
+  font-family: "Source Code Pro", "Courier New", monospace;
   color: black;
 }
 
@@ -590,9 +594,8 @@ button {
   background: -webkit-linear-gradient(#f9f9f9 40%, #e3e3e3 70%);
   background: -moz-linear-gradient(#f9f9f9 40%, #e3e3e3 70%);
   background: -o-linear-gradient(#f9f9f9 40%, #e3e3e3 70%);
-  background: -ms-linear-gradient(#f9f9f9 40%, #e3e3e3 70%);
   background: linear-gradient(#f9f9f9 40%, #e3e3e3 70%);
-  border: 1px solid #a9a9a9;
+  border: 1px solid darkgrey;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   -ms-border-radius: 3px;
@@ -620,13 +623,12 @@ button:not(:disabled):active {
   background: -webkit-linear-gradient(#e3e3e3 40%, #f9f9f9 70%);
   background: -moz-linear-gradient(#e3e3e3 40%, #f9f9f9 70%);
   background: -o-linear-gradient(#e3e3e3 40%, #f9f9f9 70%);
-  background: -ms-linear-gradient(#e3e3e3 40%, #f9f9f9 70%);
   background: linear-gradient(#e3e3e3 40%, #f9f9f9 70%);
 }
 
 /* line 444, ../scss/default.scss */
 :disabled {
-  color: #a9a9a9;
+  color: darkgrey;
 }
 
 /* line 448, ../scss/default.scss */
@@ -696,7 +698,7 @@ button:not(:disabled):active {
 
 /* line 487, ../scss/default.scss */
 .gray2 {
-  color: #a9a9a9;
+  color: darkgrey;
 }
 
 /* line 490, ../scss/default.scss */
@@ -723,6 +725,7 @@ button:not(:disabled):active {
 .columns-2 {
   -webkit-column-count: 2;
   -moz-column-count: 2;
+  -ms-column-count: 2;
   -o-column-count: 2;
   column-count: 2;
 }
@@ -752,7 +755,6 @@ table th {
   background: -webkit-linear-gradient(top, #4387fd 40%, #2a7cdf 80%) no-repeat;
   background: -moz-linear-gradient(top, #4387fd 40%, #2a7cdf 80%) no-repeat;
   background: -o-linear-gradient(top, #4387fd 40%, #2a7cdf 80%) no-repeat;
-  background: -ms-linear-gradient(top, #4387fd 40%, #2a7cdf 80%) no-repeat;
   background: linear-gradient(top, #4387fd 40%, #2a7cdf 80%) no-repeat;
 }
 /* line 530, ../scss/default.scss */
@@ -767,7 +769,6 @@ table td.highlight {
   background: -webkit-linear-gradient(top, #ffd14d 40%, #f6c000 80%) no-repeat;
   background: -moz-linear-gradient(top, #ffd14d 40%, #f6c000 80%) no-repeat;
   background: -o-linear-gradient(top, #ffd14d 40%, #f6c000 80%) no-repeat;
-  background: -ms-linear-gradient(top, #ffd14d 40%, #f6c000 80%) no-repeat;
   background: linear-gradient(top, #ffd14d 40%, #f6c000 80%) no-repeat;
 }
 /* line 540, ../scss/default.scss */
@@ -838,9 +839,9 @@ article.smaller q:before, article.smaller q:after {
 /* Builds */
 /* line 599, ../scss/default.scss */
 .build > * {
-  -webkit-transition: opacity 0.5s ease-in-out 0.2s;
+  -webkit-transition: opacity 0.5s ease-in-out;
+  -webkit-transition-delay: 0.2s;
   -moz-transition: opacity 0.5s ease-in-out 0.2s;
-  -ms-transition: opacity 0.5s ease-in-out 0.2s;
   -o-transition: opacity 0.5s ease-in-out 0.2s;
   transition: opacity 0.5s ease-in-out 0.2s;
 }
@@ -959,7 +960,6 @@ article.smaller q:before, article.smaller q:after {
   transform: translateY(350px);
   -webkit-transition: all 0.4s ease-in-out;
   -moz-transition: all 0.4s ease-in-out;
-  -ms-transition: all 0.4s ease-in-out;
   -o-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
 }
@@ -1002,7 +1002,6 @@ article.smaller q:before, article.smaller q:after {
   background: white;
   -webkit-transition: none;
   -moz-transition: none;
-  -ms-transition: none;
   -o-transition: none;
   transition: none;
   pointer-events: none;
@@ -1029,7 +1028,6 @@ article.smaller q:before, article.smaller q:after {
   background-image: -webkit-radial-gradient(50% 50%, #b1dfff 0%, #4387fd 600px);
   background-image: -moz-radial-gradient(50% 50%, #b1dfff 0%, #4387fd 600px);
   background-image: -o-radial-gradient(50% 50%, #b1dfff 0%, #4387fd 600px);
-  background-image: -ms-radial-gradient(50% 50%, #b1dfff 0%, #4387fd 600px);
   background-image: radial-gradient(50% 50%, #b1dfff 0%, #4387fd 600px);
 }
 /* line 720, ../scss/default.scss */
@@ -1061,7 +1059,6 @@ article.smaller q:before, article.smaller q:after {
   transform: translate3d(250px, 800px, 0) scale(1.5);
   -webkit-transition: opacity 400ms ease-in-out;
   -moz-transition: opacity 400ms ease-in-out;
-  -ms-transition: opacity 400ms ease-in-out;
   -o-transition: opacity 400ms ease-in-out;
   transition: opacity 400ms ease-in-out;
 }
@@ -1098,7 +1095,7 @@ article.smaller q:before, article.smaller q:after {
 /* line 761, ../scss/default.scss */
 .source {
   font-size: 14px;
-  color: #a9a9a9;
+  color: darkgrey;
   position: absolute;
   bottom: 70px;
   left: 60px;
@@ -1183,9 +1180,9 @@ article.smaller q:before, article.smaller q:after {
 
 /* line 803, ../scss/default.scss */
 .auto-fadein {
-  -webkit-transition: opacity 0.6s ease-in 1s;
+  -webkit-transition: opacity 0.6s ease-in;
+  -webkit-transition-delay: 1s;
   -moz-transition: opacity 0.6s ease-in 1s;
-  -ms-transition: opacity 0.6s ease-in 1s;
   -o-transition: opacity 0.6s ease-in 1s;
   transition: opacity 0.6s ease-in 1s;
   opacity: 0;
@@ -1282,15 +1279,14 @@ aside.gdbar {
   background: -webkit-linear-gradient(left, #e6e6e6, #e6e6e6) no-repeat;
   background: -moz-linear-gradient(left, #e6e6e6, #e6e6e6) no-repeat;
   background: -o-linear-gradient(left, #e6e6e6, #e6e6e6) no-repeat;
-  background: -ms-linear-gradient(left, #e6e6e6, #e6e6e6) no-repeat;
   background: linear-gradient(left, #e6e6e6, #e6e6e6) no-repeat;
   -webkit-background-size: 0% 100%;
   -moz-background-size: 0% 100%;
   -o-background-size: 0% 100%;
   background-size: 0% 100%;
-  -webkit-transition: all 0.5s ease-out 0.5s;
+  -webkit-transition: all 0.5s ease-out;
+  -webkit-transition-delay: 0.5s;
   -moz-transition: all 0.5s ease-out 0.5s;
-  -ms-transition: all 0.5s ease-out 0.5s;
   -o-transition: all 0.5s ease-out 0.5s;
   transition: all 0.5s ease-out 0.5s;
   /* Better to transition only on background-size, but not sure how to do that with the mixin. */
@@ -1345,7 +1341,7 @@ aside.gdbar img {
 /* line 934, ../scss/default.scss */
 .title-slide hgroup h2 {
   font-size: 34px;
-  color: #a9a9a9;
+  color: darkgrey;
   font-weight: inherit;
 }
 /* line 940, ../scss/default.scss */
@@ -1393,7 +1389,6 @@ aside.gdbar img {
   background: -webkit-linear-gradient(#ffffff, #ffffff 85%, #e6e6e6);
   background: -moz-linear-gradient(#ffffff, #ffffff 85%, #e6e6e6);
   background: -o-linear-gradient(#ffffff, #ffffff 85%, #e6e6e6);
-  background: -ms-linear-gradient(#ffffff, #ffffff 85%, #e6e6e6);
   background: linear-gradient(#ffffff, #ffffff 85%, #e6e6e6);
   background-color: white;
 }
@@ -1424,7 +1419,6 @@ aside.gdbar img {
     background: -webkit-linear-gradient(#ffffff, #ffffff 85%, #e6e6e6);
     background: -moz-linear-gradient(#ffffff, #ffffff 85%, #e6e6e6);
     background: -o-linear-gradient(#ffffff, #ffffff 85%, #e6e6e6);
-    background: -ms-linear-gradient(#ffffff, #ffffff 85%, #e6e6e6);
     background: linear-gradient(#ffffff, #ffffff 85%, #e6e6e6);
     background-color: white;
     -webkit-transform: none !important;
@@ -1451,7 +1445,6 @@ aside.gdbar img {
   slides slide .build > * {
     -webkit-transition: none;
     -moz-transition: none;
-    -ms-transition: none;
     -o-transition: none;
     transition: none;
   }

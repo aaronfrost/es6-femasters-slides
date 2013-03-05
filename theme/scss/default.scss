@@ -348,7 +348,7 @@ ul {
   }
 
   > li:before {
-    content: '·';
+    content: '\00B7';
     margin-left: -1em;
     position: absolute;
     font-weight: 600;
