@@ -2,23 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="38a6d110-4f95-4715-a189-c036500cd551" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/es6.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/frontendmasters_logo.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/teamfight.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/uofi.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/theme/scss/fe.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/history.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/samples/let.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/letconst.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ptc.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/temp.html" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/README.html" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/theme/css/default.css" afterPath="$PROJECT_DIR$/theme/css/default.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/theme/scss/default.scss" afterPath="$PROJECT_DIR$/theme/scss/default.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/slide_config.js" afterPath="$PROJECT_DIR$/slide_config.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template.html" afterPath="$PROJECT_DIR$/template.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="io-2013-slides.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -86,8 +71,8 @@
                 <state />
               </provider>
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.064638786" vertical-offset="0" max-vertical-offset="2550">
-                  <caret line="2" column="72" selection-start-line="2" selection-start-column="72" selection-end-line="2" selection-end-column="72" />
+                <state vertical-scroll-proportion="0.5171103" vertical-offset="0" max-vertical-offset="2601">
+                  <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -820,8 +805,8 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.064638786" vertical-offset="0" max-vertical-offset="2550">
-          <caret line="2" column="72" selection-start-line="2" selection-start-column="72" selection-end-line="2" selection-end-column="72" />
+        <state vertical-scroll-proportion="0.5171103" vertical-offset="0" max-vertical-offset="2601">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding />
         </state>
       </provider>
