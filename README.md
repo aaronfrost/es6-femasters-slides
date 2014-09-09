@@ -1,3 +1,17 @@
+# I GOT THESE SLIDES FROM GOOGLE DEV TEAM
+
+To run this, you simply launch a static server and open the `index.html`
+
+
+
+
+
+
+
+
+
+
+
 <style>
 @import "http://fonts.googleapis.com/css?family=Open Sans:regular,semibold,italic,italicsemibold|Inconsolata&amp;v2";
 body {

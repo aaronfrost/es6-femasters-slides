@@ -1,0 +1,395 @@
+<!--
+Google IO 2012/2013 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahé <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PTC</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="title-slide segue nobackground">
+    <aside class="gdbar"><img src="images/es6.png"></aside>
+    <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title style="display: none;"><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle style="display: none;"><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter style="display: none;"><!-- populated from slide_config.json --></p>
+      <h1>Proper Tail Calls</h1>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+    </hgroup>
+  </slide>
+
+  <slide class="segue dark quote nobackground">
+    <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <q>
+        Proper tail recursion is a property of the asymptotic space complexity of a
+        language's runtime behavior. That is, in improperly tail recursive languages,
+        ...
+      </q>
+      <div class="author">
+        Dave Herman<br>
+        Principal Researcher w/ Mozilla<br>
+        @littlecalculist
+      </div>
+    </article>
+  </slide>
+
+  <slide class="segue dark quote nobackground">
+    <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <q>
+        ...
+        control can consume unbounded amounts of space for programs that, when run
+        in properly tail recursive languages, only require a constant amount of space.
+      </q>
+      <div class="author">
+        Dave Herman<br>
+        Principal Researcher w/ Mozilla<br>
+        @littlecalculist
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Proper Tail Call</h2>
+    </hgroup>
+
+    <article class="flexbox vcenter">
+      <img src="images/ptcimproper.png" class="" alt="" style="width: 80%;" />
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Proper Tail Call</h2>
+    </hgroup>
+
+    <article class="flexbox vcenter">
+      <img src="images/ptcproper.png" class="" alt="" style="width: 80%;" />
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>Proper Tail Calls: Example</h2>
+    </hgroup>
+
+    <article>
+<pre class="prettyprint" data-lang="javascript">
+  &lt;script type='text/javascript'&gt;
+    //resursive method
+    <b>function foo(num) {</b>
+      try{
+        <b>return foo( (num||0) +1);</b>
+      }catch(e){return num;}
+    }
+    console.log(foo());
+  &lt;/script&gt;
+</pre>
+      <ul class="build fade">
+        <li>Let's Run In Chrome, Firefox, & Nodejs</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Proper Tail Call</h2>
+    </hgroup>
+
+    <article class="flexbox ">
+      <img src="images/ptcfoo1.png" class="reflect" alt="" />
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Proper Tail Call</h2>
+    </hgroup>
+
+    <article class="flexbox ">
+      <img src="images/ptcfoo2.png" class="reflect" alt="" />
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Proper Tail Call</h2>
+    </hgroup>
+
+    <article class="flexbox ">
+      <img src="images/ptcfoo3.png" class="reflect" alt="" />
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Proper Tail Call</h2>
+    </hgroup>
+
+    <article class="flexbox ">
+      <img src="images/ptcfoon.png" class="" alt="" />
+    </article>
+    <ul class="build fade">
+      <li>Callstacks are not released after each call</li>
+    </ul>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>Proper Tail Call</h2>
+    </hgroup>
+
+    <article>
+      <ul class="build fade">
+        <li>ES6 intoduces Proper Tail Calls into JavaScript</li>
+        <li>If used correctly, PTC will add recursion</li>
+        <li>Previous stacks are GC'd</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>PTC Vocab: Tail Position</h2>
+    </hgroup>
+
+    <article>
+      <ul class="build fade">
+        <li>The last instruction to fire before the <i>return</i> statement</li>
+      </ul>
+      <pre class="prettyprint" data-lang="javascript">
+&lt;script type='text/javascript'&gt;
+  function greet(num) {
+    <b>return "Hello";</b>
+  }
+&lt;/script&gt;
+      </pre>
+      <ul class="build fade">
+        <li>Instruction "Hello" is in Tail Position</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>PTC Vocab: Tail Call</h2>
+    </hgroup>
+
+    <article>
+      <ul class="build fade">
+        <li>An instruction in Tail Position that is a method call</li>
+        <li>
+          <pre class="prettyprint" data-lang="javascript">
+&lt;script type='text/javascript'&gt;
+  function greet(){
+    <b>return getSalutation(); //Tail Position && Tail Call</b>
+  }
+
+  function getSalutation(){
+    <b>return 'Hello'; //Tail Position, but not Tail Call</b>
+  }
+&lt;/script&gt;
+          </pre>
+        </li>
+        <li>Now we know Tail Position & Tail Call</li>
+      </ul>
+
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>PTC Vocab: Tail Call</h2>
+    </hgroup>
+
+    <article>
+      <ul class="build fade">
+        <li>An instruction in Tail Position that is a method call</li>
+        <li>
+          <pre class="prettyprint" data-lang="javascript">
+&lt;script type='text/javascript'&gt;
+  function resultsHandler(err, results, callback){
+    if(err){
+      <b>return callback(true);</b>
+    }
+    <b>return callback(false, results);</b>
+  }
+  <b>//TWO TAIL POSITIONS, TWO TAIL CALLS</b>
+&lt;/script&gt;
+          </pre>
+        </li>
+
+      </ul>
+
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>PTC Vocab: Close Call</h2>
+    </hgroup>
+
+    <article>
+      <ul class="build fade">
+        <li>Close call looks like a tail call, but isn't</li>
+        <li>
+          <pre class="prettyprint" data-lang="javascript">
+&lt;script type='text/javascript'&gt;
+  function foo(){
+    <b>return 1 + bar();</b>
+  }
+  <b>//It has to return the result of bar(), then add 1</b>
+&lt;/script&gt;
+          </pre>
+        </li>
+        <li>Because it does something after the call, it isn't a tail call</li>
+      </ul>
+
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>PTC Vocab: Proper Tail Call PRE-ES6</h2>
+    </hgroup>
+
+    <article>
+          <pre class="prettyprint" data-lang="javascript">
+&lt;script type='text/javascript'&gt;
+  function fibonacci(x, y, limit, index) {
+    if(arguments.length == 1){
+      if(x)
+        return fibonacci(0, 1, x, 1);
+      return 0;
+    }else{
+      if(index < limit)
+        return fibonacci(y, (x+y), limit, ++index);
+      return y;
+    }
+  }
+  console.log(fibonacci(3));       // 2
+  console.log(fibonacci(10));      // 55
+  console.log(fibonacci(12495));   //RangeError
+&lt;/script&gt;
+          </pre>
+
+
+    </article>
+    <aside class="note">
+      <section>
+        <ul class="build fade">
+          <li>Each Call Add Another Stack</li>
+          <li>Each Stack Needs More Memory</li>
+          <li>Memory Runs Out</li>
+          <li>#trycatch</li>
+        </ul>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>PTC Vocab: Proper Tail Call w/ ES6</h2>
+    </hgroup>
+
+    <article>
+          <pre class="prettyprint" data-lang="javascript">
+&lt;script type='text/javascript'&gt;
+  function fibonacci(x, y, limit, index) {
+    if(arguments.length == 1){
+      if(x)
+        return fibonacci(0, 1, x, 1);
+      return 0;
+    }else{
+      if(index < limit)
+        return fibonacci(y, (x+y), limit, ++index);
+      return y;
+    }
+  }
+  console.log(fibonacci(3));       // 2
+  console.log(fibonacci(10));      // 55
+  console.log(fibonacci(12495));   // BIG BLOODY NUMBER
+&lt;/script&gt;
+          </pre>
+
+
+    </article>
+    <aside class="note">
+      <section>
+        <ul class="build fade">
+          <li>In ES6, exact same code just works</li>
+          <!--<li>Each Stack Needs More Memory</li>-->
+          <!--<li>Memory Runs Out</li>-->
+          <!--<li>#trycatch</li>-->
+        </ul>
+      </section>
+    </aside>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>Final Thoughts</h2>
+    </hgroup>
+
+    <article>
+      <ul>
+        <li>Proper Tail Calls only work in Strict Mode</li>
+        <li>Optimize code so that Tail Position is a Tail Call</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide class="segue dark quote nobackground">
+    <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <h2>Proper Tail Calls</h2>
+      <h3>Questions???</h3>
+      <div class="author">
+        #ES6 #frontendmasters @js_dev
+      </div>
+    </article>
+  </slide>
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,829 @@
+<!--
+Google IO 2012/2013 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahé <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="title-slide segue nobackground">
+    <aside class="gdbar"><img src="images/es6.png"></aside>
+    <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title style="display: none;"><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle style="display: none;"><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter style="display: none;"><!-- populated from slide_config.json --></p>
+      <h1>History of JavaScript</h1>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+    </hgroup>
+  </slide>
+
+
+  <slide>
+  	<!-- <aside class="note"></aside> -->
+  	<hgroup>
+  		<h2>History of JavaScript</h2>
+  	</hgroup>
+  	<article>
+      <ul>
+        <li>
+          <h4 class="fs-56">1985</h4>
+          <strong>Brendan Eich Graduates</strong>
+          <br/>
+          <br/>
+          <div><img src="images/uofi.jpg" alt="" width="300"/></div>
+        </li>
+      </ul>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>History of JavaScript</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>
+          Brendan gets a job at <a href="http://www.sgi.com/">Sillicon Graphics Int'l</a>
+          <p>SGI essentially invents the GPU</p>
+        </li>
+      </ul>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>History of JavaScript</h2>
+    </hgroup>
+    <article>
+      <ul>
+
+        <li>
+          <p>
+            A few guys go and create Netscape
+          </p>
+          <ul>
+            <li><a href="https://twitter.com/pmarca">Marc Andreesen</a> (<a href="http://www.ncsa.illinois.edu/">NCSA</a>)</li>
+            <li>Jim Clark (<a href="http://www.sgi.com/">SGI</a>)</li>
+          </ul>
+          <p>
+            They initially call it <a href="http://home.mcom.com/home/welcome.html">MCom</a>,
+            but have legal issues with Mosaic. So they rebrand as Netscape
+          </p>
+        </li>
+      </ul>
+    </article>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>History of JavaScript</h2>
+    </hgroup>
+    <article>
+      <ul>
+
+        <li>
+          <p class="fs-56">October 13, 1994</p>
+          <p class="fs-48">Netscape Navigator is released</p>
+        </li>
+        
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+
+  	<hgroup>
+  		<h2>Netscape's Launch Site</h2>
+  	</hgroup>
+
+  	<article>
+      <iframe data-src="http://home.mcom.com/home/welcome.html"></iframe>
+  	</article>
+  </slide>
+
+  <slide>
+  	<hgroup>
+  		<h2>6 months later</h2>
+  	</hgroup>
+
+  	<article>
+  		<p class="fs-48">April 1995</p>
+      <p class="fs-40">Brendan Joins Netscape</p>
+      <br/><br/>
+      <p>"Brendan, come to Netscape build Scheme in the browser"</p>
+  	</article>
+  </slide>
+
+  <slide>
+  	<hgroup>
+  		<h2>April 1995</h2>
+  	</hgroup>
+
+  	<article>
+  		<ul class="build fade">
+        <li>Hired him to the server team, not the client team</li>
+        <li>Sun puts pressure on Netscape to add Java to the browser</li>
+      </ul>
+  	</article>
+  </slide>
+
+  <slide>
+  	<hgroup>
+  		<h2>May 1995</h2>
+  	</hgroup>
+
+  	<article>
+  		<ul class="build fade">
+        <li>Brendan is moved to client team</li>
+        <li>Faced with the Java fight from Sun</li>
+        <li>Helps Netscape decide that Java is not the language of the Web</li>
+  		</ul>
+  	</article>
+  </slide>
+
+  <slide>
+  	<hgroup>
+  		<h2>Why Not Java?</h2>
+  	</hgroup>
+
+  	<article>
+      <div class="fs-32">Too Complex</div>
+  		<ul class="build fade">
+        <li>Constantly running "javac"</li>
+        <li>Always get a main method on a Class</li>
+        <li>"Not for the casual, amateur programmer"</li>
+        <li>Needed something more like VB</li>
+        <li>"Meant for people who were learning programming for the first time"</li>
+        <li class="fs-24">(this is where automatic semi-colons come from)</li>
+  		</ul>
+  	</article>
+  </slide>
+
+  <slide>
+     <aside class="note">
+       <section style="text-align: center">
+        MOCHA
+       </section>
+     </aside>
+  	<hgroup>
+  		<h2>10 Days</h2>
+  	</hgroup>
+
+  	<article>
+      <p>Brendan starts a new project to build a language for the browser</p>
+      <p>Does anyone know the code name for this project?</p>
+  	</article>
+  </slide>
+
+  <slide>
+  	<hgroup>
+  		<h2>Mocha</h2>
+  	</hgroup>
+
+  	<article>
+      <ul class="build fade">
+        <li>Code name Mocha</li>
+        <li>Does anyone know the name used during beta period?</li>
+        <li>Does anyone know why they called it LiveScript?</li>
+        <li>Netscape had a server platform called "LiveWire"</li>
+        <li>Netscape Marketing embraces the "Live" brand</li>
+        <li>The goal is to call is JavaScript</li>
+      </ul>
+  	</article>
+    <aside class="note">
+      <section style="text-align: center;">
+        LiveScript
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+  	<hgroup>
+  		<h2>LiveScript - Bye Bye</h2>
+  	</hgroup>
+
+  	<article>
+      <ul class="build fade">
+        <li>December 1995</li>
+        <li>Sun signs agreement allowing the use of "Java"</li>
+        <li>JavaScript is official!!!</li>
+      </ul>
+  	</article>
+    <!--<aside class="note">-->
+      <!--<section style="text-align: center;">-->
+        <!--LiveScript-->
+      <!--</section>-->
+    <!--</aside>-->
+  </slide>
+
+  <slide>
+  	<hgroup>
+  		<h2>JavaScript's First Year</h2>
+  	</hgroup>
+
+  	<article>
+      <ul class="build fade">
+        <li>People are building primative SPAs</li>
+        <li>People are discovering the qwerks in the DOM</li>
+        <li>People are discovering the good parts of JS</li>
+        <li>Danger lurks!!!</li>
+      </ul>
+  	</article>
+  </slide>
+
+  <slide>
+  	<hgroup>
+  		<h2>Danger Lurks</h2>
+  	</hgroup>
+
+  	<article>
+      <ul class="build fade">
+        <li>Late 1996</li>
+        <li>Microsoft complains</li>
+        <li>Netscape API changes</li>
+        <li>#potkettleblack</li>
+        <li>Netscape already fears IE's momentum</li>
+        <li>Netscape needs help protecting JS from MS</li>
+      </ul>
+  	</article>
+  </slide>
+
+  <slide>
+  	<hgroup>
+  		<h2>Protecting JavaScript</h2>
+  	</hgroup>
+
+  	<article>
+      <ul class="build fade">
+        <li>Let's Standardize, so JS doesn't get taken over by MS</li>
+        <li>Netscape reaches out to Ecma</li>
+        <li>MS doesn't have pull inside Ecma</li>
+        <li>June 1997, JS is officially standardized</li>
+        <li>Official Scripting API of Ecma</li>
+        <li>IBM, Borland, MS, Netscape, Sun, Standford, Others</li>
+      </ul>
+  	</article>
+  </slide>
+
+  <slide>
+  	<hgroup>
+  		<h2>Life is Good</h2>
+  	</hgroup>
+
+  	<article>
+      <ul class="build fade">
+        <li>1999, Ecmascript 3</li>
+        <li>Went well</li>
+        <li>Still have lots of ideas for next release</li>
+      </ul>
+  	</article>
+  </slide>
+
+  <slide class="fill nobackground" style="background-image: url(images/blueprints.jpg)">
+    <hgroup>
+      <h2 class="white">Pause and Define Ecma</h2>
+    </hgroup>
+    <footer class="source white">EcmaScript vs JavaScript</footer>
+  </slide>
+
+
+  <slide>
+  	<hgroup>
+  		<h2>Pause and Define Ecma</h2>
+  	</hgroup>
+
+  	<article>
+      <ul class="build fade">
+        <li>EcmaScript vs JavaScript</li>
+        <li>EcmaScript is a language spec</li>
+        <li>JavaScript implements that spec/API</li>
+        <li>EcmaScript docs won't help you write code</li>
+        <li>JavaScript docs will help you write code</li>
+      </ul>
+  	</article>
+  </slide>
+
+  <slide>
+  	<hgroup>
+  		<h2>What languages implement Ecma Spec?</h2>
+  	</hgroup>
+
+  	<article>
+
+      <table>
+        <tr>
+          <th></th><th>Implementation</th><th>API Version</th>
+        </tr>
+        <tr>
+          <td>Browsers</td><td>JavaScript</td><td>ES5/ES6</td>
+        </tr>
+        <tr>
+          <td>Flash/Flex</td><td>ActionScript</td><td>ES3 + custom</td>
+        </tr>
+        <tr>
+          <td>Java</td><td>Nashorn</td><td>ES5.1</td>
+        </tr>
+        <tr>
+          <td>Others</td><td></td><td></td>
+        </tr>
+
+      </table>
+  	</article>
+  </slide>
+
+
+  <slide>
+  	<hgroup>
+  		<h2>Define "Ecma"</h2>
+  	</hgroup>
+
+  	<article>
+      <ul class="build fade">
+        <li>European Computer Manufacturer Assoc</li>
+        <li>Ecma (new + improved)</li>
+      </ul>
+  	</article>
+  </slide>
+
+  <slide>
+  	<hgroup>
+  		<h2>Ecma's Role</h2>
+  	</hgroup>
+
+  	<article>
+      <ul class="build fade">
+        <li>Help facilitate discussion around changes</li>
+        <li>Form a committee for decision making</li>
+        <li>What's the name of this committee?</li>
+        <li>What does TC stand for?</li>
+        <li>Technical Committee</li>
+      </ul>
+  	</article>
+
+    <aside class="note">
+      <section style="text-align: center;">
+        TC39
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+  	<hgroup>
+  		<h2>Back To Business</h2>
+  	</hgroup>
+
+  	<article>
+      <ul class="build fade">
+        <li>ES3 in 1999</li>
+        <li>More people implementing ES spec</li>
+        <li>Browsers becoming more important</li>
+        <li>More people getting involved</li>
+        <li>Apple, Yahoo, Adobe, HP, lots more</li>
+        <li>Managed to get ES 2 and 3 out</li>
+      </ul>
+  	</article>
+  </slide>
+
+  <slide class="fill nobackground" style="background-image: url(images/jumpcanyon.jpg)">
+
+  	<hgroup>
+  		<h2>BIG GAP</h2>
+  	</hgroup>
+
+  	<article>
+      <ul class="build fade white fs-40">
+        <li>ES3 in 1999</li>
+        <li>ES4 begins in 2006</li>
+        <li>No progress in between</li>
+        <li>What happened to the progress?</li>
+      </ul>
+  	</article>
+  </slide>
+
+  <slide>
+  	<hgroup>
+  		<h2>BIG GAP EXPLAINED</h2>
+  	</hgroup>
+
+  	<article>
+      <ul class="build fade">
+        <li>IE Crushes!! Netscape</li>
+        <li>2003 Netscape ends</li>
+        <li>"IE Glory Days"</li>
+        <li>Let the sandbagging begin</li>
+        <li>EcmaScript standards body doesn't have any bite</li>
+      </ul>
+  	</article>
+  </slide>
+
+  <slide>
+  	<hgroup>
+  		<h2>Who Can Stop IE?</h2>
+  	</hgroup>
+
+  	<article>
+      <ul class="build fade">
+        <li>
+          <img src="images/firefoxsuperhero.jpg" alt=""/>
+        </li>
+      </ul>
+  	</article>
+  </slide>
+
+  <slide>
+  	<hgroup>
+  		<h2>JavaScript 2006</h2>
+  	</hgroup>
+
+  	<article>
+      <ul class="build fade">
+        <li>Talks start for ES4</li>
+        <li>Lots of ideas for ES4</li>
+        <li>Conflicting ideas</li>
+        <li>Implementations have different goals</li>
+      </ul>
+  	</article>
+  </slide>
+
+  <slide>
+  	<hgroup>
+  		<h2>JavaScript 2006</h2>
+  	</hgroup>
+
+  	<article>
+      <ul class="build fade">
+        <li>Crockford - remove the bad parts</li>
+        <li>Eich - have MS work generatively on their JS implementation</li>
+        <li>MS - make changes for JScript.NET</li>
+        <li>Adobe - Add classes and other Flash/Flex stuff</li>
+      </ul>
+  	</article>
+  </slide>
+
+  <slide class="fill nobackground" style="background-image: url(images/teamfight.jpg)">
+    <hgroup>
+      <h2 class="white">This Can't End Well</h2>
+    </hgroup>
+    <article>
+      <ul class="build fade">
+        <li class="fs-56 white">Let's Meet Our Fighters</li>
+      </ul>
+    </article>
+    <footer class="source white"></footer>
+  </slide>
+  
+  <slide class="fill nobackground" style="background-image: url(images/teamfight.jpg)">
+    <hgroup>
+      <h2 class="white">On Team ES3.1</h2>
+    </hgroup>
+    <article style="position: relative;">
+      <ul class="build fade">
+        <li class="white">
+          <img src="images/mozillafoundation.png" alt="" style="height:60px;"/>
+        </li>
+        <li class="white">
+          <img src="images/adobe.png" alt="" style="height:60px;"/>
+        </li>
+        <li class="white">
+          <img src="images/opera.png" alt="" style="height:60px;"/>
+        </li>
+
+      </ul>
+    </article>
+    <footer class="source white"></footer>
+  </slide>
+  
+  <slide class="fill nobackground" style="background-image: url(images/teamfight.jpg)">
+    <hgroup>
+      <h2 class="white">On Team ES4</h2>
+    </hgroup>
+    <article style="position: relative;">
+      <ul>
+        <li class="white">
+          <img src="images/mozillafoundation.png" alt="" style="height:60px;"/>
+        </li>
+        <li class="white">
+          <img src="images/adobe.png" alt="" style="height:60px;"/>
+        </li>
+        <li class="white">
+          <img src="images/opera.png" alt="" style="height:60px;"/>
+        </li>
+
+      </ul>
+      <ul class="build fade" style="position: absolute; right: 0px; top: 0px;">
+        <li>
+          <img src="images/ms.png" alt="" width="300" height="130"/>
+        </li>
+        <li>
+          <img src="images/yahoo.png" alt="" style="height:60px; margin-left:40px;"/>
+        </li>
+        <li>
+          <h2 class="white">Others</h2>
+        </li>
+
+      </ul>
+    </article>
+    <footer class="source white"></footer>
+  </slide>
+
+  <slide class="fill nobackground" style="background-image: url(images/teamfight.jpg)">
+    <hgroup>
+      <h2 class="white">ES3.1 vs ES4x</h2>
+    </hgroup>
+    <article style="position: relative;">
+      <ul>
+        <li class="white">
+          <img src="images/mozillafoundation.png" alt="" style="height:60px;"/>
+        </li>
+        <li class="white">
+          <img src="images/adobe.png" alt="" style="height:60px;"/>
+        </li>
+        <li class="white">
+          <img src="images/opera.png" alt="" style="height:60px;"/>
+        </li>
+
+      </ul>
+      <ul style="position: absolute; right: 0px; top: 0px;">
+        <li>
+          <img src="images/ms.png" alt="" width="300" height="130"/>
+        </li>
+        <li>
+          <img src="images/yahoo.png" alt="" style="height:60px; margin-left:40px;"/>
+        </li>
+        <li>
+          <h2 class="white">Others</h2>
+        </li>
+      </ul>
+      <img src="images/teamfight.gif" alt="" style="position: absolute;top: 0;left: 10%;width: 60%;"/>
+    </article>
+  </slide>
+
+  <slide class="fill nobackground" style="background-image: url(images/teamfight.jpg)">
+    <hgroup>
+      <h2 class="white">ES 3.1 Wins</h2>
+    </hgroup>
+    <article style="position: relative;">
+      <ul>
+        <li class="white">
+          <img src="images/mozillafoundation.png" alt="" style="height:60px;"/>
+        </li>
+        <li class="white">
+          <img src="images/adobe.png" alt="" style="height:60px;"/>
+        </li>
+        <li class="white">
+          <img src="images/opera.png" alt="" style="height:60px;"/>
+        </li>
+
+      </ul>
+      <ul style="position: absolute; right: 0px; top: 0px;">
+        <li>
+          <img src="images/ms.png" alt="" width="300" height="130"/>
+        </li>
+        <li>
+          <img src="images/yahoo.png" alt="" style="height:60px; margin-left:40px;"/>
+        </li>
+        <li>
+          <h2 class="white">Others</h2>
+        </li>
+      </ul>
+      <img src="images/teamfightwinner.png" alt="" style="position: absolute;top: 0;left: 10%;width: 60%;"/>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>What's the Diff? </h2>
+    </hgroup>
+
+    <article>
+      <ul>
+        <li>
+          ES 3.1
+          <ul>
+            <li class="fs-18">Lighter Changes</li>
+            <li class="fs-18">strict mode, remove bad stuff</li>
+            <li class="fs-18">No New Syntax</li>
+            <li class="fs-18">Crock, MS, Yahoo!, Others</li>
+          </ul>
+        </li>
+        <li>
+          ES 4
+          <ul>
+            <li class="fs-18">Heavier Changes</li>
+            <li class="fs-18">Classes, types, much more</li>
+            <li class="fs-18">Adobe, Opera, Mozilla</li>
+          </ul>
+        </li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>July 2008</h2>
+    </hgroup>
+
+    <article>
+      <ul class="buildfade">
+        <li>TC39 Meets in Oslo</li>
+        <li>Committee agreed to postpone ES4</li>
+        <li>Committee agreed to implement ES3.1</li>
+        <li>For marketing, rename ES3.1 to ES5</li>
+        <li>What next?</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>August 2008</h2>
+    </hgroup>
+
+    <article>
+      <ul class="buildfade">
+        <li>Brendan emails the committee</li>
+        <li>Committee is working together now, Harmoniously</li>
+        <li>All additional features go into master list of features call Harmony</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>December 3rd, 2009</h2>
+    </hgroup>
+
+    <article>
+      <ul class="buildfade">
+        <li>ES5 is officially approved</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>June 2011</h2>
+    </hgroup>
+
+    <article>
+      <ul class="buildfade">
+        <li>ES5.1 is officially approved</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Currently</h2>
+    </hgroup>
+
+    <article>
+      <ul class="buildfade">
+        <li>TC39 is finalizing ES6</li>
+        <li>TC39 is proposing features for ES7</li>
+        <li>Browser Vendors are working on implementing ES6</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide class="fill nobackground" style="background-image: url(images/tc39.png)">
+    <hgroup>
+      <h2 class=""></h2>
+    </hgroup>
+    <article>
+      <span class="black" style="background:white;padding: 0 10px;">Let's Talk About Committee Goals</span>
+    </article>
+    <footer class="source"></footer>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>TC39 Goals</h2>
+    </hgroup>
+
+    <article>
+      <ul class="buildfade">
+        <li>
+          Better Language
+          <ul>
+            <li>complex apps</li>
+            <li>libraries</li>
+            <li>code generators</li>
+          </ul>
+        </li>
+        <li>Testable Specification</li>
+        <li>Adopt de facto standards where possible</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>TC39 Notes - esdiscuss.org/notes</h2>
+    </hgroup>
+
+    <article>
+      <iframe data-src="http://esdiscuss.org/notes"></iframe>
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>Harmony or ES.Next or ES6</h2>
+    </hgroup>
+
+    <article>
+      
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Harmony or ES.Next or ES6</h2>
+    </hgroup>
+
+    <article>
+      <img src="images/buckets.png" alt="" style="width:100%;"/>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Harmony or ES.Next or ES6</h2>
+    </hgroup>
+
+    <article>
+      <img src="images/bucketharmony.png" alt="" style="width:100%;"/>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Harmony or ES.Next or ES6</h2>
+    </hgroup>
+
+    <article>
+      <img src="images/bucketnext.png" alt="" style="width:100%;"/>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Harmony or ES.Next or ES6</h2>
+    </hgroup>
+
+    <article>
+      <img src="images/bucketes6.png" alt="" style="width:100%;"/>
+    </article>
+  </slide>
+
+
+  <slide class="segue dark quote nobackground">
+    <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <q>
+        That's our History Lesson
+      </q>
+      <p>Questions????</p>
+    </article>
+  </slide>
+
+
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</body>
+</html>

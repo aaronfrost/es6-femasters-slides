@@ -2,7 +2,7 @@
 @import "compass/css3/columns";
 @import "compass/css3/user-interface";
 
-$social-tags: '#yourhashtag';
+$social-tags: '#ES6 #frontendmasters @js_dev';
 $brand-small-icon-size: 30px;
 
 $gray-1: #e6e6e6;
@@ -174,7 +174,7 @@ slides > slide {
       position: absolute;
       bottom: $slide-top-bottom-padding / 2;
       left: $slide-left-right-padding;
-      background: url(../../images/google_developers_icon_128.png) no-repeat 0 50%;
+      background: url(../../images/es6.png) no-repeat 0 50%;
       @include background-size($brand-small-icon-size $brand-small-icon-size);
       padding-left: $brand-small-icon-size + 10;
       height: $brand-small-icon-size;
@@ -193,7 +193,7 @@ slides > slide {
   &.title-slide {
     &:after {
       content: '';
-      background: url(../../images/io2012_logo.png) no-repeat 100% 50%;
+      background: url(../../images/frontendmasters_logo.png) no-repeat 100% 50%;
       @include background-size(contain);
       position: absolute;
       bottom: $slide-top-bottom-padding;
@@ -615,7 +615,7 @@ article.smaller {
 
 .popup .next .build {
   .to-build {
-    opacity: 1;
+    opacity: 0;
   }
 
   .build-fade {
@@ -685,71 +685,71 @@ article.smaller {
 // Speaker notes only show the current slide.
 .with-notes {
 
-  &.popup {
-
-    slides.layout-widescreen,
-    slides.layout-faux-widescreen {
-      slide {
-        &.next {
-          @include transform(translate3d($slide-width-widescreen / 2 + 140, 80px, 0) scale(0.35));
-        }
-        .note {
-          @include transform(translate3d(300px, $slide-height + 100, 0) scale(1.5));
-        }
-      }
-    }
-
-    slide {
-      overflow: visible;
-      background: white;
-      @include transition(none); // No slide transition goodies when in presenter mode.
-      pointer-events: none;
-      @include transform-origin(0, 0); // For speaker note transition.
-
-      &:not(.backdrop) {
-        @include transform(scale(0.6) translate3d(0.5em, 0.5em, 0));
-        @include box-shadow(0 0 10px $gray-3);
-      }
-
-      &.backdrop {
-        //@include background(linear-gradient($gray-1, white 30%, white 60%, $gray-1));
-        @include background-image(radial-gradient(50% 50%, #b1dfff 0%,
-                                                  $brand-blue 600px));
-      }
-
-      &.next {
-        @include transform(translate3d($slide-width / 2 + 120, 80px, 0) scale(0.35));
-        opacity: 1 !important;
-
-        .note {
-          display: none !important; // Prevents seeing notes if we go to previous slide.
-        }
-      }
-    }
-
-    .note {
-      width: 109%;
-      height: $slide-height / 2 - 90;
-      background: $gray-1;
-      padding: 0;
-
-      @include box-shadow(0 0 10px $gray-3);
-
-      @include transform(translate3d(250px, $slide-height + 100, 0) scale(1.5));
-      @include transition(opacity 400ms ease-in-out);
-
-      > section {
-        background: #fff;
-        @include border-radius($slide-border-radius);
-        height: 100%;
-        width: 100%;
-        @include box-sizing(border-box);
-        @include box-shadow(none);
-        overflow: auto;
-        padding: 1em;
-      }
-    }
-  }
+//  &.popup {
+//
+//    slides.layout-widescreen,
+//    slides.layout-faux-widescreen {
+//      slide {
+//        &.next {
+//          @include transform(translate3d($slide-width-widescreen / 2 + 140, 80px, 0) scale(0.35));
+//        }
+//        .note {
+//          @include transform(translate3d(300px, $slide-height + 100, 0) scale(1.5));
+//        }
+//      }
+//    }
+//
+//    slide {
+//      overflow: visible;
+//      background: white;
+//      @include transition(none); // No slide transition goodies when in presenter mode.
+//      pointer-events: none;
+//      @include transform-origin(0, 0); // For speaker note transition.
+//
+//      &:not(.backdrop) {
+//        @include transform(scale(0.6) translate3d(0.5em, 0.5em, 0));
+//        @include box-shadow(0 0 10px $gray-3);
+//      }
+//
+//      &.backdrop {
+//        //@include background(linear-gradient($gray-1, white 30%, white 60%, $gray-1));
+//        @include background-image(radial-gradient(50% 50%, #b1dfff 0%,
+//                                                  $brand-blue 600px));
+//      }
+//
+//      &.next {
+//        @include transform(translate3d($slide-width / 2 + 120, 80px, 0) scale(0.35));
+//        opacity: 1 !important;
+//
+//        .note {
+//          display: none !important; // Prevents seeing notes if we go to previous slide.
+//        }
+//      }
+//    }
+//
+//    .note {
+//      width: 109%;
+//      height: $slide-height / 2 - 90;
+//      background: $gray-1;
+//      padding: 0;
+//
+//      @include box-shadow(0 0 10px $gray-3);
+//
+//      @include transform(translate3d(250px, $slide-height + 100, 0) scale(1.5));
+//      @include transition(opacity 400ms ease-in-out);
+//
+//      > section {
+//        background: #fff;
+//        @include border-radius($slide-border-radius);
+//        height: 100%;
+//        width: 100%;
+//        @include box-sizing(border-box);
+//        @include box-shadow(none);
+//        overflow: auto;
+//        padding: 1em;
+//      }
+//    }
+//  }
 
   .note {
     opacity: 1;

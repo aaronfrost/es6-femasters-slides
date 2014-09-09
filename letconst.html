@@ -1,0 +1,513 @@
+<!--
+Google IO 2012/2013 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahé <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CONST,LET, and Block</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="title-slide segue nobackground">
+    <aside class="gdbar"><img src="images/es6.png"></aside>
+    <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title style="display: none;"><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle style="display: none;"><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter style="display: none;"><!-- populated from slide_config.json --></p>
+      <h1>CONST, LET, and Blocks</h1>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>CONST and LET replace VAR</h2>
+    </hgroup>
+
+  </slide>
+
+  <slide class="thank-you-slide segue nobackground">
+    <aside class="gdbar right"><img src="images/es6.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <h2>&lt;Thank You!&gt;</h2>
+      <p>Questions?????</p>
+    </article>
+    <p class="auto-fadein" data-config-contact>
+      <!-- populated from slide_config.json -->
+    </p>
+  </slide>
+
+  <slide class="segue dark quote nobackground">
+    <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <q>
+        Don't grep-replace "var" with "let" or you will break the internet
+      </q>
+      <div class="author">
+        Doug Crockford<br>
+        Senior Architect of JS<br>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Topics</h2>
+    </hgroup>
+
+    <article>
+      <ul class="build fade">
+        <li>Variable Hoisting</li>
+        <li>LET</li>
+        <li>CONST</li>
+        <li>Block Functions</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Variable Hoisting</h2>
+    </hgroup>
+
+    <article>
+      <ul>
+        <li>Why talk about Variable Hoisting?</li>
+        <li>Understand the need for LET</li>
+        <li>A lot to understand</li>
+        <li>Your code will run differently</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide class="segue dark quote nobackground">
+    <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <q>
+        Using LET and CONST instead of VAR will have an odd side-affect,
+        where your code will execute at runtime just as
+        it appears at development time.
+      </q>
+      <div class="author">
+        Aaron Frost<br>
+        Poor Schmuck<br>
+        @js_dev
+      </div>
+    </article>
+  </slide>
+
+  <slide class="segue dark quote nobackground">
+    <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <q>
+        With VAR, the arrangement of your code has less to do with
+        the way it executes than you think it does.
+      </q>
+      <div class="author">
+        Aaron Frost<br>
+        Poor Schmuck<br>
+        @js_dev
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Variables Hoisting</h2>
+    </hgroup>
+
+    <article>
+<pre class="prettyprint" data-lang="javascript">
+&lt;script type='text/javascript'&gt;
+  function outer(){
+    <b>a = 0;</b>
+    inner();
+
+    function inner(){
+      <b>b = 2;</b>
+    }
+  }
+  outer();
+&lt;/script&gt;
+</pre>
+    </article>
+    <aside class="note">
+      <section class="">
+        Compiler turns "a" and "b" into Global variables
+        <pre class="prettyprint" data-lang="javascript">
+&lt;script type='text/javascript'&gt;
+  window.a = 0;
+  window.b = 2;
+&lt;/script&gt;
+        </pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Variables Hoisting</h2>
+    </hgroup>
+
+    <article>
+      <p>Compiler automatically hoists your variables</p>
+      <p>Compiler reformats your code</p>
+<pre class="prettyprint" data-lang="javascript">
+&lt;script type='text/javascript'&gt;
+  <b>var a = undefined;  //compiler hoisted these</b>
+  <b>var b = undefined;  //compiler hoisted these</b>h
+  function outer(){
+    <b>a = 0;</b>
+    inner();
+
+    function inner(){
+      <b>b = 2;</b>
+    }
+  }
+  outer();
+&lt;/script&gt;
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Variables Hoisting</h2>
+    </hgroup>
+
+    <article>
+<pre class="prettyprint" data-lang="javascript">
+&lt;script type='text/javascript'&gt;
+  var foo = 2;
+  if(true){
+    <b>var bar = 1;</b>
+  }
+  <b>console.log( foo + bar );  //Throws error, logs 2, 3, or undefined?</b>
+&lt;/script&gt;
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Put on your "C" hat</h2>
+    </hgroup>
+    <article class="centered">
+      <img src="images/cppvsjava.gif" class="reflect" alt="Description" title="Description" style="width:60%;">
+      <footer class="source">What happens to that code in C?</footer>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Variables Hoisting</h2>
+    </hgroup>
+
+    <article>
+<pre class="prettyprint" data-lang="javascript">
+&lt;script type='text/javascript'&gt;
+  var foo = 2;
+  if(true){
+    <b>var bar = 1;</b>
+  }
+  <b>console.log( foo + bar );</b>  //<b class="line-through">Throws error</b>, <b class="line-through">logs 2</b>, <b>3</b>, or <b class="line-through">undefined</b>?</b>
+&lt;/script&gt;
+</pre>
+    </article>
+  </slide>
+
+    <slide>
+    <hgroup>
+      <h2>Variables Hoisting</h2>
+    </hgroup>
+
+    <article>
+      <p>Compiler interpretted your code as</p>
+<pre class="prettyprint" data-lang="javascript">
+&lt;script type='text/javascript'&gt;
+  <b>var foo = 2;</b>
+  <b>var bar = undefined;</b>
+  if(true){
+    <b>bar = 1;  //"b" wasn't declared in here</b>
+  }
+  <b>console.log( foo + bar );</b>  //<b class="line-through">Throws error</b>, <b class="line-through">logs 2</b>, <b>3</b>, or <b class="line-through">undefined</b>?</b>
+&lt;/script&gt;
+</pre>
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>Variables Hoisting</h2>
+    </hgroup>
+
+    <article>
+      <p>Trap Variables Inside Functions Only</p>
+<pre class="prettyprint" data-lang="javascript">
+&lt;script type='text/javascript'&gt;
+  var a = 1;
+  function run(){
+    if(true){
+      var a = 2;
+    }
+    console.log(a);        //result is 2
+    console.log(this.a);   //result is 1
+  }
+  run();
+  console.log(a); //result is 1
+&lt;/script&gt;
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Variables Hoisting</h2>
+    </hgroup>
+
+    <article>
+      <p>Code interpreted as:</p>
+<pre class="prettyprint" data-lang="javascript">
+&lt;script type='text/javascript'&gt;
+  var a = 1;
+  function run(){
+    <b>var a = undefined;</b>
+    if(true){
+      <b>a = 2;</b>
+    }
+    console.log(a);        //result is 2
+    console.log(this.a);   //result is 1
+  }
+  run();
+  console.log(a); //result is 1
+&lt;/script&gt;
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Function Hoisting</h2>
+    </hgroup>
+
+    <article>
+      <ul class="build fade">
+        <li>Functions Hoist Too</li>
+        <li>Sometimes</li>
+      </ul>
+
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Function Hoisting</h2>
+    </hgroup>
+
+    <article>
+<pre class="prettyprint" data-lang="javascript">
+&lt;script type='text/javascript'&gt;
+  //SOME CODE GOES HERE
+
+  <b>//Function Declaration</b>
+  function foo(){
+    //code here
+  }
+
+  <b>//Function Expression</b>
+  var bar = function(){
+    //code here
+  };
+&lt;/script&gt;
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Function Hoisting</h2>
+    </hgroup>
+
+    <article>
+<pre class="prettyprint" data-lang="javascript">
+&lt;script type='text/javascript'&gt;
+  <b>var bar = undefined;
+  function foo(){  //Function declaration hoisted
+    //code here
+  }</b>
+
+  //SOME CODE GOES HERE
+
+  bar = function(){ //function name hoisted, but variable assignment
+                    //doesn't happen until the code gets here
+    //code here
+  };
+&lt;/script&gt;
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Variable Hoisting</h2>
+    </hgroup>
+
+    <article>
+      <h2>Thats Variable Hoisting in a Nutshell</h2>
+      <h4>Questions about Variable Hoisting???</h4>
+      <img src="images/nutshell.gif" class="_reflect" alt="Description" title="Description" style="width:60%;">
+      <footer class="">How did I get in this bloody great nutshell?</footer>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>LET</h2>
+    </hgroup>
+
+    <article>
+      <h4>Let's Talk About <b>LET</b></h4>
+      <h5>4 peices</h5>
+      <ul class="build fade">
+        <li>LET Definitions</li>
+        <li>LET Expressions</li>
+        <li>LET Statements</li>
+        <li>LET w/ Looping</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>LET</h2>
+    </hgroup>
+
+    <article>
+      <h4>Let's Talk About <b>LET</b></h4>
+      <h5>4 peices</h5>
+      <ul>
+        <li>LET Definitions</li>
+        <li>LET Expressions</li>
+        <li>LET Statements</li>
+        <li>LET w/ Looping</li>
+      </ul>
+      <h4>We'll talk about each, one at a time</h4>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>LET Definitions</h2>
+    </hgroup>
+
+    <article>
+      <h4>This is LET is it's most basic form</h4>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>LET Definitions</h2>
+    </hgroup>
+
+    <article>
+      <h4>This is LET is it's most basic form</h4>
+<pre class="prettyprint" data-lang="javascript">
+&lt;script type='text/javascript'&gt;
+  let foo = 2;
+  if(true){
+    <b>let bar = 1;</b>
+  }
+  <b>console.log( foo + bar );</b>  //Throws error, logs 2, 3, or undefined?
+&lt;/script&gt;
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>LET Definitions</h2>
+    </hgroup>
+
+    <article>
+      <h4>This is LET is it's most basic form</h4>
+<pre class="prettyprint" data-lang="javascript">
+&lt;script type='text/javascript'&gt;
+  let foo = 2;
+  if(true){
+    <b>let bar = 1;</b>
+  }
+  <b>console.log( foo + bar );</b>  //<b>Throws error</b>, <b class="line-through">logs 2, 3, or undefined</b>?
+&lt;/script&gt;                       //<b>bar is not defined</b>
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>LET Definitions</h2>
+    </hgroup>
+
+    <article>
+      <h4>This is LET is it's most basic form</h4>
+<pre class="prettyprint" data-lang="javascript">
+&lt;script type='text/javascript'&gt;
+  let foo = 2;
+  if(true){
+    <b>let bar = 1;</b>
+  }
+  <b>console.log( foo + bar );</b>  //<b>Throws error</b>, <b class="line-through">logs 2, 3, or undefined</b>?
+&lt;/script&gt;                       //<b>bar is not defined</b>
+</pre>
+    </article>
+  </slide>
+
+  <slide class="segue dark quote nobackground">
+    <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <h2>LET, CONST, and Blocks</h2>
+      <h3>Questions???</h3>
+      <div class="author">
+        #ES6 #frontendmasters @js_dev
+      </div>
+    </article>
+  </slide>
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</body>
+</html>

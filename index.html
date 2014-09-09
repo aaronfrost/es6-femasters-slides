@@ -1,0 +1,196 @@
+<!--
+Google IO 2012/2013 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahé <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="logoslide nobackground">
+    <article class="flexbox vcenter">
+      <span><img src="images/frontendmasters_logo.png"></span>
+    </article>
+  </slide>
+
+  <slide class="title-slide segue nobackground">
+    <aside class="gdbar"><img src="images/es6.png"></aside>
+    <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>About me!</h2>
+    </hgroup>
+    <article>
+      <ul class="build fade">
+        <li>Came from QA (5 years)</li>
+        <li>College Dropout (SLCC Bruins!)</li>
+        <li>Associate Computer Science</li>
+        <li>Started learning JavaScript with???</li>
+        <li>Husband & Father
+          <ul>
+            <li>2 Girls</li>
+            <li>1 Boy w/ 1 OTW</li>
+          </ul>
+        </li>
+        <li><3 Ice Fishing</li>
+        <li>
+          I have an identical twin brother <br/>
+          <span class="gray2" style="font-size: 18px;">I am the smart, good-looking one</span>
+        </li>
+      </ul>
+    </article>
+    <aside class="note">
+      <section style="text-align: center">
+        BROWSER EXTENSIONS
+      </section>
+    </aside>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>About me!</h2>
+    </hgroup>
+    <article>
+      <ul class="build fade">
+        <li>Sr. Frontend Dev at <a href="http://www.domo.com">Domo</a></li>
+        <li>Podcasts
+          <ul>
+            <li>JS Jabber</li>
+            <li>Adventures in Angular</li>
+          </ul>
+        </li>
+        <li><a href="http://shop.oreilly.com/product/0636920026396.do">JS.Next - ES6</a> w/ O'Reilly (Q1 2015)</li>
+        <li><a href="http://chimera.labs.oreilly.com/books/1234000001623">JS.Next - A Manager's Guide</a></li>
+      </ul>
+    </article>
+  </slide>
+
+
+  <!--TODAY'S TOPICS-->
+  <slide>
+  	<hgroup>
+  	  <h2>Today's Topics</h2>
+  	</hgroup>
+    <article style="font-size:40px;">
+      <ul>
+        <li>History of JavaScript</li>
+        <li>Steering Committee</li>
+        <li>New Features</li>
+        <li>Build Tools</li>
+      </ul>
+    </article>
+  </slide>
+
+  <!--COMPATIBILITY TABLE SLIDE-->
+  <slide>
+  	<hgroup>
+  		<h2>Today's Topics - ES6 Compatability Table</h2>
+  	</hgroup>
+  	<article>
+  		<iframe data-src="http://kangax.github.io/compat-table/es6/"></iframe>
+  	</article>
+  </slide>
+
+  <slide>
+  	<hgroup>
+  		<h2>Schedule Format</h2>
+  	</hgroup>
+  	<article>
+      <p class="fs-48">As we talk about the new features</p>
+      <ul>
+        <li>Teaching Time
+          <ul>
+            <li>Origin</li>
+            <li>Examples</li>
+          </ul>
+        </li>
+        <li>Hacking Time
+          <ul>
+            <li>Browser</li>
+            <li>Node.js</li>
+            <li>Traceur REPL</li>
+          </ul>
+        </li>
+      </ul>
+
+      <p class="fs-32">We want everyone to practice writing the new syntax</p>
+  	</article>
+  </slide>
+
+  <slide>
+  	<hgroup>
+  		<h2>TOPICS</h2>
+  	</hgroup>
+  	<!--<article class="fs-24">-->
+
+      <!--<p>-->
+
+
+        <!--<ul>-->
+          <!--<li><a href="ptc.html">Proper Tail Calls</a></li>-->
+        <!--</ul>-->
+      <!--</p>-->
+  	<!--</article>-->
+    <article class="smaller">
+      <p>
+        <a href="history.html">History of JavaScript</a>
+      </p>
+      <p>
+        Features
+        <ul>
+          <li class=""><a href="ptc.html">Proper Tail Calls</a></li>
+          <li class=""><a href="letconst.html">LET, CONST, and Block</a></li>
+          <li class=""><a href="rest.html">rest parameters</a></li>
+
+          <li class=""><a href="arrow.html">Arrow Functions</a></li>
+          <li class=""><a href="arrow.html">Default Parameters</a></li>
+          <li class=""><a href="arrow.html">Classes</a></li>
+        </ul>
+      </p>
+
+    </article>
+  </slide>
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</body>
+</html>
