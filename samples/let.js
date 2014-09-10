@@ -1,6 +1,13 @@
 "use strict";
-let foo = 0;
-if(true){
-  let bar = 1;
+
+
+let (a = getA(), b = getB()) a + b;
+
+console.log(c);
+
+function getA(){
+  return 1;
 }
-console.log( foo + bar );
+function getB(){
+  return 2;
+}

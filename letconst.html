@@ -65,6 +65,7 @@ URL: https://code.google.com/p/io-2012-slides
       <div class="author">
         Doug Crockford<br>
         Senior Architect of JS<br>
+        @Paypal
       </div>
     </article>
   </slide>
@@ -81,6 +82,15 @@ URL: https://code.google.com/p/io-2012-slides
         <li>CONST</li>
         <li>Block Functions</li>
       </ul>
+    </article>
+  </slide>
+
+  <slide class="segue dark quote nobackground">
+    <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <q>
+        VARIABLE HOISTING
+      </q>
     </article>
   </slide>
 
@@ -137,7 +147,6 @@ URL: https://code.google.com/p/io-2012-slides
 
     <article>
 <pre class="prettyprint" data-lang="javascript">
-&lt;script type='text/javascript'&gt;
   function outer(){
     <b>a = 0;</b>
     inner();
@@ -147,17 +156,14 @@ URL: https://code.google.com/p/io-2012-slides
     }
   }
   outer();
-&lt;/script&gt;
 </pre>
     </article>
     <aside class="note">
       <section class="">
         Compiler turns "a" and "b" into Global variables
         <pre class="prettyprint" data-lang="javascript">
-&lt;script type='text/javascript'&gt;
   window.a = 0;
   window.b = 2;
-&lt;/script&gt;
         </pre>
       </section>
     </aside>
@@ -172,7 +178,6 @@ URL: https://code.google.com/p/io-2012-slides
       <p>Compiler automatically hoists your variables</p>
       <p>Compiler reformats your code</p>
 <pre class="prettyprint" data-lang="javascript">
-&lt;script type='text/javascript'&gt;
   <b>var a = undefined;  //compiler hoisted these</b>
   <b>var b = undefined;  //compiler hoisted these</b>h
   function outer(){
@@ -184,7 +189,6 @@ URL: https://code.google.com/p/io-2012-slides
     }
   }
   outer();
-&lt;/script&gt;
 </pre>
     </article>
   </slide>
@@ -196,13 +200,11 @@ URL: https://code.google.com/p/io-2012-slides
 
     <article>
 <pre class="prettyprint" data-lang="javascript">
-&lt;script type='text/javascript'&gt;
   var foo = 2;
   if(true){
     <b>var bar = 1;</b>
   }
   <b>console.log( foo + bar );  //Throws error, logs 2, 3, or undefined?</b>
-&lt;/script&gt;
 </pre>
     </article>
   </slide>
@@ -224,18 +226,22 @@ URL: https://code.google.com/p/io-2012-slides
 
     <article>
 <pre class="prettyprint" data-lang="javascript">
-&lt;script type='text/javascript'&gt;
   var foo = 2;
   if(true){
     <b>var bar = 1;</b>
   }
-  <b>console.log( foo + bar );</b>  //<b class="line-through">Throws error</b>, <b class="line-through">logs 2</b>, <b>3</b>, or <b class="line-through">undefined</b>?</b>
-&lt;/script&gt;
+  <b>console.log( foo + bar );  //Throws error, logs 2, 3, or undefined?</b>
 </pre>
     </article>
+    <aside class="note">
+      <section class="centered">
+        <h2>3</h2>
+        <p>It didn't look like that was going to happen.</p>
+      </section>
+    </aside>
   </slide>
 
-    <slide>
+  <slide>
     <hgroup>
       <h2>Variables Hoisting</h2>
     </hgroup>
@@ -243,16 +249,39 @@ URL: https://code.google.com/p/io-2012-slides
     <article>
       <p>Compiler interpretted your code as</p>
 <pre class="prettyprint" data-lang="javascript">
-&lt;script type='text/javascript'&gt;
   <b>var foo = 2;</b>
   <b>var bar = undefined;</b>
   if(true){
     <b>bar = 1;  //"b" wasn't declared in here</b>
   }
-  <b>console.log( foo + bar );</b>  //<b class="line-through">Throws error</b>, <b class="line-through">logs 2</b>, <b>3</b>, or <b class="line-through">undefined</b>?</b>
-&lt;/script&gt;
+  <b>console.log( foo + bar );  //Throws error, logs 2, 3, or undefined?</b>
 </pre>
     </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>Variables Hoisting</h2>
+    </hgroup>
+
+    <article>
+      <p>What if I use it before it is declared?</p>
+<pre class="prettyprint" data-lang="javascript">
+  console.log(name); //WHAT HAPPENS HERE?
+  var name = "Marc";
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+        <h4>Code is compiled as:</h4>
+<pre class="prettyprint" data-lang="javascript">
+  var name = undefined;
+  console.log(name); //logs undefined
+  name = "Marc";
+</pre>
+      </section>
+    </aside>
   </slide>
 
 
@@ -264,44 +293,15 @@ URL: https://code.google.com/p/io-2012-slides
     <article>
       <p>Trap Variables Inside Functions Only</p>
 <pre class="prettyprint" data-lang="javascript">
-&lt;script type='text/javascript'&gt;
   var a = 1;
   function run(){
-    if(true){
-      var a = 2;
-    }
-    console.log(a);        //result is 2
-    console.log(this.a);   //result is 1
+    var a = 2;
+    console.log(a);        //logs 2
   }
   run();
-  console.log(a); //result is 1
-&lt;/script&gt;
+  console.log(a); //logs 1
 </pre>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>Variables Hoisting</h2>
-    </hgroup>
-
-    <article>
-      <p>Code interpreted as:</p>
-<pre class="prettyprint" data-lang="javascript">
-&lt;script type='text/javascript'&gt;
-  var a = 1;
-  function run(){
-    <b>var a = undefined;</b>
-    if(true){
-      <b>a = 2;</b>
-    }
-    console.log(a);        //result is 2
-    console.log(this.a);   //result is 1
-  }
-  run();
-  console.log(a); //result is 1
-&lt;/script&gt;
-</pre>
+      <p>Pre-ES6, variables are "Function Scoped"</p>
     </article>
   </slide>
 
@@ -326,19 +326,17 @@ URL: https://code.google.com/p/io-2012-slides
 
     <article>
 <pre class="prettyprint" data-lang="javascript">
-&lt;script type='text/javascript'&gt;
   //SOME CODE GOES HERE
 
-  <b>//Function Declaration</b>
-  function foo(){
+  <b>//Function Declaration
+  function foo(){</b>
     //code here
   }
 
-  <b>//Function Expression</b>
-  var bar = function(){
+  <b>//Function Expression
+  var bar = function(){</b>
     //code here
   };
-&lt;/script&gt;
 </pre>
     </article>
   </slide>
@@ -350,7 +348,6 @@ URL: https://code.google.com/p/io-2012-slides
 
     <article>
 <pre class="prettyprint" data-lang="javascript">
-&lt;script type='text/javascript'&gt;
   <b>var bar = undefined;
   function foo(){  //Function declaration hoisted
     //code here
@@ -358,13 +355,30 @@ URL: https://code.google.com/p/io-2012-slides
 
   //SOME CODE GOES HERE
 
-  bar = function(){ //function name hoisted, but variable assignment
-                    //doesn't happen until the code gets here
+  <b>bar = function(){ //function name hoisted, but variable assignment
+                    //doesn't happen until the code gets here</b>
     //code here
   };
-&lt;/script&gt;
 </pre>
     </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Final Thoughts on Variable Hoisting</h2>
+    </hgroup>
+
+    <article>
+      <h4>Per Douglas Crockford's <a href="http://javascript.crockford.com/code.html">JS Styleguide</a>:</h4>
+      <p style="margin-top: 20px;padding-left:50px;"><b>RE: Variable Hoisting</b></p>
+      <p style="padding: -100px 20px 30px 20px;" class="centered">
+        <q class="fs-32">Define all variables at the top of the function.</q>
+      </p>
+      <p>
+        In other words, hoist your own variables.
+      </p>
+    </article>
+
   </slide>
 
   <slide>
@@ -380,20 +394,12 @@ URL: https://code.google.com/p/io-2012-slides
     </article>
   </slide>
 
-  <slide>
-    <hgroup>
-      <h2>LET</h2>
-    </hgroup>
-
-    <article>
-      <h4>Let's Talk About <b>LET</b></h4>
-      <h5>4 peices</h5>
-      <ul class="build fade">
-        <li>LET Definitions</li>
-        <li>LET Expressions</li>
-        <li>LET Statements</li>
-        <li>LET w/ Looping</li>
-      </ul>
+  <slide class="segue dark quote nobackground">
+    <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <q>
+        LET
+      </q>
     </article>
   </slide>
 
@@ -403,8 +409,30 @@ URL: https://code.google.com/p/io-2012-slides
     </hgroup>
 
     <article>
-      <h4>Let's Talk About <b>LET</b></h4>
-      <h5>4 peices</h5>
+      <p>Let's Talk About <b>LET</b></p>
+      <p>4 Pieces</p>
+      <ul class="build fade">
+        <li>LET Definitions</li>
+        <li>LET Expressions</li>
+        <li>LET Statements</li>
+        <li>LET w/ Looping</li>
+      </ul>
+    </article>
+    <aside class="note">
+      <section class="centered">
+        <h2>Who Knew?</h2>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>LET</h2>
+    </hgroup>
+
+    <article>
+      <p>Let's Talk About <b>LET</b></p>
+      <p>4 Pieces</p>
       <ul>
         <li>LET Definitions</li>
         <li>LET Expressions</li>
@@ -413,6 +441,20 @@ URL: https://code.google.com/p/io-2012-slides
       </ul>
       <h4>We'll talk about each, one at a time</h4>
     </article>
+    <aside class="note">
+      <section class="centered">
+        <h2>Who Knew?</h2>
+      </section>
+    </aside>p
+  </slide>
+
+  <slide class="segue dark quote nobackground">
+    <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <q>
+        LET Definitions
+      </q>
+    </article>
   </slide>
 
   <slide>
@@ -433,15 +475,38 @@ URL: https://code.google.com/p/io-2012-slides
     <article>
       <h4>This is LET is it's most basic form</h4>
 <pre class="prettyprint" data-lang="javascript">
-&lt;script type='text/javascript'&gt;
+  <span style="text-decoration: line-through;opacity: .5">var foo = 1;</span>
+  let foo = 2;
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>LET Definitions</h2>
+    </hgroup>
+
+    <article>
+      <h4>This is LET is it's most basic form</h4>
+<pre class="prettyprint" data-lang="javascript">
   let foo = 2;
   if(true){
     <b>let bar = 1;</b>
   }
   <b>console.log( foo + bar );</b>  //Throws error, logs 2, 3, or undefined?
-&lt;/script&gt;
 </pre>
     </article>
+      <aside class="note">
+        <section class="">
+<pre class="prettyprint" data-lang="javascript">
+  let foo = 2;
+  if(true){
+    <b>let bar = 1;</b>
+  }
+  <b>console.log( foo + bar );</b>  <b class="redcom">//Throws Error: 'bar' not defined</b>
+</pre>
+        </section>
+      </aside>
   </slide>
 
   <slide>
@@ -452,14 +517,68 @@ URL: https://code.google.com/p/io-2012-slides
     <article>
       <h4>This is LET is it's most basic form</h4>
 <pre class="prettyprint" data-lang="javascript">
-&lt;script type='text/javascript'&gt;
   let foo = 2;
   if(true){
     <b>let bar = 1;</b>
   }
-  <b>console.log( foo + bar );</b>  //<b>Throws error</b>, <b class="line-through">logs 2, 3, or undefined</b>?
-&lt;/script&gt;                       //<b>bar is not defined</b>
+  <b>console.log( foo + bar );</b>  //Throws error, logs 2, 3, or undefined?
 </pre>
+      <p>
+        <h2>So, LET has block scoping.</h2>
+      </p>
+    </article>
+
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>LET Definitions</h2>
+    </hgroup>
+
+    <article>
+      <h4>LET W/ Block Scopes!!!!!!!!</h4>
+<pre class="prettyprint" data-lang="javascript">
+  let a = 0;
+  if(true){
+    let a = 2;
+    console.log(“here a = “,a);     <b>//Logs???? Errors????</b>
+  }
+  console.log(“at the end a = “,a); <b>//Logs???? Errors????</b>
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  let a = 0;
+  if(true){
+    let a = 2;
+    console.log(“here a = “,a);      <b>//Logs 2</b>
+  }
+  console.log(“at the end a = “,a);  <b>//Logs 0</b>
+</pre>
+
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>LET Definitions</h2>
+    </hgroup>
+
+    <article>
+      <h4>LET W/ Block Scopes!!!!!!!!</h4>
+<pre class="prettyprint" data-lang="javascript">
+  let a = 0;
+  if(true){
+    let a = 2;
+    console.log(“here a = “,a);     <b>//Logs 2</b>
+  }
+  console.log(“at the end a = “,a); <b>//Logs 0</b>
+</pre>
+      <p>
+        <img src="images/celebration1.gif" class="_reflect" alt="Description" title="Description" style="height:50%;margin-top: -350px;z-index:100000;position: relative; margin-left: 70%;">
+      </p>
     </article>
   </slide>
 
@@ -469,16 +588,165 @@ URL: https://code.google.com/p/io-2012-slides
     </hgroup>
 
     <article>
-      <h4>This is LET is it's most basic form</h4>
+      <h4>Important! Two LETS, Same Name = BAD</h4>
 <pre class="prettyprint" data-lang="javascript">
-&lt;script type='text/javascript'&gt;
-  let foo = 2;
-  if(true){
-    <b>let bar = 1;</b>
-  }
-  <b>console.log( foo + bar );</b>  //<b>Throws error</b>, <b class="line-through">logs 2, 3, or undefined</b>?
-&lt;/script&gt;                       //<b>bar is not defined</b>
+  let a = 0;
+  let a = 1;
 </pre>
+      <p>
+
+      </p>
+    </article>
+    <aside class="note">
+      <section class="centered">
+        <p>
+          You can't <b>double declare</b> a variable w/ LET
+        </p>
+        <br/>
+        <br/>
+        <br/>
+        <img src="images/doublestamp.gif" class="" alt="Description" title="Description" style="width:50%;">
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>LET Definitions</h2>
+    </hgroup>
+
+    <article>
+      <h4>Important! Two LETS, Same Name = BAD</h4>
+<pre class="prettyprint" data-lang="javascript">
+  var a = 0;
+  var a = 1; <span class="pic-comment">//NO, but no errors<img class="hover-pic" src="images/wtf1.jpg" alt="" style="margin-top: -100px;"/></span>
+
+  let b = 0;
+  let b = 1; <b class="redcom">//SyntaxError: Variable 'b' has already been declared</b>
+
+  var c = 0;
+  let c = 1; <b class="redcom">//SyntaxError: Variable 'c' has already been declared</b>
+</pre>
+      <p>
+
+      </p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>LET Definitions</h2>
+    </hgroup>
+    <article>
+<pre class="prettyprint" data-lang="javascript">
+  let a = 0;      <b>//BASIC</b>
+
+  if(true){       <b>//IF</b>
+    let b = 1;
+  }
+
+  let term = "js";
+  switch(term){   <b>//SWITCH</b>
+    case "js":
+      let c = 2;
+      break;
+  }
+
+  while(true){    <b>//LOOP BODY</b>
+    let d = 0;
+  }
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>LET Definitions</h2>
+    </hgroup>
+    <article>
+      <p>Questions before we move on?</p>
+      <br/>
+      <p>Next up, LET Expressions</p>
+    </article>
+  </slide>
+
+  <slide class="segue dark quote nobackground">
+    <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <q>
+        LET Expressions
+      </q>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>LET Expressions</h2>
+    </hgroup>
+    <article>
+<pre class="prettyprint" data-lang="javascript">
+  let c = let (a = getA(), b = getB()) a + b;
+  console.log(c);     //Logs 3
+  console.log(a, b);  //ReferenceError: a is not defined
+
+  function getA(){
+    return 1;
+  }
+  function getB(){
+    return 2;
+  }
+</pre>
+      <ul class="build fade">
+        <li>Let's break this example down</li>
+        <li>Let's start with the first line</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>LET Expressions</h2>
+    </hgroup>
+    <article>
+<pre class="prettyprint" data-lang="javascript">
+  <b>let c = let (a = getA(), b = getB()) a + b;</b>
+</pre>
+      <ul class="build fade">
+        <li>"a" and "b" only exist on this line</li>
+        <li>"a" and "b" won't exist on the next LOC</li>
+        <li>The result is implicitly returned</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>LET Expressions</h2>
+    </hgroup>
+    <article>
+<pre class="prettyprint" data-lang="javascript">
+  let c = let (a = getA(), b = getB()) a + b;
+  <b>console.log(c);</b>
+</pre>
+      <ul class="build fade">
+        <li>"c" is 3, as it return the result of "a" + "b"</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>LET Expressions</h2>
+    </hgroup>
+    <article>
+<pre class="prettyprint" data-lang="javascript">
+  let c = let (a = getA(), b = getB()) a + b;
+  console.log(c);
+  <b>console.log(a, b);</b>
+</pre>
+      <ul class="build fade">
+        <li>Throws an error, as "a" and "b"</li>
+      </ul>
     </article>
   </slide>
 
@@ -492,6 +760,27 @@ URL: https://code.google.com/p/io-2012-slides
       </div>
     </article>
   </slide>
+
+  <slide>
+    <hgroup>
+      <h2>LET Expressions</h2>
+    </hgroup>
+    <article>
+      <p>Questions before we move on?</p>
+      <br/>
+      <p>Next up, LET Statements</p>
+    </article>
+  </slide>
+
+  <slide class="segue dark quote nobackground">
+    <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <q>
+        LET Statements
+      </q>
+    </article>
+  </slide>
+
 
   <slide class="backdrop"></slide>
 

@@ -22,3 +22,20 @@
 .line-through{
   text-decoration: line-through !important;
 }
+
+.redcom .com{
+  color:darkred !important;
+}
+
+.pic-comment{
+  
+  .hover-pic{
+    display: none;
+    position: absolute;
+  }
+  &:hover{
+    .hover-pic{
+      display: inherit;
+    }
+  }
+}

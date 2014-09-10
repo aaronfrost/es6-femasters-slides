@@ -2,7 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="38a6d110-4f95-4715-a189-c036500cd551" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/celebration1.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/doublestamp.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/wtf1.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/theme/css/fe.css" afterPath="$PROJECT_DIR$/theme/css/fe.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/theme/scss/fe.scss" afterPath="$PROJECT_DIR$/theme/scss/fe.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/let.js" afterPath="$PROJECT_DIR$/samples/let.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/letconst.html" afterPath="$PROJECT_DIR$/letconst.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="io-2013-slides.iws" />
@@ -31,9 +38,13 @@
           <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/index.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-83.69231" vertical-offset="646" max-vertical-offset="3434">
-                  <caret line="166" column="68" selection-start-line="166" selection-start-column="68" selection-end-line="166" selection-end-column="68" />
-                  <folding />
+                <state vertical-scroll-proportion="-16.0" vertical-offset="1301" max-vertical-offset="3587">
+                  <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+                  <folding>
+                    <element signature="n#style#0;n#section#0;n#aside#0;n#slide#2;n#slides#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#article#0;n#slide#4;n#slides#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#article#0;n#slide#5;n#slides#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -41,75 +52,52 @@
           <file leaf-file-name="let.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/samples/let.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="187">
-                  <caret line="5" column="9" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
+                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306">
+                  <caret line="8" column="7" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="letconst.html" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="letconst.html" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/letconst.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-8.5" vertical-offset="7718" max-vertical-offset="8823">
-                  <caret line="467" column="13" selection-start-line="467" selection-start-column="13" selection-end-line="467" selection-end-column="13" />
+                <state vertical-scroll-proportion="0.77011496" vertical-offset="12824" max-vertical-offset="13736">
+                  <caret line="778" column="22" selection-start-line="778" selection-start-column="22" selection-end-line="778" selection-end-column="22" />
                   <folding>
-                    <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#h1#0;n#hgroup#0;n#slide#0;n#slides#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#h2#0;n#hgroup#0;n#slide#0;n#slides#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#p#0;n#hgroup#0;n#slide#0;n#slides#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#img#0;n#article#0;n#slide#11;n#slides#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#img#0;n#article#0;n#slide#19;n#slides#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#p#0;n#article#0;n#slide#20;n#slides#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#p#1;n#article#0;n#slide#20;n#slides#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#img#0;n#article#0;n#slide#21;n#slides#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#span#0;n#pre#0;n#article#0;n#slide#27;n#slides#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#img#0;n#p#0;n#article#0;n#slide#31;n#slides#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#img#0;n#section#0;n#aside#0;n#slide#32;n#slides#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#img#0;n#span#0;n#pre#0;n#article#0;n#slide#33;n#slides#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="README.md" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="order.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/js/order.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="238">
+                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                  <folding>
+                    <element signature="n#!!doc" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="README.md" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/README.md">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="-8.814815" vertical-offset="221" max-vertical-offset="2601">
+                  <caret line="27" column="12" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="12" />
+                  <folding />
+                </state>
+              </provider>
               <provider editor-type-id="MarkdownPreviewEditor">
-                <state />
-              </provider>
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.5171103" vertical-offset="0" max-vertical-offset="2601">
-                  <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="history.html" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/history.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="13203" max-vertical-offset="14195">
-                  <caret line="799" column="2" selection-start-line="788" selection-start-column="2" selection-end-line="799" selection-end-column="2" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ptc.html" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/ptc.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-9.153846" vertical-offset="408" max-vertical-offset="6817">
-                  <caret line="52" column="12" selection-start-line="48" selection-start-column="6" selection-end-line="52" selection-end-column="12" />
-                  <folding>
-                    <element signature="n#style#0;n#img#0;n#article#0;n#slide#3;n#slides#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#img#0;n#article#0;n#slide#4;n#slides#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                    <marker date="1410243759000" expanded="true" signature="2680:2786" placeholder="..." />
-                    <marker date="1410243759000" expanded="true" signature="6060:6636" placeholder="..." />
-                    <marker date="1410243759000" expanded="true" signature="6073:6123" placeholder="..." />
-                    <marker date="1410243759000" expanded="true" signature="6138:6625" placeholder="..." />
-                    <marker date="1410243759000" expanded="true" signature="6168:6609" placeholder="..." />
-                    <marker date="1410243759000" expanded="true" signature="6252:6596" placeholder="..." />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="teamfight.png" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/images/teamfight.png">
-              <provider selected="true" editor-type-id="images">
                 <state />
               </provider>
             </entry>
@@ -117,8 +105,8 @@
           <file leaf-file-name="fe.scss" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/theme/scss/fe.scss">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-7.3333335" vertical-offset="0" max-vertical-offset="493">
-                  <caret line="22" column="42" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
+                <state vertical-scroll-proportion="-19.23077" vertical-offset="129" max-vertical-offset="782">
+                  <caret line="37" column="23" selection-start-line="37" selection-start-column="23" selection-end-line="37" selection-end-column="23" />
                   <folding />
                 </state>
               </provider>
@@ -138,21 +126,21 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="template.html" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="template.html" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/template.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="34.865383" vertical-offset="5230" max-vertical-offset="7174">
-                  <caret line="201" column="13" selection-start-line="201" selection-start-column="13" selection-end-line="201" selection-end-column="13" />
+                <state vertical-scroll-proportion="0.8467433" vertical-offset="3264" max-vertical-offset="7174">
+                  <caret line="218" column="12" selection-start-line="218" selection-start-column="12" selection-end-line="218" selection-end-column="12" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="default.scss" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="default.scss" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/theme/scss/default.scss">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-0.33142856" vertical-offset="16664" max-vertical-offset="18513">
-                  <caret line="970" column="11" selection-start-line="970" selection-start-column="11" selection-end-line="970" selection-end-column="11" />
+                <state vertical-scroll-proportion="3.7884614" vertical-offset="10822" max-vertical-offset="18513">
+                  <caret line="625" column="6" selection-start-line="625" selection-start-column="3" selection-end-line="625" selection-end-column="6" />
                   <folding />
                 </state>
               </provider>
@@ -179,12 +167,12 @@
         <option value="$PROJECT_DIR$/theme/scss/default.scss" />
         <option value="$PROJECT_DIR$/temp.html" />
         <option value="$PROJECT_DIR$/history.html" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/ptc.html" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/theme/scss/fe.scss" />
         <option value="$PROJECT_DIR$/samples/let.js" />
         <option value="$PROJECT_DIR$/letconst.html" />
-        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -219,6 +207,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -251,9 +240,22 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="io-2013-slides" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="io-2013-slides" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -294,8 +296,8 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Node.js.let.js (1)">
-    <configuration default="false" name="let.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="/usr/local/bin/node" node-parameters="--harmony" working-dir="$PROJECT_DIR$/samples">
+  <component name="RunManager" selected="Node.js.let.js">
+    <configuration default="false" name="let.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="/usr/local/bin/node" path-to-js-file="let.js" node-parameters="--harmony" working-dir="$PROJECT_DIR$/samples">
       <RunnerSettings RunnerId="NodeJS.debug" />
       <RunnerSettings RunnerId="NodeJS.run" />
       <ConfigurationWrapper RunnerId="NodeJS.debug" />
@@ -354,8 +356,8 @@
     </list>
     <recent_temporary>
       <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Node.js.let.js (1)" />
-        <item index="1" class="java.lang.String" itemvalue="Node.js.let.js" />
+        <item index="0" class="java.lang.String" itemvalue="Node.js.let.js" />
+        <item index="1" class="java.lang.String" itemvalue="Node.js.let.js (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -372,15 +374,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1920" height="970" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="22" width="1920" height="970" extended-state="6" />
+    <editor active="false" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295325" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29646522" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32839224" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2931818" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32953367" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13902053" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.09636651" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3990878" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -389,6 +390,7 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32953367" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -414,11 +416,23 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/slide_config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="272" max-vertical-offset="731">
+          <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="959" max-vertical-offset="3009">
           <caret line="70" column="16" selection-start-line="68" selection-start-column="6" selection-end-line="70" selection-end-column="16" />
-          <folding />
+          <folding>
+            <element signature="n#style#0;n#section#0;n#aside#0;n#slide#2;n#slides#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#article#0;n#slide#4;n#slides#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#article#0;n#slide#5;n#slides#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -466,7 +480,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1270" max-vertical-offset="2346">
           <caret line="86" column="26" selection-start-line="86" selection-start-column="26" selection-end-line="86" selection-end-column="26" />
-          <folding />
+          <folding>
+            <element signature="n#style#0;n#section#0;n#aside#0;n#slide#2;n#slides#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#article#0;n#slide#4;n#slides#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#article#0;n#slide#5;n#slides#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -495,23 +513,23 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1071" max-vertical-offset="2312">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/md/README.md">
       <provider editor-type-id="MarkdownPreviewEditor">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/md/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="187">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
+      </provider>
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/md/render.py">
@@ -522,13 +540,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/md/slides.md">
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1428">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
+      </provider>
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/serve.sh">
@@ -546,23 +564,23 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1071" max-vertical-offset="2312">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/md/README.md">
       <provider editor-type-id="MarkdownPreviewEditor">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/md/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="187">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
+      </provider>
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/md/render.py">
@@ -573,13 +591,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/md/slides.md">
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1428">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
+      </provider>
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/serve.sh">
@@ -597,25 +615,18 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2312">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="849">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/slides.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="677">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
@@ -647,13 +658,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/md/slides.md">
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.31384614" vertical-offset="0" max-vertical-offset="1428">
           <caret line="12" column="3" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
         </state>
+      </provider>
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/images/google_developers_icon_128.png">
@@ -676,27 +687,19 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/md/README.md">
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="533">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/slide-deck.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7747164" vertical-offset="5744" max-vertical-offset="13277">
-          <caret line="366" column="55" selection-start-line="366" selection-start-column="55" selection-end-line="366" selection-end-column="55" />
-        </state>
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/theme/css/default.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.027552674" vertical-offset="0" max-vertical-offset="617">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -720,6 +723,21 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ptc.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="6817">
+          <caret line="52" column="12" selection-start-line="48" selection-start-column="6" selection-end-line="52" selection-end-column="12" />
+          <folding>
+            <marker date="1410243759000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1410243759000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1410243759000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1410243759000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1410243759000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1410243759000" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/slide_config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="731">
@@ -728,86 +746,108 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ptc.html">
+    <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.153846" vertical-offset="408" max-vertical-offset="6817">
-          <caret line="52" column="12" selection-start-line="48" selection-start-column="6" selection-end-line="52" selection-end-column="12" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#article#0;n#slide#3;n#slides#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#article#0;n#slide#4;n#slides#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1410243759000" expanded="true" signature="2680:2786" placeholder="..." />
-            <marker date="1410243759000" expanded="true" signature="6060:6636" placeholder="..." />
-            <marker date="1410243759000" expanded="true" signature="6073:6123" placeholder="..." />
-            <marker date="1410243759000" expanded="true" signature="6138:6625" placeholder="..." />
-            <marker date="1410243759000" expanded="true" signature="6168:6609" placeholder="..." />
-            <marker date="1410243759000" expanded="true" signature="6252:6596" placeholder="..." />
-          </folding>
+        <state vertical-scroll-proportion="-8.814815" vertical-offset="221" max-vertical-offset="2601">
+          <caret line="27" column="12" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/theme/scss/default.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="3.7884614" vertical-offset="10822" max-vertical-offset="18513">
+          <caret line="625" column="6" selection-start-line="625" selection-start-column="3" selection-end-line="625" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/js/order.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-83.69231" vertical-offset="646" max-vertical-offset="3434">
-          <caret line="166" column="68" selection-start-line="166" selection-start-column="68" selection-end-line="166" selection-end-column="68" />
-          <folding />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="813">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/template.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="34.865383" vertical-offset="5230" max-vertical-offset="7174">
-          <caret line="201" column="13" selection-start-line="201" selection-start-column="13" selection-end-line="201" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.8467433" vertical-offset="3264" max-vertical-offset="7174">
+          <caret line="218" column="12" selection-start-line="218" selection-start-column="12" selection-end-line="218" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/theme/scss/default.scss">
+    <entry file="file://$PROJECT_DIR$/js/slide-deck.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.33142856" vertical-offset="16664" max-vertical-offset="18513">
-          <caret line="970" column="11" selection-start-line="970" selection-start-column="11" selection-end-line="970" selection-end-column="11" />
+        <state vertical-scroll-proportion="0.3329098" vertical-offset="3869" max-vertical-offset="13277">
+          <caret line="243" column="16" selection-start-line="243" selection-start-column="16" selection-end-line="243" selection-end-column="16" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/slides.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="187">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/slide-controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.7425" vertical-offset="1070" max-vertical-offset="1955">
+          <caret line="28" column="28" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.0" vertical-offset="1301" max-vertical-offset="3587">
+          <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#section#0;n#aside#0;n#slide#2;n#slides#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#article#0;n#slide#4;n#slides#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#article#0;n#slide#5;n#slides#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/theme/scss/fe.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.3333335" vertical-offset="0" max-vertical-offset="493">
-          <caret line="22" column="42" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
+        <state vertical-scroll-proportion="-19.23077" vertical-offset="129" max-vertical-offset="782">
+          <caret line="37" column="23" selection-start-line="37" selection-start-column="23" selection-end-line="37" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/samples/let.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306">
+          <caret line="8" column="7" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/letconst.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.5" vertical-offset="7718" max-vertical-offset="8823">
-          <caret line="467" column="13" selection-start-line="467" selection-start-column="13" selection-end-line="467" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.77011496" vertical-offset="12824" max-vertical-offset="13736">
+          <caret line="778" column="22" selection-start-line="778" selection-start-column="22" selection-end-line="778" selection-end-column="22" />
           <folding>
-            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h1#0;n#hgroup#0;n#slide#0;n#slides#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h2#0;n#hgroup#0;n#slide#0;n#slides#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#hgroup#0;n#slide#0;n#slides#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#article#0;n#slide#11;n#slides#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#article#0;n#slide#19;n#slides#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#article#0;n#slide#20;n#slides#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#article#0;n#slide#20;n#slides#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#article#0;n#slide#21;n#slides#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#pre#0;n#article#0;n#slide#27;n#slides#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#p#0;n#article#0;n#slide#31;n#slides#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#section#0;n#aside#0;n#slide#32;n#slides#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#span#0;n#pre#0;n#article#0;n#slide#33;n#slides#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/samples/let.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="187">
-          <caret line="5" column="9" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5171103" vertical-offset="0" max-vertical-offset="2601">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
