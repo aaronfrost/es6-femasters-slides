@@ -43,10 +43,282 @@ URL: https://code.google.com/p/io-2012-slides
       <h2>Arrow Functions</h2>
     </hgroup>
     <article>
+      <p>Precidence</p>
       <ul class="build fade">
         <li>Lambda</li>
         <li>Fat Arrow Function</li>
       </ul>
+      <p>Defacto Standards</p>
+      <ul class="build fade">
+        <li>CoffeeScript</li>
+        <li>Fat Arrow Functions</li>
+        <li>Skinny Arrow Functions</li>
+        <li>ES6 uses Fat Arrow syntax, calls it Arrow Function</li>
+      </ul>
+    </article>
+    <aside class="note">
+      <section class="centered">
+        <p>
+          <h4>Does anyone know the difference between Fat Arrow and Skinny Arrow?</h4>
+        </p>
+        <BR>
+        <p>We will explain similar affects of Arrow Functions in ES6</p>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Arrow Functions</h2>
+    </hgroup>
+    <article>
+      <p>Compared to regular functions</p>
+<pre class="prettyprint" data-lang="javascript">
+  var fn1 = function(){return 2;};
+  var fn2 = () => 2;
+</pre>
+      <p>
+      <ul class="build fade">
+        <li>Parens for the parameters</li>
+        <li>No braces for single-line arrow function bodies</li>
+        <li>Single-line arrow, implicit return statement</li>
+      </ul>
+      </p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Arrow Functions</h2>
+    </hgroup>
+    <article>
+      <p>Parenthesis-Parameter Rules</p>
+<pre class="prettyprint" data-lang="javascript">
+  var x;
+  x = <b>()</b> => {};     <b>//No parameters, MUST HAVE PARENS</b>
+  x = <b>(val)</b> => {};  <b>//One parameter w/ parens, OPTIONAL</b>
+  x = <b>val</b> => {};    <b>//One parameter w/o parens, OPTIONAL</b>
+  x = <b>(y, z)</b> => {}; <b>//Two or more parameters, MUST HAVE PARENS</b>
+  x = <b>y, z</b> => {};   <b><span class="redcom">//Syntax Error: must wrap with parens when using multiple params</span></b>
+</pre>
+      <p>
+      <ul class="build fade">
+        <li>Must use parens, unless <b>one</b> param</li>
+      </ul>
+      </p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2><a href="http://google.github.io/traceur-compiler/demo/repl.html#%2F%2F%20Options%3A%20--annotations%20--array-comprehension%20--async-functions%20--block-binding%20--exponentiation%20--generator-comprehension%20--symbols%20--types%20%0Avar%20square%3B%0Asquare%20%3D%20x%20%3D%3E%20x%20*%20x%3B%20%0Asquare%20%3D%20x%20%3D%3E%20%7B%20return%20x%20*%20x%7D%3B%20%0Asquare%20%3D%20function(x)%7B%20return%20x%20*%20x%3B%20%7D%0A">Arrow Functions</a></h2>
+    </hgroup>
+    <article>
+      <p>Method Body Declarations</p>
+<pre class="prettyprint" data-lang="javascript">
+  var square;
+  square = x => x * x; <b>//Body w/o braces</b>
+  square = x => { return x * x}; <b>//Body w/ braces</b>
+</pre>
+      <p>
+      <ul class="build fade">
+        <li>w/o braces, implicit return</li>
+        <li>w/ braces, explicit return</li>
+      </ul>
+      </p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2><a href="http://google.github.io/traceur-compiler/demo/repl.html#%2F%2F%20Options%3A%20--annotations%20--array-comprehension%20--async-functions%20--block-binding%20--exponentiation%20--generator-comprehension%20--symbols%20--types%20%0Alet%20nums%20%3D%20%5B1%2C%202%2C%203%5D%3B%0Alet%20res%20%3D%20nums.map(%20n%20%3D%3E%20n%20*%20n%20)%3B%0Aconsole.log(res)%3B%0A">Arrow Functions</a></h2>
+    </hgroup>
+    <article>
+      <p>Use them in place of anonymous functions</p>
+<pre class="prettyprint" data-lang="javascript">
+  let nums = [1, 2, 3];
+  let res = nums.map( n => n * n );
+  console.log(res); <b>//Logs [1, 4, 9]</b>
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Arrow Functions</h2>
+    </hgroup>
+    <article>
+      <p>Return an object literal, wrap in parens</p>
+<pre class="prettyprint" data-lang="javascript">
+  let key_maker = val => ({key: val});
+  console.log(key_maker(100)); <b>//Logs {key: 100}</b>
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Arrow Functions</h2>
+    </hgroup>
+    <article>
+      <p>The REAL benefit: lexical binding of 'this'</p>
+      <ul class="build fade">
+        <li>
+<pre class="prettyprint" data-lang="javascript">
+  var Widget = {
+    init: function() {
+      document.addEventListener("click", function(event) {
+        <b>this.doSomething(event.type); <b class="redcom">// Why does this error?</b></b>
+      }, false);
+    },
+
+    doSomething: function(type) {
+      console.log("Handling " + type  + " event");
+    }
+  };
+  Widget.init();
+</pre>
+        </li>
+      </ul>
+
+    </article>
+    <aside class="note">
+      <section>
+        <h4>Current Fixes: #1 or #2</h4>
+<pre class="prettyprint" data-lang="javascript">
+  //....
+  <b>//#1 - USE BIND
+  init: function() {
+    <b>document.addEventListener("click", (function(event) {
+      this.doSomething(event.type);
+    }).bind(this), false);</b>
+  }</b>
+
+  <b>//#2 - ALIAS THIS
+  init: function() {
+    <b>var me = this;</b>
+    document.addEventListener("click", function(event) {
+      <b>me.doSomething(event.type);</b>
+    }, false);</b>
+  }
+  //....
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2><a href="http://google.github.io/traceur-compiler/demo/repl.html#%2F%2F%20Options%3A%20--annotations%20--array-comprehension%20--async-functions%20--block-binding%20--exponentiation%20--generator-comprehension%20--symbols%20--types%20%0Avar%20Widget%20%3D%20%7B%0A%20%20init%3A%20()%20%3D%3E%20%7B%0A%20%20%20%20document.addEventListener(%22click%22%2C%20(event)%20%3D%3E%20%7B%0A%20%20%20%20%20%20this.doSomething(event.type)%3B%20%0A%20%20%20%20%7D%2C%20false)%3B%0A%20%20%7D%2C%0A%0A%20%20doSomething%3A%20(type)%20%3D%3E%20%7B%0A%20%20%20%20console.log(%22Handling%20%22%20%2B%20type%20%20%2B%20%22%20event%22)%3B%0A%20%20%7D%0A%7D%3B%0AWidget.init()%3B">Arrow Functions</a></h2>
+    </hgroup>
+    <article>
+      <p>The REAL benefit: lexical binding of 'this'</p>
+      <ul class="build fade">
+        <li>
+<pre class="prettyprint" data-lang="javascript">
+  var Widget = {
+    init: function(){
+      document.addEventListener("click", <b>(event) => {
+        this.doSomething(event.type);
+      }</b>, false);
+    },
+
+    doSomething: function(type){
+      console.log("Handling " + type  + " event");
+    }
+  };
+  Widget.init();
+</pre>
+        </li>
+      </ul>
+
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2><a href="http://google.github.io/traceur-compiler/demo/repl.html#%2F%2F%20Options%3A%20--annotations%20--array-comprehension%20--async-functions%20--block-binding%20--exponentiation%20--generator-comprehension%20--symbols%20--types%20%0Avar%20Widget%20%3D%20%7B%0A%20%20init%3A%20()%20%3D%3E%20%7B%0A%20%20%20%20document.addEventListener(%22click%22%2C%20(event)%20%3D%3E%20%7B%0A%20%20%20%20%20%20this.doSomething(event.type)%3B%20%0A%20%20%20%20%7D%2C%20false)%3B%0A%20%20%7D%2C%0A%0A%20%20doSomething%3A%20(type)%20%3D%3E%20%7B%0A%20%20%20%20console.log(%22Handling%20%22%20%2B%20type%20%20%2B%20%22%20event%22)%3B%0A%20%20%7D%0A%7D%3B%0AWidget.init()%3B">Arrow Functions</a></h2>
+    </hgroup>
+    <article>
+      <p>Additional Info about '() => {}'</p>
+      <ul class="build fade">
+        <li>
+<pre class="prettyprint" data-lang="javascript">
+  typeof ()=>{}; <b>//'function'</b>
+</pre>
+        </li>
+        <li>Although it doesn't have a prototype, this still happens <b>:(</b></li>
+        <li>
+<pre class="prettyprint" data-lang="javascript">
+  Object.getPrototypeOf(()=>{}); <b>//Function.prototype</b>
+</pre>
+        </li>
+        <li>
+<pre class="prettyprint" data-lang="javascript">
+  var Foo = function(){};
+  var Bar = () => {};
+  new Foo();
+  new Bar(); //Bar is not a contructor
+</pre>
+        </li>
+      </ul>
+
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2><a href="http://google.github.io/traceur-compiler/demo/repl.html#%2F%2F%20Options%3A%20--annotations%20--array-comprehension%20--async-functions%20--block-binding%20--exponentiation%20--generator-comprehension%20--symbols%20--types%20%0Avar%20Widget%20%3D%20%7B%0A%20%20init%3A%20()%20%3D%3E%20%7B%0A%20%20%20%20document.addEventListener(%22click%22%2C%20(event)%20%3D%3E%20%7B%0A%20%20%20%20%20%20this.doSomething(event.type)%3B%20%0A%20%20%20%20%7D%2C%20false)%3B%0A%20%20%7D%2C%0A%0A%20%20doSomething%3A%20(type)%20%3D%3E%20%7B%0A%20%20%20%20console.log(%22Handling%20%22%20%2B%20type%20%20%2B%20%22%20event%22)%3B%0A%20%20%7D%0A%7D%3B%0AWidget.init()%3B">Arrow Functions</a></h2>
+    </hgroup>
+    <article>
+      <p>Additional Info about '() => {}'</p>
+      <ul class="build fade">
+        <li>
+<pre class="prettyprint" data-lang="javascript">
+  function Widget(){
+    this.id = 123;
+    this.log = () => {
+      console.log('Widget Log', this.id);
+    }
+  }
+  var pseudoWidget = {
+    id: 456
+  };
+  new Widget().log.call(pseudoWidget);  //What Logs?
+</pre>
+        </li>
+        <li>You can't alter 'this' on arrow functions</li>
+      </ul>
+
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2><a href="http://google.github.io/traceur-compiler/demo/repl.html#%2F%2F%20Options%3A%20--annotations%20--array-comprehension%20--async-functions%20--block-binding%20--exponentiation%20--generator-comprehension%20--symbols%20--types%20%0Avar%20Widget%20%3D%20%7B%0A%20%20init%3A%20()%20%3D%3E%20%7B%0A%20%20%20%20document.addEventListener(%22click%22%2C%20(event)%20%3D%3E%20%7B%0A%20%20%20%20%20%20this.doSomething(event.type)%3B%20%0A%20%20%20%20%7D%2C%20false)%3B%0A%20%20%7D%2C%0A%0A%20%20doSomething%3A%20(type)%20%3D%3E%20%7B%0A%20%20%20%20console.log(%22Handling%20%22%20%2B%20type%20%20%2B%20%22%20event%22)%3B%0A%20%20%7D%0A%7D%3B%0AWidget.init()%3B">Arrow Functions</a></h2>
+    </hgroup>
+    <article>
+      <p>Still Use Functions</p>
+      <ul class="build fade">
+        <li>
+<pre class="prettyprint" data-lang="javascript">
+  var Widget = {
+    init: <b>function(){</b>
+      document.addEventListener("click", (event) => {
+        this.doSomething(event.type);
+      }, false);
+    },
+
+    doSomething: function(type){
+      console.log("Handling " + type  + " event");
+    }
+  };
+  Widget.init();
+</pre>
+        </li>
+        <li>Copy this to <a href="http://google.github.io/traceur-compiler/demo/repl.html#%2F%2F%20Options%3A%20--annotations%20--array-comprehension%20--async-functions%20--block-binding%20--exponentiation%20--generator-comprehension%20--symbols%20--types%20%0A">Traceur REPL</a></li>
+      </ul>
+
     </article>
   </slide>
 
@@ -69,12 +341,11 @@ URL: https://code.google.com/p/io-2012-slides
     </hgroup>
     <article>
       <ul>
-        <li><b>Rest Params</b> in Firefox</li>
-        <li><b>Rest Params</b> in <a href="http://google.github.io/traceur-compiler/demo/repl.html#%2F%2F%20Options%3A%20--annotations%20--array-comprehension%20--async-functions%20--block-binding%20--exponentiation%20--generator-comprehension%20--symbols%20--types%0A%0A">Traceur Repl</a></li>
-        <li><b>Rest Params</b> w/ 'arguments' object</li>
-        <li>Two <b>Rest Params</b></li>
-        <li><b>Rest Params</b> as first argument</li>
-        <li><b>Rest Params</b> w/ <b>Default Values</b></li>
+        <li><b>Arrow Functions</b> in Firefox</li>
+        <li><b>Arrow Functions</b> in <a href="http://google.github.io/traceur-compiler/demo/repl.html#%2F%2F%20Options%3A%20--annotations%20--array-comprehension%20--async-functions%20--block-binding%20--exponentiation%20--generator-comprehension%20--symbols%20--types%0A%0A">Traceur Repl</a></li>
+        <li><b>Arrow Functions</b> inside an Object</li>
+        <li><b>Arrow Functions</b> with EventHandlers</li>
+        <li><b>Arrow Functions</b> w/ Array.prototype methods</li>
       </ul>
     </article>
   </slide>
