@@ -724,6 +724,26 @@ URL: https://code.google.com/p/io-2012-slides
       <h2>LET w/ Looping</h2>
     </hgroup>
     <article>
+<pre class="prettyprint" data-lang="javascript">
+
+  for(let j = 0; j < 10; j++){
+    <b>let newNumber = j * 100;</b>
+  }
+  console.log(newNumber); <span class="redcom">//ReferenceError</span>
+
+</pre>
+      <ul class="build fade">
+        <li>Loop bodies are a lexical scope</li>
+      </ul>
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>LET w/ Looping</h2>
+    </hgroup>
+    <article>
       <p>Questions before we move on?</p>
       <br/>
       <p>Next up, CONST</p>
