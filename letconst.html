@@ -410,42 +410,12 @@ URL: https://code.google.com/p/io-2012-slides
 
     <article>
       <p>Let's Talk About <b>LET</b></p>
-      <p>4 Pieces</p>
       <ul class="build fade">
         <li>LET Definitions</li>
-        <li>LET Expressions</li>
-        <li>LET Statements</li>
         <li>LET w/ Looping</li>
       </ul>
     </article>
-    <aside class="note">
-      <section class="centered">
-        <h2>Who Knew?</h2>
-      </section>
-    </aside>
-  </slide>
 
-  <slide>
-    <hgroup>
-      <h2>LET</h2>
-    </hgroup>
-
-    <article>
-      <p>Let's Talk About <b>LET</b></p>
-      <p>4 Pieces</p>
-      <ul>
-        <li>LET Definitions</li>
-        <li>LET Expressions</li>
-        <li>LET Statements</li>
-        <li>LET w/ Looping</li>
-      </ul>
-      <h4>We'll talk about each, one at a time</h4>
-    </article>
-    <aside class="note">
-      <section class="centered">
-        <h2>Who Knew?</h2>
-      </section>
-    </aside>p
   </slide>
 
   <slide class="segue dark quote nobackground">
@@ -474,10 +444,22 @@ URL: https://code.google.com/p/io-2012-slides
 
     <article>
       <h4>This is LET is it's most basic form</h4>
+      <ul class="build fade">
+        <li>
 <pre class="prettyprint" data-lang="javascript">
   <span style="text-decoration: line-through;opacity: .5">var foo = 1;</span>
   let foo = 2;
 </pre>
+        </li>
+        <li>
+          <h4>You can reassign it</h4>
+<pre class="prettyprint" data-lang="javascript">
+  <span style="text-decoration: line-through;opacity: .5">var foo = 1;</span>
+  let foo = 2;
+  foo = 3;
+</pre>
+        </li>
+      </ul>
     </article>
   </slide>
 
@@ -664,9 +646,45 @@ URL: https://code.google.com/p/io-2012-slides
       <h2>LET Definitions</h2>
     </hgroup>
     <article>
+      <h4>Vocab Word:</h4>
+      <span class="fs-40 pic-comment">
+        Temporal Dead Zone
+        <img class="hover-pic" src="images/dndgeek.jpg" alt=""/>
+      </span>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>LET Definitions</h2>
+    </hgroup>
+    <article>
+      <h4>Vocab Word:</h4>
+      <span class="fs-40">Temporal Dead Zone</span>
+<pre class="prettyprint" data-lang="javascript">
+  function doSomething(){
+    <b>console.log(a);  //What Here?</b>
+    let a = 1;
+    console.log(a);
+  }
+</pre>
+      <ul class="build fade">
+        <li>Space in memory is reserved</li>
+        <li>Variable is not accessible until declared</li>
+        <li>Throws ReferenceError</li>
+      </ul>
+    </article>
+
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>LET Definitions</h2>
+    </hgroup>
+    <article>
       <p>Questions before we move on?</p>
       <br/>
-      <p>Next up, LET Expressions</p>
+      <p>Next up, LET w/ Looping</p>
     </article>
   </slide>
 
@@ -674,81 +692,133 @@ URL: https://code.google.com/p/io-2012-slides
     <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
     <article class="flexbox vleft auto-fadein">
       <q>
-        LET Expressions
+        LET w/ Looping
       </q>
     </article>
   </slide>
 
   <slide>
     <hgroup>
-      <h2>LET Expressions</h2>
+      <h2>LET w/ Looping</h2>
     </hgroup>
     <article>
 <pre class="prettyprint" data-lang="javascript">
-  let c = let (a = getA(), b = getB()) a + b;
-  console.log(c);     //Logs 3
-  console.log(a, b);  //ReferenceError: a is not defined
-
-  function getA(){
-    return 1;
+  for(var i = 0; i < 10; i++){
+    <b>console.log(i); //Logs 0-9</b>
   }
-  function getB(){
-    return 2;
+  for(let j = 0; j < 10; j++){
+    <b>console.log(j); //Logs 0-9</b>
+  }
+  <b>console.log(i); //Logs 10</b>
+  <b>console.log(j); <span class="redcom">//ReferenceError</span></b>
+</pre>
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>LET w/ Looping</h2>
+    </hgroup>
+    <article>
+      <p>Questions before we move on?</p>
+      <br/>
+      <p>Next up, CONST</p>
+    </article>
+  </slide>
+
+  <slide class="segue dark quote nobackground">
+    <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <q>
+        CONST
+      </q>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>CONST</h2>
+    </hgroup>
+    <article>
+<pre class="prettyprint" data-lang="javascript">
+  const a = 0;
+  a = 1;  <span class="redcom">//SyntaxError: Assignment to constant variable</span>
+</pre>
+      <ul class="build fade">
+        <li>Can't reassign a const</li>
+        <li>Respects block scopes, like LET</li>
+        <li>Can't re-declare CONST variables</li>
+      </ul>
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>CONST</h2>
+    </hgroup>
+    <article>
+      <p>Questions before we move on?</p>
+      <br/>
+      <p>Next up, Block Functions</p>
+    </article>
+  </slide>
+
+  <slide class="segue dark quote nobackground">
+    <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <q>
+        Block Functions
+      </q>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Block Functions</h2>
+    </hgroup>
+    <article>
+<pre class="prettyprint" data-lang="javascript">
+  function doThing(){
+    //some code
+    <b>if(true){ //want to scope 'a', so if-true</b>
+      //...
+      <b>let a = 0;</b>
+      //...
+    <b>}</b>
+    //some code
   }
 </pre>
       <ul class="build fade">
-        <li>Let's break this example down</li>
-        <li>Let's start with the first line</li>
+        <li>People would do this, just to get a temp scope</li>
       </ul>
     </article>
   </slide>
 
   <slide>
     <hgroup>
-      <h2>LET Expressions</h2>
+      <h2>Block Functions</h2>
     </hgroup>
     <article>
 <pre class="prettyprint" data-lang="javascript">
-  <b>let c = let (a = getA(), b = getB()) a + b;</b>
+  function doThing(){
+    //some code
+    <b>{ //Lay down a new scope</b>
+      //...
+      <b>let a = 0;</b>
+      //...
+    <b>}</b>
+    //some code
+  }
 </pre>
       <ul class="build fade">
-        <li>"a" and "b" only exist on this line</li>
-        <li>"a" and "b" won't exist on the next LOC</li>
-        <li>The result is implicitly returned</li>
+        <li>No if-true necessary</li>
+        <li>Same lexical scope as an if-true</li>
       </ul>
     </article>
   </slide>
 
-  <slide>
-    <hgroup>
-      <h2>LET Expressions</h2>
-    </hgroup>
-    <article>
-<pre class="prettyprint" data-lang="javascript">
-  let c = let (a = getA(), b = getB()) a + b;
-  <b>console.log(c);</b>
-</pre>
-      <ul class="build fade">
-        <li>"c" is 3, as it return the result of "a" + "b"</li>
-      </ul>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>LET Expressions</h2>
-    </hgroup>
-    <article>
-<pre class="prettyprint" data-lang="javascript">
-  let c = let (a = getA(), b = getB()) a + b;
-  console.log(c);
-  <b>console.log(a, b);</b>
-</pre>
-      <ul class="build fade">
-        <li>Throws an error, as "a" and "b"</li>
-      </ul>
-    </article>
-  </slide>
 
   <slide class="segue dark quote nobackground">
     <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
@@ -763,24 +833,17 @@ URL: https://code.google.com/p/io-2012-slides
 
   <slide>
     <hgroup>
-      <h2>LET Expressions</h2>
+      <h2>TRY THIS</h2>
     </hgroup>
     <article>
-      <p>Questions before we move on?</p>
-      <br/>
-      <p>Next up, LET Statements</p>
+      <ul>
+        <li><b>LET</b> in Node</li>
+        <li><b>LET</b> in Firefox</li>
+        <li><b>CONST</b></li>
+        <li><b>Block Scopes</b></li>
+      </ul>
     </article>
   </slide>
-
-  <slide class="segue dark quote nobackground">
-    <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
-    <article class="flexbox vleft auto-fadein">
-      <q>
-        LET Statements
-      </q>
-    </article>
-  </slide>
-
 
   <slide class="backdrop"></slide>
 

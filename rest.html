@@ -1,0 +1,319 @@
+<!--
+Google IO 2012/2013 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahé <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>REST</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="title-slide segue nobackground">
+    <aside class="gdbar"><img src="images/es6.png"></aside>
+    <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title style="display: none;"><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle style="display: none;"><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter style="display: none;"><!-- populated from slide_config.json --></p>
+      <h1>Rest Parameters</h1>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Rest Parameters</h2>
+    </hgroup>
+    <article>
+      <ul class="build fade">
+        <li>Splat</li>
+        <li>VARARGS</li>
+        <li>params</li>
+        <li>Does anyone not know yet?</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Rest Parameters</h2>
+    </hgroup>
+    <article>
+      <h4>Exist in function signature</h4>
+<pre class="prettyprint" data-lang="javascript">
+  function myFunction(first, last, <b>...other</b>){
+    //code
+  }
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Rest Parameters</h2>
+    </hgroup>
+    <article>
+      <h4>Exist in function signature</h4>
+<pre class="prettyprint" data-lang="javascript">
+  function foo(<b>...bar</b>){
+    console.log(<b>bar.join(' ')</b>); <b>//Logs 'I can haz teh arguments'</b>
+  }
+  foo('I', 'can', 'haz', 'teh', 'arguments');
+</pre>
+      <ul class="build fade">
+        <li>Loads all passed values into an array called "bar"</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Rest Parameters</h2>
+    </hgroup>
+    <article>
+      <h2>I know what you are thinking</h2>
+      <ul class="build fade">
+        <li>
+          <img src="images/ohwow.gif" alt=""/>
+          <h4>Finally a way to capture all arguments in one object</h4>
+          <h4>or</h4>
+          <h4>If only we had this before</h4>
+        </li>
+        <li><h2>NO ONE IS THINKING THIS!!!</h2></li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Rest Parameters</h2>
+    </hgroup>
+    <article>
+      <h2>We've had the 'arguments' object</h2>
+<pre class="prettyprint" data-lang="javascript">
+  function foo(){ <b>//leave the signature empty</b>
+    var output = "";
+    for(var i = 0; i < arguments.length; i++){
+      output += arguments[i];
+    }
+    console.log(<b>output</b>); <b>//Logs 'I can haz teh arguments'</b>
+  }
+  <b>foo('I', 'can', 'haz', 'teh', 'arguments');</b>
+</pre>
+      <ul class="build fade">
+        <li>Array-ish: Has length, get by index</li>
+        <li>NOT AN ARRAY</li>
+        <li>no prototype methods: forEach, join, pop, push, etc</li>
+        <li>Pseudo-array</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Rest Parameters</h2>
+    </hgroup>
+    <article>
+      <h2>Use 'arguments' like Array</h2>
+<pre class="prettyprint" data-lang="javascript">
+  function foo(){ <b>//leave the signature empty</b>
+    var output = Array.prototype.join.call(arguments, " ");
+    console.log(<b>output</b>); <b>//Logs 'I can haz teh arguments'</b>
+  }
+  <b>foo('I', 'can', 'haz', 'teh', 'arguments');</b>
+</pre>
+      <ul class="build fade">
+        <li>apply/call the Array.prototype functions</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Rest Parameters</h2>
+    </hgroup>
+    <article>
+      <h4>Difference between Rest and 'arguments'</h4>
+      <ul class="build fade">
+        <li>Rest Arg only includes non-specified arguments</li>
+        <li>'arguments' includes all arguments, regardless</li>
+        <li>
+<pre class="prettyprint" data-lang="javascript">
+  function argumenty(name){
+    console.log(name, arguments);
+  }
+  function resty(name, ...other){
+    console.log(name, other);
+  }
+  argumenty("Aaron", "Frost", "Salt Lake City", "Utah");
+  resty("Aaron", "Frost", "Salt Lake City", "Utah");
+</pre>
+        </li>
+        <li>Let's Run This in Firefox</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Rest Parameters</h2>
+    </hgroup>
+    <article>
+      <h4>Rules of Rest Parameters</h4>
+      <ul class="build fade">
+        <li>One per function</li>
+        <li>Must be the last parameter</li>
+        <li>Can't use 'arguments'</li>
+        <li>No Default Values</li>
+        <li class="fs-32">Look at each one of these rules</li>
+      </ul>
+
+
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Rest Parameters</h2>
+    </hgroup>
+    <article>
+      <h4>One Rest Param per function</h4>
+
+<pre class="prettyprint" data-lang="javascript">
+  function lotsOArgs(...first, ...second){
+    console.log("FIRST: " + first.join(" "));
+    console.log("SECOND: " + second.join(" "));
+  }
+  lotsOArgs("where", "does", "first", "stop", "and", "second", "begin");
+  <span class="redcom">// SyntaxError: Multiple RestParams Defined</span>
+</pre>
+      <ul class="build fade">
+        <li>Questions?</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Rest Parameters</h2>
+    </hgroup>
+    <article>
+      <h4>Must Be Last Parameter</h4>
+
+<pre class="prettyprint" data-lang="javascript">
+  function doSomething(...bar, biz){
+    // your code
+  }
+  doSomething(1, 2, 3, 4); //Where does it cutoff for 'biz'
+  doSomething(1);  //Does 1 go in 'bar' or 'biz'
+</pre>
+      <ul class="build fade">
+        <li>Questions?</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Rest Parameters</h2>
+    </hgroup>
+    <article>
+      <h4>Can't Use Arguments</h4>
+
+<pre class="prettyprint" data-lang="javascript">
+  function doSomething(...bar){
+    console.log(arguments.length); <span class="redcom">// SyntaxError</span>
+  }
+  doSomething(1, 2, 3);
+
+</pre>
+      <ul class="build fade">
+        <li>Questions?</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Rest Parameters</h2>
+    </hgroup>
+    <article>
+      <h4>No Default Values</h4>
+
+<pre class="prettyprint" data-lang="javascript">
+  function doSomething(...params=[1,2,3]){ //SyntaxError
+    console.log(params.join(“ “));
+  }
+  doSomething();
+</pre>
+      <ul class="build fade">
+        <li>Questions?</li>
+      </ul>
+    </article>
+  </slide>
+
+  <!---->
+
+  <slide class="segue dark quote nobackground">
+    <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <h2>Rest Parameters</h2>
+      <h3>Questions???</h3>
+      <div class="author">
+        #ES6 #frontendmasters @js_dev
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>TRY THIS</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li><b>Rest Params</b> in Firefox</li>
+        <li><b>Rest Params</b> in <a href="http://google.github.io/traceur-compiler/demo/repl.html#%2F%2F%20Options%3A%20--annotations%20--array-comprehension%20--async-functions%20--block-binding%20--exponentiation%20--generator-comprehension%20--symbols%20--types%0A%0A">Traceur Repl</a></li>
+        <li><b>Rest Params</b> w/ 'arguments' object</li>
+        <li>Two <b>Rest Params</b></li>
+        <li><b>Rest Params</b> as first argument</li>
+        <li><b>Rest Params</b> w/ <b>Default Values</b></li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</body>
+</html>

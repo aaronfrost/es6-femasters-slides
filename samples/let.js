@@ -1,13 +1,10 @@
 "use strict";
 
+var dog = {
+  bark: function(){
+    console.log(this == dog);
+    console.log("ARF");
+  }
+};
+dog.bark();
 
-let (a = getA(), b = getB()) a + b;
-
-console.log(c);
-
-function getA(){
-  return 1;
-}
-function getB(){
-  return 2;
-}
