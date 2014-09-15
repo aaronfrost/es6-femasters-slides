@@ -1,0 +1,338 @@
+<!--
+Google IO 2012/2013 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahé <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Default Parameters</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="title-slide segue nobackground">
+    <aside class="gdbar"><img src="images/es6.png"></aside>
+    <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title style="display: none;"><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle style="display: none;"><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter style="display: none;"><!-- populated from slide_config.json --></p>
+      <h1>Default Parameters</h1>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Default Parameters</h2>
+    </hgroup>
+    <article>
+      <p>
+        <h4>Some other ways to refer to Default Parameters</h4>
+      </p>
+      <ul class="build fade">
+        <li>Default Arguments</li>
+        <li>Default Values</li>
+        <li>Default Function Arguments</li>
+        <li>Default Optional Parameters</li>
+        <li>Some similar combination of words from these examples</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Default Parameters</h2>
+    </hgroup>
+    <article>
+      <p>
+        <h4>New version of an old seam</h4>
+      </p>
+      <ul class="build fade">
+        <li>C++</li>
+        <li>Python</li>
+        <li>CoffeeScript</li>
+        <li>Now EcmaScript!!!!</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Default Parameters</h2>
+    </hgroup>
+    <article>
+      <p>
+        <h4>Historically</h4>
+      </p>
+      <ul class="build fade">
+        <li>
+          Short-Circuit Expression
+<pre class="prettyprint" data-lang="javascript">
+  function test(a) {
+    a = a || getSomeDefaultValue(); <b>//DATAPROOFING</b>
+    /*Your code*/
+  }
+</pre>
+        </li>
+        <li>
+          Ternary Expression
+<pre class="prettyprint" data-lang="javascript">
+  function test(a) {
+    a = a ? a : getSomeDefaultValue(); <b>//DATAPROOFING</b>
+    /*Your code*/
+  }
+</pre>
+        </li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Default Parameters</h2>
+    </hgroup>
+    <article>
+      <p>
+        <h4>Example of Default Parameters</h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  function sayHello<b>(name = "World")</b>{
+    console.log("Hello " + name + "!");
+  }
+
+  sayHello("Dt Dew"); //Hello Dt Dew!
+  sayHello(""); //Hello !
+  sayHello(); //Hello World!
+  sayHello(undefined);//Hello World!
+</pre>
+      <ul class="build fade">
+        <li>Undefined: TRIGGERS</li>
+        <li>Empty String: DOESN'T TRIGGER</li>
+        <li>Explicit Undefined: TRIGGERS</li>
+      </ul>
+
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Default Parameters</h2>
+    </hgroup>
+    <article>
+      <p>
+        <h4>What Does It Get Me?</h4>
+      </p>
+      <ul class="build fade">
+        <li>Write Less Code</li>
+        <li>Easier To Read</li>
+        <li>Improved Predictability</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Default Parameters</h2>
+    </hgroup>
+    <article>
+      <p>
+        <h4>Assign w/ Method Call</h4>
+      </p>
+      <ul class="build fade">
+        <li>
+<pre class="prettyprint" data-lang="javascript">
+  function getRand(){
+    return Math.ceil(Math.random() * 10000000) + new Date().getTime();
+  }
+
+  function myFunction<b>(id=getRand())</b>{
+    console.log("My ID: "+id);
+  }
+
+  <b>myFunction(); //Logs random number</b>
+  <b>myFunction(1); //Logs 1</b>
+</pre>
+        </li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Default Parameters</h2>
+    </hgroup>
+    <article>
+      <p>
+        <h4>Assign w/ Method Call</h4>
+      </p>
+      <ul class="build fade">
+        <li>
+<pre class="prettyprint" data-lang="javascript">
+  function die(){ throw "x"}
+
+  function test(a = die()){
+    console.log("Didn't die");
+  }
+
+  test(); // throws an error
+</pre>
+        </li>
+        <li>Errors from a default assignment function will propagate</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Default Parameters</h2>
+    </hgroup>
+    <article>
+      <p>
+        <h4>Assignment Happens Lexically (Avoid This)</h4>
+      </p>
+      <ul class="build fade">
+        <li>
+<pre class="prettyprint" data-lang="javascript">
+  var x = "INIT";
+
+  function test(a = x) {
+    var x;
+    return a;
+  }
+
+  console.log( test() ); //undefined
+</pre>
+        </li>
+        <li>Using var names that exist in your function scope will result in 'undefined'</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Default Parameters</h2>
+    </hgroup>
+    <article>
+      <p>
+        <h4>Not All Parameters Need Default Values</h4>
+      </p>
+      <ul class="build fade">
+        <li>
+<pre class="prettyprint" data-lang="javascript">
+  function test<b>(a = 1, b){ //This is OK</b>
+    //Your Code
+  }
+</pre>
+        </li>
+
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Default Parameters</h2>
+    </hgroup>
+    <article>
+      <p>
+        <h4>Default Param Gotchas</h4>
+      </p>
+      <ul>
+        <li>
+<pre class="prettyprint" data-lang="javascript">
+  function f <b>( ...rest=100 ) { //SyntaxError</b>
+    //Your Code
+  }
+</pre>
+        </li>
+        <li>No Default Params w/ Rest Parameters</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Default Parameters</h2>
+    </hgroup>
+    <article>
+      <p>
+        <h4>Default Param Gotchas</h4>
+      </p>
+      <ul>
+        <li>
+<pre class="prettyprint" data-lang="javascript">
+  function test (a = 1, b = 2, c = 3){
+    console.log(arguments.length);
+  }
+
+  test(); // 0
+  test(1); // 1
+  test(1,2,3,4,5); // 5
+</pre>
+        </li>
+        <li>Default Values don't appear in 'arguments'</li>
+      </ul>
+    </article>
+  </slide>
+
+  <!-- -->
+
+  <slide class="segue dark quote nobackground">
+    <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <h2>Default Parameters</h2>
+      <h3>Questions???</h3>
+      <div class="author">
+        #ES6 #frontendmasters @js_dev
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>TRY THIS</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li><b>Default Parameters</b> in Firefox</li>
+        <li><b>Default Parameters</b> in <a href="http://google.github.io/traceur-compiler/demo/repl.html#%2F%2F%20Options%3A%20--annotations%20--array-comprehension%20--async-functions%20--block-binding%20--exponentiation%20--generator-comprehension%20--symbols%20--types%0A%0A">Traceur Repl</a></li>
+        <li><b>Default Parameters</b> via method call</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</body>
+</html>
