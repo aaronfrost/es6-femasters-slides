@@ -487,7 +487,8 @@ SlideDeck.prototype.nextSlide = function(opt_dontPush) {
 
     // Toggle off speaker notes if they're showing when we advanced on the main
     // slides. If we're the speaker notes popup, leave them up.
-    if (this.controller && !this.controller.isPopup) {
+//    if (this.controller && !this.controller.isPopup) {
+    if (this.controller) {
       bodyClassList.remove('with-notes');
     } else if (!this.controller) {
       bodyClassList.remove('with-notes');
