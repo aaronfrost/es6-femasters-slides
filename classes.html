@@ -328,6 +328,33 @@ URL: https://code.google.com/p/io-2012-slides
       <h2>Classes</h2>
     </hgroup>
     <article>
+      <p>
+        Extend Classes via Expression
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  class MySocket <b>extends getClass()</b> {
+    //....
+  }
+
+  function getClass(){
+    if(isIE()){
+      return IEWebSocketImpl;
+    }
+    return WebSocket;
+
+    function isIE(){
+      return false;
+    }
+  }
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Classes</h2>
+    </hgroup>
+    <article>
 <pre class="prettyprint" data-lang="javascript">
   class Monster{
     constructor(name, health){
