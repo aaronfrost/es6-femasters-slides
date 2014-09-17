@@ -145,7 +145,7 @@ URL: https://code.google.com/p/io-2012-slides
   class Monster{
     constructor(name, health){
       this.name = name;
-      this[monsterHealth] = health;
+      <b>this[monsterHealth] = health;</b>
     }
   }
 </pre>
@@ -175,6 +175,16 @@ URL: https://code.google.com/p/io-2012-slides
   }
 </pre>
     </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+
+  let nessy = new Monster('Nessy', 100);
+  console.log(<b>nessy.isAlive</b>); <b>//Logs true</b>
+
+</pre>
+      </section>
+    </aside>
   </slide>
 
   <slide>
@@ -202,6 +212,16 @@ URL: https://code.google.com/p/io-2012-slides
   }
 </pre>
     </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+
+  let nessy = new Monster('Nessy', 100);
+  <b>nessy.health = 200; //Cause nessy is bad A</b>
+
+</pre>
+      </section>
+    </aside>
   </slide>
 
   <slide>
@@ -226,6 +246,18 @@ URL: https://code.google.com/p/io-2012-slides
   }
 </pre>
     </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+
+  let nessy = new Monster('Nessy', 100);
+  let dom = new Monster('Dominique', 20);
+
+  <b>nessy.attack(dom); //Nessy attacks Dominique</b>
+
+</pre>
+      </section>
+    </aside>
   </slide>
 
   <slide>
@@ -272,7 +304,23 @@ URL: https://code.google.com/p/io-2012-slides
     }
   }
 </pre>
+      <ul class="build fade">
+        <li>Could we do this with Prototypes?</li>
+      </ul>
     </article>
+    <aside class="note">
+      <section>
+        <h4>How to use this</h4>
+<pre class="prettyprint" data-lang="javascript">
+  let zilly = new Godzilla();
+
+  zilly instanceof Gozilla; <b>//true</b>
+
+  zilly instanceof Monster; <b>//true</b>
+</pre>
+
+      </section>
+    </aside>
   </slide>
 
   <slide>
@@ -293,13 +341,68 @@ URL: https://code.google.com/p/io-2012-slides
       super('Godzilla', 10000);
     }
     attack(target){
-      super(target);        <b>//Currently THIS</b>
-      super.attack(target); <b>//Could Change to THIS</b>
+      <b>super(target);        //Currently THIS</b>
+      <b>super.attack(target); //Could Change to THIS</b>
     }
   }
 </pre>
     </article>
   </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Classes</h2>
+    </hgroup>
+    <article>
+      <p>
+        <h4>Classes Do No Hoist</h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  new Bar(); <b>//runtime error</b>
+
+  class Bar{}
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Classes</h2>
+    </hgroup>
+    <article>
+      <p>
+        <h4>If no constructor, default behavior</h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+
+  constructor(..args){
+    super(...args);
+  }
+
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Classes</h2>
+    </hgroup>
+    <article>
+      <p>
+      <h4>Benefits of Classes</h4>
+      </p>
+      <ul class="build fade">
+        <li>Sugar</li>
+        <li>Easier to learn #noobs</li>
+        <li>Subclassing easier to learn #noobs</li>
+        <li>Subclass built in object: Array, Error, etc</li>
+        <li>Code more portable between JS Frameworks</li>
+        <li>Possible Perf Gains</li>
+      </ul>
+    </article>
+  </slide>
+
+
 
   <!-- -->
 
