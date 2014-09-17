@@ -52,7 +52,76 @@ URL: https://code.google.com/p/io-2012-slides
       <h2>Spread Operator</h2>
     </hgroup>
     <article>
+      <p>
+      <h4><b>'...'</b> before an array</h4>
+      </p>
 <pre class="prettyprint" data-lang="javascript">
+  var nums = [1, 2, 3];
+
+  <b>log(nums);    //logs [1, 2, 3]</b>
+  <b>log(...nums); //logs 1, 2, 3</b>
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Spread Operator</h2>
+    </hgroup>
+    <article>
+<pre class="prettyprint" data-lang="javascript">
+  function returnTwo(a,b){
+   return [b,a]; <b>//Flips 'a' and 'b'</b>
+  }
+  var a = [1, 2, 3];
+  var b = <b>returnTwo(a[0], a[1]);</b> // [2, 1]
+  var c = <b>returnTwo(...a);</b> // [2, 1]
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Spread Operator</h2>
+    </hgroup>
+    <article>
+      <h2>What can I do with Spreading?</h2>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Spread Operator</h2>
+    </hgroup>
+    <article>
+      <p>
+      <h4>Combine Arrays</h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  let nums = [1, 2, 3];
+  let abcs = ['a', 'b', 'c'];
+
+  let alphanum = <b>[ ...nums, ...abcs ]; //[1, 2, 3, 'a', 'b', 'c']</b>
+
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Spread Operator</h2>
+    </hgroup>
+    <article>
+      <p>
+      <h4>Spread Return Vals</h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  function getNums(){
+   return [1, 2, 3];
+  }
+
+  var b = [0, <b>...getNums()</b>];
+  <b>log(b); // [0, 1, 2, 3]</b>
 
 </pre>
     </article>
@@ -78,9 +147,9 @@ URL: https://code.google.com/p/io-2012-slides
     <article>
       <ul>
         <li><b>Spread</b> in <a href="http://google.github.io/traceur-compiler/demo/repl.html#%2F%2F%20Options%3A%20--annotations%20--array-comprehension%20--async-functions%20--block-binding%20--exponentiation%20--generator-comprehension%20--symbols%20--types%0A%0A">Traceur Repl</a></li>
-        <li><b>Spread</b> in </li>
-        <li>Build something in Prototype AND Class</li>
-        <li>Force method implementation from Super</li>
+        <li><b>Spread</b> in Firefox</li>
+        <li>Spread a Rest Param</li>
+        <li>New Arrays on-the-fly</li>
       </ul>
     </article>
   </slide>
