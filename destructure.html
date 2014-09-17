@@ -1,0 +1,949 @@
+<!--
+Google IO 2012/2013 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahé <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Destructuring</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="title-slide segue nobackground">
+    <aside class="gdbar"><img src="images/es6.png"></aside>
+    <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title style="display: none;"><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle style="display: none;"><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter style="display: none;"><!-- populated from slide_config.json --></p>
+      <h1>Destructuring</h1>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+    </hgroup>
+  </slide>
+
+  <slide class="segue dark quote nobackground">
+
+    <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <q>
+        <b>Destructuring</b> allows you to bind a set of variables to a corresponding
+        set of values anywhere that you can normally bind a value to a single variable.
+      </q>
+      <!--<div class="author">-->
+        <!--Doug Crockford<br>-->
+        <!--Senior Architect of JS<br>-->
+        <!--@Paypal-->
+      <!--</div>-->
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Destructuring</h2>
+    </hgroup>
+    <article>
+      <p>
+        <h4>Thoughts</h4>
+      </p>
+      <ul>
+        <li>Normally we construct</li>
+        <li>Destructing has always been manual</li>
+        <li>New syntax</li>
+        <li>Pattern Matching</li>
+      </ul>
+    </article>
+
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Destructuring</h2>
+    </hgroup>
+    <article>
+      <p>
+        <h4>Two Approaches</h4>
+      </p>
+      <ul>
+        <li>Destructuring Objects</li>
+        <li>Destructuring Arrays</li>
+      </ul>
+      <p>Let's talk about them in that order</p>
+    </article>
+
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Destructuring Objects</h2>
+    </hgroup>
+    <article>
+      <p>
+      <h4>Basic Example</h4>
+      </p>
+
+<pre class="prettyprint" data-lang="javascript">
+
+  let <b>{city, state, zip}</b> = getAddress();
+
+  log(city);  //"Salt Lake City"
+  log(state); //"UT"
+  log(zip);   //84115
+
+
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+
+  function getAddress(){
+    return {
+      city: "Salt Lake City",
+      state: "UT",
+      zip: 84115
+    };
+  }
+
+</pre>
+      </section>
+    </aside>
+
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Destructuring Objects</h2>
+    </hgroup>
+    <article>
+      <h4>Notice</h4>
+
+<pre class="prettyprint" data-lang="javascript">
+
+  let <b>{city, state, zip}</b> = getAddress();
+  log(city, state, zip); // 'Salt Lake City', 'UT', 84115
+
+</pre>
+      <ul class="build fade">
+        <li>braces on the left side of assignment expression</li>
+        <li>three separate</li>
+      </ul>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+
+  //No Notes
+</pre>
+      </section>
+    </aside>
+
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Destructuring Objects</h2>
+    </hgroup>
+    <article>
+      <h4>
+        <a href="http://google.github.io/traceur-compiler/demo/repl.html#var%20address%20%3D%20%7B%0A%20%20city%3A%20%22Salt%20Lake%20City%22%2C%0A%20%20state%3A%20%22UT%22%2C%0A%20%20zip%3A%2084115%0A%7D%3B%0A%0Avar%20%7Bcity%3A%20c%2C%20state%3A%20s%2C%20zip%3A%20z%7D%20%3D%20address%3B%0Aconsole.log(c%2C%20s%2C%20z)%3B%0Aconsole.log(city%2C%20state%2C%20zip)%3B%0A">
+          Alias Names
+        </a>
+      </h4>
+
+<pre class="prettyprint" data-lang="javascript">
+
+  let <b>{city: c, state: s, zip: z}</b> = getAddress();
+
+  log(c, s, z); // 'Salt Lake City', 'UT', 84115
+  log(city, state, zip); //<span class="redcom">Throws Error: city, state, zip not defined</span>
+
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+
+  //No Notes
+</pre>
+      </section>
+    </aside>
+
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Destructuring Objects</h2>
+    </hgroup>
+    <article>
+      <h4>
+        <a href="http://google.github.io/traceur-compiler/demo/repl.html#%2F%2FThe%20Old%20Way%20-%20Manual%20Destructuring%0Avar%20person%20%3D%20%7Bname%3A%20%22Aaron%22%2C%20age%3A%2035%7D%3B%0AdisplayPerson(person)%3B%0A%0Afunction%20displayPerson(p)%7B%0A%09var%20name%20%3D%20p.name%3B%0A%09var%20age%20%3D%20p.age%3B%0A%09%2F%2Fdo%20something%20with%20name%20and%20age%20to%20display%20them%0A%7D%0A">
+          The Old Way
+        </a>
+      </h4>
+
+<pre class="prettyprint" data-lang="javascript">
+
+  <b>var person = {name: "Aaron", age: 35};</b>
+  displayPerson(<b>person</b>);
+
+  function displayPerson(<b>p</b>){
+    <b>var name = p.name;</b>
+    <b>var age = p.age;</b>
+    //do something with name and age to display them
+  }
+</pre>
+      <ul class="build fade">
+        <li>Doing it manually</li>
+        <li>First LOC, all functions</li>
+      </ul>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+
+  //No Notes
+</pre>
+      </section>
+    </aside>
+
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Destructuring Objects</h2>
+    </hgroup>
+    <article>
+      <h4>
+        <a href="http://google.github.io/traceur-compiler/demo/repl.html#%2F%2FThe%20New%20Way%20-%20Destructuring%0Avar%20person%20%3D%20%7Bname%3A%20%22Aaron%22%2C%20age%3A%2035%7D%3B%0AdisplayPerson(person)%3B%0A%0Afunction%20displayPerson(p)%7B%0A%09var%20%7Bname%2C%20age%7D%20%3D%20p%3B%0A%09%2F%2Fdo%20something%20with%20name%20and%20age%20to%20display%20them%0A%7D%0A">
+          The New Way
+        </a>
+      </h4>
+
+<pre class="prettyprint" data-lang="javascript">
+
+  <b>var person = {name: "Aaron", age: 35};</b>
+  displayPerson(<b>person</b>);
+
+  function displayPerson(<b>p</b>){
+    <b>let {name, age} = p;</b>
+    //do something with name and age to display them
+  }
+</pre>
+      <ul class="build fade">
+        <li>All on one LOC</li>
+        <li>More readable?</li>
+        <li>Even Better Way Still!!!</li>
+      </ul>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+
+  //No Notes
+</pre>
+      </section>
+    </aside>
+
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Destructuring Objects</h2>
+    </hgroup>
+    <article>
+      <h4>
+        <a href="http://google.github.io/traceur-compiler/demo/repl.html#%2F%2FThe%20New%20Way%20-%20Destructuring%0Avar%20person%20%3D%20%7Bname%3A%20%22Aaron%22%2C%20age%3A%2035%7D%3B%0AdisplayPerson(person)%3B%0A%0Afunction%20displayPerson(%7Bname%2C%20age%7D)%7B%0A%09%2F%2Fdo%20something%20with%20name%20and%20age%20to%20display%20them%0A%7D%0A">
+          The New Way - Improved
+        </a>
+      </h4>
+
+<pre class="prettyprint" data-lang="javascript">
+
+  <b>var person = {name: "Aaron", age: 35};</b>
+  displayPerson(<b>person</b>);
+
+  function displayPerson(<b>{name, age}</b>){
+    //do something with name and age to display them
+  }
+</pre>
+      <ul class="build fade">
+        <li>No Round Of Applause. Really?</li>
+        <li>In Method Signature</li>
+        <li>More readable still?</li>
+        <li>Best Way Ever!</li>
+      </ul>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+
+  //No Notes
+</pre>
+      </section>
+    </aside>
+
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Destructuring Objects</h2>
+    </hgroup>
+    <article>
+      <h4>
+        <a href="http://google.github.io/traceur-compiler/demo/repl.html#%2F%2FThe%20New%20Way%20-%20Destructuring%0Avar%20person%20%3D%20%7Bname%3A%20%22Aaron%22%2C%20age%3A%2035%7D%3B%0AdisplayPerson(person)%3B%0A%0Afunction%20displayPerson(%7Bname%2C%20age%7D)%7B%0A%09%2F%2Fdo%20something%20with%20name%20and%20age%20to%20display%20them%0A%7D%0A">
+          The New Way - More Improved
+        </a>
+      </h4>
+
+<pre class="prettyprint" data-lang="javascript">
+
+  <b>var person = {name: "Aaron", age: 35};</b>
+  displayPerson(<b>person</b>);
+
+  function displayPerson(<b>{name = "No Name Provided", age = 0}</b>){
+    //do something with name and age to display them
+  }
+</pre>
+      <ul class="build fade">
+        <li>Default Values</li>
+        <li>Most Best Way Ever!</li>
+      </ul>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+
+  //No Notes
+</pre>
+      </section>
+    </aside>
+
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Destructuring Objects</h2>
+    </hgroup>
+    <article>
+      <h4>
+        <a href="http://google.github.io/traceur-compiler/demo/repl.html#%2F%2FThe%20New%20Way%20-%20Destructuring%0Avar%20person%20%3D%20%7Bname%3A%20%22Aaron%22%2C%20age%3A%2035%7D%3B%0AdisplayPerson(person)%3B%0A%0Afunction%20displayPerson(%7Bname%2C%20age%7D)%7B%0A%09%2F%2Fdo%20something%20with%20name%20and%20age%20to%20display%20them%0A%7D%0A">
+          Another Example
+        </a>
+      </h4>
+
+<pre class="prettyprint" data-lang="javascript">
+
+  try{
+    throw “WorstError”;
+  }catch(<b>{type, message, filename, lineNumber}</b>){
+    //do something with error
+  }
+
+
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+
+  //No Notes
+</pre>
+      </section>
+    </aside>
+
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Destructuring Objects</h2>
+    </hgroup>
+    <article>
+      <h4>
+        <a href="http://google.github.io/traceur-compiler/demo/repl.html#%2F%2FThe%20New%20Way%20-%20Destructuring%0Avar%20person%20%3D%20%7Bname%3A%20%22Aaron%22%2C%20age%3A%2035%7D%3B%0AdisplayPerson(person)%3B%0A%0Afunction%20displayPerson(p)%7B%0A%09var%20%7Bname%2C%20age%7D%20%3D%20p%3B%0A%09%2F%2Fdo%20something%20with%20name%20and%20age%20to%20display%20them%0A%7D%0A">
+          Backup a step and explain patterns
+        </a>
+      </h4>
+
+<pre class="prettyprint" data-lang="javascript">
+
+  var person = {name: "Aaron", age: 35};
+  displayPerson(person);
+
+  function displayPerson(p){
+    let <b style="font-style: italic;">{name, age}</b> = p;
+    //do something with name and age to display them
+  }
+</pre>
+      <ul class="build fade">
+        <li>} on the left mean destructure the right</li>
+        <li>Obj on right MUST HAVE properties w/ names</li>
+        <li>Irrefutable</li>
+        <li>Questions?</li>
+      </ul>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+
+  //No Notes
+</pre>
+      </section>
+    </aside>
+
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Destructuring Objects</h2>
+    </hgroup>
+    <article>
+      <h4>
+        <a href="http://google.github.io/traceur-compiler/demo/repl.html#%2F%2FThe%20New%20Way%20-%20Destructuring%0Avar%20person%20%3D%20%7Bname%3A%20%22Aaron%22%2C%20age%3A%2035%7D%3B%0AdisplayPerson(person)%3B%0A%0Afunction%20displayPerson(%7Bname%2C%20age%7D)%7B%0A%09%2F%2Fdo%20something%20with%20name%20and%20age%20to%20display%20them%0A%7D%0A">
+          Irrefutable Patterns
+        </a>
+      </h4>
+
+<pre class="prettyprint" data-lang="javascript">
+
+  var person = {name: "Aaron", age: 35};
+  displayPerson(person);
+
+  function displayPerson(p){
+    let <b>{name, age, <span class="redcom">address</span>}</b> = p;
+    //do something with name and age to display them
+  }
+</pre>
+      <ul class="build fade">
+        <li>There is no address</li>
+        <li>What now?</li>
+        <li>We need Refutable Patterns</li>
+      </ul>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+var person = {name: "Aaron", age: 35};
+  displayPerson(person);
+
+  function displayPerson(p){
+    let <b>{name, age, <span class="redcom">address</span>}</b> = p; <b class="redcom">//Throws</b>
+    //do something with name and age to display them
+  }
+</pre>
+      </section>
+    </aside>
+
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Destructuring Objects</h2>
+    </hgroup>
+    <article>
+      <h4>
+        <a href="">
+          Refutable Patterns
+        </a>
+      </h4>
+
+<pre class="prettyprint" data-lang="javascript">
+
+  var person = {name: "Aaron", age: 35};
+
+  let <b>{name, age, <span class="redcom blue">?</span>address}</b> = person;
+
+
+</pre>
+      <ul class="build fade">
+        <li>Forgives 'address' from missing</li>
+        <li>What about missing 'age' or 'name'?</li>
+        <li>Move the ? around</li>
+      </ul>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Note
+</pre>
+      </section>
+    </aside>
+
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Destructuring Objects</h2>
+    </hgroup>
+    <article>
+      <h4>
+        <a href="">
+          Refutable Patterns
+        </a>
+      </h4>
+
+<pre class="prettyprint" data-lang="javascript">
+
+  var person = {name: "Aaron", age: 35};
+
+  let <b>{<span class="redcom blue">?</span>name, <span class="redcom blue">?</span>age, <span class="redcom blue">?</span>address}</b> = person;
+  <b>//Forgives each of them individually</b>
+
+  let <b><span class="redcom blue">?</span>{name, age, address}</b> = person;
+  <b>//Forgives the whole pattern</b>
+
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Note
+</pre>
+      </section>
+    </aside>
+
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Destructuring Objects</h2>
+    </hgroup>
+    <article>
+      <!--<iframe data-src="http://wiki.ecmascript.org/doku.php?id=harmony:refutable_matching"></iframe>-->
+      <p>
+        <h4>
+          <a href="http://wiki.ecmascript.org/doku.php?id=harmony:refutable_matching">
+            All Patterns
+          </a>
+        </h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+
+  let {a: x} = {}     // throw
+  let <span class="redcom blue">?</span>{a: x} = {}    // x = undefined
+  let <span class="redcom blue">?</span>{a: x} = 0     // x = undefined
+  let {<span class="redcom blue">?</span>a: x} = {}    // x = undefined
+  let {<span class="redcom blue">?</span>a: x} = 0     // throw
+
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Note
+</pre>
+      </section>
+    </aside>
+
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Destructuring Objects</h2>
+    </hgroup>
+    <article>
+      <!--<iframe data-src="http://wiki.ecmascript.org/doku.php?id=harmony:refutable_matching"></iframe>-->
+      <p>
+        <h4>
+          <a href="http://wiki.ecmascript.org/doku.php?id=harmony:refutable_matching">
+            Patterns w/ Default Values
+          </a>
+        </h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+
+  let <span class="redcom blue">?</span>{a: <b class="redcom green">x = 1</b>} = undefined  // x = 1
+  let {<span class="redcom blue">?</span>a: <b class="redcom green">x = 1</b>} = undefined  // throw
+  let {<span class="redcom blue">?</span>a: <b class="redcom green">x = 1</b>} = {}         // x = 1
+
+
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Note
+</pre>
+      </section>
+    </aside>
+
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Destructuring Objects</h2>
+    </hgroup>
+    <article>
+      <!--<iframe data-src="http://wiki.ecmascript.org/doku.php?id=harmony:refutable_matching"></iframe>-->
+      <p>
+        <h4>
+          <a href="http://wiki.ecmascript.org/doku.php?id=harmony:refutable_matching">
+            Patterns w/ Default Values
+          </a>
+        </h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+
+  let {a: x, <b>b: {c: y}</b>, d: z} = {a: 1, <b>b: {}</b>, d: 2} <b>// throw</b>
+  let {a: x, <b>b: <span class="redcom blue">?</span>{c: y}</b>, d: z} = {a: 1, <b>b: 0</b>, d: 2} <b>// x = 1, y = undefined, z = 2</b>
+  let <span class="redcom blue">?</span>{<b>a: x</b>, <b>b: {c: y}</b>, d: z} = {<b>b: {}</b>, d: 2}      <b>// x, y = undefined, z = 2</b>
+
+
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Note
+</pre>
+      </section>
+    </aside>
+
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Destructuring Objects</h2>
+    </hgroup>
+    <article>
+      <!--<iframe data-src="http://wiki.ecmascript.org/doku.php?id=harmony:refutable_matching"></iframe>-->
+      <p>
+        <h4>
+          <a href="http://wiki.ecmascript.org/doku.php?id=harmony:refutable_matching">
+            Patterns - Nested (I skipped this :(  )
+          </a>
+        </h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  let person = {
+    name: "Aaron",
+    age: "35",
+    address: {
+      city: "Salt Lake City",
+      state: "UT",
+      zip: 84115
+    }
+  };
+
+  let {<b>name</b>, <b>age</b>, address: {<b>city</b>, <b>state</b>, <b>zip</b>}} = person;
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Note
+</pre>
+      </section>
+    </aside>
+
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Destructuring Objects</h2>
+    </hgroup>
+    <article>
+      <!--<iframe data-src="http://wiki.ecmascript.org/doku.php?id=harmony:refutable_matching"></iframe>-->
+      <p>
+        <h4>
+          <a href="http://wiki.ecmascript.org/doku.php?id=harmony:refutable_matching">
+            Patterns - Nested w/ Alias
+          </a>
+        </h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  let person = {
+    name: "Aaron",
+    age: "35",
+    address: {
+      city: "Salt Lake City",
+      state: "UT",
+      zip: 84115
+    }
+  };
+
+  let {<b>name</b>, <b>age</b>, address: {city: <b>c</b>, state:<b>s</b>, zip: <b>z</b>}} = person;
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Note
+</pre>
+      </section>
+    </aside>
+
+  </slide>
+
+  <slide class="segue dark quote nobackground">
+    <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <h2>Destructuring Objects</h2>
+      <h3>Questions???</h3>
+      <div class="author">
+        #ES6 #frontendmasters @js_dev
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Destructuring Arrays</h2>
+    </hgroup>
+    <article>
+      <p>
+      <h4>
+        Basic Example
+      </h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+
+  var nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+  var [first, second,,,,,,,,tenth] = nums;
+  log(first, second, tenth);  <b>//1, 2, 10</b>
+
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Note
+</pre>
+      </section>
+    </aside>
+
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Destructuring Arrays</h2>
+    </hgroup>
+    <article>
+      <p>
+      <h4>
+        <a href="http://google.github.io/traceur-compiler/demo/repl.html#%2F%2FSWAPPING%20VARIABLES%0Avar%20a%20%3D%201%2C%20b%20%3D%202%3B%0A%0A%2F%2FThe%20Old%20Way%0Avar%20temp%20%3D%20a%2C%20a%20%3D%20b%2C%20b%20%3D%20temp%3B%0A%0A%2F%2FThe%20New%20Way%0A%5Bb%2C%20a%5D%20%3D%20%5Ba%2C%20b%5D%3B">
+          Swap Variables
+        </a>
+      </h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  //SWAPPING VARIABLES
+  var a = 1, b = 2;
+
+  //The Old Way
+  var temp = a, a = b, b = temp;
+
+  //The New Way
+  [b, a] = [a, b];
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Note
+</pre>
+      </section>
+    </aside>
+
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Destructuring Arrays</h2>
+    </hgroup>
+    <article>
+      <p>
+      <h4>
+        <a href="http://google.github.io/traceur-compiler/demo/repl.html#%2F%2FSWAPPING%20VARIABLES%0Avar%20a%20%3D%201%2C%20b%20%3D%202%3B%0A%0A%2F%2FThe%20Old%20Way%0Avar%20temp%20%3D%20a%2C%20a%20%3D%20b%2C%20b%20%3D%20temp%3B%0A%0A%2F%2FThe%20New%20Way%0A%5Bb%2C%20a%5D%20%3D%20%5Ba%2C%20b%5D%3B">
+          Method Signature
+        </a>
+      </h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  <b>var nums = [1, 2, 3, 4];</b>
+  doSomething(<b>nums</b>);
+
+  function doSomething(<b>[first, second, ...others]</b>){
+    log(<b>first</b>);  <b>//logs 1</b>
+    log(<b>second</b>); <b>//logs 2</b>
+    log(<b>others</b>); <b>//logs [3, 4]</b>
+  }
+
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Note
+</pre>
+      </section>
+    </aside>
+
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Destructuring Arrays</h2>
+    </hgroup>
+    <article>
+      <p>
+      <h4>
+        <a href="http://google.github.io/traceur-compiler/demo/repl.html#var%20nums%20%3D%20%5B1%2C%202%2C%20%5B3%2C%204%2C%20%5B5%2C%206%5D%5D%5D%3B%0A%20%20%0Avar%20%5Bone%2C%2C%5Bthree%2C%2C%5B%2Csix%5D%5D%5D%20%3D%20nums%3B">
+          Nested Destructuring of Array
+        </a>
+      </h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  var nums = [1, 2, [3, 4, [5, 6]]];
+
+  var [one,,[three,,[,six]]] = nums;
+
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Note
+</pre>
+      </section>
+    </aside>
+
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Destructuring Arrays</h2>
+    </hgroup>
+    <article>
+      <p>
+      <h4>
+        <a href="http://google.github.io/traceur-compiler/demo/repl.html#var%20nums%20%3D%20%5B1%2C%202%2C%20%5B3%2C%204%2C%20%5B5%2C%206%5D%5D%5D%3B%0A%20%20%0Avar%20%5Bone%2C%2C%5Bthree%2C%2C%5B%2Csix%5D%5D%5D%20%3D%20nums%3B">
+          Pattern Errors
+        </a>
+      </h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  let [x] = [2, 3]        <b>// x = 2</b>
+  let [x] = {'0': 4}      <b>// x = 4</b>
+  let [x, y, z] = [1, 2]  <b>// throw</b>
+
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Note
+</pre>
+      </section>
+    </aside>
+
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Destructuring Arrays</h2>
+    </hgroup>
+    <article>
+      <p>
+      <h4>
+        <a href="http://google.github.io/traceur-compiler/demo/repl.html#var%20nums%20%3D%20%5B1%2C%202%2C%20%5B3%2C%204%2C%20%5B5%2C%206%5D%5D%5D%3B%0A%20%20%0Avar%20%5Bone%2C%2C%5Bthree%2C%2C%5B%2Csix%5D%5D%5D%20%3D%20nums%3B">
+          Pattern Errors
+        </a>
+      </h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  <b>//Entire Pattern is Refutable</b>
+  let <b><span class="redcom blue">?</span>[x, y, z]</b> = [1, 2]   <b>// x = 1, y = 2, z = undefined</b>
+
+  <b>//Only 'z' is Refutable</b>
+  let <b>[x, y, <span class="redcom blue">?</span>z]</b> = [1, 2]   <b>// x = 1, y = 2, z = undefined</b>
+
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Note
+</pre>
+      </section>
+    </aside>
+
+  </slide>
+
+  <!-- -->
+
+  <slide class="segue dark quote nobackground">
+    <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <h2>Destructuring Array</h2>
+      <h3>Questions???</h3>
+      <div class="author">
+        #ES6 #frontendmasters @js_dev
+      </div>
+    </article>
+  </slide>
+
+  <slide class="segue dark quote nobackground">
+    <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <h2>Destructuring</h2>
+      <h3>Last Call For Questions???</h3>
+      <div class="author">
+        #ES6 #frontendmasters @js_dev
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>TRY THIS</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li><b>Destructuring</b> in <a href="http://google.github.io/traceur-compiler/demo/repl.html#%2F%2F%20Options%3A%20--annotations%20--array-comprehension%20--async-functions%20--block-binding%20--exponentiation%20--generator-comprehension%20--symbols%20--types%0A%0A">Traceur Repl</a></li>
+        <li><b>Destructuring</b> in Firefox</li>
+        <li><b>NO WHERE RESPECTS PATTERNS</b></li>
+        <li>Destructure in a method signature</li>
+        <li>Destructure return value of method</li>
+        <li>Destructure canvas bitarray</li>
+        <li>Read: http://wiki.ecmascript.org/doku.php?id=harmony:<b>destructuring</b></li>
+        <li>Read: http://wiki.ecmascript.org/doku.php?id=harmony:<b>refutable_matching</b></li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</body>
+</html>

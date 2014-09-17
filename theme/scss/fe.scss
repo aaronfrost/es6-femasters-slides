@@ -23,8 +23,19 @@
   text-decoration: line-through !important;
 }
 
-.redcom .com{
-  color:darkred !important;
+.redcom{
+  span{
+    color:darkred !important;
+  }
+
+  &.blue{
+    span{
+      color: blue !important;
+    }
+  }
+  &.green span{
+    color: green !important;
+  }
 }
 
 .pic-comment{
