@@ -588,8 +588,14 @@ console.log(lib.diag(4, 3)); // 5
     &lt;module&gt;
       import $ from 'lib/jquery';
 
+      console.log('$' in this); //false
+      //globals trapped in module
+
       //Other JS here
       console.log(window); //Still can access window
+
+      //let x = 1;
+      //Module Tag is force strict mode
 
     &lt;/module&gt;
     ....
