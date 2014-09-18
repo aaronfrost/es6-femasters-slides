@@ -9,7 +9,7 @@ URL: https://code.google.com/p/io-2012-slides
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Collections</title>
+  <title>Modules</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
   <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
@@ -33,28 +33,96 @@ URL: https://code.google.com/p/io-2012-slides
       <h1 data-config-title style="display: none;"><!-- populated from slide_config.json --></h1>
       <h2 data-config-subtitle style="display: none;"><!-- populated from slide_config.json --></h2>
       <p data-config-presenter style="display: none;"><!-- populated from slide_config.json --></p>
-      <h1>Collections</h1>
+      <h1>Modules</h1>
       <p data-config-presenter><!-- populated from slide_config.json --></p>
     </hgroup>
   </slide>
 
   <slide>
     <hgroup>
-      <h2>Collections</h2>
+      <h2>Modules</h2>
     </hgroup>
     <article>
       <p>
-        <h4>Three new Collections</h4>
+      <h4>Hard To Discuss</h4>
+      </p>
+      <ul class="build fade">
+        <li>Not any great support right now</li>
+        <li>
+          <a href="https://github.com/ModuleLoader/es6-module-loader">
+            Polyfills only
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/rwaldron/tc39-notes/blob/master/es6/2014-06/jun-5-modules.md">
+            Still Fresh
+          </a>
+        </li>
+        <li>Least amount of Tooling</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Modules</h2>
+    </hgroup>
+    <article>
+      <p>
+      <h4>Bits of CommonJS & AMD</h4>
+      </p>
+      <ul class="build fade">
+        <li>
+          <h4>Similar To CommonJS</h4>
+          <ul>
+            <li>Single Exports</li>
+            <li>Cyclic Dependencies</li>
+          </ul>
+        </li>
+        <li>
+          <h4>Similar To AMD</h4>
+          <ul>
+            <li>Async Loading Support</li>
+            <li>Configurable Module Loading</li>
+          </ul>
+        </li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Modules</h2>
+    </hgroup>
+    <article>
+      <p>
+      <h4>Major Design Goals</h4>
       </p>
       <ul>
-        <li>SET</li>
-        <li>MAP</li>
-        <li>WEAKMAP</li>
+        <li><b>default</b> exports are favored</li>
+        <li>static module structure</li>
+        <li>support for sync/async loading</li>
+        <li>support for cyclical dependencies</li>
       </ul>
       <ul class="build fade">
-        <li><b>Set</b> is <span style="font-style: italic;">like</span> Array</li>
-        <li><b>Map</b> is <span style="font-style: italic;">like</span> Key-Value Object</li>
-        <li><b>WeakMap</b> is <span style="font-style: italic;">like</span> Map, but different</li>
+        <li>Let's talk about each one</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Modules</h2>
+    </hgroup>
+    <article>
+      <p>
+      <h4>Two Pieces</h4>
+      </p>
+      <ul>
+        <li>Import/Export Syntax</li>
+        <li>Programmatic Loading API</li>
+      </ul>
+      <ul class="build fade">
         <li>Let's talk about each one</li>
       </ul>
     </article>
@@ -63,176 +131,301 @@ URL: https://code.google.com/p/io-2012-slides
   <slide class="segue dark quote nobackground">
     <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
     <article class="flexbox vleft auto-fadein">
-      <q>
-        SET
-      </q>
-      <!--<div class="author">-->
-        <!--Doug Crockford<br>-->
-        <!--Senior Architect of JS<br>-->
-        <!--@Paypal-->
-      <!--</div>-->
+      <h2>Import/Export Syntax</h2>
+      <!--<h3>Questions???</h3>-->
+      <div class="author">
+        #ES6 #frontendmasters @js_dev
+      </div>
     </article>
   </slide>
 
   <slide>
     <hgroup>
-      <h2>SET</h2>
+      <h2>Modules - Import/Export</h2>
     </hgroup>
     <article>
       <p>
-      <h4>
-        <a href="http://google.github.io/traceur-compiler/demo/repl.html#%2F%2F%20Options%3A%20--annotations%20--array-comprehension%20--async-functions%20--block-binding%20--exponentiation%20--generator-comprehension%20--module-name%20--source-maps%20--symbols%20--types%20%0A%0Avar%20set%20%3D%20new%20Set()%3B%0Aset.add(1)%3B%0Aset.add(2)%3B%0Aset.add(3)%3B%0Aconsole.log(set.size)%3B%0A%0A">
-          Basic Set
-        </a>
-      </h4>
+        <h4>Exporting Default</h4>
       </p>
+      MyClass.js
 <pre class="prettyprint" data-lang="javascript">
-  var set = <b>new Set();</b>
-  set.<b>add(1);</b>
-  set.<b>add(2);</b>
-  set.<b>add(3);</b>
-  console.log(<b>set.size</b>); <b>//logs 3</b>
-</pre>
-      <ul class="build fade">
-        <li>Like an Array</li>
-      </ul>
-    </article>
-    <aside class="note">
-      <section>
-<pre class="prettyprint" data-lang="javascript">
-  //No Note
-</pre>
-      </section>
-    </aside>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>SET</h2>
-    </hgroup>
-    <article>
-      <p>
-      <h4>
-        <a href="http://google.github.io/traceur-compiler/demo/repl.html#%2F%2F%20Options%3A%20--annotations%20--array-comprehension%20--async-functions%20--block-binding%20--exponentiation%20--generator-comprehension%20--module-name%20--source-maps%20--symbols%20--types%20%0A%0Avar%20set%20%3D%20new%20Set()%3B%0Aset.add(1)%3B%0Aset.add(2)%3B%0Aset.add(3)%3B%0Aconsole.log(set.size)%3B%0A%0A">
-          Unique Values
-        </a>
-      </h4>
-      </p>
-<pre class="prettyprint" data-lang="javascript">
-  var set = <b>new Set();</b>
-  set.<b>add(1);</b>
-  set.<b>add(1);</b>
-  set.<b>add(1);</b>
-  console.log(<b>set.size</b>); <b>//logs 1</b>
-</pre>
-    </article>
-    <aside class="note">
-      <section>
-<pre class="prettyprint" data-lang="javascript">
-  //No Note
-</pre>
-      </section>
-    </aside>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>SET</h2>
-    </hgroup>
-    <article>
-      <p>
-      <h4>
-        <a href="http://google.github.io/traceur-compiler/demo/repl.html#%2F%2F%20Options%3A%20--annotations%20--array-comprehension%20--async-functions%20--block-binding%20--exponentiation%20--generator-comprehension%20--module-name%20--source-maps%20--symbols%20--types%20%0A%0Avar%20set%20%3D%20new%20Set()%3B%0Aset.add(1)%3B%0Aset.add(2)%3B%0Aset.add(3)%3B%0Aconsole.log(set.size)%3B%0A%0A">
-          Prototype Methods
-        </a>
-      </h4>
-      </p>
-<pre class="prettyprint" data-lang="javascript">
-  var set = <b>new Set();</b>
-  set.<b>has(1); //false</b>
-  set.<b>add(1);</b>
-  set.<b>has(1); //true</b>
-  set.<b>clear();</b>
-  set.<b>has(1); //false</b>
-  set.<b>add(1);</b>
-  set.<b>add(2);</b>
-  set.<b>size;   //2</b>
-  set.<b>delete(2);</b>
-  set.<b>size;   //1</b>
-
-</pre>
-    </article>
-    <aside class="note">
-      <section>
-<pre class="prettyprint" data-lang="javascript">
-  //No Note
-</pre>
-      </section>
-    </aside>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>SET</h2>
-    </hgroup>
-    <article>
-      <p>
-      <h4>
-        <a href="http://google.github.io/traceur-compiler/demo/repl.html#%2F%2F%20Options%3A%20--annotations%20--array-comprehension%20--async-functions%20--block-binding%20--exponentiation%20--generator-comprehension%20--module-name%20--source-maps%20--symbols%20--types%20%0A%0Avar%20set%20%3D%20new%20Set()%3B%0Aset.add(1)%3B%0Aset.add(2)%3B%0Aset.add(3)%3B%0Aconsole.log(set.size)%3B%0A%0A">
-          No typecasting on "uniqueness"
-        </a>
-      </h4>
-      </p>
-<pre class="prettyprint" data-lang="javascript">
-  var set = <b>new Set();</b>
-
-  set.<b>add(1);</b>
-  set.<b>has(1);    //true</b>
-  set.<b>has("1");  //false</b>
-
-  set.<b>add("1");</b>
-  set.<b>has("1");  //true</b>
-
-</pre>
-    </article>
-    <aside class="note">
-      <section>
-<pre class="prettyprint" data-lang="javascript">
-  //No Notes
-</pre>
-      </section>
-    </aside>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>SET</h2>
-    </hgroup>
-    <article>
-      <p>
-      <h4>
-        <a href="http://google.github.io/traceur-compiler/demo/repl.html#%2F%2F%20Options%3A%20--annotations%20--array-comprehension%20--async-functions%20--block-binding%20--exponentiation%20--generator-comprehension%20--module-name%20--source-maps%20--symbols%20--types%20%0A%0Avar%20set%20%3D%20new%20Set()%3B%0Aset.add(1)%3B%0Aset.add(2)%3B%0Aset.add(3)%3B%0Aconsole.log(set.size)%3B%0A%0A">
-          Iteration
-        </a>
-      </h4>
-      </p>
-<pre class="prettyprint" data-lang="javascript">
-  var items = new Set([1, 2, 3, 4, 5]);
-
-  <b>for (let num of items) {</b>
-    console.log(num); <b>//logs 1, 2, 3, 4, 5</b>
+  class MyClass{
+    constructor(){}
+    //....
   }
-
+  export <b>default</b> MyClass;
+</pre>
+  Main.js
+<pre class="prettyprint" data-lang="javascript">
+  import MyClass from 'MyClass';
 </pre>
     </article>
     <aside class="note">
       <section>
 <pre class="prettyprint" data-lang="javascript">
+  //No Note
+</pre>
+      </section>
+    </aside>
+  </slide>
 
-  new Set([1, 2, 3, 4, 5]); // Works in Firefox
-                            // Not in Chrome
-                            // Not in Traceur
+  <slide>
+    <hgroup>
+      <h2>Modules - Import/Export</h2>
+    </hgroup>
+    <article>
+      <p>
+        <h4>Exporting Multiple Exports</h4>
+      </p>
+      lib.js
+<pre class="prettyprint" data-lang="javascript">
+export const sqrt = Math.sqrt;
+export function square(x) {
+  return x * x;
+}
+export function diag(x, y) {
+  return sqrt(square(x) + square(y));
+}
+</pre>
+  main.js
+<pre class="prettyprint" data-lang="javascript">
+<b>import { square, diag } from 'lib';</b>
+console.log(square(11)); // 121
+console.log(diag(4, 3)); // 5
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Note
+</pre>
+      </section>
+    </aside>
+  </slide>
 
+  <slide>
+    <hgroup>
+      <h2>Modules - Import/Export</h2>
+    </hgroup>
+    <article>
+      <p>
+        <h4>Exporting Multiple Exports - All</h4>
+      </p>
+      lib.js
+<pre class="prettyprint" data-lang="javascript">
+export const sqrt = Math.sqrt;
+export function square(x) {
+  return x * x;
+}
+export function diag(x, y) {
+  return sqrt(square(x) + square(y));
+}
+</pre>
+  main.js
+<pre class="prettyprint" data-lang="javascript">
+<b>import * as lib from 'lib';</b>
+console.log(lib.square(11)); // 121
+console.log(lib.diag(4, 3)); // 5
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Note
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Modules - Import/Export</h2>
+    </hgroup>
+    <article>
+      <p>
+        <h4>Export As</h4>
+      </p>
+      lib.js
+<pre class="prettyprint" data-lang="javascript">
+  class MyClass{
+    //....
+  }
+  <b>export {MyClass as Dude};</b>
+</pre>
+  main.js
+<pre class="prettyprint" data-lang="javascript">
+  <b>import { Dude as Bro } from 'lib';</b>
+  var bro = new Bro(); //instanceof MyClass
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Note
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Modules - Import/Export</h2>
+    </hgroup>
+    <article>
+      <p>
+        <h4>Cyclical Dependencies</h4>
+      </p>
+      lib.js
+<pre class="prettyprint" data-lang="javascript">
+  import Main from 'main';
+
+  var lib = {message: "This Is A Lib"};
+
+  export { lib as Lib };
+</pre>
+  main.js
+<pre class="prettyprint" data-lang="javascript">
+  import { Lib } from 'lib';
+
+  export default class Main{
+    //....
+  }
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Note
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Modules - Import/Export</h2>
+    </hgroup>
+    <article>
+      <p>
+        <h4>Export As</h4>
+      </p>
+      lib.js
+<pre class="prettyprint" data-lang="javascript">
+  import Main from 'main';
+
+  var lib = {message: "This Is A Lib"};
+
+  export { <b>lib as Lib</b> };
+</pre>
+      main.js
+<pre class="prettyprint" data-lang="javascript">
+  import { Lib } from 'lib';
+
+  export default class Main{
+    //....
+  }
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Note
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Modules - Import/Export</h2>
+    </hgroup>
+    <article>
+      <p>
+        <h4>More Importing</h4>
+      </p>
+      lib.js
+<pre class="prettyprint" data-lang="javascript">
+  // Default exports and named exports
+  import theDefault, { named1, named2 } from 'src/mylib';
+  import theDefault from 'src/mylib';
+  import { named1, named2 } from 'src/mylib';
+
+  // Renaming: import named1 as myNamed1
+  import { named1 as myNamed1, named2 } from 'src/mylib';
+
+  // Importing the module as an object
+  // (with one property per named export)
+  import * as mylib from 'src/mylib';
+
+  // Only load the module, don’t import anything
+  import 'src/mylib';
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Note
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Modules - Import/Export</h2>
+    </hgroup>
+    <article>
+      <p>
+        <h4>More Exporting</h4>
+      </p>
+      lib.js
+<pre class="prettyprint" data-lang="javascript">
+  export var myVar1 = ...;
+  export let myVar2 = ...;
+  export const MY_CONST = ...;
+
+  export function myFunc() {
+      ...
+  }
+  export function* myGeneratorFunc() {
+      ...
+  }
+  export class MyClass {
+      ...
+  }
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Note
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Modules - Import/Export</h2>
+    </hgroup>
+    <article>
+      <p>
+        <h4>Re-exporting</h4>
+      </p>
+      lib.js
+<pre class="prettyprint" data-lang="javascript">
+  export * from 'src/other_module';
+
+  export { foo, bar } from 'src/other_module';
+
+  // Export other_module’s foo as myFoo
+  export { foo as myFoo, bar } from 'src/other_module';
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Note
 </pre>
       </section>
     </aside>
@@ -241,7 +434,7 @@ URL: https://code.google.com/p/io-2012-slides
   <slide class="segue dark quote nobackground">
     <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
     <article class="flexbox vleft auto-fadein">
-      <h2>SET</h2>
+      <h2>Import/Export Modules</h2>
       <h3>Questions???</h3>
       <div class="author">
         #ES6 #frontendmasters @js_dev
@@ -252,7 +445,7 @@ URL: https://code.google.com/p/io-2012-slides
   <slide class="segue dark quote nobackground">
     <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
     <article class="flexbox vleft auto-fadein">
-      <h2>MAP</h2>
+      <h2>Programmatic Loading API</h2>
       <!--<h3>Questions???</h3>-->
       <div class="author">
         #ES6 #frontendmasters @js_dev
@@ -262,261 +455,30 @@ URL: https://code.google.com/p/io-2012-slides
 
   <slide>
     <hgroup>
-      <h2>MAP</h2>
+      <h2>Modules - Programmatic Loading API</h2>
     </hgroup>
     <article>
       <p>
-      <h4>
-        <a href="">
-          Basic Map
-        </a>
-      </h4>
+      <h4>System.import API</h4>
       </p>
 <pre class="prettyprint" data-lang="javascript">
-
-  var json = { name: "Aaron" };
-
-  var <b>map</b> = new Map();
-  map.<b>set('name', 'Aaron');</b>
-
-  map.<b>get('name');    //Aaron</b>
-
-</pre>
-      <ul>
-        <li>map.set</li>
-        <li>map.get</li>
-      </ul>
-    </article>
-    <aside class="note">
-      <section>
-<pre class="prettyprint" data-lang="javascript">
-  //No Notes
-</pre>
-      </section>
-    </aside>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>MAP</h2>
-    </hgroup>
-    <article>
-      <p>
-      <h4>
-        <a href="">
-          Basic Map
-        </a>
-      </h4>
-      </p>
-<pre class="prettyprint" data-lang="javascript">
-  var <b>map</b> = new Map();
-
-  map.set(1, true);
-  map.has("1");       //false
-
-  map.set("1", true);
-  map.has("1");       //true
-</pre>
-      <ul>
-        <li>No Typecasting On Key</li>
-      </ul>
-    </article>
-    <aside class="note">
-      <section>
-<pre class="prettyprint" data-lang="javascript">
-  //No Notes
-</pre>
-      </section>
-    </aside>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>MAP</h2>
-    </hgroup>
-    <article>
-      <p>
-      <h4>
-        <a href="">
-          Objects as Keys
-        </a>
-      </h4>
-      </p>
-<pre class="prettyprint" data-lang="javascript">
-  var <b>user</b> = { name: "Aaron", id: 1234 };
-
-  var userHobbyMap = new Map();
-
-  userHobbyMap.set(<b>user</b>, ['Ice Fishing', 'Family Outting']);
-</pre>
-      <ul>
-        <li>Keys: Primitives/Objects/Functions</li>
-      </ul>
-    </article>
-    <aside class="note">
-      <section>
-<pre class="prettyprint" data-lang="javascript">
-  //No Notes
-</pre>
-      </section>
-    </aside>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>MAP</h2>
-    </hgroup>
-    <article>
-      <p>
-      <h4>
-        <a href="">
-          Must Use Same Key
-        </a>
-      </h4>
-      </p>
-<pre class="prettyprint" data-lang="javascript">
-  var user1 = { name: "Aaron", id: 1234 };
-  var user2 = { name: "Aaron", id: 1234 };
-
-  var userHobbyMap = new Map();
-
-  userHobbyMap.set(user1, ['Ice Fishing', 'Family Outting']);
-
-  userHobbyMap.get(user2); //undefined
-  userHobbyMap.get(user1); //['Ice Fishing', 'Family Outting']
-</pre>
-      <ul>
-        <li>You must use the <b>SAME KEY</b></li>
-        <li>JSON maps, different string w/ same contents</li>
-      </ul>
-    </article>
-    <aside class="note">
-      <section>
-<pre class="prettyprint" data-lang="javascript">
-  //No Notes
-</pre>
-      </section>
-    </aside>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>MAP</h2>
-    </hgroup>
-    <article>
-      <p>
-      <h4>
-        <a href="">
-          Usage
-        </a>
-      </h4>
-      </p>
-<pre class="prettyprint" data-lang="javascript">
-  var elem = document.querySelector('#my-element');
-
-  var <b>elemMap</b> = new Map();
-  elemMap.<b>set(elem</b>, <b>{loaded: true, opacity: 0}</b>);
-
-  elemMap.<b>get(elem);    //logs the element</b>
-
-</pre>
-      <ul>
-        <li>Thoughts about why this is bad?</li>
-      </ul>
-    </article>
-    <aside class="note">
-      <section>
-<pre class="prettyprint" data-lang="javascript">
-  //No Notes
-</pre>
-      </section>
-    </aside>
-  </slide>
-
-  <slide class="segue dark quote nobackground">
-    <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
-    <article class="flexbox vleft auto-fadein">
-      <h2>MAP</h2>
-      <h3>Questions???</h3>
-      <div class="author">
-        #ES6 #frontendmasters @js_dev
-      </div>
-    </article>
-  </slide>
-
-  <slide class="segue dark quote nobackground">
-    <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
-    <article class="flexbox vleft auto-fadein">
-      <h2>WEAPMAP</h2>
-      <!--<h3>Questions???</h3>-->
-      <div class="author">
-        #ES6 #frontendmasters @js_dev
-      </div>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>WEAKMAP</h2>
-    </hgroup>
-    <article>
-      <p>
-      <h4>
-        <a href="">
-          A lot like Map
-        </a>
-      </h4>
-      </p>
-<pre class="prettyprint" data-lang="javascript">
-  var weak = new WeakMap();
-
-  weak.set('name', 'Aaron');
-  weak.get('name'); <b>//'Aaron'</b>
-</pre>
-    </article>
-    <aside class="note">
-      <section>
-<pre class="prettyprint" data-lang="javascript">
-  //No Notes
-</pre>
-      </section>
-    </aside>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>WEAKMAP</h2>
-    </hgroup>
-    <article>
-      <p>
-      <h4>
-        <a href="">
-          MOAR likeness
-        </a>
-      </h4>
-      </p>
-<pre class="prettyprint" data-lang="javascript">
-  var user = { name: 'Aaron', id: 1234 };
-  var weak = new WeakMap();
-
-  weak.has(user); <b>//false</b>
-  weak.set(user, {lastAction: new Date()});
-  weak.has(user); <b>//true</b>
-  weak.delete(user);
-  weak.has(user); <b>//false</b>
-  weak.set(user, {lastAction: new Date()});
-  weak.clear();
-  weak.has(user); <b>//false</b>
+  System.import('some_module')
+  .then(some_module => {
+      ...
+  })
+  .catch(error => {
+      ...
+  });
 </pre>
       <ul class="build fade">
-        <li>Just Like A Map</li>
-        <li><b>Not Exactly!</b></li>
+        <li>System.import returns Promise</li>
+        <li>Promise.then provides 'exports'</li>
       </ul>
     </article>
     <aside class="note">
       <section>
 <pre class="prettyprint" data-lang="javascript">
-  //No Notes
+  //No Note
 </pre>
       </section>
     </aside>
@@ -524,85 +486,129 @@ URL: https://code.google.com/p/io-2012-slides
 
   <slide>
     <hgroup>
-      <h2>WEAKMAP</h2>
+      <h2>Modules - Programmatic Loading API</h2>
     </hgroup>
     <article>
       <p>
-      <h4>
-        <a href="">
-          Isn't Like Map
-        </a>
-      </h4>
+      <h4>Load All</h4>
       </p>
 <pre class="prettyprint" data-lang="javascript">
-  var map = new Map();
-  var weak = new WeakMap();
-
-  map.set('aaron', {name: "Aaron", age: 35});
-  weak.set('aaron', {name: "Aaron", age: 35}); <b class="redcom">//Throws: Invalid Key Type</b>
-
-  map.size;   <b>//1</b>
-  weak.size;  <b>//undefined</b>
-
+  Promise.all(
+      ['module1', 'module2', 'module3']
+      .map(x => System.import(x)))
+  .then(function ([module1, module2, module3]) {
+    //my code....
+  });
 </pre>
-      <ul class="build fade">
-        <li>No Primitive Keys</li>
-        <li>No Size</li>
-      </ul>
     </article>
     <aside class="note">
       <section>
 <pre class="prettyprint" data-lang="javascript">
-  //No Notes
+  //No Note
 </pre>
       </section>
     </aside>
   </slide>
 
-  <slide class="segue dark quote nobackground">
-    <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
-    <article class="flexbox vleft auto-fadein">
-      <q>
-        A weakmap holds only a weak reference to a key, which means
-        the reference inside of the weakmap doesn’t prevent garbage
-        collection of that object.
-      </q>
-      <div class="author">
-        Nicolas Zakas<br>
-        @slicknet
-      </div>
-    </article>
-  </slide>
-
   <slide>
     <hgroup>
-      <h2>WEAKMAP</h2>
+      <h2>Modules - Programmatic Loading API</h2>
     </hgroup>
     <article>
       <p>
-      <h4>
-        <a href="">
-          Releases References
-        </a>
-      </h4>
+      <h4>System "Module" functions</h4>
       </p>
 <pre class="prettyprint" data-lang="javascript">
-  var elem = document.querySelector('#my-element');
-  var weak = new WeakMap();
+  System.import(source);
+  //Returns module via Promise
 
-  weak.set(elem, { hidden: false } );
-  //        <span class="fs-56">&#8593;</span>
-  //     if THIS is the only pointer to the elem, the map releases it
+  System.module(source, options);
+  //Return module via Promise
+
+  System.set(name, module);
+  //Inline register a new module
+
+  System.define(name, source, options?);
+  //Eval code, and register module
 </pre>
-      <ul class="build fade">
-        <li>DOM Frameworks & Libraries</li>
-        <li>What Idea Do You Have????</li>
+      <ul>
+        <li>Wish I had better explanations</li>
       </ul>
     </article>
     <aside class="note">
       <section>
 <pre class="prettyprint" data-lang="javascript">
-  //No Notes
+  //No Note
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Modules - Programmatic Loading API</h2>
+    </hgroup>
+    <article>
+      <p>
+      <h4>Module Tag</h4>
+      </p>
+<pre class="prettyprint" data-lang="html">
+  &lt;head&gt;
+    ....
+    &lt;module import="my-module.js"&gt;&lt;/module&gt;
+    ....
+
+
+  &lt;/head&gt;
+</pre>
+      <ul>
+        <li>Wish I had better explanations</li>
+      </ul>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Note
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Modules - Programmatic Loading API</h2>
+    </hgroup>
+    <article>
+      <p>
+      <h4>Module Tag</h4>
+      </p>
+<pre class="prettyprint" data-lang="html">
+  &lt;head&gt;
+    ....
+    &lt;module&gt;
+      import $ from 'lib/jquery';
+
+      //Other JS here
+      console.log(window); //Still can access window
+
+    &lt;/module&gt;
+    ....
+  &lt;/head&gt;
+</pre>
+      <ul>
+        <li>Wish I had better explanations</li>
+        <li>
+          <a href="https://mail.mozilla.org/pipermail/es-discuss/2013-November/034869.html">
+            Read @littlecalculist's Email
+          </a>
+        </li>
+        <li>Let's use the Polyfill to check it out a bit</li>
+      </ul>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Note
 </pre>
       </section>
     </aside>
@@ -613,7 +619,7 @@ URL: https://code.google.com/p/io-2012-slides
   <slide class="segue dark quote nobackground">
     <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
     <article class="flexbox vleft auto-fadein">
-      <h2>That's Collections</h2>
+      <h2>Modules</h2>
       <h3>Questions???</h3>
       <div class="author">
         #ES6 #frontendmasters @js_dev
@@ -627,11 +633,8 @@ URL: https://code.google.com/p/io-2012-slides
     </hgroup>
     <article>
       <ul>
-        <li><b>Collections</b> in <a href="http://google.github.io/traceur-compiler/demo/repl.html#%2F%2F%20Options%3A%20--annotations%20--array-comprehension%20--async-functions%20--block-binding%20--exponentiation%20--generator-comprehension%20--symbols%20--types%0A%0A">Traceur Repl</a></li>
-        <li><b>Collections</b> in Firefox</li>
-        <li><b>Collections</b> in Chrome</li>
-        <li>Use class to extend Set, so that 'add' returns this so you can daisychain</li>
-        <li>Use class to extend Map, so that 'set' returns this so you can daisychain</li>
+        <li><b>Modules</b> in <a href="http://google.github.io/traceur-compiler/demo/repl.html#%2F%2F%20Options%3A%20--annotations%20--array-comprehension%20--async-functions%20--block-binding%20--exponentiation%20--generator-comprehension%20--symbols%20--types%0A%0A">Traceur Repl</a></li>
+        <li>Make some classes, and export them in a module</li>
       </ul>
     </article>
   </slide>
