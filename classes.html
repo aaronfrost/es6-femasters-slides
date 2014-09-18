@@ -137,10 +137,12 @@ URL: https://code.google.com/p/io-2012-slides
     </hgroup>
     <article>
       <p>
-        Private Properties
+        <a href="http://google.github.io/traceur-compiler/demo/repl.html#%2F%2F%20Options%3A%20--annotations%20--array-comprehension%20--async-functions%20--block-binding%20--exponentiation%20--generator-comprehension%20--source-maps%20--symbols%20--types%20%0A%0Avar%20a%20%3D%20(function()%7B%0A%20%20var%20monsterHealth%20%3D%20Symbol()%3B%0A%20%20console.log(monsterHealth)%3B%0A%0A%20%20class%20Monster%7B%0A%20%20%20%20constructor(name%2C%20health)%7B%0A%20%20%20%20%20%20this.name%20%3D%20name%3B%0A%20%20%20%20%20%20this%5BmonsterHealth%5D%20%3D%20health%3B%0A%20%20%20%20%7D%0A%20%20%7D%0A%20%20%0A%20%20return%20Monster%3B%0A%7D)()%3B%0A%0Aconsole.log(a)%3B">
+          Private Properties
+        </a>
       </p>
 <pre class="prettyprint" data-lang="javascript">
-  <b>const monsterHealth = Name.create();</b>
+  <b>const monsterHealth = Symbol();</b>
 
   class Monster{
     constructor(name, health){
@@ -149,6 +151,9 @@ URL: https://code.google.com/p/io-2012-slides
     }
   }
 </pre>
+      <ul class="build fade">
+        <li>Look at <a href="http://google.github.io/traceur-compiler/demo/repl.html#%2F%2F%20Options%3A%20--annotations%20--array-comprehension%20--async-functions%20--block-binding%20--exponentiation%20--generator-comprehension%20--source-maps%20--symbols%20--types%20%0A%0Avar%20a%20%3D%20(function()%7B%0A%20%20var%20monsterHealth%20%3D%20Symbol()%3B%0A%20%20console.log(monsterHealth)%3B%0A%0A%20%20class%20Monster%7B%0A%20%20%20%20constructor(name%2C%20health)%7B%0A%20%20%20%20%20%20this.name%20%3D%20name%3B%0A%20%20%20%20%20%20this%5BmonsterHealth%5D%20%3D%20health%3B%0A%20%20%20%20%7D%0A%20%20%7D%0A%20%20%0A%20%20return%20Monster%3B%0A%7D)()%3B%0A%0Aconsole.log(a)%3B">Symbols</a></li>
+      </ul>
     </article>
   </slide>
 
@@ -161,7 +166,7 @@ URL: https://code.google.com/p/io-2012-slides
         Get Properties
       </p>
 <pre class="prettyprint" data-lang="javascript">
-  const monsterHealth = Name.create();
+  const monsterHealth = Symbol();
 
   class Monster{
     constructor(name, health){

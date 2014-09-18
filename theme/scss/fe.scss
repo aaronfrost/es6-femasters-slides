@@ -50,3 +50,9 @@
     }
   }
 }
+
+.list-o-shiz{
+  & > ul {
+    display: inline-block;
+  }
+}
