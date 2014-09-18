@@ -1,0 +1,656 @@
+<!--
+Google IO 2012/2013 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahé <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Collections</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="title-slide segue nobackground">
+    <aside class="gdbar"><img src="images/es6.png"></aside>
+    <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title style="display: none;"><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle style="display: none;"><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter style="display: none;"><!-- populated from slide_config.json --></p>
+      <h1>Collections</h1>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Collections</h2>
+    </hgroup>
+    <article>
+      <p>
+        <h4>Three new Collections</h4>
+      </p>
+      <ul>
+        <li>SET</li>
+        <li>MAP</li>
+        <li>WEAKMAP</li>
+      </ul>
+      <ul class="build fade">
+        <li><b>Set</b> is <span style="font-style: italic;">like</span> Array</li>
+        <li><b>Map</b> is <span style="font-style: italic;">like</span> Key-Value Object</li>
+        <li><b>WeakMap</b> is <span style="font-style: italic;">like</span> Map, but different</li>
+        <li>Let's talk about each one</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide class="segue dark quote nobackground">
+    <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <q>
+        SET
+      </q>
+      <!--<div class="author">-->
+        <!--Doug Crockford<br>-->
+        <!--Senior Architect of JS<br>-->
+        <!--@Paypal-->
+      <!--</div>-->
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>SET</h2>
+    </hgroup>
+    <article>
+      <p>
+      <h4>
+        <a href="http://google.github.io/traceur-compiler/demo/repl.html#%2F%2F%20Options%3A%20--annotations%20--array-comprehension%20--async-functions%20--block-binding%20--exponentiation%20--generator-comprehension%20--module-name%20--source-maps%20--symbols%20--types%20%0A%0Avar%20set%20%3D%20new%20Set()%3B%0Aset.add(1)%3B%0Aset.add(2)%3B%0Aset.add(3)%3B%0Aconsole.log(set.size)%3B%0A%0A">
+          Basic Set
+        </a>
+      </h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  var set = <b>new Set();</b>
+  set.<b>add(1);</b>
+  set.<b>add(2);</b>
+  set.<b>add(3);</b>
+  console.log(<b>set.size</b>); <b>//logs 3</b>
+</pre>
+      <ul class="build fade">
+        <li>Like an Array</li>
+      </ul>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Note
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>SET</h2>
+    </hgroup>
+    <article>
+      <p>
+      <h4>
+        <a href="http://google.github.io/traceur-compiler/demo/repl.html#%2F%2F%20Options%3A%20--annotations%20--array-comprehension%20--async-functions%20--block-binding%20--exponentiation%20--generator-comprehension%20--module-name%20--source-maps%20--symbols%20--types%20%0A%0Avar%20set%20%3D%20new%20Set()%3B%0Aset.add(1)%3B%0Aset.add(2)%3B%0Aset.add(3)%3B%0Aconsole.log(set.size)%3B%0A%0A">
+          Unique Values
+        </a>
+      </h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  var set = <b>new Set();</b>
+  set.<b>add(1);</b>
+  set.<b>add(1);</b>
+  set.<b>add(1);</b>
+  console.log(<b>set.size</b>); <b>//logs 1</b>
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Note
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>SET</h2>
+    </hgroup>
+    <article>
+      <p>
+      <h4>
+        <a href="http://google.github.io/traceur-compiler/demo/repl.html#%2F%2F%20Options%3A%20--annotations%20--array-comprehension%20--async-functions%20--block-binding%20--exponentiation%20--generator-comprehension%20--module-name%20--source-maps%20--symbols%20--types%20%0A%0Avar%20set%20%3D%20new%20Set()%3B%0Aset.add(1)%3B%0Aset.add(2)%3B%0Aset.add(3)%3B%0Aconsole.log(set.size)%3B%0A%0A">
+          Prototype Methods
+        </a>
+      </h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  var set = <b>new Set();</b>
+  set.<b>has(1); //false</b>
+  set.<b>add(1);</b>
+  set.<b>has(1); //true</b>
+  set.<b>clear();</b>
+  set.<b>has(1); //false</b>
+  set.<b>add(1);</b>
+  set.<b>add(2);</b>
+  set.<b>size;   //2</b>
+  set.<b>delete(2);</b>
+  set.<b>size;   //1</b>
+
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Note
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>SET</h2>
+    </hgroup>
+    <article>
+      <p>
+      <h4>
+        <a href="http://google.github.io/traceur-compiler/demo/repl.html#%2F%2F%20Options%3A%20--annotations%20--array-comprehension%20--async-functions%20--block-binding%20--exponentiation%20--generator-comprehension%20--module-name%20--source-maps%20--symbols%20--types%20%0A%0Avar%20set%20%3D%20new%20Set()%3B%0Aset.add(1)%3B%0Aset.add(2)%3B%0Aset.add(3)%3B%0Aconsole.log(set.size)%3B%0A%0A">
+          No typecasting on "uniqueness"
+        </a>
+      </h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  var set = <b>new Set();</b>
+
+  set.<b>add(1);</b>
+  set.<b>has(1);    //true</b>
+  set.<b>has("1");  //false</b>
+
+  set.<b>add("1");</b>
+  set.<b>has("1");  //true</b>
+
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>SET</h2>
+    </hgroup>
+    <article>
+      <p>
+      <h4>
+        <a href="http://google.github.io/traceur-compiler/demo/repl.html#%2F%2F%20Options%3A%20--annotations%20--array-comprehension%20--async-functions%20--block-binding%20--exponentiation%20--generator-comprehension%20--module-name%20--source-maps%20--symbols%20--types%20%0A%0Avar%20set%20%3D%20new%20Set()%3B%0Aset.add(1)%3B%0Aset.add(2)%3B%0Aset.add(3)%3B%0Aconsole.log(set.size)%3B%0A%0A">
+          Iteration
+        </a>
+      </h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  var items = new Set([1, 2, 3, 4, 5]);
+
+  <b>for (let num of items) {</b>
+    console.log(num); <b>//logs 1, 2, 3, 4, 5</b>
+  }
+
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+
+  new Set([1, 2, 3, 4, 5]); // Works in Firefox
+                            // Not in Chrome
+                            // Not in Traceur
+
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide class="segue dark quote nobackground">
+    <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <h2>SET</h2>
+      <h3>Questions???</h3>
+      <div class="author">
+        #ES6 #frontendmasters @js_dev
+      </div>
+    </article>
+  </slide>
+
+  <slide class="segue dark quote nobackground">
+    <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <h2>MAP</h2>
+      <!--<h3>Questions???</h3>-->
+      <div class="author">
+        #ES6 #frontendmasters @js_dev
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>MAP</h2>
+    </hgroup>
+    <article>
+      <p>
+      <h4>
+        <a href="">
+          Basic Map
+        </a>
+      </h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+
+  var json = { name: "Aaron" };
+
+  var <b>map</b> = new Map();
+  map.<b>set('name', 'Aaron');</b>
+
+  map.<b>get('name');    //Aaron</b>
+
+</pre>
+      <ul>
+        <li>map.set</li>
+        <li>map.get</li>
+      </ul>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>MAP</h2>
+    </hgroup>
+    <article>
+      <p>
+      <h4>
+        <a href="">
+          Basic Map
+        </a>
+      </h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  var <b>map</b> = new Map();
+
+  map.set(1, true);
+  map.has("1");       //false
+
+  map.set("1", true);
+  map.has("1");       //true
+</pre>
+      <ul>
+        <li>No Typecasting On Key</li>
+      </ul>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>MAP</h2>
+    </hgroup>
+    <article>
+      <p>
+      <h4>
+        <a href="">
+          Objects as Keys
+        </a>
+      </h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  var <b>user</b> = { name: "Aaron", id: 1234 };
+
+  var userHobbyMap = new Map();
+
+  userHobbyMap.set(<b>user</b>, ['Ice Fishing', 'Family Outting']);
+</pre>
+      <ul>
+        <li>Keys: Primitives/Objects/Functions</li>
+      </ul>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>MAP</h2>
+    </hgroup>
+    <article>
+      <p>
+      <h4>
+        <a href="">
+          Must Use Same Key
+        </a>
+      </h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  var user1 = { name: "Aaron", id: 1234 };
+  var user2 = { name: "Aaron", id: 1234 };
+
+  var userHobbyMap = new Map();
+
+  userHobbyMap.set(user1, ['Ice Fishing', 'Family Outting']);
+
+  userHobbyMap.get(user2); //undefined
+  userHobbyMap.get(user1); //['Ice Fishing', 'Family Outting']
+</pre>
+      <ul>
+        <li>You must use the <b>SAME KEY</b></li>
+        <li>JSON maps, different string w/ same contents</li>
+      </ul>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>MAP</h2>
+    </hgroup>
+    <article>
+      <p>
+      <h4>
+        <a href="">
+          Usage
+        </a>
+      </h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  var elem = document.querySelector('#my-element');
+
+  var <b>elemMap</b> = new Map();
+  elemMap.<b>set(elem</b>, <b>{loaded: true, opacity: 0}</b>);
+
+  elemMap.<b>get(elem);    //logs the element</b>
+
+</pre>
+      <ul>
+        <li>Thoughts about why this is bad?</li>
+      </ul>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide class="segue dark quote nobackground">
+    <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <h2>MAP</h2>
+      <h3>Questions???</h3>
+      <div class="author">
+        #ES6 #frontendmasters @js_dev
+      </div>
+    </article>
+  </slide>
+
+  <slide class="segue dark quote nobackground">
+    <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <h2>WEAPMAP</h2>
+      <!--<h3>Questions???</h3>-->
+      <div class="author">
+        #ES6 #frontendmasters @js_dev
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>WEAKMAP</h2>
+    </hgroup>
+    <article>
+      <p>
+      <h4>
+        <a href="">
+          A lot like Map
+        </a>
+      </h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  var weak = new WeakMap();
+
+  weak.set('name', 'Aaron');
+  weak.get('name'); <b>//'Aaron'</b>
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>WEAKMAP</h2>
+    </hgroup>
+    <article>
+      <p>
+      <h4>
+        <a href="">
+          MOAR likeness
+        </a>
+      </h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  var user = { name: 'Aaron', id: 1234 };
+  var weak = new WeakMap();
+
+  weak.has(user); <b>//false</b>
+  weak.set(user, {lastAction: new Date()});
+  weak.has(user); <b>//true</b>
+  weak.delete(user);
+  weak.has(user); <b>//false</b>
+  weak.set(user, {lastAction: new Date()});
+  weak.clear();
+  weak.has(user); <b>//false</b>
+</pre>
+      <ul class="build fade">
+        <li>Just Like A Map</li>
+        <li><b>Not Exactly!</b></li>
+      </ul>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>WEAKMAP</h2>
+    </hgroup>
+    <article>
+      <p>
+      <h4>
+        <a href="">
+          Isn't Like Map
+        </a>
+      </h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  var map = new Map();
+  var weak = new WeakMap();
+
+  map.set('aaron', {name: "Aaron", age: 35});
+  weak.set('aaron', {name: "Aaron", age: 35}); <b class="redcom">//Throws: Invalid Key Type</b>
+
+  map.size;   <b>//1</b>
+  weak.size;  <b>//undefined</b>
+
+</pre>
+      <ul class="build fade">
+        <li>No Primitive Keys</li>
+        <li>No Size</li>
+      </ul>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide class="segue dark quote nobackground">
+    <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <q>
+        A weakmap holds only a weak reference to a key, which means
+        the reference inside of the weakmap doesn’t prevent garbage
+        collection of that object.
+      </q>
+      <div class="author">
+        Nicolas Zakas<br>
+        @slicknet
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>WEAKMAP</h2>
+    </hgroup>
+    <article>
+      <p>
+      <h4>
+        <a href="">
+          Releases References
+        </a>
+      </h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  var elem = document.querySelector('#my-element');
+  var weak = new WeakMap();
+
+  weak.set(elem, { hidden: false } );
+  //        <span class="fs-56">&#8593;</span>
+  //     if THIS is the only pointer to the elem, the map releases it
+</pre>
+      <ul class="build fade">
+        <li>DOM Frameworks & Libraries</li>
+        <li>What Idea Do You Have????</li>
+      </ul>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <!-- -->
+
+  <slide class="segue dark quote nobackground">
+    <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <h2>That's Collections</h2>
+      <h3>Questions???</h3>
+      <div class="author">
+        #ES6 #frontendmasters @js_dev
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>TRY THIS</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li><b>Collections</b> in <a href="http://google.github.io/traceur-compiler/demo/repl.html#%2F%2F%20Options%3A%20--annotations%20--array-comprehension%20--async-functions%20--block-binding%20--exponentiation%20--generator-comprehension%20--symbols%20--types%0A%0A">Traceur Repl</a></li>
+        <li><b>Collections</b> in Firefox</li>
+        <li><b>Collections</b> in Chrome</li>
+        <li>Use class to extend Set, so that 'add' returns this so you can daisychain</li>
+        <li>Use class to extend Map, so that 'set' returns this so you can daisychain</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</body>
+</html>
