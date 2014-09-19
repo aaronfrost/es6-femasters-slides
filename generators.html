@@ -1,0 +1,1035 @@
+<!--
+Google IO 2012/2013 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahé <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Generators</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="title-slide segue nobackground">
+    <aside class="gdbar"><img src="images/es6.png"></aside>
+    <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title style="display: none;"><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle style="display: none;"><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter style="display: none;"><!-- populated from slide_config.json --></p>
+      <h1>Generators</h1>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Generators</h2>
+    </hgroup>
+    <article>
+      <p>
+      <h4>What Are They Solving?</h4>
+      </p>
+<!--<pre class="prettyprint" data-lang="javascript">-->
+
+<!--</pre>-->
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Generators</h2>
+    </hgroup>
+    <article>
+      <p>
+      <h4>Consider</h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  setTimeout(function(){
+    console.log("Wait 1 MS");
+  },1);
+
+  function foo() {
+    for (var i=0; i<=1E10; i++) {
+      console.log(i);
+    }
+  }
+
+  foo();
+  // 0..1E10
+  // "Wait 1 MS"
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Generators</h2>
+    </hgroup>
+    <article>
+      <p>
+      <h4>Consider</h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  setTimeout(function(){
+    console.log("Wait 1 MS");
+  },1);
+
+  function foo() {
+    for (var i=0; i<=1E10; i++) { <b>//<span class="redcom">How Long Will This Take?</span></b>
+      console.log(i);
+    }
+  }
+
+  foo();
+  // 0..1E10
+  // "Wait 1 MS"
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Generators</h2>
+    </hgroup>
+    <article>
+      <p>
+      <h4>Consider</h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  setTimeout(function(){
+    console.log("Wait 1 MS");
+  },1);
+
+  function foo() {
+    for (var i=0; i<=1E10; i++) { <b>//<span class="redcom blue">What if we could pause this, and restart it?</span></b>
+      console.log(i);
+    }
+  }
+
+  foo();
+  // 0..1E10
+  // "Wait 1 MS"
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Generators</h2>
+    </hgroup>
+    <article>
+      <p>
+      <h4>Consider</h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  setTimeout(function(){
+    console.log("Wait 1 MS");
+  },1);
+
+  function foo() {
+    for (var i=0; i<=1E10; i++) { <b>//<span class="redcom blue">What if we could pause this, and restart it?</span></b>
+      console.log(i);             <b>//<span class="redcom blue">If we could...</span></b>
+    }
+  }
+
+  foo();
+  // 0..1E10
+  // "Wait 1 MS"
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Generators</h2>
+    </hgroup>
+    <article>
+      <p>
+      <h4>Consider</h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  setTimeout(function(){
+    console.log("Wait 1 MS");
+  },1);
+
+  function foo() {
+    for (var i=0; i<=1E10; i++) { <b>//<span class="redcom blue">What if we could pause this, and restart it?</span></b>
+      console.log(i);             <b>//<span class="redcom blue">If we could...</span></b>
+    }
+  }
+
+  foo();
+  // "Wait 1 MS"  <b>//<span class="redcom blue">these would switch places</span></b>
+  // 0..1E10
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Generators</h2>
+    </hgroup>
+    <article>
+      <p>
+      <h4>Consider</h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  setTimeout(function(){
+    console.log("Wait 1 MS");
+  },1);
+
+  function foo() {
+    for (var i=0; i<=1E10; i++) { <b>//<span class="redcom blue">What if we could pause this, and restart it?</span></b>
+      console.log(i);             <b>//<span class="redcom blue">If we could...</span></b>
+    }                             <b>//<span class="redcom blue">Because THIS wouldn't BLOCK the process anymore</span></b>
+  }
+
+  foo();
+  // "Wait 1 MS"  <b>//<span class="redcom blue">these would switch places</span></b>
+  // 0..1E10
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Generators</h2>
+    </hgroup>
+    <article>
+      <p>
+        <b>Generators</b> enable JavaScript code to be more "cooperative".
+      </p>
+<!--<pre class="prettyprint" data-lang="javascript">-->
+  <!---->
+<!--</pre>-->
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Generators</h2>
+    </hgroup>
+    <article>
+      <p>
+        <h4>Basic Syntax</h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  function <b>*</b>myGen() {
+    //....
+  }
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Generators</h2>
+    </hgroup>
+    <article>
+      <p>
+        <h4>Basic Syntax</h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  function<b>*</b> myGen() {
+    //....
+  }
+  //YOU CAN PUT IT AFTER 'function'
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Generators</h2>
+    </hgroup>
+    <article>
+      <p>
+        <h4>Basic Syntax</h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  function <b>*</b>myGen() {
+    //....
+  }
+  //BUT I LIKE THIS
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Generators</h2>
+    </hgroup>
+    <article>
+      <p>
+        <h4>Basic Syntax</h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  function <b>*</b>three() {
+    <b>yield</b> 1;
+    <b>yield</b> 2;
+    return 3;
+  }
+</pre>
+      <ul class="build fade">
+        <li>Besides <b>yield</b>, generator bodies are just a method</li>
+      </ul>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Generators</h2>
+    </hgroup>
+    <article>
+      <p>
+        <h4>Basic Syntax</h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  function <b>*</b>three() {
+    <b>yield</b> 1;
+    <b>yield</b> 2;
+    return 3;
+  }
+</pre>
+      <ul>
+        <li>This is what they look like</li>
+        <li>HOW DO I USE THIS?</li>
+      </ul>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Generators</h2>
+    </hgroup>
+    <article>
+      <p>
+        <h4>Usage</h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  function <b>*</b>three() {
+    <b>yield</b> 1;
+    <b>yield</b> 2;
+    return 3;
+  }
+
+  var geni = three(); <b>//<span class="redcom blue">Calling 'three()' didn't execute the method</span></b>
+                      <b>//<span class="redcom blue">It returned a <b>generator iterator</b></span></b>
+</pre>
+      <ul class="build">
+        <li>Let me show you how to use 'geni'</li>
+      </ul>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Generators</h2>
+    </hgroup>
+    <article>
+      <p>
+        <h4>Usage</h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  function <b>*</b>three() {
+    <b>yield</b> 1;
+    <b>yield</b> 2;
+    return 3;
+  }
+
+  var geni = three();
+  geni.<b>next</b>();  //Return { value: 1, done: false}
+       <span class="fs-48">&#8613;</span>
+    //<span class="redcom blue">calling '.next()'</span>
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Generators</h2>
+    </hgroup>
+    <article>
+      <p>
+        <h4>Usage</h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  function <b>*</b>three() {
+    <b>yield</b> 1; <span class="fs-48">&#8612;</span><span class="redcom blue">ran the code to here</span>
+    <b>yield</b> 2;
+    return 3;
+  }
+
+  var geni = three();
+  geni.<b>next</b>();  //Return { value: 1, done: false}
+       <span class="fs-48">&#8613;</span>
+    //<span class="redcom blue">calling '.next()'</span>
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Generators</h2>
+    </hgroup>
+    <article>
+      <p>
+        <h4>Usage</h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  function <b>*</b>three() {
+    <b>yield</b> 1; <span class="fs-48">&#8612;</span><span class="redcom blue">ran the code to here</span>
+    <b>yield</b> 2;        <span class="redcom blue">treated 'yield' like 'return'</span>
+    return 3;
+  }
+
+  var geni = three();
+  geni.<b>next</b>();  //Return { <span class="redcom blue">value: 1</span>, <b>done: false</b>}
+       <span class="fs-48">&#8613;</span>
+    //<span class="redcom blue">calling '.next()'</span>
+</pre>
+
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Generators</h2>
+    </hgroup>
+    <article>
+      <p>
+        <h4>Usage</h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  function <b>*</b>three() {
+    <b>yield</b> 1;
+    <b>yield</b> 2;
+    return 3;
+  }
+
+  var geni = three();
+  geni.<b>next</b>();  //Return { <span class="redcom blue">value: 1</span>, <b>done: false</b>}
+  geni.<b>next</b>();  //Return { <span class="redcom blue">value: 2</span>, <b>done: false</b>}
+  geni.<b>next</b>();  //Return { <span class="redcom blue">value: 3</span>, <span class="redcom blue">done: true</span>}
+
+
+</pre>
+      <ul class="build">
+        <li>What if I call '.next()' when 'done: true'</li>
+      </ul>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Generators</h2>
+    </hgroup>
+    <article>
+      <p>
+        <h4>Usage</h4>
+      </p>
+<pre class="prettyprint" data-lang="javascript">
+  function <b>*</b>three() {
+    <b>yield</b> 1;
+    <b>yield</b> 2;
+    return 3;
+  }
+
+  var geni = three();
+  geni.<b>next</b>();  //Return { <span class="redcom blue">value: 1</span>, <b>done: false</b>}
+  geni.<b>next</b>();  //Return { <span class="redcom blue">value: 2</span>, <b>done: false</b>}
+  geni.<b>next</b>();  //Return { <span class="redcom blue">value: 3</span>, <span class="redcom blue">done: true</span>}
+  geni.<b>next</b>();  //Return { value: undefined, <span class="redcom blue">done: true</span>}
+
+
+</pre>
+      <ul>
+        <li>returns and undefined</li>
+      </ul>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Generators</h2>
+    </hgroup>
+    <article>
+<pre class="prettyprint" data-lang="javascript">
+  function *foo() {
+    yield 1;
+    yield 2;
+    yield 3;
+    yield 4;
+    yield 5;
+    return 6;
+  }
+
+  for (var v of foo()) {
+    console.log( v );
+  }
+  <b>//Logs 1, 2, 3, 4, 5</b>
+</pre>
+      <ul class="build">
+        <li>Why doesn't <b>6</b> get logged?</li>
+        <li>Cause 'done: true'</li>
+        <li>'for-of' loops only continue while 'done: false'</li>
+      </ul>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Generators</h2>
+    </hgroup>
+    <article>
+      <p>
+        <h4>So we have gotten info "out" of a generator. How do we pass info "into" a generator?</h4>
+      </p>
+<!--<pre class="prettyprint" data-lang="javascript">-->
+
+<!--</pre>-->
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Generators</h2>
+    </hgroup>
+    <article>
+<pre class="prettyprint" data-lang="javascript">
+  function *foo(x) {
+    var y = 2 * (yield (x + 1));
+    var z = yield (y / 3);
+    return (x + y + z);
+  }
+
+  var genit = foo( 5 );
+
+  console.log( genit.next() );       // { value:6, done:false }
+  console.log( genit.next( 12 ) );   // { value:8, done:false }
+  console.log( genit.next( 13 ) );   // { value:42, done:true }
+</pre>
+      <ul class="build">
+        <li>WHAT JUST HAPPENED?</li>
+        <li>Let's Explain</li>
+        <li>FOCUS!!</li>
+      </ul>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Generators</h2>
+    </hgroup>
+    <article>
+<pre class="prettyprint" data-lang="javascript">
+  function *foo(x) {
+    var y = 2 * (yield (x + 1));
+    var z = yield (y / 3);
+    return (x + y + z);
+  }
+
+  var genit = foo( 5 ); //<span class="redcom blue">passing 5 to foo means</span>
+
+  console.log( genit.next() );       // { value:6, done:false }
+  console.log( genit.next( 12 ) );   // { value:8, done:false }
+  console.log( genit.next( 13 ) );   // { value:42, done:true }
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <!--<slide>-->
+    <!--<hgroup>-->
+      <!--<h2>Generators</h2>-->
+    <!--</hgroup>-->
+    <!--<article>-->
+<!--<pre class="prettyprint" data-lang="javascript">-->
+  <!--function *foo(<b class="redcom blue">x</b>) { //Means that x = 5-->
+    <!--var y = 2 * (yield (x + 1));-->
+    <!--var z = yield (y / 3);-->
+    <!--return (x + y + z);-->
+  <!--}-->
+
+  <!--var genit = foo( 5 ); //<span class="redcom blue">passing 5 to foo means</span>-->
+
+  <!--console.log( genit.next() );       // { value:6, done:false }-->
+  <!--console.log( genit.next( 12 ) );   // { value:8, done:false }-->
+  <!--console.log( genit.next( 13 ) );   // { value:42, done:true }-->
+<!--</pre>-->
+    <!--</article>-->
+    <!--<aside class="note">-->
+      <!--<section>-->
+<!--<pre class="prettyprint" data-lang="javascript">-->
+  <!--//No Notes-->
+<!--</pre>-->
+      <!--</section>-->
+    <!--</aside>-->
+  <!--</slide>-->
+
+  <slide>
+    <hgroup>
+      <h2>Generators</h2>
+    </hgroup>
+    <article>
+<pre class="prettyprint" data-lang="javascript">
+  function *foo(<b class="redcom blue">x</b>) { //<span class="redcom blue">Means that x = 5</span>
+    var y = 2 * (yield (x + 1));
+    var z = yield (y / 3);
+    return (x + y + z);
+  }
+
+  var genit = foo( 5 ); //<span class="redcom blue">passing 5 to foo means</span>
+
+  console.log( genit.next() );       // { value:6, done:false }
+  console.log( genit.next( 12 ) );   // { value:8, done:false }
+  console.log( genit.next( 13 ) );   // { value:42, done:true }
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Generators</h2>
+    </hgroup>
+    <article>
+<pre class="prettyprint" data-lang="javascript">
+  function *foo(x) {
+    var y = 2 * (<b class="redcom blue">yield (x + 1)</b>);
+    var z = yield (y / 3);
+    return (x + y + z);
+  }
+
+  var genit = foo( 5 );
+
+  console.log( <b class="redcom blue">genit.next()</b> );       // { value:6, done:false }
+  console.log( genit.next( 12 ) );   // { value:8, done:false }
+  console.log( genit.next( 13 ) );   // { value:42, done:true }
+</pre>
+      <ul class="build">
+        <li>What is 'x'?</li>
+        <li>So it yields 6</li>
+      </ul>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Generators</h2>
+    </hgroup>
+    <article>
+<pre class="prettyprint" data-lang="javascript">
+  function *foo(x) {
+    var y = 2 * (yield (x + 1));
+    var z = yield (y / 3);
+    return (x + y + z);
+  }
+
+  var genit = foo( 5 );
+
+  console.log( genit.next() );       // { value:6, done:false }
+  console.log( genit.next( 12 ) );   // { value:8, done:false }
+  console.log( genit.next( 13 ) );   // { value:42, done:true }
+</pre>
+      <!--<ul class="build">-->
+        <!--<li>What is 'x'?</li>-->
+        <!--<li>So it yields 6</li>-->
+      <!--</ul>-->
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Generators</h2>
+    </hgroup>
+    <article>
+<pre class="prettyprint" data-lang="javascript">
+  function *foo(x) {
+    var y = 2 * ( <b class="redcom blue">12</b> <span class="line-through">yield (x + 1)</span>);
+    var z = yield (y / 3);
+    return (x + y + z);
+  }
+
+  var genit = foo( 5 );
+
+  console.log( genit.next() );       // { value:6, done:false }
+  console.log( <b>genit.next( <span class="redcom blue">12</span> )</b> );   // { value:8, done:false }
+  console.log( genit.next( 13 ) );   // { value:42, done:true }
+</pre>
+      <ul class="build">
+        <li>thus: <b>y = 2 * 12</b></li>
+        <li>thus: <b>y = 24</b></li>
+        <li>and thus: it yielded 'y / 3' or '8'</b></li>
+      </ul>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Generators</h2>
+    </hgroup>
+    <article>
+<pre class="prettyprint" data-lang="javascript">
+  function *foo(x) {
+    var y = 2 * (yield (x + 1));
+    var z = yield (y / 3);
+    return (x + y + z);
+  }
+
+  var genit = foo( 5 );
+
+  console.log( genit.next() );       // { value:6, done:false }
+  console.log( genit.next( 12 ) );   // { value:8, done:false }
+  console.log( genit.next( 13 ) );   // { value:42, done:true }
+</pre>
+      <!--<ul class="build">-->
+        <!--<li>What is 'x'?</li>-->
+        <!--<li>So it yields 6</li>-->
+      <!--</ul>-->
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Generators</h2>
+    </hgroup>
+    <article>
+<pre class="prettyprint" data-lang="javascript">
+  function *foo(x) {
+    var y = 2 * (yield (x + 1));
+    var z = <span class="redcom blue">13</span> <span class="line-through">yield (y / 3)</span>;
+    return (x + y + z);
+  }
+
+  var genit = foo( 5 );
+
+  console.log( genit.next() );       // { value:6, done:false }
+  console.log( genit.next( 12 ) );   // { value:8, done:false }
+  console.log( <b>genit.next( <span class="redcom blue">13</span> )</b> );   // { value:42, done:true }
+</pre>
+      <ul class="build">
+        <li>thus: z = 13</li>
+        <li>thus: returned (5 + 24 + 13)</li>
+        <li>thus: returned (42)</li>
+      </ul>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Generators</h2>
+    </hgroup>
+    <article>
+<pre class="prettyprint" data-lang="javascript">
+  function *foo(x) {
+    var y = 2 * (yield (x + 1));
+    var z = yield (y / 3);
+    return (x + y + z);
+  }
+
+  var genit = foo( 5 );
+
+  console.log( genit.next() );       // { value:6, done:false }
+  console.log( genit.next( 12 ) );   // { value:8, done:false }
+  console.log( genit.next( 13 ) );   // { value:42, done:true }
+</pre>
+      <ul class="build">
+        <li><h2>Questions???</h2></li>
+      </ul>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Generators</h2>
+    </hgroup>
+    <article>
+      <p>
+        <h4>Generator Expressions</h4>
+      </p>
+      <p>
+        Companion feature to generators are Generator Expressions. These were
+        pushed to ES7, however.
+      </p>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <!-- -->
+
+  <slide class="segue dark quote nobackground">
+    <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <h2>That's Generators</h2>
+      <h3>Questions???</h3>
+      <div class="author">
+        #ES6 #frontendmasters @js_dev
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>TRY THIS</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li><b>Generators</b> in <a href="http://google.github.io/traceur-compiler/demo/repl.html#%2F%2F%20Options%3A%20--annotations%20--array-comprehension%20--async-functions%20--block-binding%20--exponentiation%20--generator-comprehension%20--symbols%20--types%0A%0A">Traceur Repl</a></li>
+        <li><b>Generators</b> in Firefox</li>
+        <li><b>Generators</b> in Chrome</li>
+        <li>Build fibonacci-generator</li>
+        <li>Build GUID generator</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</body>
+</html>

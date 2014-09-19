@@ -44,44 +44,480 @@ URL: https://code.google.com/p/io-2012-slides
     </hgroup>
     <article>
       <p>
-        <h4>Three new Collections</h4>
+        <h4>Promise</h4>
       </p>
       <ul>
-        <li>SET</li>
-        <li>MAP</li>
-        <li>WEAKMAP</li>
-      </ul>
-      <ul class="build fade">
-        <li><b>Set</b> is <span style="font-style: italic;">like</span> Array</li>
-        <li><b>Map</b> is <span style="font-style: italic;">like</span> Key-Value Object</li>
-        <li><b>WeakMap</b> is <span style="font-style: italic;">like</span> Map, but different</li>
-        <li>Let's talk about each one</li>
+        <li>Why Do We Need Them?</li>
+        <li>What Problem Do They Solve?</li>
       </ul>
     </article>
   </slide>
 
-  <!--<slide class="segue dark quote nobackground">-->
-    <!--<aside class="gdbar right bottom"><img src="images/es6.png"></aside>-->
-    <!--<article class="flexbox vleft auto-fadein">-->
-      <!--<q>-->
-        <!--SET-->
-      <!--</q>-->
-      <!--&lt;!&ndash;<div class="author">&ndash;&gt;-->
-        <!--&lt;!&ndash;Doug Crockford<br>&ndash;&gt;-->
-        <!--&lt;!&ndash;Senior Architect of JS<br>&ndash;&gt;-->
-        <!--&lt;!&ndash;@Paypal&ndash;&gt;-->
-      <!--&lt;!&ndash;</div>&ndash;&gt;-->
-    <!--</article>-->
-  <!--</slide>-->
+  <slide>
+    <hgroup>
+      <h2>Promises</h2>
+    </hgroup>
+    <article>
+      <p>
+        <h4>Why Do We Need Promises?</h4>
+      </p>
+      <ul class="">
+        <li class="pic-comment">
+          Async code can look scary
+          <img class="hover-pic" src="images/ysoasync.jpg" alt="" style="width: 60%;"/>
+        </li>
+        <li class="pic-comment">
+          Callback Pyramid of Death
+          <img class="hover-pic" src="images/pyramid.png" alt=""/>
+        </li>
+        <li class="pic-comment">
+          Code Organization
+          <img class="hover-pic" src="images/eatajax.jpg" alt=""/>
+        </li>
+        <li>Example</li>
+      </ul>
+      <p>
+        <ul class="build fade">
+          <li>Promises organize code</li>
+        </ul>
+      </p>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+
+  var img1 = document.querySelector('.img-1');
+
+  function loaded() {
+    // woo yey image loaded
+  }
+
+  if (img1.complete) {
+    loaded();
+  } else {
+    img1.addEventListener('load', loaded);
+  }
+
+  img1.addEventListener('error', function() {
+    // argh everything's broken
+  });
+
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Promises</h2>
+    </hgroup>
+    <article>
+      <p>
+      <h4>Promise - Top Down</h4>
+      </p>
+      <ul>
+        <li>Promise Constructor</li>
+        <li>Promise Instance</li>
+        <li>Static Promise Methods</li>
+      </ul>
+      <ul class="build fade">
+        <li>
+          Let's Talk About Each
+        </li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide class="segue dark quote nobackground">
+    <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <q>
+        Promise Constructor
+      </q>
+      <!--<div class="author">-->
+        <!--Doug Crockford<br>-->
+        <!--Senior Architect of JS<br>-->
+        <!--@Paypal-->
+      <!--</div>-->
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Promise Constructor</h2>
+    </hgroup>
+    <article>
+<pre class="prettyprint" data-lang="javascript">
+  var promise = new Promise(function(resolve, reject) {
+    // do a thing, possibly async, then…
+
+    if (/* everything turned out fine */) {
+      resolve("Stuff worked!");
+    }
+    else {
+      reject(Error("It broke"));
+    }
+  });
+
+  return promise; <b>//Give This To Someone</b>
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
 
 
+
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Promise Constructor</h2>
+    </hgroup>
+    <article>
+<pre class="prettyprint" data-lang="javascript">
+  var promise = new Promise(function(resolve, reject) {
+    // do a thing, possibly async, then…
+
+    <b class="redcom blue">//WHAT COULD WE DO HERE?</b>
+  });
+</pre>
+      <ul class="build fade">
+        <li>AJAX</li>
+        <li>Load Image</li>
+        <li>Read/Write localStorage</li>
+        <li>Write lots to DOM</li>
+        <li>Show a spinner for loading</li>
+        <li>Others????</li>
+      </ul>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Promise Constructor</h2>
+    </hgroup>
+    <article>
+      <h3>That's It! Constructors</h3>
+<pre class="prettyprint" data-lang="javascript">
+  var promise = new Promise(function(resolve, reject) {
+    // do a thing, possibly async, then…
+
+  });
+</pre>
+      <h3>Questions??</h3>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide class="segue dark quote nobackground">
+    <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <q>
+        Promise Instance
+      </q>
+      <!--<div class="author">-->
+      <!--Doug Crockford<br>-->
+      <!--Senior Architect of JS<br>-->
+      <!--@Paypal-->
+      <!--</div>-->
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Promise Instance</h2>
+    </hgroup>
+    <article>
+      <p><h4>We have a 'promise' object. Now what?</h4></p>
+      <ul class="build">
+        <li>
+          A 'promise' can be in <b>1</b> of <b>4</b> states
+          <ul class="build">
+            <li><b>fulfilled:</b> successfully resolved - 1</li>
+            <li><b>rejected:</b> rejected - 2</li>
+            <li><b>pending:</b> hasn't resolved or rejected yet - undefined</li>
+            <li><b>settled:</b> fulfilled or rejected - 1 or 2</li>
+            <li><b>settled</b> is really fulfilled or rejected. More for terminology.</li>
+          </ul>
+        </li>
+      </ul>
+
+<!--<pre class="prettyprint" data-lang="javascript">-->
+  <!---->
+<!--</pre>-->
+
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Promise Instance</h2>
+    </hgroup>
+    <article>
+<pre class="prettyprint" data-lang="javascript">
+  var promise = new Promise(function(resolve, reject){
+    //Do Something
+    if(somthingWorked()){
+      resolve("Stuff worked!");
+    } else {
+      reject("It broke");
+    }
+  });
+
+  promise.then(function(result) {
+    console.log(result); // "Stuff worked!"
+  }, function(err) {
+    console.log(err); // Error: "It broke"
+  });
+</pre>
+
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Promise Instance - Make The Promise</h2>
+    </hgroup>
+    <article>
+<pre class="prettyprint" data-lang="javascript">
+  //<b class="redcom blue">Made My Own GET method</b>
+
+  function get(url){
+    return new Promise(function(resolve, reject){
+      $.get(url, function(data){
+        resolve(data);
+      })
+      .fail(function(){
+        reject();
+      });
+    });
+  }
+
+</pre>
+
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Promise Instance - USE The Promise</h2>
+    </hgroup>
+    <article>
+<pre class="prettyprint" data-lang="javascript">
+
+  get('users.all').then(function(users){
+    myController.users = users;
+  }, function(){
+    delete myController.users;
+  });
+
+
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+    <slide>
+    <hgroup>
+      <h2>Promise Instance - USE The Promise</h2>
+    </hgroup>
+    <article>
+<pre class="prettyprint" data-lang="javascript">
+  //<b>.catch instead of second handler in .then</b>
+  get('users.all')
+    .then(function(users){
+      myController.users = users;
+    })
+    .catch(function(){
+      delete myController.users;
+    });
+
+
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Promise Instance - USE The Promises</h2>
+    </hgroup>
+    <article>
+<pre class="prettyprint" data-lang="javascript">
+
+  var usersPromise = get('users.all');
+  var postsPromise = get('posts.everyone');
+
+  //Wait until <b>BOTH</b> are settled
+  Promise.all([usersPromise, postsPromise])
+  .then(function(results){
+    myController.users = results[0];
+    myController.posts = results[1];
+  }, function(){
+    delete myController.users;
+    delete myController.posts;
+  });
+
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Promise Instance - USE The Promise</h2>
+    </hgroup>
+    <article>
+      <ul class="build fade">
+        <li>What if the response is a string?</li>
+        <li>
+<pre class="prettyprint" data-lang="javascript">
+
+  get('users.all').then(function(<b>usersString</b>){
+    <b><span class="redcom">return</span> JSON.parse(usersString);</b>
+  }).then(function(<b>users</b>){
+    myController.users = <b>users</b>;
+  });
+
+</pre>
+
+        </li>
+      </ul>
+
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Promise Instance - USE The Promise</h2>
+    </hgroup>
+    <article>
+
+<pre class="prettyprint" data-lang="javascript">
+  <b>//<span class="redcom blue">Even More Compact</span></b>
+  get('users.all').then(<b>JSON.parse</b>).then(function(<b>users</b>){
+    myController.users = <b>users</b>;
+  });
+
+</pre>
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
+
+  <slide class="segue dark quote nobackground">
+    <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <q>
+        Static Promise Methods
+      </q>
+      <!--<div class="author">-->
+      <!--Doug Crockford<br>-->
+      <!--Senior Architect of JS<br>-->
+      <!--@Paypal-->
+      <!--</div>-->
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Static Promise Methods</h2>
+    </hgroup>
+    <article>
+      <ul class="build">
+        <li>Promise.<b>all(</b>iterable<b>)</b>; //Wait Until All Settle</li>
+        <li>Promise.<b>race(</b>iterable<b>)</b>;//Wait Until 1 Settles</li>
+        <li>Promise.<b>reject(</b>reason<b>)</b>;//Create a promise that is already rejected</li>
+        <li>Promise.<b>resolve(</b>value<b>)</b>;//Create a promise that is already resolved</li>
+      </ul>
+
+<!--<pre class="prettyprint" data-lang="javascript">-->
+  <!---->
+<!--</pre>-->
+    </article>
+    <aside class="note">
+      <section>
+<pre class="prettyprint" data-lang="javascript">
+  //No Notes
+</pre>
+      </section>
+    </aside>
+  </slide>
 
   <!-- -->
 
   <slide class="segue dark quote nobackground">
     <aside class="gdbar right bottom"><img src="images/es6.png"></aside>
     <article class="flexbox vleft auto-fadein">
-      <h2>That's Collections</h2>
+      <h2>That's Promises</h2>
       <h3>Questions???</h3>
       <div class="author">
         #ES6 #frontendmasters @js_dev
@@ -95,11 +531,11 @@ URL: https://code.google.com/p/io-2012-slides
     </hgroup>
     <article>
       <ul>
-        <li><b>Collections</b> in <a href="http://google.github.io/traceur-compiler/demo/repl.html#%2F%2F%20Options%3A%20--annotations%20--array-comprehension%20--async-functions%20--block-binding%20--exponentiation%20--generator-comprehension%20--symbols%20--types%0A%0A">Traceur Repl</a></li>
-        <li><b>Collections</b> in Firefox</li>
-        <li><b>Collections</b> in Chrome</li>
-        <li>Use class to extend Set, so that 'add' returns this so you can daisychain</li>
-        <li>Use class to extend Map, so that 'set' returns this so you can daisychain</li>
+        <li><b>Promises</b> in <a href="http://google.github.io/traceur-compiler/demo/repl.html#%2F%2F%20Options%3A%20--annotations%20--array-comprehension%20--async-functions%20--block-binding%20--exponentiation%20--generator-comprehension%20--symbols%20--types%0A%0A">Traceur Repl</a></li>
+        <li><b>Promises</b> in Firefox</li>
+        <li><b>Promises</b> in Chrome</li>
+        <li>Wrap XHR in your own method that uses promises</li>
+        <li>Make 'img' method that will create and image and resolve when it loads</li>
       </ul>
     </article>
   </slide>
